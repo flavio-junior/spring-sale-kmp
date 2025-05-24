@@ -1,4 +1,4 @@
-package br.com.conding.tv.ui.account
+package br.com.conding.tv.features.account.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -42,7 +42,7 @@ import br.com.conding.tv.resources.isNotBlankAndEmpty
 import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 import br.com.conding.tv.utils.isTokenExpired
-import br.com.conding.tv.viewmodel.ApiViewModel
+import br.com.conding.tv.features.account.viewmodel.AccountViewModel
 import br.com.conding.tv.features.account.domain.type.TypeAccount
 import org.koin.mp.KoinPlatform.getKoin
 import springsale.composeapp.generated.resources.Res
@@ -72,7 +72,7 @@ fun CardSignIn(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16)
         ) {
-            val viewModel: ApiViewModel = getKoin().get()
+            val viewModel: AccountViewModel = getKoin().get()
             var email: String by remember { mutableStateOf(value = EMPTY_TEXT) }
             var password: String by remember { mutableStateOf(value = EMPTY_TEXT) }
             var isError: Boolean by remember { mutableStateOf(value = false) }
@@ -173,7 +173,7 @@ private fun GetDataInputsSignIn(
 
 @Composable
 private fun ObserveStateSignIn(
-    viewModel: ApiViewModel,
+    viewModel: AccountViewModel,
     onError: (Triple<Boolean, Boolean, String>) -> Unit = {},
     goToLoginScreen: (TypeAccount) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
@@ -200,7 +200,7 @@ private fun ObserveStateSignIn(
 }
 
 private fun checkDataToSignIn(
-    triple: Triple<String, String, ApiViewModel>,
+    triple: Triple<String, String, AccountViewModel>,
     onError: (Triple<Boolean, Boolean, String>) -> Unit = {},
 ) {
     if (triple.first.isNotBlankAndEmpty() && triple.second.isNotBlankAndEmpty()) {
@@ -213,7 +213,7 @@ private fun checkDataToSignIn(
 
 @Composable
 private fun ObserveNetworkStateHandlerToken(
-    viewModel: ApiViewModel,
+    viewModel: AccountViewModel,
     goToDashboardScreen: () -> Unit = {}
 ) {
     LaunchedEffect(Unit) {

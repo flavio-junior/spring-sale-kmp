@@ -7,6 +7,7 @@ androidx-activity = "1.10.1"
 androidx-lifecycle = "2.9.0"
 composeHotReload = "1.0.0-alpha10"
 composeMultiplatform = "1.8.1"
+datastore = "1.1.7"
 ktor = "3.0.1"
 kotlin = "2.1.21"
 kotlinx-coroutines = "1.10.2"
@@ -29,6 +30,8 @@ ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "k
 ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation" }
+datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

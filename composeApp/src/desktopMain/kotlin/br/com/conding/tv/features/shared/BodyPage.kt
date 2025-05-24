@@ -1,4 +1,4 @@
-package br.com.conding.tv.ui.shared
+package br.com.conding.tv.features.shared
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

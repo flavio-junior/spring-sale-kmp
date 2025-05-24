@@ -6,8 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.conding.tv.ui.home.HomeScreen
-import br.com.conding.tv.ui.account.SignInScreen
+import br.com.conding.tv.features.home.HomeScreen
+import br.com.conding.tv.features.account.ui.SignInScreen
 
 @Composable
 fun Navigation(

@@ -1,4 +1,4 @@
-package br.com.conding.tv.ui.home
+package br.com.conding.tv.features.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,8 +26,8 @@ import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_FOUR
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import br.com.conding.tv.theme.Themes
-import br.com.conding.tv.ui.shared.BodyPage
-import br.com.conding.tv.viewmodel.ApiViewModel
+import br.com.conding.tv.features.shared.BodyPage
+import br.com.conding.tv.features.account.viewmodel.AccountViewModel
 import org.koin.mp.KoinPlatform.getKoin
 import kotlin.system.exitProcess
 
@@ -53,7 +53,7 @@ private fun MainCard(
 ) {
     var callViewModel: Boolean by remember { mutableStateOf(value = false) }
     var openDialog: Boolean by remember { mutableStateOf(value = false) }
-    val viewModel: ApiViewModel = getKoin().get()
+    val viewModel: AccountViewModel = getKoin().get()
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
@@ -110,7 +110,7 @@ private fun MainCard(
 
 @Composable
 private fun ObserveNetworkStateHandlerConfirmExitDialog(
-    viewModel: ApiViewModel,
+    viewModel: AccountViewModel,
     goToNextScreen: (String) -> Unit = {}
 ) {
     val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.cleanToken }

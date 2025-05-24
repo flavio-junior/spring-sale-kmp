@@ -1,6 +1,8 @@
 package br.com.conding.tv.networking.di
 
+import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import br.com.conding.tv.networking.resources.NetworkingUtils.TIMEOUT_SIZE
+import br.com.conding.tv.networking.storage.LocalStorage
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpTimeout
@@ -14,6 +16,7 @@ import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.koin.dsl.module
+import okio.Path.Companion.toPath
 
 val networkModule = module {
     single {
@@ -40,5 +43,12 @@ val networkModule = module {
             }
         }
     }
+    single {
+            PreferenceDataStoreFactory.createWithPath(
+                produceFile = { DATA_STORE_FILE_NAME.toPath() }
+            )
+    }
+    single { LocalStorage(dataStore = get()) }
 }
 
+internal const val DATA_STORE_FILE_NAME = "spring_sale.preferences_pb"

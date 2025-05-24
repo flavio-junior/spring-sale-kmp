@@ -6,6 +6,6 @@ import br.com.conding.tv.features.account.domain.converter.ConverterToken
 import org.koin.dsl.module
 
 val accountModule = module {
-    single<AccountRepository> { AccountRemoteDataSource(get()) }
+    single<AccountRepository> { AccountRemoteDataSource(httpClient = get()) }
     single { ConverterToken() }
 }

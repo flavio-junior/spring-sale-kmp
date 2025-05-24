@@ -1,4 +1,4 @@
-package br.com.conding.tv.ui.account
+package br.com.conding.tv.features.account.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
