@@ -5,15 +5,13 @@ import br.com.conding.tv.features.account.data.vo.TokenResponseVO
 
 class ConverterToken {
 
-    fun converterTokenRequestDTOToTokenResponseVO(token: TokenResponseDTO): TokenResponseVO {
+    fun converterTokenRequestDTOToTokenResponseVO(
+        tokenResponseDTO: TokenResponseDTO
+    ): TokenResponseVO {
         return TokenResponseVO(
-            user = token.user,
-            authenticated = token.authenticated,
-            created = token.created,
-            type = token.type.name,
-            expiration = token.expiration,
-            accessToken = token.accessToken,
-            refreshToken = token.refreshToken
+            expiration = tokenResponseDTO.expiration,
+            accessToken = tokenResponseDTO.accessToken,
+            refreshToken = tokenResponseDTO.refreshToken
         )
     }
 }

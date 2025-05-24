@@ -27,6 +27,7 @@ import br.com.conding.tv.components.ui.TextPassword
 import br.com.conding.tv.features.account.data.dto.SignInRequestDTO
 import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
 import br.com.conding.tv.features.account.data.vo.TokenResponseVO
+import br.com.conding.tv.features.account.viewmodel.AccountViewModel
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.CREATE_ONE_ACCOUNT
@@ -42,8 +43,6 @@ import br.com.conding.tv.resources.isNotBlankAndEmpty
 import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 import br.com.conding.tv.utils.isTokenExpired
-import br.com.conding.tv.features.account.viewmodel.AccountViewModel
-import br.com.conding.tv.features.account.domain.type.TypeAccount
 import org.koin.mp.KoinPlatform.getKoin
 import springsale.composeapp.generated.resources.Res
 import springsale.composeapp.generated.resources.mail
@@ -106,7 +105,7 @@ fun CardSignIn(
                     isEnabled = it.second
                     errorMessage = it.third
                 },
-                goToLoginScreen = { goToDashboardScreen() },
+                goToDashboardScreen = goToDashboardScreen,
                 goToAlternativeRoutes = goToAlternativeRoutes
             )
             SimpleText(
@@ -175,7 +174,7 @@ private fun GetDataInputsSignIn(
 private fun ObserveStateSignIn(
     viewModel: AccountViewModel,
     onError: (Triple<Boolean, Boolean, String>) -> Unit = {},
-    goToLoginScreen: (TypeAccount) -> Unit = {},
+    goToDashboardScreen: () -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     val accountState: ObserveNetworkStateHandler<TokenResponseDTO> by remember {
@@ -193,7 +192,7 @@ private fun ObserveStateSignIn(
             onError(Triple(first = false, second = false, third = EMPTY_TEXT))
             accountState.result?.let {
                 viewModel.resetStateSignIn()
-                goToLoginScreen(it.type)
+                goToDashboardScreen()
             }
         }
     )
@@ -225,10 +224,10 @@ private fun ObserveNetworkStateHandlerToken(
         onLoading = {},
         onError = {},
         onSuccess = {
-            if (state.result != null && state.result?.type?.isNotBlankAndEmpty() == true) {
-                val checkContent = state.result
-                if (checkContent?.type?.isNotBlankAndEmpty() == true) {
-                    if (isTokenExpired(expirationDate = checkContent.expiration)) {
+            if (state.result != null && state.result?.accessToken?.isNotBlankAndEmpty() == true) {
+                val tokenResponseVO = state.result
+                if (tokenResponseVO?.accessToken?.isNotBlankAndEmpty() == true) {
+                    if (isTokenExpired(expirationDate = tokenResponseVO.expiration)) {
                         viewModel.cleanToken()
                     } else {
                         goToDashboardScreen()
