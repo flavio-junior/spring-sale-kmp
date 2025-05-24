@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
-import br.com.conding.tv.components.ProvideTextStyleDefault
+import br.com.conding.tv.components.ui.ProvideTextStyleDefault
 import br.com.conding.tv.theme.Themes.size
 import br.com.conding.tv.theme.Themes.typography
 

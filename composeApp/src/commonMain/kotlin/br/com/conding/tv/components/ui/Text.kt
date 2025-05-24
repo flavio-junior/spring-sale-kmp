@@ -1,4 +1,4 @@
-package br.com.conding.tv.components
+package br.com.conding.tv.components.ui
 
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import br.com.conding.tv.components.GenericsStrings.PROJECT_NAME
+import br.com.conding.tv.resources.GenericsStrings.PROJECT_NAME
 import br.com.conding.tv.theme.Themes
 import br.com.conding.tv.theme.TypeFont
 import br.com.conding.tv.theme.Typography
