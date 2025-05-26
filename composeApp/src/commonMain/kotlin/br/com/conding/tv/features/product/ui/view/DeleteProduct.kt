@@ -10,6 +10,7 @@ import br.com.conding.tv.components.ui.Alert
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
+import br.com.conding.tv.features.product.ui.viewmodel.ResetProduct
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.networking.resources.reloadViewModels
@@ -83,6 +84,7 @@ private fun ObserveNetworkStateHandlerUpdatePriceProduct(
         },
         onSuccess = {
             onError(Triple(first = false, second = false, third = EMPTY_TEXT))
+            viewModel.resetProduct(reset = ResetProduct.DELETE_PRODUCT)
             viewModel.findAllProducts()
             onSuccessful()
         }

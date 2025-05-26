@@ -2,7 +2,6 @@ package br.com.conding.tv.features.product.data.repository
 
 import br.com.conding.tv.features.account.data.repository.LocalStorageImp
 import br.com.conding.tv.features.product.data.dto.ProductRequestDTO
-import br.com.conding.tv.features.product.data.dto.ProductResponseDTO
 import br.com.conding.tv.features.product.data.dto.ProductsResponseDTO
 import br.com.conding.tv.features.product.data.dto.RestockProductRequestDTO
 import br.com.conding.tv.features.product.data.dto.UpdatePriceProductRequestDTO
@@ -54,21 +53,6 @@ class ProductRemoteDataSource(
         }
     }
 
-    override fun finProductByName(
-        name: String
-    ): Flow<ObserveNetworkStateHandler<List<ProductResponseDTO>>> {
-        return toResultFlow {
-            httpClient.get {
-                url {
-                    path(path = arrayOf("/api/spring/sale/products/v1/find/product/by/$name"))
-                }
-                headers {
-                    append(name= HttpHeaders.Authorization, value = "Bearer $accessToken")
-                }
-            }
-        }
-    }
-
     override fun createNewProduct(
         product: ProductRequestDTO
     ): Flow<ObserveNetworkStateHandler<Unit>> {
@@ -103,7 +87,7 @@ class ProductRemoteDataSource(
     ): Flow<ObserveNetworkStateHandler<Unit>> {
         return toResultFlow {
             httpClient.patch {
-                url(urlString = "/api/spring/sale/products/v1/update/price/product/$id")
+                url(urlString = "/api/spring/sale/products/v1/update/product/price/$id")
                 headers {
                     append(name= HttpHeaders.Authorization, value = "Bearer $accessToken")
                 }

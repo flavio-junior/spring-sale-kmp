@@ -19,6 +19,7 @@ import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
 import br.com.conding.tv.features.category.ui.view.SelectCategories
 import br.com.conding.tv.features.product.data.dto.UpdateProductRequestDTO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
+import br.com.conding.tv.features.product.ui.viewmodel.ResetProduct
 import br.com.conding.tv.features.product.utils.checkBodyProductIsNull
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
@@ -202,6 +203,7 @@ private fun ObserveNetworkStateHandlerUpdateProduct(
         },
         onSuccess = {
             onError(Triple(first = false, second = false, third = EMPTY_TEXT))
+            viewModel.resetProduct(reset = ResetProduct.UPDATE_PRODUCT)
             onSuccessful()
         }
     )
