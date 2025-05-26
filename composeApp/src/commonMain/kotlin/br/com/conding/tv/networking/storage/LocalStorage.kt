@@ -4,15 +4,16 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import br.com.conding.tv.features.account.data.repository.LocalStorageImp
 import br.com.conding.tv.features.account.data.vo.TokenResponseVO
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 class LocalStorage(
     private val dataStore: DataStore<Preferences>
-) {
+) : LocalStorageImp {
 
-    suspend fun cleanToken() {
+    override suspend fun cleanToken() {
         dataStore.edit { settings ->
             settings.remove(PREFERENCES_EXPIRATION_DATE)
             settings.remove(PREFERENCES_ACCESS_TOKEN)
@@ -20,7 +21,7 @@ class LocalStorage(
         }
     }
 
-    suspend fun getToken(): TokenResponseVO {
+    override suspend fun getToken(): TokenResponseVO {
         return dataStore.data.map { currentPreferences ->
             TokenResponseVO(
                 expiration = currentPreferences[PREFERENCES_EXPIRATION_DATE] ?: "",
@@ -30,7 +31,7 @@ class LocalStorage(
         }.first()
     }
 
-    suspend fun saveToken(
+    override suspend fun saveToken(
         token: TokenResponseVO
     ) {
         dataStore.edit { settings ->

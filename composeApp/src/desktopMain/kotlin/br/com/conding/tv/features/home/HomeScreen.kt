@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.model.Menu
 import br.com.conding.tv.components.ui.ItemMenu
 import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
-import br.com.conding.tv.domain.factory.menus
+import br.com.conding.tv.domain.factory.home
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.navigation.NavigationItems
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
@@ -38,7 +38,7 @@ fun HomeScreen(
     BodyPage(
         body = {
             MainCard(
-                menus = menus,
+                menus = home,
                 goToNextScreen = goToNextScreen
             )
         }

@@ -39,14 +39,14 @@ class CategoryRemoteDataSource(
         return toResultFlow {
             httpClient.get {
                 url {
-                    path("/api/digital/order/categories/v1")
+                    path(path = arrayOf("/api/spring/sale/categories/v1"))
                     parameters.append(name = "name", name)
                     parameters.append(name = "page", page.toString())
                     parameters.append(name = "size", size.toString())
                     parameters.append(name = "sort", sort)
                 }
                 headers {
-                    append(HttpHeaders.Authorization, value = "Bearer $accessToken")
+                    append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
                 }
             }
         }
@@ -57,7 +57,7 @@ class CategoryRemoteDataSource(
     ): Flow<ObserveNetworkStateHandler<List<CategoryResponseDTO>>> {
         return toResultFlow {
             httpClient.get {
-                url(urlString = "/api/digital/order/categories/v1/find/category/by/${name.name}")
+                url(urlString = "/api/spring/sale/categories/v1/category/${name.name}")
                 headers {
                     append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
                 }
@@ -70,9 +70,9 @@ class CategoryRemoteDataSource(
     ): Flow<ObserveNetworkStateHandler<Unit>> {
         return toResultFlow {
             httpClient.post {
-                url(urlString = "/api/digital/order/categories/v1")
+                url(urlString = "/api/spring/sale/categories/v1")
                 headers {
-                    append(HttpHeaders.Authorization, value = "Bearer $accessToken")
+                    append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
                 }
                 setBody(body = category)
             }
@@ -84,7 +84,7 @@ class CategoryRemoteDataSource(
     ): Flow<ObserveNetworkStateHandler<Unit>> {
         return toResultFlow {
             httpClient.put {
-                url(urlString = "/api/digital/order/categories/v1")
+                url(urlString = "/api/spring/sale/categories/v1")
                 headers {
                     append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
                 }
@@ -98,7 +98,7 @@ class CategoryRemoteDataSource(
     ): Flow<ObserveNetworkStateHandler<Unit>> {
         return toResultFlow {
             httpClient.delete {
-                url(urlString = "/api/digital/order/categories/v1/$id")
+                url(urlString = "/api/spring/sale/categories/v1/$id")
                 headers {
                     append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
                 }

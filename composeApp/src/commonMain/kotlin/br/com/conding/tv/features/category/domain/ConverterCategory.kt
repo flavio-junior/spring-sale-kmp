@@ -1,8 +1,8 @@
-package br.com.digital.store.features.category.domain
+package br.com.conding.tv.features.category.domain
 
 import br.com.conding.tv.features.category.data.dto.CategoriesResponseDTO
 import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
-import br.com.digital.store.features.category.data.vo.CategoriesResponseVO
+import br.com.conding.tv.features.category.data.vo.CategoriesResponseVO
 import br.com.conding.tv.features.category.data.vo.CategoryResponseVO
 import br.com.conding.tv.features.others.converterPageableDTOToVO
 

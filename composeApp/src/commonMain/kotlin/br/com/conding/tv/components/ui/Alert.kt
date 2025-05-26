@@ -1,4 +1,4 @@
-package br.com.conding.tv.features.home
+package br.com.conding.tv.components.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -6,27 +6,24 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.window.Dialog
-import br.com.conding.tv.components.ui.Description
-import br.com.conding.tv.components.ui.IconDefault
-import br.com.conding.tv.components.ui.SimpleButton
-import br.com.conding.tv.components.ui.Title
-import br.com.conding.tv.resources.GenericsStrings.CHANGE_TO_OTHER_ACCOUNT
-import br.com.conding.tv.resources.GenericsStrings.EXIT
-import br.com.conding.tv.resources.GenericsStrings.WARNING
-import br.com.conding.tv.resources.GenericsStrings.YOUR_ACTION
+import br.com.conding.tv.resources.GenericsStrings.ALERT
+import br.com.conding.tv.resources.GenericsStrings.CANCEL
+import br.com.conding.tv.resources.GenericsStrings.CONFIRM
+import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
-import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import springsale.composeapp.generated.resources.Res
 import springsale.composeapp.generated.resources.brand_awareness
 
 @Composable
-fun ConfirmExitDialog(
+fun Alert(
+    label: String,
     onDismissRequest: () -> Unit = {},
     onConfirmation: () -> Unit = {}
 ) {
@@ -40,6 +37,7 @@ fun ConfirmExitDialog(
                     color = Themes.colors.primary
                 )
                 .background(color = Themes.colors.background)
+                .size(width = Themes.size.spaceSize400, height = Themes.size.spaceSize200)
                 .padding(all = Themes.size.spaceSize16),
             verticalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize8),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -54,13 +52,13 @@ fun ConfirmExitDialog(
                     size = Themes.size.spaceSize48
                 )
                 Title(
-                    title = WARNING,
+                    title = ALERT,
                     modifier = Modifier.weight(weight = WEIGHT_SIZE),
                     textAlign = TextAlign.Start
                 )
             }
             Description(
-                description = YOUR_ACTION,
+                description = label,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = Themes.size.spaceSize8)
@@ -73,13 +71,13 @@ fun ConfirmExitDialog(
             ) {
                 SimpleButton(
                     onClick = onDismissRequest,
-                    label = CHANGE_TO_OTHER_ACCOUNT,
+                    label = CANCEL,
                     background = Themes.colors.error,
                     modifier = Modifier.weight(weight = WEIGHT_SIZE)
                 )
                 SimpleButton(
                     onClick = onConfirmation,
-                    label = EXIT,
+                    label = CONFIRM,
                     modifier = Modifier.weight(weight = WEIGHT_SIZE)
                 )
             }
