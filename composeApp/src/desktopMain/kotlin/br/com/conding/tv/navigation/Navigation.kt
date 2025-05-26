@@ -32,11 +32,11 @@ fun NavGraphBuilder.signInNavigation(
     composable(route = AppDestinations.SignIn.item) {
         SignInScreen(
             goToDashboardScreen = {
-                navController.navigate(route = AppDestinations.Home.item) {
-                    popUpTo(AppDestinations.SignIn.item) {
-                        inclusive = true
-                    }
-                }
+                goToNextScreen(
+                    navHostController = navController,
+                    currentScreen = AppDestinations.SignIn.item,
+                    nextScreen = AppDestinations.Home.item
+                )
             },
             goToAlternativeRoutes = {
                 navigateToAlternativeRoutes(
