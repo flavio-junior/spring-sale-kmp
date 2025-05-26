@@ -7,6 +7,7 @@ import androidx.compose.ui.window.rememberWindowState
 import br.com.conding.tv.di.desktopModule
 import br.com.conding.tv.features.account.di.accountModule
 import br.com.conding.tv.features.category.di.categoryModule
+import br.com.conding.tv.features.product.di.productModule
 import br.com.conding.tv.navigation.Navigation
 import br.com.conding.tv.networking.di.networkModule
 import br.com.conding.tv.resources.GenericsStrings.PROJECT_NAME
@@ -21,6 +22,7 @@ fun main() = application {
             modules = listOf(
                 accountModule,
                 categoryModule,
+                productModule,
                 desktopModule,
                 networkModule
             )

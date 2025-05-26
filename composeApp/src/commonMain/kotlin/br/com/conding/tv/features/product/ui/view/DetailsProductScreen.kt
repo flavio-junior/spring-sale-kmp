@@ -1,0 +1,118 @@
+package br.com.conding.tv.features.product.ui.view
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import br.com.conding.tv.components.mask.formatterMaskToMoney
+import br.com.conding.tv.components.ui.Description
+import br.com.conding.tv.components.ui.ResourceUnavailable
+import br.com.conding.tv.components.ui.TextField
+import br.com.conding.tv.features.category.ui.view.ListCategoriesAvailableResponseVO
+import br.com.conding.tv.features.product.data.vo.ProductResponseVO
+import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.resources.GenericsStrings.DETAILS_PRODUCT
+import br.com.conding.tv.resources.GenericsStrings.ID
+import br.com.conding.tv.resources.GenericsStrings.NAME
+import br.com.conding.tv.resources.GenericsStrings.PRICE
+import br.com.conding.tv.resources.GenericsStrings.QUANTITY
+import br.com.conding.tv.resources.GenericsStrings.UPDATE_PRODUCT
+import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
+import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE_2
+import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
+import br.com.conding.tv.theme.Themes
+
+@Composable
+fun DetailsProductScreen(
+    product: ProductResponseVO,
+    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    onRefresh: () -> Unit = {}
+) {
+    if (product.id > NUMBER_ZERO) {
+        DetailsProductBody(
+            product = product,
+            goToAlternativeRoutes = goToAlternativeRoutes,
+            onRefresh = onRefresh
+        )
+    } else {
+        ResourceUnavailable()
+    }
+}
+
+@Composable
+fun DetailsProductBody(
+    product: ProductResponseVO,
+    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    onRefresh: () -> Unit = {}
+) {
+    Column(
+        modifier = Modifier
+            .background(color = Themes.colors.background)
+            .padding(top = Themes.size.spaceSize16, end = Themes.size.spaceSize16)
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16)
+    ) {
+        Description(description = "${DETAILS_PRODUCT}:")
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16),
+        ) {
+            TextField(
+                enabled = false,
+                label = ID,
+                value = product.id.toString(),
+                onValueChange = {},
+                modifier = Modifier.weight(weight = WEIGHT_SIZE)
+            )
+            TextField(
+                enabled = false,
+                label = NAME,
+                value = product.name,
+                onValueChange = {},
+                modifier = Modifier.weight(weight = WEIGHT_SIZE_2)
+            )
+            TextField(
+                enabled = false,
+                label = PRICE,
+                value = formatterMaskToMoney(price = product.price),
+                onValueChange = {},
+                modifier = Modifier.weight(weight = WEIGHT_SIZE)
+            )
+            TextField(
+                enabled = false,
+                label = QUANTITY,
+                value = product.quantity.toString(),
+                onValueChange = {},
+                modifier = Modifier.weight(weight = WEIGHT_SIZE)
+            )
+        }
+        ListCategoriesAvailableResponseVO(categories = product.categories)
+        Description(description = UPDATE_PRODUCT)
+        UpdateProduct(
+            id = product.id,
+            goToAlternativeRoutes = goToAlternativeRoutes,
+            onRefresh = onRefresh
+        )
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16),
+            modifier = Modifier.weight(weight = WEIGHT_SIZE)
+        ) {
+            UpdatePriceProduct(
+                id = product.id,
+                goToAlternativeRoutes = goToAlternativeRoutes,
+                modifier = Modifier
+                    .weight(weight = WEIGHT_SIZE_2),
+                onRefresh = onRefresh
+            )
+            RestockProduct(
+                id = product.id,
+                goToAlternativeRoutes = goToAlternativeRoutes,
+                modifier = Modifier.weight(weight = WEIGHT_SIZE_2),
+                onRefresh = onRefresh
+            )
+        }
+    }
+}
