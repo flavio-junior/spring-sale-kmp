@@ -22,7 +22,7 @@ import br.com.conding.tv.features.settings.SettingsScreen
 @Composable
 fun Navigation(
     navController: NavHostController = rememberNavController(),
-    startDestination: String = AppDestinations.SignIn.item
+    startDestination: Any = SignIn
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         signInNavigation(navController = navController)
@@ -36,17 +36,17 @@ fun Navigation(
 fun NavGraphBuilder.signInNavigation(
     navController: NavHostController
 ) {
-    composable(route = AppDestinations.SignIn.item) {
+    composable<SignIn> {
         SignInScreen(
             goToHomeScreen = {
-                goToNextScreen(
-                    navHostController = navController,
-                    currentScreen = AppDestinations.SignIn.item,
-                    nextScreen = AppDestinations.Home.item
-                )
+                navController.navigate(route = Home) {
+                    popUpTo(route = SignIn) {
+                        inclusive = true
+                    }
+                }
             },
             goToSendRecoverPasswordScreen = {
-                navController.navigate(route = AppDestinations.SendRecoverToken.item)
+                navController.navigate(route = SendRecoverToken)
             },
             goToConfirmEmailAddressScreen = {
                 navController.navigate(route = AppDestinations.SendCodeToConfirmEmail.item)
@@ -67,7 +67,7 @@ fun NavGraphBuilder.signInNavigation(
 private fun NavGraphBuilder.recoverPassword(
     navController: NavHostController
 ) {
-    composable(route = AppDestinations.SendRecoverToken.item) {
+    composable<SendRecoverToken> {
         SendRecoverTokenScreen(
             goToBackScreen = {
                 navController.popBackStack()
@@ -82,7 +82,11 @@ private fun NavGraphBuilder.recoverPassword(
         CheckRecoverTokenToConfirmEmailScreen(
             checkRecoverToken = backStackEntry.toRoute(),
             goToSignInScreen = {
-                navController.navigate(route = AppDestinations.SignIn.item)
+                navController.navigate(route = SignIn) {
+                    popUpTo(route = CheckRecoverToken) {
+                        inclusive = true
+                    }
+                }
             },
             goToCreateNewPasswordScreen = {
                 navController.navigate(route = it)
@@ -97,7 +101,11 @@ private fun NavGraphBuilder.recoverPassword(
                 navController.navigate(route = AppDestinations.SignIn.item)
             },
             goToHomeScreen = {
-                navController.navigate(route = AppDestinations.Home.item)
+                navController.navigate(route = AppDestinations.Home.item) {
+                    popUpTo(route = RecoverToken) {
+                        inclusive = true
+                    }
+                }
             }
         )
     }
@@ -141,7 +149,11 @@ private fun NavGraphBuilder.signUp(
         SignUpScreen(
             signUp = backStackEntry.toRoute(),
             goToHomeScreen = {
-                navController.navigate(route = AppDestinations.Home.item)
+                navController.navigate(route = Home) {
+                    popUpTo(route = SignUp) {
+                        inclusive = true
+                    }
+                }
             },
             goToSignInScreen = {
                 navController.navigate(route = AppDestinations.SignIn.item)
@@ -157,10 +169,17 @@ private fun NavGraphBuilder.signUp(
 fun NavGraphBuilder.homeNavigation(
     navController: NavHostController
 ) {
-    composable(route = AppDestinations.Home.item) {
+    composable<Home> {
         HomeScreen(
             goToNextScreen = {
                 navController.navigate(route = it)
+            },
+            goToLoginScreen = {
+                navController.navigate(route = SignIn) {
+                    popUpTo(route = Home) {
+                        inclusive = true
+                    }
+                }
             }
         )
     }
