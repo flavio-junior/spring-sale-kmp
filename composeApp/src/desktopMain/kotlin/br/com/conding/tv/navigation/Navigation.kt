@@ -3,12 +3,19 @@ package br.com.conding.tv.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.conding.tv.features.home.HomeScreen
+import androidx.navigation.navArgument
+import br.com.conding.tv.features.account.ui.CheckCodeToConfirmEmailScreen
+import br.com.conding.tv.features.account.ui.CheckRecoverTokenToConfirmEmailScreen
+import br.com.conding.tv.features.account.ui.ResetPasswordScreen
+import br.com.conding.tv.features.account.ui.SendCodeToConfirmEmailScreen
+import br.com.conding.tv.features.account.ui.SendRecoverTokenScreen
 import br.com.conding.tv.features.account.ui.SignInScreen
 import br.com.conding.tv.features.category.CategoryScreen
+import br.com.conding.tv.features.home.HomeScreen
 import br.com.conding.tv.features.product.ProductScreen
 import br.com.conding.tv.features.settings.SettingsScreen
 
@@ -31,12 +38,18 @@ fun NavGraphBuilder.signInNavigation(
 ) {
     composable(route = AppDestinations.SignIn.item) {
         SignInScreen(
-            goToDashboardScreen = {
+            goToHomeScreen = {
                 goToNextScreen(
                     navHostController = navController,
                     currentScreen = AppDestinations.SignIn.item,
                     nextScreen = AppDestinations.Home.item
                 )
+            },
+            goToSendRecoverPasswordScreen = {
+                navController.navigate(route = AppDestinations.SendRecoverToken.item)
+            },
+            goToConfirmEmailAddressScreen = {
+                navController.navigate(route = AppDestinations.SendCodeToConfirmEmail.item)
             },
             goToAlternativeRoutes = {
                 navigateToAlternativeRoutes(
@@ -46,6 +59,54 @@ fun NavGraphBuilder.signInNavigation(
                 )
             }
         )
+    }
+
+    composable(route = AppDestinations.SendRecoverToken.item) {
+        SendRecoverTokenScreen(
+            goToBackScreen = {
+                navController.popBackStack()
+            }
+        )
+    }
+
+    composable(route = AppDestinations.CheckRecoverToken.item) {
+        CheckRecoverTokenToConfirmEmailScreen(
+            goToBackScreen = {
+                navController.popBackStack()
+            },
+            goToCreateNewPasswordScreen = {
+                navController.navigate(route = AppDestinations.CreateNewPassword.item)
+            }
+        )
+    }
+
+    composable(route = AppDestinations.CreateNewPassword.item) {
+        ResetPasswordScreen(
+            goToBackScreen = {
+                navController.popBackStack()
+            }
+        )
+    }
+
+    composable(route = AppDestinations.SendCodeToConfirmEmail.item) {
+        SendCodeToConfirmEmailScreen(
+            goToBackScreen = {
+                navController.popBackStack()
+            }
+        )
+    }
+
+    composable(route = AppDestinations.CheckCodeToConfirmEmail.item) {
+        CheckCodeToConfirmEmailScreen(
+            emailArg = "",
+            goToBackScreen = {
+                navController.popBackStack()
+            }
+        )
+    }
+
+    composable(route = AppDestinations.SignUp.item) {
+
     }
 }
 

@@ -6,7 +6,7 @@ import br.com.conding.tv.networking.resources.ErrorType
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.networking.resources.StatusCode.NUMBER_403
 import br.com.conding.tv.networking.resources.selectAlternativeRoute
-import br.com.conding.tv.resources.WARNINGS.UNAUTHORIZED_MESSAGE
+import br.com.conding.tv.resources.Warnings.UNAUTHORIZED_MESSAGE
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 
 @Composable
