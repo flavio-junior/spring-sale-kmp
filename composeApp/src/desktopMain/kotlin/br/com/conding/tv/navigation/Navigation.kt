@@ -101,8 +101,8 @@ private fun NavGraphBuilder.recoverPassword(
                 navController.navigate(route = AppDestinations.SignIn.item)
             },
             goToHomeScreen = {
-                navController.navigate(route = AppDestinations.Home.item) {
-                    popUpTo(route = RecoverToken) {
+                navController.navigate(route = Home) {
+                    popUpTo(route = RecoverToken::class) {
                         inclusive = true
                     }
                 }
@@ -150,7 +150,7 @@ private fun NavGraphBuilder.signUp(
             signUp = backStackEntry.toRoute(),
             goToHomeScreen = {
                 navController.navigate(route = Home) {
-                    popUpTo(route = SignUp) {
+                    popUpTo(route = SignUp::class) {
                         inclusive = true
                     }
                 }
