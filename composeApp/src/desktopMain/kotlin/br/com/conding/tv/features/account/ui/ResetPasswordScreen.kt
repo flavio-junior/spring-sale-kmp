@@ -1,26 +1,33 @@
 package br.com.conding.tv.features.account.ui
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextAlign
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
+import br.com.conding.tv.components.ui.SimpleText
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.components.ui.TextPassword
 import br.com.conding.tv.features.account.data.dto.PasswordRequestDTO
 import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
 import br.com.conding.tv.features.account.viewmodel.AccountViewModel
+import br.com.conding.tv.navigation.RecoverToken
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.CONFIRM_PASSWORD
 import br.com.conding.tv.resources.GenericsStrings.CREATE_NEW_PASSWORD
 import br.com.conding.tv.resources.GenericsStrings.EMAIL
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericsStrings.ENTER_YOUR_ACCOUNT
 import br.com.conding.tv.resources.GenericsStrings.INVALID_PASSWORD
 import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
+import br.com.conding.tv.resources.GenericsStrings.OR
 import br.com.conding.tv.resources.GenericsStrings.PASSWORD
 import br.com.conding.tv.resources.GenericsStrings.PASSWORD_ERROR_SIZE
 import br.com.conding.tv.resources.Settings.CHECK_SIZE_PASSWORD
@@ -32,70 +39,65 @@ import springsale.composeapp.generated.resources.mail
 
 @Composable
 internal fun ResetPasswordScreen(
-    emailArg: String? = EMPTY_TEXT,
-    goToBackScreen: () -> Unit = {},
-    goToSuccessScreen: () -> Unit = {},
+    recoverToken: RecoverToken? = null,
+    goToSignInScreen: () -> Unit = {},
+    goToHomeScreen: () -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     ContentAccount(
         content = {
-            var email: String by remember { mutableStateOf(value = EMPTY_TEXT) }
-            emailArg?.let { email = it }
-            BodyResetPasswordScreen(
-                email = email,
-                goToBackScreen = goToBackScreen,
-                goToSuccessScreen = goToSuccessScreen,
+            val viewModel: AccountViewModel = getKoin().get()
+            var password: String by remember { mutableStateOf(value = EMPTY_TEXT) }
+            var confirmPassword: String by remember { mutableStateOf(value = EMPTY_TEXT) }
+            var observer: Triple<Boolean, Boolean, String?> by remember {
+                mutableStateOf(value = Triple(first = false, second = false, third = EMPTY_TEXT))
+            }
+            val resetPassword = { passwordArg: String, confirmPasswordArg: String ->
+                checkDataResetPassword(
+                    resources = Pair(recoverToken?.email ?: EMPTY_TEXT, viewModel),
+                    data = Pair(
+                        first = passwordArg,
+                        second = confirmPasswordArg,
+                    ),
+                    onError = { observer = it }
+                )
+            }
+            GetDataResetPassword(
+                email = recoverToken?.email ?: EMPTY_TEXT,
+                password = Pair(first = password, second = confirmPassword),
+                onError = Pair(observer.first, observer.third),
+                resetPassword = { resetPassword(it.first, it.second) },
+                onValueChange = {
+                    password = it.first
+                    confirmPassword = it.second
+                }
+            )
+            ObserveNetworkStateHandlerResetPassword(
+                viewModel = viewModel,
+                goToSignInScreen = goToSignInScreen,
+                onError = {
+                    observer = it
+                },
+                goToHomeScreen = goToHomeScreen,
                 goToAlternativeRoutes = goToAlternativeRoutes
             )
+            LoadingButton(
+                onClick = {
+                    resetPassword(password, confirmPassword)
+                },
+                isEnabled = observer.second,
+                label = CREATE_NEW_PASSWORD
+            )
+            SimpleText(
+                text = OR,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+            LoadingButton(
+                label = ENTER_YOUR_ACCOUNT,
+                onClick = goToSignInScreen
+            )
         }
-    )
-}
-
-@Composable
-private fun BodyResetPasswordScreen(
-    email: String,
-    goToBackScreen: () -> Unit = {},
-    goToSuccessScreen: () -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
-) {
-    val viewModel: AccountViewModel = getKoin().get()
-    var password: String by remember { mutableStateOf(value = EMPTY_TEXT) }
-    var confirmPassword: String by remember { mutableStateOf(value = EMPTY_TEXT) }
-    var observer: Triple<Boolean, Boolean, String?> by remember {
-        mutableStateOf(value = Triple(first = false, second = false, third = EMPTY_TEXT))
-    }
-    val resetPassword = { passwordArg: String, confirmPasswordArg: String ->
-        checkDataResetPassword(
-            resources = Pair(email, viewModel),
-            data = Pair(
-                first = passwordArg,
-                second = confirmPasswordArg,
-            ),
-            onError = { observer = it }
-        )
-    }
-    GetDataResetPassword(
-        email = email,
-        password = Pair(first = password, second = confirmPassword),
-        onError = Pair(observer.first, observer.third),
-        resetPassword = { resetPassword(it.first, it.second) },
-        onValueChange = {
-            password = it.first
-            confirmPassword = it.second
-        }
-    )
-    ObserveNetworkStateHandlerResetPassword(
-        viewModel = viewModel,
-        goToBackScreen = goToBackScreen,
-        onError = {
-            observer = it
-        },
-        goToSuccessScreen = goToSuccessScreen,
-        goToAlternativeRoutes = goToAlternativeRoutes
-    )
-    ResetPassword(
-        isEnabled = observer.second,
-        onClick = { resetPassword(password, confirmPassword) }
     )
 }
 
@@ -163,8 +165,8 @@ private fun checkDataResetPassword(
 @Composable
 private fun ObserveNetworkStateHandlerResetPassword(
     viewModel: AccountViewModel,
-    goToBackScreen: () -> Unit = {},
-    goToSuccessScreen: () -> Unit,
+    goToSignInScreen: () -> Unit = {},
+    goToHomeScreen: () -> Unit = {},
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
@@ -174,7 +176,7 @@ private fun ObserveNetworkStateHandlerResetPassword(
         onError = {
             onError(Triple(first = true, second = false, third = it))
             if (it == EXPIRED_CODE) {
-                goToBackScreen()
+                goToSignInScreen()
             }
         },
         goToAlternativeRoutes = goToAlternativeRoutes,
@@ -182,31 +184,16 @@ private fun ObserveNetworkStateHandlerResetPassword(
             onError(Triple(first = false, second = false, third = EMPTY_TEXT))
         }
     )
-
-    val loginState: ObserveNetworkStateHandler<TokenResponseDTO> by remember {
-        viewModel.signIn
-    }
+    val state: ObserveNetworkStateHandler<TokenResponseDTO> by remember { viewModel.signIn }
     ObserveNetworkStateHandler(
-        state = loginState,
+        state = state,
         onError = {
             onError(Triple(first = true, second = false, third = it))
         },
         goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
             onError(Triple(first = false, second = false, third = EMPTY_TEXT))
-            goToSuccessScreen()
+            goToHomeScreen()
         }
-    )
-}
-
-@Composable
-private fun ResetPassword(
-    onClick: () -> Unit = {},
-    isEnabled: Boolean = false
-) {
-    LoadingButton(
-        onClick = onClick,
-        isEnabled = isEnabled,
-        label = CREATE_NEW_PASSWORD
     )
 }

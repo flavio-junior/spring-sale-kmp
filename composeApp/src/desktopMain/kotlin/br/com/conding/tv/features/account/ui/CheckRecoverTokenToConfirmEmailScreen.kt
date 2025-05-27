@@ -11,84 +11,74 @@ import androidx.compose.ui.text.style.TextAlign
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
 import br.com.conding.tv.components.ui.SimpleText
+import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.account.viewmodel.AccountViewModel
+import br.com.conding.tv.navigation.CheckRecoverToken
+import br.com.conding.tv.navigation.RecoverToken
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.CREATE_ONE_ACCOUNT
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.OR
+import br.com.conding.tv.resources.GenericsStrings.RECOVER_MY_ACCOUNT
 import org.koin.java.KoinJavaComponent.getKoin
 
 @Composable
 internal fun CheckRecoverTokenToConfirmEmailScreen(
-    emailArg: String? = EMPTY_TEXT,
-    goToBackScreen: () -> Unit = {},
-    goToCreateNewPasswordScreen: (email: String) -> Unit = {},
+    checkRecoverToken: CheckRecoverToken? = null,
+    goToSignInScreen: () -> Unit = {},
+    goToCreateNewPasswordScreen: (RecoverToken) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     ContentAccount(
         content = {
-            BodyCheckRecoverTokenToConfirmEmailScreen(
-                emailArg = emailArg,
-                signInScreen = goToBackScreen,
-                goToCreateNewPasswordScreen = goToCreateNewPasswordScreen,
+            val viewModel: AccountViewModel = getKoin().get()
+            var code: String by remember { mutableStateOf(value = EMPTY_TEXT) }
+            var observer: Triple<Boolean, Boolean, String?> by remember {
+                mutableStateOf(value = Triple(first = false, second = false, third = EMPTY_TEXT))
+            }
+            val checkCode = { codeArg: String ->
+                checkCodeToConfirmEmail(
+                    data = Pair(first = codeArg, second = viewModel),
+                    route = TypeScreen.RECOVER_TOKEN,
+                    onError = {
+                        observer = it
+                    }
+                )
+            }
+            Title(title = RECOVER_MY_ACCOUNT)
+            GetCodeToConfirmEmail(
+                code = code,
+                onError = Pair(observer.first, observer.third),
+                onValueChange = { code = it },
+                checkCode = { code = it }
+            )
+            ObserverStateCheckRecoverTokenToConfirmEmail(
+                viewModel = viewModel,
+                onError = {
+                    observer = it
+                },
+                goToCreateNewPasswordScreen = {
+                    goToCreateNewPasswordScreen(
+                        RecoverToken(email = checkRecoverToken?.email ?: EMPTY_TEXT)
+                    )
+                },
                 goToAlternativeRoutes = goToAlternativeRoutes
             )
+            CheckCodeToConfirmEmail(
+                onClick = { checkCode(code) },
+                isEnabled = observer.second
+            )
+            SimpleText(
+                text = OR,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+            LoadingButton(
+                label = CREATE_ONE_ACCOUNT,
+                onClick = goToSignInScreen
+            )
         }
-    )
-}
-
-@Composable
-private fun BodyCheckRecoverTokenToConfirmEmailScreen(
-    emailArg: String? = EMPTY_TEXT,
-    signInScreen: () -> Unit = {},
-    goToCreateNewPasswordScreen: (email: String) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
-) {
-    val viewModel: AccountViewModel = getKoin().get()
-    var code: String by remember { mutableStateOf(value = EMPTY_TEXT) }
-    var observer: Triple<Boolean, Boolean, String?> by remember {
-        mutableStateOf(value = Triple(first = false, second = false, third = EMPTY_TEXT))
-    }
-    val checkCode = { codeArg: String ->
-        checkCodeToConfirmEmail(
-            data = Pair(first = codeArg, second = viewModel),
-            route = TypeScreen.RECOVER_TOKEN,
-            onError = {
-                observer = it
-            }
-        )
-    }
-    GetCodeToConfirmEmail(
-        code = code,
-        onError = Pair(observer.first, observer.third),
-        onValueChange = { code = it },
-        checkCode = { code = it }
-    )
-    ObserverStateCheckRecoverTokenToConfirmEmail(
-        viewModel = viewModel,
-        onError = {
-            observer = it
-        },
-        goToCreateNewPasswordScreen = { goToCreateNewPasswordScreen(emailArg.orEmpty()) },
-        goToAlternativeRoutes = goToAlternativeRoutes
-    )
-    PasteCodeToConfirmEmail(
-        onClick = {
-        }
-    )
-    CheckCodeToConfirmEmail(
-        onClick = { checkCode(code) },
-        isEnabled = observer.second
-    )
-    SimpleText(
-        text = OR,
-        textAlign = TextAlign.Center,
-        modifier = Modifier.fillMaxWidth()
-    )
-    LoadingButton(
-        label = CREATE_ONE_ACCOUNT,
-        onClick = signInScreen
     )
 }
 

@@ -71,25 +71,33 @@ private fun NavGraphBuilder.recoverPassword(
         SendRecoverTokenScreen(
             goToBackScreen = {
                 navController.popBackStack()
+            },
+            goToCheckRecoverTokenToConfirmEmailScreen = {
+                navController.navigate(route = it)
             }
         )
     }
 
-    composable(route = AppDestinations.CheckRecoverToken.item) {
+    composable<CheckRecoverToken> { backStackEntry ->
         CheckRecoverTokenToConfirmEmailScreen(
-            goToBackScreen = {
-                navController.popBackStack()
+            checkRecoverToken = backStackEntry.toRoute(),
+            goToSignInScreen = {
+                navController.navigate(route = AppDestinations.SignIn.item)
             },
             goToCreateNewPasswordScreen = {
-                navController.navigate(route = AppDestinations.CreateNewPassword.item)
+                navController.navigate(route = it)
             }
         )
     }
 
-    composable(route = AppDestinations.CreateNewPassword.item) {
+    composable<RecoverToken> { backStackEntry ->
         ResetPasswordScreen(
-            goToBackScreen = {
-                navController.popBackStack()
+            recoverToken = backStackEntry.toRoute(),
+            goToSignInScreen = {
+                navController.navigate(route = AppDestinations.SignIn.item)
+            },
+            goToHomeScreen = {
+                navController.navigate(route = AppDestinations.Home.item)
             }
         )
     }

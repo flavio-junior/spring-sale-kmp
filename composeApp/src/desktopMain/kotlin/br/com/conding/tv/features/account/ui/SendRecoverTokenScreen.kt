@@ -18,6 +18,7 @@ import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.account.data.dto.EmailRequestDTO
 import br.com.conding.tv.features.account.viewmodel.AccountViewModel
 import br.com.conding.tv.features.account.viewmodel.ResetAccount
+import br.com.conding.tv.navigation.CheckRecoverToken
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
@@ -37,7 +38,7 @@ import springsale.composeapp.generated.resources.mail
 @Composable
 internal fun SendRecoverTokenScreen(
     goToBackScreen: () -> Unit = {},
-    goToCheckRecoverTokenToConfirmEmailScreen: (email: String) -> Unit = {},
+    goToCheckRecoverTokenToConfirmEmailScreen: (CheckRecoverToken) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     ContentAccount(
@@ -71,7 +72,7 @@ internal fun SendRecoverTokenScreen(
                     observer = it
                 },
                 goToCheckRecoverTokenToConfirmEmailScreen = {
-                    goToCheckRecoverTokenToConfirmEmailScreen(email)
+                    goToCheckRecoverTokenToConfirmEmailScreen(CheckRecoverToken(email = email))
                 },
                 goToAlternativeRoutes = goToAlternativeRoutes
             )
