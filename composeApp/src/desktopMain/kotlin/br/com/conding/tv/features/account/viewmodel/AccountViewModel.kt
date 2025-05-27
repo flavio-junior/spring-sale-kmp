@@ -44,8 +44,6 @@ class AccountViewModel(
 
     private val _signUp =
         mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
-    val signUp: State<ObserveNetworkStateHandler<Unit>> = _signUp
-
 
     private val _checkRecoverPassword =
         mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
@@ -120,7 +118,11 @@ class AccountViewModel(
                     _signUp.value = ObserveNetworkStateHandler.Loading(l = true)
                 }
                 .collect {
-                    _signUp.value = it
+                    val signIn = SignInRequestDTO(
+                        email = signUpRequestDTO.email,
+                        password = signUpRequestDTO.password
+                    )
+                    signIn(signInRequestDTO = signIn)
                 }
         }
     }

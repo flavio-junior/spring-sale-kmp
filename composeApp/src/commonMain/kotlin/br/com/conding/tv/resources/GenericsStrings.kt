@@ -3,6 +3,8 @@ package br.com.conding.tv.resources
 object GenericsStrings {
     const val PROJECT_NAME = "Spring Sale"
     const val CREATE_ONE_ACCOUNT = "Criar uma conta"
+    const val CREATE_MY_ACCOUNT = "Criar minha conta"
+    const val RECOVER_MY_ACCOUNT = "Recuperar acesso"
     const val EMAIL = "Email"
     const val PASSWORD = "Senha"
     const val OR = "ou"

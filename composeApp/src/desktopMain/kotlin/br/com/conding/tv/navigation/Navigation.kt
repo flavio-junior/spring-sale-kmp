@@ -3,17 +3,17 @@ package br.com.conding.tv.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
+import androidx.navigation.toRoute
 import br.com.conding.tv.features.account.ui.CheckCodeToConfirmEmailScreen
 import br.com.conding.tv.features.account.ui.CheckRecoverTokenToConfirmEmailScreen
 import br.com.conding.tv.features.account.ui.ResetPasswordScreen
 import br.com.conding.tv.features.account.ui.SendCodeToConfirmEmailScreen
 import br.com.conding.tv.features.account.ui.SendRecoverTokenScreen
 import br.com.conding.tv.features.account.ui.SignInScreen
+import br.com.conding.tv.features.account.ui.SignUpScreen
 import br.com.conding.tv.features.category.CategoryScreen
 import br.com.conding.tv.features.home.HomeScreen
 import br.com.conding.tv.features.product.ProductScreen
@@ -60,7 +60,13 @@ fun NavGraphBuilder.signInNavigation(
             }
         )
     }
+    recoverPassword(navController = navController)
+    signUp(navController = navController)
+}
 
+private fun NavGraphBuilder.recoverPassword(
+    navController: NavHostController
+) {
     composable(route = AppDestinations.SendRecoverToken.item) {
         SendRecoverTokenScreen(
             goToBackScreen = {
@@ -87,28 +93,58 @@ fun NavGraphBuilder.signInNavigation(
             }
         )
     }
+}
 
+private fun NavGraphBuilder.signUp(
+    navController: NavHostController
+) {
     composable(route = AppDestinations.SendCodeToConfirmEmail.item) {
         SendCodeToConfirmEmailScreen(
             goToBackScreen = {
                 navController.popBackStack()
+            },
+            goToCheckCodeToConfirmEmailScreen = {
+                navController.navigate(route = it) {
+                    popUpTo(route = AppDestinations.SendCodeToConfirmEmail.item) {
+                        inclusive = true
+                    }
+                }
             }
         )
     }
 
-    composable(route = AppDestinations.CheckCodeToConfirmEmail.item) {
+    composable<CheckCodeToConfirmEmail> { backStackEntry ->
         CheckCodeToConfirmEmailScreen(
-            emailArg = "",
-            goToBackScreen = {
-                navController.popBackStack()
+            checkCodeToConfirmEmail = backStackEntry.toRoute(),
+            goToSignUpScreen = {
+                navController.navigate(route = it)
+            },
+            goToSignInScreen = {
+                navController.navigate(route = AppDestinations.SignIn.item) {
+                    popUpTo(route = AppDestinations.SendCodeToConfirmEmail.item) {
+                        inclusive = true
+                    }
+                }
             }
         )
     }
 
-    composable(route = AppDestinations.SignUp.item) {
+    composable<SignUp> { backStackEntry ->
+        SignUpScreen(
+            signUp = backStackEntry.toRoute(),
+            goToHomeScreen = {
+                navController.navigate(route = AppDestinations.Home.item)
+            },
+            goToSignInScreen = {
+                navController.navigate(route = AppDestinations.SignIn.item)
+            },
+            goToAlternativeRoutes = {
 
+            }
+        )
     }
 }
+
 
 fun NavGraphBuilder.homeNavigation(
     navController: NavHostController

@@ -14,17 +14,22 @@ import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
 import br.com.conding.tv.components.ui.SimpleText
 import br.com.conding.tv.components.ui.TextField
+import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.account.data.dto.EmailRequestDTO
 import br.com.conding.tv.features.account.viewmodel.AccountViewModel
+import br.com.conding.tv.features.account.viewmodel.ResetAccount
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
-import br.com.conding.tv.resources.GenericsStrings.CREATE_ONE_ACCOUNT
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericsStrings.ENTER_YOUR_ACCOUNT
+import br.com.conding.tv.resources.GenericsStrings.INVALID_EMAIL
 import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
 import br.com.conding.tv.resources.GenericsStrings.OR
+import br.com.conding.tv.resources.GenericsStrings.RECOVER_MY_ACCOUNT
 import br.com.conding.tv.resources.GenericsStrings.REGISTERED_EMAIL
 import br.com.conding.tv.resources.GenericsStrings.SEND_RECOVER_TOKEN
 import br.com.conding.tv.resources.isNotBlankAndEmpty
+import br.com.conding.tv.resources.validateEmail
 import org.koin.java.KoinJavaComponent.getKoin
 import springsale.composeapp.generated.resources.Res
 import springsale.composeapp.generated.resources.mail
@@ -39,34 +44,41 @@ internal fun SendRecoverTokenScreen(
         content = {
             val viewModel: AccountViewModel = getKoin().get()
             var email: String by remember { mutableStateOf(value = EMPTY_TEXT) }
-            var state: Triple<Boolean, Boolean, String?> by remember {
+            var observer: Triple<Boolean, Boolean, String?> by remember {
                 mutableStateOf(value = Triple(first = false, second = false, third = EMPTY_TEXT))
             }
             val sendRecoverToken = { emailArg: String ->
                 checkSendRecoverToken(
                     data = Pair(first = emailArg, second = viewModel),
-                    onError = { state = it }
+                    onError = { observer = it }
                 )
             }
-            GetDataSendRecoverToken(
-                email = email,
-                onError = Pair(state.first, state.third),
-                sendRecoverToken = { sendRecoverToken(it) },
-                onValueChange = { email = it }
+            Title(title = RECOVER_MY_ACCOUNT)
+            TextField(
+                label = REGISTERED_EMAIL,
+                value = email,
+                isError = observer.second,
+                message = observer.third ?: EMPTY_TEXT,
+                icon = Res.drawable.mail,
+                keyboardType = KeyboardType.Email,
+                imeAction = ImeAction.Go,
+                onValueChange = { email = it },
+                onGo = { sendRecoverToken(email) }
             )
             ObserveNetworkStateHandlerSendRecoverToken(
                 viewModel = viewModel,
                 onError = {
-                    state = it
+                    observer = it
                 },
                 goToCheckRecoverTokenToConfirmEmailScreen = {
                     goToCheckRecoverTokenToConfirmEmailScreen(email)
                 },
                 goToAlternativeRoutes = goToAlternativeRoutes
             )
-            SendRecoverToken(
+            LoadingButton(
                 onClick = { sendRecoverToken(email) },
-                isEnabled = state.second,
+                label = SEND_RECOVER_TOKEN,
+                isEnabled = observer.first
             )
             SimpleText(
                 text = OR,
@@ -74,33 +86,11 @@ internal fun SendRecoverTokenScreen(
                 modifier = Modifier.fillMaxWidth()
             )
             LoadingButton(
-                label = CREATE_ONE_ACCOUNT,
+                label = ENTER_YOUR_ACCOUNT,
                 onClick = goToBackScreen
             )
         }
     )
-}
-
-@Composable
-private fun GetDataSendRecoverToken(
-    email: String,
-    onError: Pair<Boolean, String?>,
-    sendRecoverToken: (String) -> Unit = {},
-    onValueChange: (String) -> Unit = {}
-) {
-    var emailMutable: String by remember { mutableStateOf(value = email) }
-    TextField(
-        label = REGISTERED_EMAIL,
-        value = emailMutable,
-        isError = onError.first,
-        message = onError.second ?: EMPTY_TEXT,
-        icon = Res.drawable.mail,
-        keyboardType = KeyboardType.Email,
-        imeAction = ImeAction.Go,
-        onValueChange = { emailMutable = it },
-        onGo = { sendRecoverToken(emailMutable) }
-    )
-    onValueChange(emailMutable)
 }
 
 private fun checkSendRecoverToken(
@@ -108,10 +98,14 @@ private fun checkSendRecoverToken(
     onError: (Triple<Boolean, Boolean, String>) -> Unit = {}
 ) {
     if (data.first.isNotBlankAndEmpty()) {
-        onError(Triple(first = false, second = true, third = EMPTY_TEXT))
-        data.second.sendRecoverPassword(email = EmailRequestDTO(email = data.first))
+        if (validateEmail(email = data.first)) {
+            onError(Triple(first = true, second = false, third = EMPTY_TEXT))
+            data.second.sendRecoverPassword(email = EmailRequestDTO(email = data.first))
+        } else {
+            onError(Triple(first = false, second = true, third = INVALID_EMAIL))
+        }
     } else {
-        onError(Triple(first = true, second = false, third = NOT_BLANK_OR_EMPTY))
+        onError(Triple(first = false, second = true, third = NOT_BLANK_OR_EMPTY))
     }
 }
 
@@ -122,28 +116,18 @@ private fun ObserveNetworkStateHandlerSendRecoverToken(
     goToCheckRecoverTokenToConfirmEmailScreen: () -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
-    val accountState: ObserveNetworkStateHandler<Unit> by remember { viewModel.confirmEmailAddress }
+    val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.confirmEmailAddress }
     ObserveNetworkStateHandler(
-        state = accountState,
+        state = state,
         onError = {
-            onError(Triple(first = true, second = false, third = it))
+            onError(Triple(first = false, second = true, third = it))
+            viewModel.resetStateSignIn(resetAccount = ResetAccount.SEND_RECOVER_PASSWORD)
         },
         goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
             onError(Triple(first = false, second = false, third = EMPTY_TEXT))
+            viewModel.resetStateSignIn(resetAccount = ResetAccount.SEND_RECOVER_PASSWORD)
             goToCheckRecoverTokenToConfirmEmailScreen()
         }
-    )
-}
-
-@Composable
-private fun SendRecoverToken(
-    onClick: () -> Unit = {},
-    isEnabled: Boolean = false
-) {
-    LoadingButton(
-        onClick = onClick,
-        label = SEND_RECOVER_TOKEN,
-        isEnabled = isEnabled
     )
 }

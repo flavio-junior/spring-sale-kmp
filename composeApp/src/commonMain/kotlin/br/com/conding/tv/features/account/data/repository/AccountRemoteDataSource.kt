@@ -55,7 +55,7 @@ class AccountRemoteDataSource(
     ): Flow<ObserveNetworkStateHandler<Unit>> {
         return toResultFlow {
             httpClient.post {
-                url(urlString = "/api/auth/v1/recover-password")
+                url(urlString = "/api/auth/v1/sign-up")
                 setBody(body = signUpRequestDTO)
             }
         }
