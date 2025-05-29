@@ -6,6 +6,9 @@ import br.com.conding.tv.networking.storage.LocalStorage
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.providers.BearerTokens
+import io.ktor.client.plugins.auth.providers.bearer
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
@@ -15,8 +18,8 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import org.koin.dsl.module
 import okio.Path.Companion.toPath
+import org.koin.dsl.module
 
 val networkModule = module {
     single {
@@ -36,6 +39,17 @@ val networkModule = module {
                 }
                 contentType(type = ContentType.Application.Json)
             }
+            install(plugin = Auth) {
+                bearer {
+                    loadTokens {
+                        val localStorage: LocalStorage = get()
+                        BearerTokens(
+                            accessToken = localStorage.getToken().accessToken,
+                            refreshToken = localStorage.getToken().refreshToken
+                        )
+                    }
+                }
+            }
             install(plugin = HttpTimeout) {
                 requestTimeoutMillis = TIMEOUT_SIZE
                 connectTimeoutMillis = TIMEOUT_SIZE
@@ -44,9 +58,7 @@ val networkModule = module {
         }
     }
     single {
-            PreferenceDataStoreFactory.createWithPath(
-                produceFile = { DATA_STORE_FILE_NAME.toPath() }
-            )
+        PreferenceDataStoreFactory.createWithPath(produceFile = { DATA_STORE_FILE_NAME.toPath() })
     }
     single { LocalStorage(dataStore = get()) }
 }

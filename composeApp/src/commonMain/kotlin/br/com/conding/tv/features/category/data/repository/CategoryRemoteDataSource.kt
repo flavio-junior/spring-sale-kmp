@@ -1,6 +1,5 @@
 package br.com.conding.tv.features.category.data.repository
 
-import br.com.conding.tv.features.account.data.repository.LocalStorageImp
 import br.com.conding.tv.features.category.data.dto.CategoriesResponseDTO
 import br.com.conding.tv.features.category.data.dto.CategoryNameRequestDTO
 import br.com.conding.tv.features.category.data.dto.CategoryRequestDTO
@@ -11,24 +10,16 @@ import br.com.conding.tv.networking.resources.toResultFlow
 import io.ktor.client.HttpClient
 import io.ktor.client.request.delete
 import io.ktor.client.request.get
-import io.ktor.client.request.headers
 import io.ktor.client.request.post
 import io.ktor.client.request.put
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
-import io.ktor.http.HttpHeaders
 import io.ktor.http.path
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.runBlocking
 
 class CategoryRemoteDataSource(
-    private val httpClient: HttpClient,
-    private val localStorage: LocalStorageImp
+    private val httpClient: HttpClient
 ) : CategoryRepository {
-
-    private val accessToken = runBlocking {
-        localStorage.getToken().accessToken
-    }
 
     override fun findAllCategories(
         name: String,
@@ -45,9 +36,6 @@ class CategoryRemoteDataSource(
                     parameters.append(name = "size", size.toString())
                     parameters.append(name = "sort", sort)
                 }
-                headers {
-                    append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
-                }
             }
         }
     }
@@ -58,9 +46,6 @@ class CategoryRemoteDataSource(
         return toResultFlow {
             httpClient.get {
                 url(urlString = "/api/spring/sale/categories/v1/category/${name.name}")
-                headers {
-                    append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
-                }
             }
         }
     }
@@ -71,9 +56,6 @@ class CategoryRemoteDataSource(
         return toResultFlow {
             httpClient.post {
                 url(urlString = "/api/spring/sale/categories/v1")
-                headers {
-                    append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
-                }
                 setBody(body = category)
             }
         }
@@ -85,9 +67,6 @@ class CategoryRemoteDataSource(
         return toResultFlow {
             httpClient.put {
                 url(urlString = "/api/spring/sale/categories/v1")
-                headers {
-                    append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
-                }
                 setBody(body = category)
             }
         }
@@ -99,9 +78,6 @@ class CategoryRemoteDataSource(
         return toResultFlow {
             httpClient.delete {
                 url(urlString = "/api/spring/sale/categories/v1/$id")
-                headers {
-                    append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
-                }
             }
         }
     }

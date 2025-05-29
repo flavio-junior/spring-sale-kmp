@@ -10,7 +10,7 @@ import org.koin.dsl.module
 val productModule = module {
     single { ConverterProduct(get()) }
     single<ProductRepository> {
-        ProductRemoteDataSource(httpClient = get(), get())
+        ProductRemoteDataSource(httpClient = get())
     }
     singleOf(::ProductViewModel)
 }

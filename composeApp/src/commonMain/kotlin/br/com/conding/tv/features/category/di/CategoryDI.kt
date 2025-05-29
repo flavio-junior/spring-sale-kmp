@@ -10,7 +10,7 @@ import org.koin.dsl.module
 val categoryModule = module {
     single { ConverterCategory() }
     single<CategoryRepository> {
-        CategoryRemoteDataSource(httpClient = get(), localStorage = get())
+        CategoryRemoteDataSource(httpClient = get())
     }
     singleOf(::CategoryViewModel)
 }
