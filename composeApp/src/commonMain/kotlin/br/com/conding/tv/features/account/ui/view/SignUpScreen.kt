@@ -43,6 +43,8 @@ internal fun SignUpScreen(
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     ContentAccount(
+        label = CREATE_MY_ACCOUNT,
+        goToBackScreen = goToSignInScreen,
         content = {
             val viewModel: AccountViewModel = getKoin().get()
             var password: String by remember { mutableStateOf(value = EMPTY_TEXT) }

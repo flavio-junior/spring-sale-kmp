@@ -32,6 +32,11 @@ internal fun CheckCodeToConfirmEmailScreen(
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     ContentAccount(
+        label = CREATE_MY_ACCOUNT,
+        goToBackScreen = goToSignInScreen,
+        extra = {
+            if (it) Title(title = CREATE_MY_ACCOUNT)
+        },
         content = {
             val viewModel: AccountViewModel = getKoin().get()
             var code: String by remember { mutableStateOf(value = EMPTY_TEXT) }
@@ -47,7 +52,6 @@ internal fun CheckCodeToConfirmEmailScreen(
                     }
                 )
             }
-            Title(title = CREATE_MY_ACCOUNT)
             GetCodeToConfirmEmail(
                 code = code,
                 onError = Pair(state.first, state.third),

@@ -83,7 +83,7 @@ private fun NavGraphBuilder.recoverPassword(
             checkRecoverToken = backStackEntry.toRoute(),
             goToSignInScreen = {
                 navController.navigate(route = SignIn) {
-                    popUpTo(route = CheckRecoverToken) {
+                    popUpTo(route = CheckRecoverToken::class) {
                         inclusive = true
                     }
                 }
@@ -98,7 +98,11 @@ private fun NavGraphBuilder.recoverPassword(
         ResetPasswordScreen(
             recoverToken = backStackEntry.toRoute(),
             goToSignInScreen = {
-                navController.navigate(route = AppDestinations.SignIn.item)
+                navController.navigate(route = SignIn) {
+                    popUpTo(route = RecoverToken::class) {
+                        inclusive = true
+                    }
+                }
             },
             goToHomeScreen = {
                 navController.navigate(route = Home) {
@@ -136,8 +140,8 @@ private fun NavGraphBuilder.signUp(
                 navController.navigate(route = it)
             },
             goToSignInScreen = {
-                navController.navigate(route = AppDestinations.SignIn.item) {
-                    popUpTo(route = AppDestinations.SendCodeToConfirmEmail.item) {
+                navController.navigate(route = SignIn) {
+                    popUpTo(route = CheckRecoverToken::class) {
                         inclusive = true
                     }
                 }
@@ -156,7 +160,11 @@ private fun NavGraphBuilder.signUp(
                 }
             },
             goToSignInScreen = {
-                navController.navigate(route = AppDestinations.SignIn.item)
+                navController.navigate(route = SignIn) {
+                    popUpTo(route = SignUp::class) {
+                        inclusive = true
+                    }
+                }
             },
             goToAlternativeRoutes = {
 

@@ -41,6 +41,11 @@ internal fun SendCodeToConfirmEmailScreen(
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     ContentAccount(
+        label = CREATE_MY_ACCOUNT,
+        goToBackScreen = goToBackScreen,
+        extra = {
+            if (it) Title(title = CREATE_MY_ACCOUNT)
+        },
         content = {
             val viewModel: AccountViewModel = getKoin().get()
             var email: String by remember { mutableStateOf(value = EMPTY_TEXT) }
@@ -55,7 +60,6 @@ internal fun SendCodeToConfirmEmailScreen(
                     }
                 )
             }
-            Title(title = CREATE_MY_ACCOUNT)
             TextField(
                 label = YOUR_MAIN_EMAIL,
                 value = email,

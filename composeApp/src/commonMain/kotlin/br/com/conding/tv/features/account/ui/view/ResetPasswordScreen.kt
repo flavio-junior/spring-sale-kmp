@@ -14,6 +14,7 @@ import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
 import br.com.conding.tv.components.ui.SimpleText
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.components.ui.TextPassword
+import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.account.data.dto.PasswordRequestDTO
 import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
@@ -30,6 +31,7 @@ import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
 import br.com.conding.tv.resources.GenericsStrings.OR
 import br.com.conding.tv.resources.GenericsStrings.PASSWORD
 import br.com.conding.tv.resources.GenericsStrings.PASSWORD_ERROR_SIZE
+import br.com.conding.tv.resources.GenericsStrings.RECOVER_MY_ACCOUNT
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.Settings.CHECK_SIZE_PASSWORD
 import br.com.conding.tv.resources.Warnings.EXPIRED_CODE
@@ -44,6 +46,11 @@ internal fun ResetPasswordScreen(
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     ContentAccount(
+        label = RECOVER_MY_ACCOUNT,
+        goToBackScreen = goToSignInScreen,
+        extra = {
+            if (it) Title(title = RECOVER_MY_ACCOUNT)
+        },
         content = {
             val viewModel: AccountViewModel = getKoin().get()
             var password: String by remember { mutableStateOf(value = EMPTY_TEXT) }

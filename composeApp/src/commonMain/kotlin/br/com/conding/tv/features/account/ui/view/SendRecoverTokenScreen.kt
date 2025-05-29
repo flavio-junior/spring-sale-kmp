@@ -41,6 +41,11 @@ internal fun SendRecoverTokenScreen(
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     ContentAccount(
+        label = RECOVER_MY_ACCOUNT,
+        goToBackScreen = goToBackScreen,
+        extra = {
+            if (it) Title(title = RECOVER_MY_ACCOUNT)
+        },
         content = {
             val viewModel: AccountViewModel = getKoin().get()
             var email: String by remember { mutableStateOf(value = EMPTY_TEXT) }
@@ -53,7 +58,6 @@ internal fun SendRecoverTokenScreen(
                     onError = { observer = it }
                 )
             }
-            Title(title = RECOVER_MY_ACCOUNT)
             TextField(
                 label = REGISTERED_EMAIL,
                 value = email,

@@ -31,6 +31,11 @@ internal fun CheckRecoverTokenToConfirmEmailScreen(
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     ContentAccount(
+        label = RECOVER_MY_ACCOUNT,
+        goToBackScreen = goToSignInScreen,
+        extra = {
+            if (it) Title(title = RECOVER_MY_ACCOUNT)
+        },
         content = {
             val viewModel: AccountViewModel = getKoin().get()
             var code: String by remember { mutableStateOf(value = EMPTY_TEXT) }
@@ -46,7 +51,6 @@ internal fun CheckRecoverTokenToConfirmEmailScreen(
                     }
                 )
             }
-            Title(title = RECOVER_MY_ACCOUNT)
             GetCodeToConfirmEmail(
                 code = code,
                 onError = Pair(observer.first, observer.third),

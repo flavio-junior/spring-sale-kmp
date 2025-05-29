@@ -159,7 +159,7 @@ private fun ObserveStateSignIn(
     ObserveNetworkStateHandler(
         state = accountState,
         onError = {
-                onError(Triple(first = false, second = true, third = it))
+            onError(Triple(first = false, second = true, third = it))
         },
         goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
