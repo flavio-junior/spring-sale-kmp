@@ -23,7 +23,6 @@ import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
 import br.com.conding.tv.features.account.data.vo.TokenResponseVO
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.features.account.ui.viewmodel.ResetAccount
-import br.com.conding.tv.features.utils.isTokenExpired
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.CREATE_ONE_ACCOUNT
@@ -37,6 +36,7 @@ import br.com.conding.tv.resources.GenericsStrings.PASSWORD
 import br.com.conding.tv.resources.GenericsStrings.VERSION
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.isNotBlankAndEmpty
+import br.com.conding.tv.resources.isTokenExpired
 import br.com.conding.tv.resources.onClickable
 import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
