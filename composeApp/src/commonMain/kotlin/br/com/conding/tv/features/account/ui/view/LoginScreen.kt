@@ -30,6 +30,7 @@ import br.com.conding.tv.resources.GenericsStrings.EMAIL
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.ENTER_YOUR_ACCOUNT
 import br.com.conding.tv.resources.GenericsStrings.FORGOT_PASS
+import br.com.conding.tv.resources.GenericsStrings.INVALID_EMAIL
 import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
 import br.com.conding.tv.resources.GenericsStrings.OR
 import br.com.conding.tv.resources.GenericsStrings.PASSWORD
@@ -38,6 +39,7 @@ import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.isNotBlankAndEmpty
 import br.com.conding.tv.resources.isTokenExpired
 import br.com.conding.tv.resources.onClickable
+import br.com.conding.tv.resources.validateEmail
 import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
@@ -175,8 +177,12 @@ private fun checkDataToSignIn(
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
 ) {
     if (triple.first.isNotBlankAndEmpty() && triple.second.isNotBlankAndEmpty()) {
-        onError(Triple(first = true, second = false, third = EMPTY_TEXT))
-        triple.third.signIn(SignInRequestDTO(email = triple.first, password = triple.second))
+        if (validateEmail(email = triple.first)) {
+            onError(Triple(first = true, second = false, third = EMPTY_TEXT))
+            triple.third.signIn(SignInRequestDTO(email = triple.first, password = triple.second))
+        } else {
+            onError(Triple(first = false, second = true, third = INVALID_EMAIL))
+        }
     } else {
         onError(Triple(first = false, second = true, third = NOT_BLANK_OR_EMPTY))
     }
