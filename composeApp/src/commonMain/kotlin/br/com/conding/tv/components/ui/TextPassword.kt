@@ -17,12 +17,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.theme.Themes
 import br.com.conding.tv.theme.Typography
-import springsale.composeapp.generated.resources.Res
-import springsale.composeapp.generated.resources.lock
-import springsale.composeapp.generated.resources.visibility
-import springsale.composeapp.generated.resources.visibility_off
 
 @Composable
 fun TextPassword(
@@ -48,7 +45,7 @@ fun TextPassword(
         visualTransformation = if (passwordHidden) PasswordVisualTransformation() else VisualTransformation.None,
         leadingIcon = {
             IconDefault(
-                icon = Res.drawable.lock,
+                iconName = IconName.LOCK,
                 onClick = {
                     passwordHidden = !passwordHidden
                 }
@@ -63,7 +60,7 @@ fun TextPassword(
         }),
         trailingIcon = {
             IconDefault(
-                icon = if (passwordHidden) Res.drawable.visibility else Res.drawable.visibility_off,
+                iconName = if (passwordHidden) IconName.VISIBILITY else IconName.VISIBILITY_OFF,
                 contentDescription = if (passwordHidden) "Show password" else "Hide password",
                 onClick = {
                     passwordHidden = !passwordHidden

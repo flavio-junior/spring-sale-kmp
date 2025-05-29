@@ -15,11 +15,10 @@ import androidx.compose.ui.window.Dialog
 import br.com.conding.tv.resources.GenericsStrings.ALERT
 import br.com.conding.tv.resources.GenericsStrings.CANCEL
 import br.com.conding.tv.resources.GenericsStrings.CONFIRM
+import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
-import springsale.composeapp.generated.resources.Res
-import springsale.composeapp.generated.resources.brand_awareness
 
 @Composable
 fun Alert(
@@ -48,7 +47,7 @@ fun Alert(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconDefault(
-                    icon = Res.drawable.brand_awareness,
+                    iconName = IconName.BRAND_AWARENESS,
                     size = Themes.size.spaceSize48
                 )
                 Title(

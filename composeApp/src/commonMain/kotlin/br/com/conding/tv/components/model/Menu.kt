@@ -1,9 +1,9 @@
 package br.com.conding.tv.components.model
 
-import org.jetbrains.compose.resources.DrawableResource
+import br.com.conding.tv.resources.IconName
 
 data class Menu(
-    val icon: DrawableResource,
+    val icon: IconName,
     val label: String,
     val route: String
 )

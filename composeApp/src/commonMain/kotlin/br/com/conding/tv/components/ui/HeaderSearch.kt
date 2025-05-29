@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.model.LocationRoute
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.SIZE_LIST
+import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.Settings.ASC
 import br.com.conding.tv.resources.Settings.SIZE_DEFAULT
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
@@ -23,8 +24,6 @@ import br.com.conding.tv.resources.converterSizeStringToInt
 import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.resources.sizeList
 import br.com.conding.tv.theme.Themes
-import springsale.composeapp.generated.resources.Res
-import springsale.composeapp.generated.resources.refresh
 
 @Composable
 fun HeaderSearch(
@@ -66,7 +65,8 @@ fun HeaderSearch(
             }
         )
         IconDefault(
-            icon = Res.drawable.refresh, modifier = Modifier
+            iconName = IconName.REFRESH,
+            modifier = Modifier
                 .onBorder(
                     onClick = {},
                     color = Themes.colors.primary,

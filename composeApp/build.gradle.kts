@@ -36,6 +36,8 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.koin.androidx.compose)
+            implementation(libs.ktor.client.okhttp)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
@@ -61,7 +63,6 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
             implementation(libs.ktor.client.okhttp)
-            implementation(libs.navigation.compose)
         }
     }
 }

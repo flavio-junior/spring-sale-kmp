@@ -4,6 +4,7 @@ import br.com.conding.tv.features.account.data.repository.AccountRemoteDataSourc
 import br.com.conding.tv.features.account.data.repository.AccountRepository
 import br.com.conding.tv.features.account.data.repository.LocalStorageImp
 import br.com.conding.tv.features.account.domain.converter.ConverterToken
+import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.networking.storage.LocalStorage
 import org.koin.dsl.module
 
@@ -12,4 +13,5 @@ val accountModule = module {
     single<LocalStorageImp> { LocalStorage(dataStore = get()) }
     single<AccountRepository> { AccountRemoteDataSource(httpClient = get()) }
     single { ConverterToken() }
+    single { AccountViewModel(localStorage = get(), repository = get(), converter = get()) }
 }

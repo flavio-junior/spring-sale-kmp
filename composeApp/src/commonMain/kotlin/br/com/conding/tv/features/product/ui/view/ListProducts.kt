@@ -36,6 +36,7 @@ import br.com.conding.tv.resources.GenericsStrings.NUMBER
 import br.com.conding.tv.resources.GenericsStrings.OPTIONS
 import br.com.conding.tv.resources.GenericsStrings.PRICE
 import br.com.conding.tv.resources.GenericsStrings.QUANTITY
+import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE_2
 import br.com.conding.tv.resources.onBorder
@@ -44,8 +45,6 @@ import br.com.conding.tv.theme.CommonColors.ITEM_SELECTED
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ONE
 import br.com.conding.tv.theme.Themes
 import kotlinx.coroutines.launch
-import springsale.composeapp.generated.resources.Res
-import springsale.composeapp.generated.resources.visibility
 
 @Composable
 fun ListProducts(
@@ -203,7 +202,7 @@ fun ItemProduct(
             textAlign = TextAlign.Center
         )
         IconDefault(
-            icon = Res.drawable.visibility,
+            iconName = IconName.VISIBILITY,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             backgroundColor = if (selected) ITEM_SELECTED else Themes.colors.background,
             tint = if (selected) Themes.colors.background else Themes.colors.primary,

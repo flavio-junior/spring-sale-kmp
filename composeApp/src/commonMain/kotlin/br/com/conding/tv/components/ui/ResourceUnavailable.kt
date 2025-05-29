@@ -9,9 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import br.com.conding.tv.resources.GenericsStrings.RESOURCE_UNAVAILABLE
+import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.theme.Themes
-import springsale.composeapp.generated.resources.Res
-import springsale.composeapp.generated.resources.power_off
 
 @Composable
 fun ResourceUnavailable(
@@ -23,7 +22,7 @@ fun ResourceUnavailable(
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconDefault(
-            icon = Res.drawable.power_off,
+            iconName = IconName.POWER_OFF,
             size = Themes.size.spaceSize100
         )
         Spacer(modifier = Modifier.height(height = Themes.size.spaceSize16))

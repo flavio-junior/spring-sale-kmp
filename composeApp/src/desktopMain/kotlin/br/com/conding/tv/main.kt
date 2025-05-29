@@ -22,9 +22,9 @@ fun main() = application {
             modules = listOf(
                 accountModule,
                 categoryModule,
-                productModule,
                 desktopModule,
-                networkModule
+                networkModule,
+                productModule
             )
         )
     }

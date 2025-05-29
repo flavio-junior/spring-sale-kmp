@@ -14,13 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import br.com.conding.tv.getIconResource
+import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.theme.Themes
 import br.com.conding.tv.theme.Typography
-import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun TextField(
@@ -28,7 +29,7 @@ fun TextField(
     enabled: Boolean = true,
     label: String,
     value: String,
-    icon: DrawableResource? = null,
+    iconName: IconName? = null,
     backgroundColor: Color = Themes.colors.background,
     textColor: Color = Themes.colors.primary,
     keyboardType: KeyboardType = KeyboardType.Text,
@@ -40,13 +41,13 @@ fun TextField(
     onValueChange: (String) -> Unit = {},
     onGo: () -> Unit = {}
 ) {
-    if (icon != null) {
+    if (iconName != null) {
         TextFieldWithIcon(
             modifier = modifier,
             enabled = enabled,
             label = label,
             value = value,
-            icon = icon,
+            icon = getIconResource(iconName = iconName),
             backgroundColor = backgroundColor,
             textColor = textColor,
             keyboardType = keyboardType,
@@ -84,7 +85,7 @@ private fun TextFieldWithIcon(
     enabled: Boolean = true,
     label: String,
     value: String,
-    icon: DrawableResource,
+    icon: Painter,
     backgroundColor: Color,
     textColor: Color,
     keyboardType: KeyboardType = KeyboardType.Text,
@@ -118,11 +119,10 @@ private fun TextFieldWithIcon(
             modifier = Modifier.fillMaxWidth(),
             leadingIcon = {
                 Icon(
-                    painter = painterResource(resource = icon),
+                    painter = icon,
                     contentDescription = label,
                     tint = textColor
                 )
-
             },
             textStyle = Typography(color = textColor).simpleText(),
             keyboardOptions = KeyboardOptions(

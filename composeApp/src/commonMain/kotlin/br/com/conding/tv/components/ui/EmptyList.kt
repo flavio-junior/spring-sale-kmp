@@ -10,19 +10,15 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.onClickable
 import br.com.conding.tv.theme.Themes
-import org.jetbrains.compose.resources.DrawableResource
-import springsale.composeapp.generated.resources.Res
-import springsale.composeapp.generated.resources.arrow_outward
-import springsale.composeapp.generated.resources.draw
-import springsale.composeapp.generated.resources.refresh
 
 @Composable
 fun EmptyList(
     modifier: Modifier = Modifier,
     title: String,
-    mainIcon: DrawableResource = Res.drawable.draw,
+    iconName: IconName = IconName.DRAW,
     description: String,
     onClick: () -> Unit = {},
     refresh: () -> Unit = {}
@@ -33,7 +29,7 @@ fun EmptyList(
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconDefault(
-            icon = mainIcon,
+            iconName = iconName,
             size = Themes.size.spaceSize100
         )
         Spacer(
@@ -55,11 +51,11 @@ fun EmptyList(
                     modifier = modifier.onClickable(onClick = onClick)
                 )
                 IconDefault(
-                    icon = Res.drawable.arrow_outward,
+                    iconName = IconName.ARROW_OUTWARD,
                     onClick = onClick
                 )
                 IconDefault(
-                    icon = Res.drawable.refresh,
+                    iconName = IconName.REFRESH,
                     onClick = refresh
                 )
             }

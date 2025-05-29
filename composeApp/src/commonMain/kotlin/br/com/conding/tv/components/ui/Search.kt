@@ -20,11 +20,10 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.SEARCH
+import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.onClickable
 import br.com.conding.tv.theme.Themes
 import br.com.conding.tv.theme.Typography
-import springsale.composeapp.generated.resources.Res
-import springsale.composeapp.generated.resources.search
 
 @Composable
 fun Search(
@@ -81,7 +80,7 @@ private fun BodySearch(
             trailingIcon = {
                 if (showIconSearchButton) {
                     IconDefault(
-                        icon = Res.drawable.search,
+                        iconName = IconName.SEARCH,
                         contentDescription = SEARCH,
                         modifier = Modifier.onClickable(onClick = onGo),
                         onClick = onGo

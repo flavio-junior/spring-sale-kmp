@@ -34,7 +34,7 @@ fun ItemMenu(
         verticalArrangement = Arrangement.Center
     ) {
         IconDefault(
-            icon = menu.icon,
+            iconName = menu.icon,
             contentDescription = menu.label
         )
         Title(title = menu.label, textAlign = TextAlign.Center)

@@ -1,8 +1,20 @@
 package br.com.conding.tv.di
 
-import br.com.conding.tv.features.account.viewmodel.AccountViewModel
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import br.com.conding.tv.features.account.data.repository.LocalStorageImp
+import br.com.conding.tv.networking.storage.LocalStorage
+import br.com.conding.tv.networking.storage.createDataStore
 import org.koin.dsl.module
 
 val desktopModule = module {
-    single { AccountViewModel(localStorage = get(), repository = get(), converter = get()) }
+    single<DataStore<Preferences>> {
+        createDataStore()
+    }
+    single<LocalStorageImp> {
+        LocalStorage(dataStore = get())
+    }
+    single {
+        LocalStorage(dataStore = get())
+    }
 }

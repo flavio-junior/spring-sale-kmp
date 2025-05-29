@@ -8,13 +8,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.Settings.ASC
 import br.com.conding.tv.resources.Settings.DESC
 import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
-import springsale.composeapp.generated.resources.Res
-import springsale.composeapp.generated.resources.downward
-import springsale.composeapp.generated.resources.upward
 
 @Composable
 fun SortBy(
@@ -22,7 +20,7 @@ fun SortBy(
 ) {
     var sortBy: Boolean by remember { mutableStateOf(value = false) }
     IconDefault(
-        icon = if (sortBy) Res.drawable.upward else Res.drawable.downward,
+        iconName = if (sortBy) IconName.ARROW_UPWARD else IconName.DOWNWARD,
         modifier = Modifier
             .onBorder(
                 onClick = {},

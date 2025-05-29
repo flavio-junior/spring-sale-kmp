@@ -8,13 +8,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ONE
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import br.com.conding.tv.theme.Themes
-import springsale.composeapp.generated.resources.Res
-import springsale.composeapp.generated.resources.arrow_back
-import springsale.composeapp.generated.resources.arrow_forward
 
 @Composable
 fun PageIndicator(
@@ -42,7 +40,7 @@ fun PageIndicator(
             currentPage + NUMBER_ONE
         }
         IconDefault(
-            icon = Res.drawable.arrow_back,
+            iconName = IconName.ARROW_BACK,
             modifier = Modifier
                 .onBorder(
                     onClick = reloadPreviousPage,
@@ -59,7 +57,7 @@ fun PageIndicator(
             modifier = Modifier.padding(horizontal = Themes.size.spaceSize16)
         )
         IconDefault(
-            icon = Res.drawable.arrow_forward,
+            iconName = IconName.ARROW_FORWARD,
             modifier = Modifier
                 .onBorder(
                     onClick = loadNextPage,
