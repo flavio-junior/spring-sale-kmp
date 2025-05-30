@@ -10,12 +10,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 
 @Composable
 actual fun ContentScreen(
-    label: String?,
+    definitionsScreen: DefinitionsScreen,
     goToBackScreen: () -> Unit,
     extra: @Composable (Boolean) -> Unit,
     content: @Composable () -> Unit

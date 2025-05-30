@@ -8,6 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
@@ -32,7 +33,9 @@ internal fun CheckCodeToConfirmEmailScreen(
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     ContentScreen(
-        label = CREATE_MY_ACCOUNT,
+        definitionsScreen = DefinitionsScreen(
+            label = CREATE_MY_ACCOUNT
+        ),
         goToBackScreen = goToSignInScreen,
         extra = {
             if (it) Title(title = CREATE_MY_ACCOUNT)
