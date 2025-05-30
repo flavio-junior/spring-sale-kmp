@@ -22,10 +22,10 @@ fun Title(
     typeFont: TypeFont? = null,
     textAlign: TextAlign = TextAlign.Start,
     maxLines: Int = Int.MAX_VALUE,
-    title: String
+    label: String
 ) {
     BasicText(
-        text = title,
+        text = label,
         modifier = modifier,
         style = Typography(color = color, textAlign = textAlign, typeFont = typeFont).title(),
         maxLines = maxLines
@@ -36,13 +36,13 @@ fun Title(
 fun SubTitle(
     modifier: Modifier = Modifier,
     color: Color = Themes.colors.primary,
-    subTitle: String,
+    label: String,
     typeFont: TypeFont? = null,
     maxLines: Int = Int.MAX_VALUE,
     textAlign: TextAlign = TextAlign.Start
 ) {
     BasicText(
-        text = subTitle,
+        text = label,
         modifier = modifier,
         style = Typography(color = color, textAlign = textAlign, typeFont = typeFont).subTitle(),
         maxLines = maxLines
@@ -52,14 +52,14 @@ fun SubTitle(
 @Composable
 fun Description(
     modifier: Modifier = Modifier,
-    description: String,
+    label: String,
     color: Color = Themes.colors.primary,
     typeFont: TypeFont? = null,
     maxLines: Int = Int.MAX_VALUE,
     textAlign: TextAlign = TextAlign.Start
 ) {
     BasicText(
-        text = description,
+        text = label,
         modifier = modifier,
         style = Typography(color = color, textAlign = textAlign, typeFont = typeFont).description(),
         maxLines = maxLines
@@ -70,13 +70,13 @@ fun Description(
 fun SimpleText(
     modifier: Modifier = Modifier,
     color: Color = Themes.colors.primary,
-    text: String,
+    label: String,
     typeFont: TypeFont? = null,
     maxLines: Int = Int.MAX_VALUE,
     textAlign: TextAlign = TextAlign.Start
 ) {
     BasicText(
-        text = text,
+        text = label,
         modifier = modifier,
         style = Typography(color = color, textAlign = textAlign, typeFont = typeFont).simpleText(),
         maxLines = maxLines
@@ -87,13 +87,13 @@ fun SimpleText(
 fun InfoText(
     modifier: Modifier = Modifier,
     color: Color = Themes.colors.primary,
-    text: String,
+    label: String,
     typeFont: TypeFont? = null,
     maxLines: Int = Int.MAX_VALUE,
     textAlign: TextAlign = TextAlign.Start
 ) {
     BasicText(
-        text = text,
+        text = label,
         modifier = modifier,
         style = Typography(color = color, textAlign = textAlign, typeFont = typeFont).infoText(),
         maxLines = maxLines
@@ -104,13 +104,13 @@ fun InfoText(
 fun SmallText(
     modifier: Modifier = Modifier,
     color: Color = Themes.colors.primary,
-    text: String,
+    label: String,
     typeFont: TypeFont? = null,
     maxLines: Int = Int.MAX_VALUE,
     textAlign: TextAlign = TextAlign.Start
 ) {
     BasicText(
-        text = text,
+        text = label,
         modifier = modifier,
         style = Typography(color = color, textAlign = textAlign, typeFont = typeFont).smallText(),
         maxLines = maxLines
@@ -121,13 +121,13 @@ fun SmallText(
 fun MiniText(
     modifier: Modifier = Modifier,
     color: Color = Themes.colors.primary,
-    text: String,
+    label: String,
     typeFont: TypeFont? = null,
     maxLines: Int = Int.MAX_VALUE,
     textAlign: TextAlign = TextAlign.Start
 ) {
     BasicText(
-        text = text,
+        text = label,
         modifier = modifier,
         style = Typography(color = color, textAlign = textAlign, typeFont = typeFont).miniText(),
         maxLines = maxLines
@@ -137,7 +137,7 @@ fun MiniText(
 @Composable
 @Preview
 private fun ShowTextPreview() {
-    Title(title = PROJECT_NAME)
+    Title(label = PROJECT_NAME)
 }
 
 val LocalTextStyleDefault = compositionLocalOf(structuralEqualityPolicy()) { TextStyle.Default }

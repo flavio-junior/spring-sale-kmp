@@ -38,7 +38,7 @@ fun TextPassword(
         textStyle = Typography(color = Themes.colors.primary).simpleText(),
         singleLine = true,
         label = {
-            Description(description = label)
+            Description(label = label)
         },
         isError = isError,
         modifier = Modifier.fillMaxWidth(),

@@ -48,7 +48,7 @@ internal fun SendRecoverTokenScreen(
         ),
         goToBackScreen = goToBackScreen,
         extra = {
-            if (it) Title(title = RECOVER_MY_ACCOUNT)
+            if (it) Title(label = RECOVER_MY_ACCOUNT)
         },
         content = {
             val viewModel: AccountViewModel = getKoin().get()
@@ -91,7 +91,7 @@ internal fun SendRecoverTokenScreen(
                 isEnabled = observer.first
             )
             SimpleText(
-                text = OR,
+                label = OR,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )

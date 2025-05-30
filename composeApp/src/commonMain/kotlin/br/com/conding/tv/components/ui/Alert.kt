@@ -51,13 +51,13 @@ fun Alert(
                     size = Themes.size.spaceSize48
                 )
                 Title(
-                    title = ALERT,
+                    label = ALERT,
                     modifier = Modifier.weight(weight = WEIGHT_SIZE),
                     textAlign = TextAlign.Start
                 )
             }
             Description(
-                description = label,
+                label = label,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = Themes.size.spaceSize8)

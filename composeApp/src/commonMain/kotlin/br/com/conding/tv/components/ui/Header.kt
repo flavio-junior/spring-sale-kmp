@@ -41,7 +41,7 @@ fun Header(
             )
         }
         Description(
-            description = label,
+            label = label,
             color = Themes.colors.primary,
             modifier = Modifier.weight(weight = WEIGHT_SIZE),
             textAlign = textAlign

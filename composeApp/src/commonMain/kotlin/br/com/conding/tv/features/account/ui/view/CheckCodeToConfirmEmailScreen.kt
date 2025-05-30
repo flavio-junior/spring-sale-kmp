@@ -38,7 +38,7 @@ internal fun CheckCodeToConfirmEmailScreen(
         ),
         goToBackScreen = goToSignInScreen,
         extra = {
-            if (it) Title(title = CREATE_MY_ACCOUNT)
+            if (it) Title(label = CREATE_MY_ACCOUNT)
         },
         content = {
             val viewModel: AccountViewModel = getKoin().get()
@@ -78,7 +78,7 @@ internal fun CheckCodeToConfirmEmailScreen(
                 isEnabled = state.second
             )
             SimpleText(
-                text = OR,
+                label = OR,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )

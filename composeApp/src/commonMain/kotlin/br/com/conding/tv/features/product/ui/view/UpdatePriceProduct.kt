@@ -68,7 +68,7 @@ fun UpdatePriceProduct(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16)
     ) {
-        Description(description = "$UPDATE_PRICE_PRODUCT:")
+        Description(label = "$UPDATE_PRICE_PRODUCT:")
         Row(
             horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16),
             modifier = modifier,

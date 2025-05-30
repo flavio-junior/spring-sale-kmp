@@ -86,7 +86,7 @@ fun SignInScreen(
                 goToAlternativeRoutes = goToAlternativeRoutes
             )
             SimpleText(
-                text = FORGOT_PASS,
+                label = FORGOT_PASS,
                 textAlign = TextAlign.End,
                 modifier = Modifier
                     .onClickable(onClick = goToSendRecoverPasswordScreen)
@@ -100,7 +100,7 @@ fun SignInScreen(
                 label = ENTER_YOUR_ACCOUNT
             )
             SimpleText(
-                text = OR,
+                label = OR,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -109,7 +109,7 @@ fun SignInScreen(
                 onClick = goToConfirmEmailAddressScreen
             )
             Spacer(modifier = Modifier.height(height = Themes.size.spaceSize0))
-            Description(description = "$VERSION 1.00")
+            Description(label = "$VERSION 1.00")
             ObserveNetworkStateHandlerToken(
                 viewModel = viewModel,
                 goToDashboardScreen = goToHomeScreen

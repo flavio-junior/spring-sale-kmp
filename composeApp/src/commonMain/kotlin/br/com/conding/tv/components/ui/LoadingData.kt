@@ -37,7 +37,7 @@ fun LoadingData(
                 strokeWidth = Themes.size.spaceSize4
             )
             Spacer(modifier = Modifier.size(size = Themes.size.spaceSize32))
-            Title(title = label)
+            Title(label = label)
         }
     }
 }

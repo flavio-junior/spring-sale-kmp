@@ -109,12 +109,12 @@ fun HeaderCategoriesPanel(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Description(
-            description = NUMBER,
+            label = NUMBER,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center
         )
         Description(
-            description = NAME,
+            label = NAME,
             modifier = modifier.weight(weight = WEIGHT_SIZE_4)
         )
     }
@@ -143,13 +143,13 @@ fun ItemCategory(
         var add = index
         add++
         Description(
-            description = add.toString(),
+            label = add.toString(),
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center,
             color = if (selected) Themes.colors.background else Themes.colors.primary
         )
         Description(
-            description = category.name,
+            label = category.name,
             modifier = modifier.weight(weight = WEIGHT_SIZE_4),
             color = if (selected) Themes.colors.background else Themes.colors.primary
         )

@@ -19,7 +19,7 @@ actual fun SettingsScreen(
             alignment = Alignment.Top
         ),
         content = {
-            Title(title = "Settings")
+            Title(label = "Settings")
         }
     )
 }

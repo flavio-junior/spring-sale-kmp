@@ -41,13 +41,13 @@ fun EmptyList(
             verticalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Title(title = title)
+            Title(label = title)
             Row(
                 horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize8),
                 modifier = modifier.onClickable(onClick = onClick)
             ) {
                 Description(
-                    description = description,
+                    label = description,
                     modifier = modifier.onClickable(onClick = onClick)
                 )
                 IconDefault(

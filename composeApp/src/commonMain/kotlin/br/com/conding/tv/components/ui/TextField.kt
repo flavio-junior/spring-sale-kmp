@@ -113,7 +113,7 @@ private fun TextFieldWithIcon(
             maxLines = maxLines,
             singleLine = singleLine,
             label = {
-                Description(description = label, color = textColor)
+                Description(label = label, color = textColor)
             },
             isError = isError,
             modifier = Modifier.fillMaxWidth(),
@@ -177,7 +177,7 @@ private fun TextFieldWithoutIcon(
             maxLines = maxLines,
             singleLine = singleLine,
             label = {
-                InfoText(text = label, color = textColor)
+                InfoText(label = label, color = textColor)
             },
             isError = isError,
             modifier = Modifier.fillMaxWidth(),

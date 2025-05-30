@@ -102,7 +102,7 @@ fun Service(
             onClick = goToNavigation
         )
         Title(
-            title = menu.label,
+            label = menu.label,
             modifier = Modifier.onClickable(onClick = goToNavigation),
             color = if (enabled) Themes.colors.background else ITEM_SELECTED
         )

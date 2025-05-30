@@ -53,7 +53,7 @@ fun PageIndicator(
             onClick = reloadPreviousPage
         )
         Title(
-            title = "$newValue/$totalPages",
+            label = "$newValue/$totalPages",
             modifier = Modifier.padding(horizontal = Themes.size.spaceSize16)
         )
         IconDefault(

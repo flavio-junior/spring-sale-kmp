@@ -89,7 +89,7 @@ internal fun SignUpScreen(
                 label = CREATE_MY_ACCOUNT
             )
             SimpleText(
-                text = OR,
+                label = OR,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )

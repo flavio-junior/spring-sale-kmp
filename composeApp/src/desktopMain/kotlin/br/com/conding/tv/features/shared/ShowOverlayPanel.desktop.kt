@@ -54,13 +54,13 @@ actual fun ShowOverlayPanel(
                     size = Themes.size.spaceSize48
                 )
                 Title(
-                    title = WARNING,
+                    label = WARNING,
                     modifier = Modifier.weight(weight = WEIGHT_SIZE),
                     textAlign = TextAlign.Start
                 )
             }
             Description(
-                description = YOUR_ACTION,
+                label = YOUR_ACTION,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = Themes.size.spaceSize8)

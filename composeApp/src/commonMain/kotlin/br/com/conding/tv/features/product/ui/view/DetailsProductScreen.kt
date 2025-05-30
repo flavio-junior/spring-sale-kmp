@@ -56,7 +56,7 @@ fun DetailsProductBody(
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16)
     ) {
-        Description(description = "${DETAILS_PRODUCT}:")
+        Description(label = "${DETAILS_PRODUCT}:")
         Row(
             horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16),
         ) {
@@ -90,7 +90,7 @@ fun DetailsProductBody(
             )
         }
         ListCategoriesAvailableResponseVO(categories = product.categories)
-        Description(description = UPDATE_PRODUCT)
+        Description(label = UPDATE_PRODUCT)
         UpdateProduct(
             id = product.id,
             goToAlternativeRoutes = goToAlternativeRoutes,

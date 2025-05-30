@@ -41,7 +41,7 @@ fun <T> Tag(
             .padding(all = Themes.size.spaceSize14)
     ) {
         Description(
-            description = text,
+            label = text,
             color = if (selected) Themes.colors.background else ITEM_SELECTED
         )
     }

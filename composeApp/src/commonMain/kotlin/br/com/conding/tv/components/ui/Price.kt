@@ -67,7 +67,7 @@ fun Price(
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType, imeAction = imeAction),
             keyboardActions = KeyboardActions(onGo = { onGo() }),
             singleLine = true,
-            label = { Description(description = label ?: PRICE, color = Themes.colors.primary) },
+            label = { Description(label = label ?: PRICE, color = Themes.colors.primary) },
             isError = isError,
             textStyle = Typography(color = Themes.colors.primary).simpleText(),
             colors = TextFieldDefaults.textFieldColors(

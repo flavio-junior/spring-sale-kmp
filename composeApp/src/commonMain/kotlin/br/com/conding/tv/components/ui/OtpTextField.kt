@@ -73,7 +73,7 @@ fun OtpTextField(
                                 .width(width = Themes.size.spaceSize64)
                                 .padding(all = Themes.size.spaceSize16)
                         },
-                        title = position.toString(),
+                        label = position.toString(),
                         textAlign = TextAlign.Center
                     )
                     Spacer(modifier = Modifier.width(width = Themes.size.spaceSize16))
@@ -82,6 +82,6 @@ fun OtpTextField(
         }
     )
     if (isError && message.isNotEmpty()) {
-        InfoText(modifier = Modifier.fillMaxWidth(), text = message, textAlign = TextAlign.Start)
+        InfoText(modifier = Modifier.fillMaxWidth(), label = message, textAlign = TextAlign.Start)
     }
 }

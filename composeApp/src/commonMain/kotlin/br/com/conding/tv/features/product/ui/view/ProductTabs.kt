@@ -58,7 +58,7 @@ fun ProductsTabs(
                         }
                     },
                     text = {
-                        Description(description = currentTab.text)
+                        Description(label = currentTab.text)
                     }
                 )
             }

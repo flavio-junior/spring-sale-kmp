@@ -53,7 +53,7 @@ internal fun ResetPasswordScreen(
         ),
         goToBackScreen = goToSignInScreen,
         extra = {
-            if (it) Title(title = RECOVER_MY_ACCOUNT)
+            if (it) Title(label = RECOVER_MY_ACCOUNT)
         },
         content = {
             val viewModel: AccountViewModel = getKoin().get()
@@ -99,7 +99,7 @@ internal fun ResetPasswordScreen(
                 label = CREATE_NEW_PASSWORD
             )
             SimpleText(
-                text = OR,
+                label = OR,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )

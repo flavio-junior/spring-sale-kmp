@@ -41,7 +41,7 @@ fun BottomNavigationBar(
                     )
                 },
                 label = {
-                    SimpleText(text = item.label)
+                    SimpleText(label = item.label)
                 },
                 selected = currentRoute == item.route.name,
                 onClick = {

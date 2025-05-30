@@ -73,7 +73,7 @@ private fun BodySearch(
             },
             singleLine = true,
             label = {
-                InfoText(text = label, color = Themes.colors.primary)
+                InfoText(label = label, color = Themes.colors.primary)
             },
             isError = isError,
             modifier = Modifier.fillMaxWidth(),

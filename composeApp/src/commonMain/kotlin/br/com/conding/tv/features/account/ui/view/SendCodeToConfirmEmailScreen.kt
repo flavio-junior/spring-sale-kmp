@@ -48,7 +48,7 @@ internal fun SendCodeToConfirmEmailScreen(
         ),
         goToBackScreen = goToBackScreen,
         extra = {
-            if (it) Title(title = CREATE_MY_ACCOUNT)
+            if (it) Title(label = CREATE_MY_ACCOUNT)
         },
         content = {
             val viewModel: AccountViewModel = getKoin().get()
@@ -95,7 +95,7 @@ internal fun SendCodeToConfirmEmailScreen(
                 label = SEND_CODE_VERIFICATION
             )
             SimpleText(
-                text = OR,
+                label = OR,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )

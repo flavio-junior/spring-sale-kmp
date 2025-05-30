@@ -42,7 +42,7 @@ fun LoadingButton(
         if (enabled) {
             CircularProgressIndicator()
         } else {
-            Description(description = label.lowercase())
+            Description(label = label.lowercase())
         }
     }
 }

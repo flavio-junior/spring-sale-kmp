@@ -19,7 +19,7 @@ actual fun ProductsScreen(
             alignment = Alignment.Top
         ),
         content = {
-            Title(title = "Products")
+            Title(label = "Products")
         }
     )
 }

@@ -117,32 +117,32 @@ fun HeaderProductsPanel(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Description(
-            description = NUMBER,
+            label = NUMBER,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center
         )
         Description(
-            description = NAME,
+            label = NAME,
             modifier = modifier.weight(weight = WEIGHT_SIZE_2),
             textAlign = TextAlign.Center
         )
         Description(
-            description = CATEGORIES,
+            label = CATEGORIES,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center
         )
         Description(
-            description = PRICE,
+            label = PRICE,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center
         )
         Description(
-            description = QUANTITY,
+            label = QUANTITY,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center
         )
         Description(
-            description = OPTIONS,
+            label = OPTIONS,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center
         )
@@ -171,32 +171,32 @@ fun ItemProduct(
         var add = index
         add++
         Description(
-            description = add.toString(),
+            label = add.toString(),
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center,
             color = if (selected) Themes.colors.background else Themes.colors.primary
         )
         Description(
-            description = product.name,
+            label = product.name,
             maxLines = NUMBER_ONE,
             modifier = modifier.weight(weight = WEIGHT_SIZE_2),
             color = if (selected) Themes.colors.background else Themes.colors.primary,
             textAlign = TextAlign.Center
         )
         Description(
-            description = product.categories?.size.toString(),
+            label = product.categories?.size.toString(),
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             color = if (selected) Themes.colors.background else Themes.colors.primary,
             textAlign = TextAlign.Center
         )
         Description(
-            description = formatterMaskToMoney(price = product.price),
+            label = formatterMaskToMoney(price = product.price),
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             color = if (selected) Themes.colors.background else Themes.colors.primary,
             textAlign = TextAlign.Center
         )
         Description(
-            description = product.quantity.toString(),
+            label = product.quantity.toString(),
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             color = if (selected) Themes.colors.background else Themes.colors.primary,
             textAlign = TextAlign.Center

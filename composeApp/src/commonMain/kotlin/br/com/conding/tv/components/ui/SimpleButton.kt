@@ -31,6 +31,6 @@ fun SimpleButton(
             .padding(all = Themes.size.spaceSize18)
             .fillMaxWidth()
     ) {
-        Description(description = label)
+        Description(label = label)
     }
 }

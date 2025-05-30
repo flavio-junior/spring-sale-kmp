@@ -11,6 +11,6 @@ fun IsErrorMessage(
     message: String
 ) {
     if (isError && message.isNotEmpty()) {
-        InfoText(modifier = Modifier.fillMaxWidth(), text = message, textAlign = TextAlign.Start)
+        InfoText(modifier = Modifier.fillMaxWidth(), label = message, textAlign = TextAlign.Start)
     }
 }
