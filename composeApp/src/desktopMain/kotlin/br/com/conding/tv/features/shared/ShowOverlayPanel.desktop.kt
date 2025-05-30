@@ -1,4 +1,4 @@
-package br.com.conding.tv.features.home.ui
+package br.com.conding.tv.features.shared
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -25,9 +25,11 @@ import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun ConfirmExitDialog(
-    onDismissRequest: () -> Unit = {},
-    onConfirmation: () -> Unit = {}
+actual fun ShowOverlayPanel(
+    onCloseProgram: () -> Unit,
+    onChangeAccountRequest: () -> Unit,
+    onDismissRequest: () -> Unit
+
 ) {
     Dialog(onDismissRequest = onDismissRequest) {
         Column(
@@ -44,8 +46,7 @@ fun ConfirmExitDialog(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconDefault(
@@ -71,13 +72,13 @@ fun ConfirmExitDialog(
                 horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize8),
             ) {
                 SimpleButton(
-                    onClick = onDismissRequest,
+                    onClick = onChangeAccountRequest,
                     label = CHANGE_TO_OTHER_ACCOUNT,
                     background = Themes.colors.error,
                     modifier = Modifier.weight(weight = WEIGHT_SIZE)
                 )
                 SimpleButton(
-                    onClick = onConfirmation,
+                    onClick = onCloseProgram,
                     label = EXIT,
                     modifier = Modifier.weight(weight = WEIGHT_SIZE)
                 )
