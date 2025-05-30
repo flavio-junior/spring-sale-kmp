@@ -1,4 +1,4 @@
-package br.com.conding.tv.networking.storage
+package br.com.conding.tv.storage
 
 import android.content.Context
 import androidx.datastore.core.DataStore

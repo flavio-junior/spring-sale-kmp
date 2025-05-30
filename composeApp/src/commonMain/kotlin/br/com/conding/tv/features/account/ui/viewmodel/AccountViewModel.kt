@@ -14,7 +14,7 @@ import br.com.conding.tv.features.account.data.vo.TokenResponseVO
 import br.com.conding.tv.features.account.domain.converter.ConverterToken
 import br.com.conding.tv.networking.resources.DescriptionError
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
-import br.com.conding.tv.networking.storage.LocalStorage
+import br.com.conding.tv.storage.LocalStorage
 import br.com.conding.tv.resources.GenericsStrings.INVALID_EMAIL
 import br.com.conding.tv.resources.validateEmail
 import kotlinx.coroutines.flow.onStart
