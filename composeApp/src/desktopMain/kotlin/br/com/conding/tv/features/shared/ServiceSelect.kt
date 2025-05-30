@@ -19,7 +19,7 @@ import br.com.conding.tv.components.model.Menu
 import br.com.conding.tv.components.ui.IconDefault
 import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.home.factory.availableServices
-import br.com.conding.tv.navigation.NavigationItems
+import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.resources.changeColor
 import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.resources.onClickable
@@ -33,7 +33,7 @@ fun Services(
     label: String,
     options: List<Menu> = availableServices,
     goToBackScreen: () -> Unit = {},
-    goToNextScreen: (String) -> Unit = {}
+    goToNextScreen: (AppDestinations) -> Unit = {}
 ) {
     val scrollState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
@@ -76,10 +76,10 @@ fun Service(
     enabled: Boolean = false,
     menu: Menu,
     goToBackScreen: () -> Unit = {},
-    goToNextScreen: (String) -> Unit = {}
+    goToNextScreen: (AppDestinations) -> Unit = {}
 ) {
     val goToNavigation = {
-        if (menu.route == NavigationItems.HOME.name) goToBackScreen() else goToNextScreen(menu.route)
+        if (menu.route == AppDestinations.Home) goToBackScreen() else goToNextScreen(menu.route)
     }
     Row(
         horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize8),

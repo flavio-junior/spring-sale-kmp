@@ -21,7 +21,7 @@ import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.features.home.factory.home
 import br.com.conding.tv.features.shared.BodyPage
 import br.com.conding.tv.features.shared.ShowOverlayPanel
-import br.com.conding.tv.navigation.NavigationItems
+import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_FOUR
@@ -32,7 +32,7 @@ import kotlin.system.exitProcess
 
 @Composable
 actual fun HomeScreen(
-    goToNextScreen: (String) -> Unit,
+    goToNextScreen: (AppDestinations) -> Unit,
     goToLoginScreen: () -> Unit
 ) {
     BodyPage(
@@ -57,7 +57,7 @@ actual fun HomeScreen(
                             menu = menu,
                             goToNextScreen = {
                                 when (it) {
-                                    NavigationItems.EXIT.name -> {
+                                    AppDestinations.SignIn -> {
                                         showOverlayPanel = true
                                     }
 

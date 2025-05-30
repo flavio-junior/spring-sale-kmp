@@ -22,7 +22,7 @@ import br.com.conding.tv.features.settings.SettingsScreen
 @Composable
 fun Navigation(
     navController: NavHostController = rememberNavController(),
-    startDestination: Any = SignIn
+    startDestination: Any = AppDestinations.SignIn
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         signInNavigation(navController = navController)
@@ -36,25 +36,25 @@ fun Navigation(
 fun NavGraphBuilder.signInNavigation(
     navController: NavHostController
 ) {
-    composable<SignIn> {
+    composable<AppDestinations.SignIn> {
         SignInScreen(
             goToHomeScreen = {
-                navController.navigate(route = Home) {
-                    popUpTo(route = SignIn) {
+                navController.navigate(route = AppDestinations.Home) {
+                    popUpTo(route = AppDestinations.SignIn::class) {
                         inclusive = true
                     }
                 }
             },
             goToSendRecoverPasswordScreen = {
-                navController.navigate(route = SendRecoverToken)
+                navController.navigate(route = AppDestinations.SendRecoverToken)
             },
             goToConfirmEmailAddressScreen = {
-                navController.navigate(route = AppDestinations.SendCodeToConfirmEmail.item)
+                navController.navigate(route = AppDestinations.SendCodeToConfirmEmail)
             },
             goToAlternativeRoutes = {
                 navigateToAlternativeRoutes(
                     navController = navController,
-                    currentScreen = AppDestinations.SignIn.item,
+                    currentScreen = AppDestinations.SignIn,
                     alternativeRoutes = it
                 )
             }
@@ -67,10 +67,10 @@ fun NavGraphBuilder.signInNavigation(
 private fun NavGraphBuilder.recoverPassword(
     navController: NavHostController
 ) {
-    composable<SendRecoverToken> {
+    composable<AppDestinations.SendRecoverToken> {
         SendRecoverTokenScreen(
             goToBackScreen = {
-                navController.popBackStack()
+                navController.goBack()
             },
             goToCheckRecoverTokenToConfirmEmailScreen = {
                 navController.navigate(route = it)
@@ -78,12 +78,12 @@ private fun NavGraphBuilder.recoverPassword(
         )
     }
 
-    composable<CheckRecoverToken> { backStackEntry ->
+    composable<AppDestinations.CheckRecoverToken> { backStackEntry ->
         CheckRecoverTokenToConfirmEmailScreen(
             checkRecoverToken = backStackEntry.toRoute(),
             goToSignInScreen = {
-                navController.navigate(route = SignIn) {
-                    popUpTo(route = CheckRecoverToken::class) {
+                navController.navigate(route = AppDestinations.SignIn) {
+                    popUpTo(route = AppDestinations.CheckRecoverToken::class) {
                         inclusive = true
                     }
                 }
@@ -94,19 +94,19 @@ private fun NavGraphBuilder.recoverPassword(
         )
     }
 
-    composable<RecoverToken> { backStackEntry ->
+    composable<AppDestinations.RecoverToken> { backStackEntry ->
         ResetPasswordScreen(
             recoverToken = backStackEntry.toRoute(),
             goToSignInScreen = {
-                navController.navigate(route = SignIn) {
-                    popUpTo(route = RecoverToken::class) {
+                navController.navigate(route = AppDestinations.SignIn) {
+                    popUpTo(route = AppDestinations.RecoverToken::class) {
                         inclusive = true
                     }
                 }
             },
             goToHomeScreen = {
-                navController.navigate(route = Home) {
-                    popUpTo(route = RecoverToken::class) {
+                navController.navigate(route = AppDestinations.Home) {
+                    popUpTo(route = AppDestinations.RecoverToken::class) {
                         inclusive = true
                     }
                 }
@@ -118,14 +118,14 @@ private fun NavGraphBuilder.recoverPassword(
 private fun NavGraphBuilder.signUp(
     navController: NavHostController
 ) {
-    composable(route = AppDestinations.SendCodeToConfirmEmail.item) {
+    composable<AppDestinations.SendCodeToConfirmEmail> {
         SendCodeToConfirmEmailScreen(
             goToBackScreen = {
-                navController.popBackStack()
+                navController.goBack()
             },
             goToCheckCodeToConfirmEmailScreen = {
                 navController.navigate(route = it) {
-                    popUpTo(route = AppDestinations.SendCodeToConfirmEmail.item) {
+                    popUpTo(route = AppDestinations.SendCodeToConfirmEmail) {
                         inclusive = true
                     }
                 }
@@ -133,15 +133,15 @@ private fun NavGraphBuilder.signUp(
         )
     }
 
-    composable<CheckCodeToConfirmEmail> { backStackEntry ->
+    composable<AppDestinations.CheckCodeToConfirmEmail> { backStackEntry ->
         CheckCodeToConfirmEmailScreen(
             checkCodeToConfirmEmail = backStackEntry.toRoute(),
             goToSignUpScreen = {
                 navController.navigate(route = it)
             },
             goToSignInScreen = {
-                navController.navigate(route = SignIn) {
-                    popUpTo(route = CheckRecoverToken::class) {
+                navController.navigate(route = AppDestinations.SignIn) {
+                    popUpTo(route = AppDestinations.CheckRecoverToken::class) {
                         inclusive = true
                     }
                 }
@@ -149,19 +149,19 @@ private fun NavGraphBuilder.signUp(
         )
     }
 
-    composable<SignUp> { backStackEntry ->
+    composable<AppDestinations.SignUp> { backStackEntry ->
         SignUpScreen(
             signUp = backStackEntry.toRoute(),
             goToHomeScreen = {
-                navController.navigate(route = Home) {
-                    popUpTo(route = SignUp::class) {
+                navController.navigate(route = AppDestinations.Home) {
+                    popUpTo(route = AppDestinations.SignUp::class) {
                         inclusive = true
                     }
                 }
             },
             goToSignInScreen = {
-                navController.navigate(route = SignIn) {
-                    popUpTo(route = SignUp::class) {
+                navController.navigate(route = AppDestinations.SignIn) {
+                    popUpTo(route = AppDestinations.SignUp::class) {
                         inclusive = true
                     }
                 }
@@ -173,18 +173,17 @@ private fun NavGraphBuilder.signUp(
     }
 }
 
-
 fun NavGraphBuilder.homeNavigation(
     navController: NavHostController
 ) {
-    composable<Home> {
+    composable<AppDestinations.Home> {
         HomeScreen(
             goToNextScreen = {
                 navController.navigate(route = it)
             },
             goToLoginScreen = {
-                navController.navigate(route = SignIn) {
-                    popUpTo(route = Home) {
+                navController.navigate(route = AppDestinations.SignIn) {
+                    popUpTo(route = AppDestinations.Home) {
                         inclusive = true
                     }
                 }
@@ -196,22 +195,22 @@ fun NavGraphBuilder.homeNavigation(
 fun NavGraphBuilder.categoryNavigation(
     navController: NavHostController
 ) {
-    composable(route = AppDestinations.Category.item) {
+    composable<AppDestinations.Categories> {
         CategoryScreen(
             goToBackScreen = {
-                navController.popBackStack()
+                navController.goBack()
             },
             goToNextScreen = {
-                goToNextScreen(
-                    navHostController = navController,
-                    currentScreen = AppDestinations.Category.item,
-                    nextScreen = it
-                )
+                navController.navigate(route = it) {
+                    popUpTo(route = AppDestinations.Categories) {
+                        inclusive = true
+                    }
+                }
             },
             goToAlternativeRoutes = {
                 navigateToAlternativeRoutes(
                     navController = navController,
-                    currentScreen = AppDestinations.Category.item,
+                    currentScreen = AppDestinations.Categories,
                     alternativeRoutes = it
                 )
             }
@@ -222,22 +221,22 @@ fun NavGraphBuilder.categoryNavigation(
 fun NavGraphBuilder.productNavigation(
     navController: NavHostController
 ) {
-    composable(route = AppDestinations.Product.item) {
+    composable<AppDestinations.Products> {
         ProductScreen(
             goToBackScreen = {
-                navController.popBackStack()
+                navController.goBack()
             },
             goToNextScreen = {
-                goToNextScreen(
-                    navHostController = navController,
-                    currentScreen = AppDestinations.Product.item,
-                    nextScreen = it
-                )
+                navController.navigate(route = it) {
+                    popUpTo(route = AppDestinations.Products) {
+                        inclusive = true
+                    }
+                }
             },
             goToAlternativeRoutes = {
                 navigateToAlternativeRoutes(
                     navController = navController,
-                    currentScreen = AppDestinations.Product.item,
+                    currentScreen = AppDestinations.Products,
                     alternativeRoutes = it
                 )
             }
@@ -248,22 +247,22 @@ fun NavGraphBuilder.productNavigation(
 fun NavGraphBuilder.settingsNavigation(
     navController: NavHostController
 ) {
-    composable(route = AppDestinations.Settings.item) {
+    composable<AppDestinations.Settings> {
         SettingsScreen(
             goToBackScreen = {
-                navController.popBackStack()
+                navController.goBack()
             },
             goToNextScreen = {
-                goToNextScreen(
-                    navHostController = navController,
-                    currentScreen = AppDestinations.Settings.item,
-                    nextScreen = it
-                )
+                navController.navigate(route = it) {
+                    popUpTo(route = AppDestinations.Settings) {
+                        inclusive = true
+                    }
+                }
             },
             goToAlternativeRoutes = {
                 navigateToAlternativeRoutes(
                     navController = navController,
-                    currentScreen = AppDestinations.Settings.item,
+                    currentScreen = AppDestinations.Settings,
                     alternativeRoutes = it
                 )
             }

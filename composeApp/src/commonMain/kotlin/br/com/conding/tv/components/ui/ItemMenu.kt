@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import br.com.conding.tv.components.model.Menu
+import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 
@@ -17,7 +18,7 @@ import br.com.conding.tv.theme.Themes
 fun ItemMenu(
     modifier: Modifier = Modifier,
     menu: Menu,
-    goToNextScreen: (String) -> Unit = {}
+    goToNextScreen: (AppDestinations) -> Unit = {}
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,

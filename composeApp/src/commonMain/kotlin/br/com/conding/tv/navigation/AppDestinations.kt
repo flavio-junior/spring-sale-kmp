@@ -1,19 +1,39 @@
 package br.com.conding.tv.navigation
 
-sealed class AppDestinations(val item: String) {
-    data object SignIn : AppDestinations(item = NavigationItems.SIGN_IN.name)
-    data object SendRecoverToken : AppDestinations(item = NavigationItems.SEND_RECOVER_TOKEN.name)
-    data object CheckRecoverToken : AppDestinations(item = NavigationItems.CHECK_RECOVER_TOKEN.name)
-    data object CreateNewPassword : AppDestinations(item = NavigationItems.CREATE_NEW_PASSWORD.name)
-    data object SendCodeToConfirmEmail :
-        AppDestinations(item = NavigationItems.SEND_CODE_TO_CONFIRM_EMAIL.name)
+import kotlinx.serialization.Serializable
 
-    data object CheckCodeToConfirmEmail :
-        AppDestinations(item = NavigationItems.CHECK_CODE_TO_CONFIRM_EMAIL.name)
+sealed interface AppDestinations {
 
-    data object SignUp : AppDestinations(item = NavigationItems.SIGN_UP.name)
-    data object Home : AppDestinations(item = NavigationItems.HOME.name)
-    data object Product : AppDestinations(item = NavigationItems.PRODUCT.name)
-    data object Category : AppDestinations(item = NavigationItems.CATEGORY.name)
-    data object Settings : AppDestinations(item = NavigationItems.SETTINGS.name)
+    @Serializable
+    data object SignIn : AppDestinations
+
+    @Serializable
+    data class CheckRecoverToken(val email: String) : AppDestinations
+
+    @Serializable
+    data object SendRecoverToken : AppDestinations
+
+    @Serializable
+    data class RecoverToken(val email: String) : AppDestinations
+
+    @Serializable
+    data object SendCodeToConfirmEmail : AppDestinations
+
+    @Serializable
+    data class CheckCodeToConfirmEmail(val email: String) : AppDestinations
+
+    @Serializable
+    data class SignUp(val email: String) : AppDestinations
+
+    @Serializable
+    data object Home : AppDestinations
+
+    @Serializable
+    data object Categories : AppDestinations
+
+    @Serializable
+    data object Products : AppDestinations
+
+    @Serializable
+    data object Settings : AppDestinations
 }

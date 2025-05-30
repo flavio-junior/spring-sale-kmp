@@ -13,8 +13,7 @@ import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
 import br.com.conding.tv.components.ui.SimpleText
 import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
-import br.com.conding.tv.navigation.CheckRecoverToken
-import br.com.conding.tv.navigation.RecoverToken
+import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.CREATE_ONE_ACCOUNT
@@ -25,9 +24,9 @@ import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
 internal fun CheckRecoverTokenToConfirmEmailScreen(
-    checkRecoverToken: CheckRecoverToken? = null,
+    checkRecoverToken: AppDestinations.CheckRecoverToken? = null,
     goToSignInScreen: () -> Unit = {},
-    goToCreateNewPasswordScreen: (RecoverToken) -> Unit = {},
+    goToCreateNewPasswordScreen: (AppDestinations.RecoverToken) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     ContentAccount(
@@ -64,7 +63,7 @@ internal fun CheckRecoverTokenToConfirmEmailScreen(
                 },
                 goToCreateNewPasswordScreen = {
                     goToCreateNewPasswordScreen(
-                        RecoverToken(email = checkRecoverToken?.email ?: EMPTY_TEXT)
+                        AppDestinations.RecoverToken(email = checkRecoverToken?.email ?: EMPTY_TEXT)
                     )
                 },
                 goToAlternativeRoutes = goToAlternativeRoutes

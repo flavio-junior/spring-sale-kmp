@@ -18,7 +18,7 @@ import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.account.data.dto.PasswordRequestDTO
 import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
-import br.com.conding.tv.navigation.RecoverToken
+import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.CONFIRM_PASSWORD
@@ -40,7 +40,7 @@ import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
 internal fun ResetPasswordScreen(
-    recoverToken: RecoverToken? = null,
+    recoverToken: AppDestinations.RecoverToken? = null,
     goToSignInScreen: () -> Unit = {},
     goToHomeScreen: () -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}

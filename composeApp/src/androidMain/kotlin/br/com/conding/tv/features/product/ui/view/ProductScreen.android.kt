@@ -5,8 +5,10 @@ import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 
 @Composable
-expect fun ProductScreen(
-    goToBackScreen: () -> Unit = {},
-    goToNextScreen: (AppDestinations) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
-)
+actual fun ProductScreen(
+    goToBackScreen: () -> Unit,
+    goToNextScreen: (AppDestinations) -> Unit,
+    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit
+) {
+
+}

@@ -10,6 +10,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import br.com.conding.tv.getIconResource
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
@@ -19,6 +20,7 @@ import br.com.conding.tv.theme.Themes
 @Composable
 fun Header(
     label: String,
+    textAlign: TextAlign = TextAlign.Start,
     goToBackScreen: () -> Unit = {}
 ) {
     Row(
@@ -30,16 +32,19 @@ fun Header(
             .padding(horizontal = Themes.size.spaceSize36),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Icon(
-            painter = getIconResource(iconName = IconName.ARROW_BACK),
-            contentDescription = label,
-            modifier = Modifier.onClickable(onClick = goToBackScreen),
-            tint = Themes.colors.primary
-        )
+        if (textAlign == TextAlign.Start) {
+            Icon(
+                painter = getIconResource(iconName = IconName.ARROW_BACK),
+                contentDescription = label,
+                modifier = Modifier.onClickable(onClick = goToBackScreen),
+                tint = Themes.colors.primary
+            )
+        }
         Description(
             description = label,
             color = Themes.colors.primary,
-            modifier = Modifier.weight(weight = WEIGHT_SIZE)
+            modifier = Modifier.weight(weight = WEIGHT_SIZE),
+            textAlign = textAlign
         )
     }
 }

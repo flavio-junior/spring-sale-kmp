@@ -1,7 +1,11 @@
 package br.com.conding.tv.features.home.factory
 
 import br.com.conding.tv.components.model.Menu
-import br.com.conding.tv.navigation.NavigationItems
+import br.com.conding.tv.navigation.Categories
+import br.com.conding.tv.navigation.Home
+import br.com.conding.tv.navigation.Products
+import br.com.conding.tv.navigation.Settings
+import br.com.conding.tv.navigation.SignIn
 import br.com.conding.tv.resources.GenericsStrings.ADJUSTMENTS
 import br.com.conding.tv.resources.GenericsStrings.CATEGORIES
 import br.com.conding.tv.resources.GenericsStrings.EXIT
@@ -14,22 +18,22 @@ val home = listOf(
     Menu(
         icon = IconName.LABEL,
         label = CATEGORIES,
-        route = NavigationItems.CATEGORY.name
+        route = Categories
     ),
     Menu(
         icon = IconName.BOX,
         label = PRODUCTS,
-        route = NavigationItems.PRODUCT.name
+        route = Products
     ),
     Menu(
         icon = IconName.SETTINGS,
         label = SETTINGS,
-        route = NavigationItems.SETTINGS.name
+        route = Settings
     ),
     Menu(
         icon = IconName.LOGOUT,
         label = EXIT,
-        route = NavigationItems.EXIT.name
+        route = SignIn
     )
 )
 
@@ -37,21 +41,21 @@ val availableServices = listOf(
     Menu(
         icon = IconName.HOME_PIN,
         label = HOME,
-        route = NavigationItems.HOME.name
+        route = Home
     ),
     Menu(
         icon = IconName.LABEL,
         label = CATEGORIES,
-        route = NavigationItems.CATEGORY.name
+        route = Categories
     ),
     Menu(
         icon = IconName.BOX,
         label = PRODUCTS,
-        route = NavigationItems.PRODUCT.name
+        route = Products
     ),
     Menu(
         icon = IconName.SETTINGS,
         label = ADJUSTMENTS,
-        route = NavigationItems.SETTINGS.name
+        route = Settings
     )
 )

@@ -18,7 +18,7 @@ import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.account.data.dto.EmailRequestDTO
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.features.account.ui.viewmodel.ResetAccount
-import br.com.conding.tv.navigation.CheckCodeToConfirmEmail
+import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.CREATE_MY_ACCOUNT
@@ -37,7 +37,7 @@ import org.koin.mp.KoinPlatform.getKoin
 @Composable
 internal fun SendCodeToConfirmEmailScreen(
     goToBackScreen: () -> Unit = {},
-    goToCheckCodeToConfirmEmailScreen: (CheckCodeToConfirmEmail) -> Unit = {},
+    goToCheckCodeToConfirmEmailScreen: (AppDestinations.CheckCodeToConfirmEmail) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     ContentAccount(
@@ -77,7 +77,9 @@ internal fun SendCodeToConfirmEmailScreen(
                     observer = it
                 },
                 goToCheckCodeToConfirmEmailScreen = {
-                    goToCheckCodeToConfirmEmailScreen(CheckCodeToConfirmEmail(email = email))
+                    goToCheckCodeToConfirmEmailScreen(
+                        AppDestinations.CheckCodeToConfirmEmail(email = email)
+                    )
                 },
                 goToAlternativeRoutes = goToAlternativeRoutes
             )
@@ -105,7 +107,7 @@ internal fun SendCodeToConfirmEmailScreen(
 private fun ObserveStateSendCodeToConfirmEmail(
     viewModel: AccountViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
-    goToCheckCodeToConfirmEmailScreen: () -> Unit = {},
+    goToCheckCodeToConfirmEmailScreen: @Composable () -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.confirmEmailAddress }

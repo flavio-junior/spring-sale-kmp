@@ -14,8 +14,7 @@ import br.com.conding.tv.components.ui.SimpleText
 import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.features.account.ui.viewmodel.ResetAccount
-import br.com.conding.tv.navigation.CheckCodeToConfirmEmail
-import br.com.conding.tv.navigation.SignUp
+import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.CREATE_MY_ACCOUNT
@@ -26,8 +25,8 @@ import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
 internal fun CheckCodeToConfirmEmailScreen(
-    checkCodeToConfirmEmail: CheckCodeToConfirmEmail? = null,
-    goToSignUpScreen: (SignUp) -> Unit = {},
+    checkCodeToConfirmEmail: AppDestinations.CheckCodeToConfirmEmail? = null,
+    goToSignUpScreen: (AppDestinations.SignUp) -> Unit = {},
     goToSignInScreen: () -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
@@ -63,7 +62,11 @@ internal fun CheckCodeToConfirmEmailScreen(
                 onError = {
                     state = it
                 },
-                goToSignUpScreen = { goToSignUpScreen(SignUp(email = checkCodeToConfirmEmail?.email.orEmpty())) },
+                goToSignUpScreen = {
+                    goToSignUpScreen(
+                        AppDestinations.SignUp(email = checkCodeToConfirmEmail?.email.orEmpty())
+                    )
+                },
                 goToAlternativeRoutes = goToAlternativeRoutes
             )
             CheckCodeToConfirmEmail(

@@ -1,29 +1,20 @@
 package br.com.conding.tv.navigation
 
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 
-fun goToNextScreen(
-    navHostController: NavHostController,
-    currentScreen: String,
-    nextScreen: String
-) {
-    navHostController.navigate(route = nextScreen) {
-        popUpTo(currentScreen) {
-            inclusive = true
-        }
-    }
-}
+fun NavController.goBack() = this.navigateUp()
 
 fun navigateToAlternativeRoutes(
     navController: NavHostController,
-    currentScreen: String,
+    currentScreen: Any,
     alternativeRoutes: AlternativesRoutes?
 ) {
     when (alternativeRoutes) {
         AlternativesRoutes.ERROR_403 -> {
-            navController.navigate(route = AppDestinations.SignIn.item) {
-                popUpTo(currentScreen) {
+            navController.navigate(route = AppDestinations.SignIn) {
+                popUpTo(route = currentScreen::class) {
                     inclusive = true
                 }
             }

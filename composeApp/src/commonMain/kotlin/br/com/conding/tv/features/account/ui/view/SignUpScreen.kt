@@ -17,7 +17,7 @@ import br.com.conding.tv.components.ui.TextPassword
 import br.com.conding.tv.features.account.data.dto.SignUpRequestDTO
 import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
-import br.com.conding.tv.navigation.SignUp
+import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.CONFIRM_PASSWORD
@@ -37,7 +37,7 @@ import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
 internal fun SignUpScreen(
-    signUp: SignUp? = null,
+    signUp: AppDestinations.SignUp? = null,
     goToHomeScreen: () -> Unit = {},
     goToSignInScreen: () -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
