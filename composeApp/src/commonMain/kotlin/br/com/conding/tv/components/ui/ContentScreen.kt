@@ -1,9 +1,9 @@
-package br.com.conding.tv.features.account.ui.view
+package br.com.conding.tv.components.ui
 
 import androidx.compose.runtime.Composable
 
 @Composable
-expect fun ContentAccount(
+expect fun ContentScreen(
     label: String? = null,
     goToBackScreen: () -> Unit = {},
     extra: @Composable (Boolean) -> Unit = {},

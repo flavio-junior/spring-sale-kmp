@@ -12,6 +12,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.Description
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
@@ -50,7 +51,7 @@ fun SignInScreen(
     goToConfirmEmailAddressScreen: () -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
-    ContentAccount(
+    ContentScreen(
         content = {
             val viewModel: AccountViewModel = getKoin().get()
             var email: String by remember { mutableStateOf(value = EMPTY_TEXT) }

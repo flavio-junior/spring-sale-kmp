@@ -1,4 +1,4 @@
-package br.com.conding.tv.features.account.ui.view
+package br.com.conding.tv.components.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,7 +14,7 @@ import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 
 @Composable
-actual fun ContentAccount(
+actual fun ContentScreen(
     label: String?,
     goToBackScreen: () -> Unit,
     extra: @Composable (Boolean) -> Unit,

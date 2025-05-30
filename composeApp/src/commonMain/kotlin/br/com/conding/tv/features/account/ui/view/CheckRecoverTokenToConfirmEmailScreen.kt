@@ -8,6 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
 import br.com.conding.tv.components.ui.SimpleText
@@ -29,7 +30,7 @@ internal fun CheckRecoverTokenToConfirmEmailScreen(
     goToCreateNewPasswordScreen: (AppDestinations.RecoverToken) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
-    ContentAccount(
+    ContentScreen(
         label = RECOVER_MY_ACCOUNT,
         goToBackScreen = goToSignInScreen,
         extra = {
