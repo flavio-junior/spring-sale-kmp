@@ -11,6 +11,7 @@ import springsale.composeapp.generated.resources.arrow_outward
 import springsale.composeapp.generated.resources.box
 import springsale.composeapp.generated.resources.brand_awareness
 import springsale.composeapp.generated.resources.campaign
+import springsale.composeapp.generated.resources.check
 import springsale.composeapp.generated.resources.close
 import springsale.composeapp.generated.resources.downward
 import springsale.composeapp.generated.resources.draw
@@ -38,6 +39,7 @@ actual fun getIconResource(iconName: IconName): Painter {
         IconName.BOX -> painterResource(resource = Res.drawable.box)
         IconName.BRAND_AWARENESS -> painterResource(resource = Res.drawable.brand_awareness)
         IconName.CAMPAIGN -> painterResource(resource = Res.drawable.campaign)
+        IconName.CHECK_BOX -> painterResource(resource = Res.drawable.check)
         IconName.CLOSE -> painterResource(resource = Res.drawable.close)
         IconName.DOWNWARD -> painterResource(resource = Res.drawable.downward)
         IconName.DRAW -> painterResource(resource = Res.drawable.draw)

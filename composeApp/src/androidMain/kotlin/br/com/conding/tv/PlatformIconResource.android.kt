@@ -14,6 +14,7 @@ actual fun getIconResource(iconName: IconName): Painter {
         IconName.BOX -> painterResource(id = R.drawable.box)
         IconName.BRAND_AWARENESS -> painterResource(id = R.drawable.brand_awareness)
         IconName.CAMPAIGN -> painterResource(id = R.drawable.campaign)
+        IconName.CHECK_BOX -> painterResource(id = R.drawable.check)
         IconName.CLOSE -> painterResource(id = R.drawable.close)
         IconName.DOWNWARD -> painterResource(id = R.drawable.downward)
         IconName.DRAW -> painterResource(id = R.drawable.draw)
