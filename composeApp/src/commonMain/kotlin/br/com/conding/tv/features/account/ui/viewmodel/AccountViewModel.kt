@@ -10,6 +10,7 @@ import br.com.conding.tv.features.account.data.dto.SignInRequestDTO
 import br.com.conding.tv.features.account.data.dto.SignUpRequestDTO
 import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
 import br.com.conding.tv.features.account.data.repository.AccountRepository
+import br.com.conding.tv.features.account.data.repository.LocalStorageImp
 import br.com.conding.tv.features.account.data.vo.TokenResponseVO
 import br.com.conding.tv.features.account.domain.converter.ConverterToken
 import br.com.conding.tv.networking.resources.DescriptionError
@@ -21,7 +22,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class AccountViewModel(
-    private val localStorage: LocalStorage,
+    private val localStorage: LocalStorageImp,
     private val repository: AccountRepository,
     private val converter: ConverterToken
 ) : ViewModel() {
