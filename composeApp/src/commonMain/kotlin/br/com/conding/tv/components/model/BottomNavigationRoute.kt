@@ -14,13 +14,13 @@ sealed class BottomNavigationRoute(
     val icon: IconName,
     val route: BottomNavigationItem
 ) {
-    data object HOME : BottomNavigationRoute(
+    data object Categories : BottomNavigationRoute(
         label = GenericsStrings.CATEGORIES,
         icon = IconName.LABEL,
         route = BottomNavigationItem.Categories
     )
 
-    data object SEARCH : BottomNavigationRoute(
+    data object Products : BottomNavigationRoute(
         label = GenericsStrings.PRODUCTS,
         icon = IconName.BOX,
         route = BottomNavigationItem.Products

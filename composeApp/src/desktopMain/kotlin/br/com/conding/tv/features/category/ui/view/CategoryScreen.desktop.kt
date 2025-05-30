@@ -22,7 +22,7 @@ import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE_2
 import br.com.conding.tv.theme.Themes
 
 @Composable
-actual fun CategoryScreen(
+actual fun CategoriesScreen(
     goToBackScreen: () -> Unit,
     goToNextScreen: (AppDestinations) -> Unit,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit

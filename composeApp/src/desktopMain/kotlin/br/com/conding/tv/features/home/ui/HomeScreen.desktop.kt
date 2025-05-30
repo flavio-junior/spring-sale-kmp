@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import br.com.conding.tv.components.ui.ItemMenu
 import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
@@ -32,6 +33,7 @@ import kotlin.system.exitProcess
 
 @Composable
 actual fun HomeScreen(
+    navGraph: NavHostController,
     goToNextScreen: (AppDestinations) -> Unit,
     goToLoginScreen: () -> Unit
 ) {

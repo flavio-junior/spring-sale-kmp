@@ -14,9 +14,9 @@ import br.com.conding.tv.features.account.ui.view.SendCodeToConfirmEmailScreen
 import br.com.conding.tv.features.account.ui.view.SendRecoverTokenScreen
 import br.com.conding.tv.features.account.ui.view.SignInScreen
 import br.com.conding.tv.features.account.ui.view.SignUpScreen
-import br.com.conding.tv.features.category.ui.view.CategoryScreen
+import br.com.conding.tv.features.category.ui.view.CategoriesScreen
 import br.com.conding.tv.features.home.ui.HomeScreen
-import br.com.conding.tv.features.product.ui.view.ProductScreen
+import br.com.conding.tv.features.product.ui.view.ProductsScreen
 import br.com.conding.tv.features.settings.SettingsScreen
 
 @Composable
@@ -178,6 +178,7 @@ fun NavGraphBuilder.homeNavigation(
 ) {
     composable<AppDestinations.Home> {
         HomeScreen(
+            navGraph = navController,
             goToNextScreen = {
                 navController.navigate(route = it)
             },
@@ -196,7 +197,7 @@ fun NavGraphBuilder.categoryNavigation(
     navController: NavHostController
 ) {
     composable<AppDestinations.Categories> {
-        CategoryScreen(
+        CategoriesScreen(
             goToBackScreen = {
                 navController.goBack()
             },
@@ -222,7 +223,7 @@ fun NavGraphBuilder.productNavigation(
     navController: NavHostController
 ) {
     composable<AppDestinations.Products> {
-        ProductScreen(
+        ProductsScreen(
             goToBackScreen = {
                 navController.goBack()
             },

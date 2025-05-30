@@ -1,11 +1,11 @@
-package br.com.conding.tv.features.product.ui.view
+package br.com.conding.tv.features.category.ui.view
 
 import androidx.compose.runtime.Composable
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 
 @Composable
-expect fun ProductScreen(
+expect fun CategoriesScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: (AppDestinations) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}

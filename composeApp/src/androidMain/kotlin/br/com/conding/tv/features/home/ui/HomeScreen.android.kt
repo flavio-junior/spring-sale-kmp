@@ -5,28 +5,26 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import br.com.conding.tv.components.ui.BottomNavigation
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import br.com.conding.tv.components.ui.BottomNavigationBar
 import br.com.conding.tv.components.ui.Header
 import br.com.conding.tv.navigation.AppDestinations
+import br.com.conding.tv.resources.GenericsStrings.PROJECT_NAME
 import br.com.conding.tv.theme.Themes
 
 @Composable
 actual fun HomeScreen(
+    navGraph: NavHostController,
     goToNextScreen: (AppDestinations) -> Unit,
     goToLoginScreen: () -> Unit
 ) {
-    var stateOfVisibility by remember { mutableStateOf(value = true) }
+    val navController: NavHostController = rememberNavController()
     Scaffold(
         topBar = {
-            if (stateOfVisibility) {
-                Header(label = "Home", textAlign = TextAlign.Center)
-            }
+            Header(label = PROJECT_NAME, textAlign = TextAlign.Center)
         },
         bottomBar = {
             Column(
@@ -34,9 +32,14 @@ actual fun HomeScreen(
                     .background(color = Themes.colors.background)
                     .padding(all = Themes.size.spaceSize8)
             ) {
-                BottomNavigation()
+                BottomNavigationBar(navController = navController)
             }
         }
     ) { innerPadding ->
+        NavigationRail(
+            modifier = Modifier.padding(paddingValues = innerPadding),
+            navController = navController,
+            navGraph = navGraph
+        )
     }
 }
