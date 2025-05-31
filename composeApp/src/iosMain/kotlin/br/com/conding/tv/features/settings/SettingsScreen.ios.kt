@@ -10,5 +10,5 @@ actual fun SettingsScreen(
     goToNextScreen: (AppDestinations) -> Unit,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit
 ) {
-
+    MobileSettingsScreen(goToBackScreen, goToNextScreen, goToAlternativeRoutes)
 }

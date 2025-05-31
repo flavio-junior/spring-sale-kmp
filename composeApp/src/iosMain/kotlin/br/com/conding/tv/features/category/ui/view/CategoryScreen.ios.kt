@@ -10,5 +10,5 @@ actual fun CategoriesScreen(
     goToNextScreen: (AppDestinations) -> Unit,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit
 ) {
-
+    MobileCategoryScreen(goToBackScreen, goToNextScreen, goToAlternativeRoutes)
 }

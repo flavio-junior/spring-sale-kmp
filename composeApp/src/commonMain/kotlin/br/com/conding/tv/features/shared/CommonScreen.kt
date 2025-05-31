@@ -30,7 +30,7 @@ fun CommonScreen(
             modifier = Modifier
                 .background(color = Themes.colors.background)
                 .fillMaxSize()
-                .padding(horizontal = Themes.size.spaceSize36)
+                .padding(horizontal = Themes.size.spaceSize16)
                 .scroll(scroll = definitionsScreen.scroll)
                 .wrapContentHeight(align = definitionsScreen.alignment),
             horizontalAlignment = definitionsScreen.horizontalAlignment,

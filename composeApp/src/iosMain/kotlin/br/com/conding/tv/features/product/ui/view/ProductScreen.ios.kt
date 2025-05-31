@@ -10,5 +10,5 @@ actual fun ProductsScreen(
     goToNextScreen: (AppDestinations) -> Unit,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit
 ) {
-
+    MobileProductsScreen(goToBackScreen, goToNextScreen, goToAlternativeRoutes)
 }
