@@ -15,6 +15,7 @@ object GenericsStrings {
     const val YOUR_ACTION = "Você deseja?"
     const val EMPTY_TEXT = ""
     const val WARNING = "Atenção!"
+    const val FILTER = "Filtro"
     const val CHANGE_TO_OTHER_ACCOUNT = "Trocar de conta"
     const val EXIT = "Sair do Programa"
     const val CATEGORIES = "Categorias"
@@ -65,4 +66,6 @@ object GenericsStrings {
     const val INVALID_EMAIL = "Este email é inválido!"
     const val REGISTERED_EMAIL = "Digite o email registrado"
     const val SEND_RECOVER_TOKEN = "Enviar Código de recuperação"
+    const val RESULT = "Resultado"
+    const val SAVE_MODIFIER = "Salvar modificação"
 }
