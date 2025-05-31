@@ -4,7 +4,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import br.com.conding.tv.di.desktopModule
+import br.com.conding.tv.di.commonModule
 import br.com.conding.tv.features.account.di.accountModule
 import br.com.conding.tv.features.category.di.categoryModule
 import br.com.conding.tv.features.product.di.productModule
@@ -20,9 +20,9 @@ fun main() = application {
     startKoin {
         modules(
             modules = listOf(
+                commonModule,
                 accountModule,
                 categoryModule,
-                desktopModule,
                 networkModule,
                 productModule
             )

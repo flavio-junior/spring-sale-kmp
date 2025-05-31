@@ -2,10 +2,12 @@ package br.com.conding.tv.features.shared
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.model.DefinitionsScreen
@@ -28,7 +30,7 @@ fun CommonScreen(
             modifier = Modifier
                 .background(color = Themes.colors.background)
                 .fillMaxSize()
-                .padding(horizontal = Themes.size.spaceSize36)
+                .padding(horizontal = Themes.size.spaceSize16)
                 .scroll(scroll = definitionsScreen.scroll)
                 .wrapContentHeight(align = definitionsScreen.alignment),
             horizontalAlignment = definitionsScreen.horizontalAlignment,
