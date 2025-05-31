@@ -49,6 +49,7 @@ object GenericsStrings {
     const val NEW_NAME_PRODUCT = "Novo nome do Produto"
     const val DELETE_PRODUCT = "Apagar Produto"
     const val EMPTY_LIST_PRODUCTS = "Nenhum Produto Encontrado!"
+    const val EMPTY_LIST_CATEGORIES = "Nenhuma Categoria Encontrada!"
     const val MESSAGE_ZERO_DOUBLE = "O preço precisa ser maior que 0!"
     const val CONFIRM_UPDATE = "Confirmar Atualização"
     const val QUANTITY = "Quantidade"

@@ -38,7 +38,7 @@ actual fun CategoriesScreen(
                     goToBackScreen = goToBackScreen,
                     goToNextScreen = goToNextScreen
                 )
-                CardCategories(
+                DesktopCardCategories(
                     modifier = Modifier
                         .weight(weight = WEIGHT_SIZE_2),
                     onItemSelected = { categoryVO = it },

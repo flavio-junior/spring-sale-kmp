@@ -5,23 +5,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.ui.HeaderSearch
-import br.com.conding.tv.components.ui.LoadingData
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
-import br.com.conding.tv.features.category.data.vo.CategoriesResponseVO
 import br.com.conding.tv.features.category.data.vo.CategoryResponseVO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE_4
 import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-fun CardCategories(
+fun DesktopCardCategories(
     modifier: Modifier = Modifier,
     onItemSelected: (CategoryResponseVO) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
@@ -54,55 +48,26 @@ fun CardCategories(
         }
         ObserveNetworkStateHandlerCategories(
             viewModel = viewModel,
-            onItemSelected = onItemSelected,
-            goToAlternativeRoutes = goToAlternativeRoutes
-        )
-    }
-}
-
-@Composable
-private fun ObserveNetworkStateHandlerCategories(
-    viewModel: CategoryViewModel,
-    onItemSelected: (CategoryResponseVO) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
-) {
-    val state: ObserveNetworkStateHandler<CategoriesResponseVO> by remember { viewModel.findAllCategories }
-    ObserveNetworkStateHandler(
-        state = state,
-        onLoading = {
-            LoadingData()
-        },
-        onError = {
-        },
-        goToAlternativeRoutes = goToAlternativeRoutes,
-        onSuccess = {
-            it.result?.let { response ->
+            goToAlternativeRoutes = goToAlternativeRoutes,
+            onSuccess = { response ->
                 CategoriesResult(
-                    content = response,
-                    onItemSelected = onItemSelected,
-                    goToAlternativeRoutes = goToAlternativeRoutes
+                    categoriesResponseVO = response,
+                    showDesktopScreen = { result ->
+                        Column {
+                            DesktopListCategories(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .weight(weight = WEIGHT_SIZE_4)
+                                    .padding(top = Themes.size.spaceSize8),
+                                categoriesResponseVO = result,
+                                onItemSelected = onItemSelected
+                            )
+                            PageIndicatorCategories(categoriesResponseVO = result)
+                            SaveCategory(goToAlternativeRoutes = goToAlternativeRoutes)
+                        }
+                    }
                 )
             }
-        }
-    )
-}
-
-@Composable
-private fun CategoriesResult(
-    content: CategoriesResponseVO,
-    onItemSelected: (CategoryResponseVO) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
-) {
-    Column {
-        ListCategories(
-            modifier = Modifier
-                .fillMaxSize()
-                .weight(weight = WEIGHT_SIZE_4)
-                .padding(top = Themes.size.spaceSize8),
-            content = content,
-            onItemSelected = onItemSelected
         )
-        PageIndicatorCategories(content = content)
-        SaveCategory(goToAlternativeRoutes = goToAlternativeRoutes)
     }
 }

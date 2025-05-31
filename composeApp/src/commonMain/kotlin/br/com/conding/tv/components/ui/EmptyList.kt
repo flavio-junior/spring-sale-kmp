@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import br.com.conding.tv.components.settings.TypeSystem
+import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.onClickable
 import br.com.conding.tv.theme.Themes
@@ -17,9 +19,44 @@ import br.com.conding.tv.theme.Themes
 @Composable
 fun EmptyList(
     modifier: Modifier = Modifier,
+    type: TypeSystem = TypeSystem.DESKTOP,
     title: String,
     iconName: IconName = IconName.DRAW,
-    description: String,
+    description: String? = null,
+    onClick: () -> Unit = {},
+    refresh: () -> Unit = {}
+) {
+    when (type) {
+        TypeSystem.DESKTOP -> {
+            DesktopEmptyList(
+                modifier = modifier,
+                title = title,
+                iconName = iconName,
+                description = description,
+                onClick = onClick,
+                refresh = refresh
+            )
+        }
+
+        TypeSystem.MOBILE -> {
+            MobileEmptyList(title = title)
+        }
+    }
+}
+
+@Composable
+private fun MobileEmptyList(
+    title: String,
+) {
+    Title(label = title)
+}
+
+@Composable
+private fun DesktopEmptyList(
+    modifier: Modifier = Modifier,
+    title: String,
+    iconName: IconName = IconName.DRAW,
+    description: String? = null,
     onClick: () -> Unit = {},
     refresh: () -> Unit = {}
 ) {
@@ -47,7 +84,7 @@ fun EmptyList(
                 modifier = modifier.onClickable(onClick = onClick)
             ) {
                 Description(
-                    label = description,
+                    label = description ?: EMPTY_TEXT,
                     modifier = modifier.onClickable(onClick = onClick)
                 )
                 IconDefault(

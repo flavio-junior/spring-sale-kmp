@@ -39,9 +39,9 @@ import br.com.conding.tv.theme.Themes
 import kotlinx.coroutines.launch
 
 @Composable
-fun ListCategories(
+fun DesktopListCategories(
     modifier: Modifier = Modifier,
-    content: CategoriesResponseVO,
+    categoriesResponseVO: CategoriesResponseVO? = null,
     onItemSelected: (CategoryResponseVO) -> Unit
 ) {
     Column(
@@ -50,7 +50,7 @@ fun ListCategories(
             .fillMaxWidth()
             .wrapContentHeight()
     ) {
-        HeaderCategoriesPanel(modifier = Modifier.padding(top = Themes.size.spaceSize16))
+        DesktopHeaderCategoriesPanel(modifier = Modifier.padding(top = Themes.size.spaceSize16))
         val scrollState = rememberLazyListState()
         val coroutineScope = rememberCoroutineScope()
         var selectedIndex by remember { mutableStateOf(value = -1) }
@@ -75,8 +75,8 @@ fun ListCategories(
                 .fillMaxWidth()
                 .padding(all = Themes.size.spaceSize36)
         ) {
-            itemsIndexed(content.content) { index, category ->
-                ItemCategory(
+            itemsIndexed(items = categoriesResponseVO?.content ?: emptyList()) { index, category ->
+                DesktopItemCategory(
                     index = index,
                     selected = selectedIndex == index,
                     category = category,
@@ -91,7 +91,7 @@ fun ListCategories(
 }
 
 @Composable
-fun HeaderCategoriesPanel(
+fun DesktopHeaderCategoriesPanel(
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -121,7 +121,7 @@ fun HeaderCategoriesPanel(
 }
 
 @Composable
-fun ItemCategory(
+fun DesktopItemCategory(
     index: Int,
     selected: Boolean = false,
     modifier: Modifier = Modifier,

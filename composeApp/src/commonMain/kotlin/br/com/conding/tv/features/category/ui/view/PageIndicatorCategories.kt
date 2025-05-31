@@ -9,12 +9,13 @@ import br.com.conding.tv.components.ui.PageIndicator
 import br.com.conding.tv.features.category.data.vo.CategoriesResponseVO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE_2
+import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
 fun PageIndicatorCategories(
     modifier: Modifier = Modifier,
-    content: CategoriesResponseVO
+    categoriesResponseVO: CategoriesResponseVO? = null
 ) {
     val viewModel: CategoryViewModel = getKoin().get()
     Row(
@@ -22,8 +23,8 @@ fun PageIndicatorCategories(
     ) {
         PageIndicator(
             modifier = modifier.fillMaxWidth(),
-            currentPage = content.pageable.pageNumber,
-            totalPages = content.totalPages,
+            currentPage = categoriesResponseVO?.pageable?.pageNumber ?: NUMBER_ZERO,
+            totalPages = categoriesResponseVO?.totalPages ?: NUMBER_ZERO,
             loadNextPage = {
                 viewModel.loadNextPage()
             },
