@@ -5,7 +5,7 @@ import br.com.conding.tv.features.category.data.dto.CategoriesResponseDTO
 import br.com.conding.tv.features.category.data.dto.CategoryNameRequestDTO
 import br.com.conding.tv.features.category.data.dto.CategoryRequestDTO
 import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
-import br.com.conding.tv.features.category.data.dto.EditCategoryRequestDTO
+import br.com.conding.tv.features.category.data.dto.UpdateCategoryRequestDTO
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.networking.resources.toResultFlow
 import io.ktor.client.HttpClient
@@ -79,8 +79,8 @@ class CategoryRemoteDataSource(
         }
     }
 
-    override fun editCategory(
-        category: EditCategoryRequestDTO
+    override fun updateCategory(
+        category: UpdateCategoryRequestDTO
     ): Flow<ObserveNetworkStateHandler<Unit>> {
         return toResultFlow {
             httpClient.put {

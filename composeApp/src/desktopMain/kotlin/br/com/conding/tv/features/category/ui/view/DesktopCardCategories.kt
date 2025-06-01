@@ -10,6 +10,7 @@ import br.com.conding.tv.components.ui.HeaderSearch
 import br.com.conding.tv.features.category.data.vo.CategoryResponseVO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE_4
 import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
@@ -46,9 +47,12 @@ fun DesktopCardCategories(
         LaunchedEffect(key1 = Unit) {
             viewModel.findAllCategories()
         }
-        ObserveNetworkStateHandlerCategories(
+        ObserveNetworkStateHandlerFindAllCategories(
             viewModel = viewModel,
-            goToAlternativeRoutes = goToAlternativeRoutes,
+            goToAlternativeRoutes = {
+                goToAlternativeRoutes(it)
+                reloadViewModels()
+            },
             onSuccess = { response ->
                 CategoriesResult(
                     categoriesResponseVO = response,

@@ -11,7 +11,7 @@ import br.com.conding.tv.networking.resources.reloadViewModels
 @Composable
 fun ObserveNetworkStateHandlerLogoutApp(
     viewModel: AccountViewModel,
-    goToLoginScreen: () -> Unit = {}
+    onSuccessful: () -> Unit = {}
 ) {
     val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.cleanToken }
     ObserveNetworkStateHandler(
@@ -19,7 +19,7 @@ fun ObserveNetworkStateHandlerLogoutApp(
         goToAlternativeRoutes = {},
         onSuccess = {
             reloadViewModels()
-            goToLoginScreen()
+            onSuccessful()
         }
     )
 }

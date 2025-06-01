@@ -44,10 +44,13 @@ actual fun CategoriesScreen(
                     onItemSelected = { categoryVO = it },
                     goToAlternativeRoutes = goToAlternativeRoutes
                 )
-                EditCategory(
+                UpdateCategory(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(top = Themes.size.spaceSize16, end = Themes.size.spaceSize16)
+                        .padding(
+                            top = Themes.size.spaceSize16,
+                            end = Themes.size.spaceSize16
+                        )
                         .weight(weight = WEIGHT_SIZE),
                     categoryVO = categoryVO,
                     goToAlternativeRoutes = goToAlternativeRoutes,

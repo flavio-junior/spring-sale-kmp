@@ -17,14 +17,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import br.com.conding.tv.components.ui.ItemMenu
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.features.home.factory.home
 import br.com.conding.tv.features.shared.BodyPage
 import br.com.conding.tv.features.shared.ShowOverlayPanel
 import br.com.conding.tv.navigation.AppDestinations
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
-import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_FOUR
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import br.com.conding.tv.theme.Themes
@@ -89,7 +86,7 @@ actual fun HomeScreen(
                     viewModel.cleanToken()
                     ObserveNetworkStateHandlerLogoutApp(
                         viewModel = viewModel,
-                        goToLoginScreen = {
+                        onSuccessful = {
                             showOverlayPanel = false
                             callViewModel = false
                             goToLoginScreen()

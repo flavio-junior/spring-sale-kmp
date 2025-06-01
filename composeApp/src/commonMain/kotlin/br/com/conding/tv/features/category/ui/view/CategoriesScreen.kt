@@ -1,7 +1,6 @@
 package br.com.conding.tv.features.category.ui.view
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.components.settings.TypeSystem
@@ -68,25 +67,7 @@ fun MobileCategoryScreen(
                     )
                 }
             )
-            LaunchedEffect(key1 = Unit) {
-                viewModel.findAllCategories()
-            }
-            ObserveNetworkStateHandlerCategories(
-                viewModel = viewModel,
-                goToAlternativeRoutes = goToAlternativeRoutes,
-                onSuccess = { onSuccess ->
-                    CategoriesResult(
-                        categoriesResponseVO = onSuccess,
-                        system = TypeSystem.MOBILE,
-                        showMobileScreen = { response ->
-                            MobileListCategories(
-                                categoriesResponseVO = response,
-                                onItemSelected = {}
-                            )
-                        }
-                    )
-                }
-            )
+            MobileListCategories(viewModel = viewModel)
         }
     )
 }

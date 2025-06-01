@@ -53,7 +53,7 @@ fun SelectCategories(
     onConfirmation: (List<CategoryResponseDTO>) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
-    var observer: Triple<Boolean, Boolean, String> by remember {
+    var observer: Triple<Boolean, Boolean, String?> by remember {
         mutableStateOf(value = Triple(first = false, second = false, third = EMPTY_TEXT))
     }
     val viewModel: CategoryViewModel = getKoin().get()
@@ -80,7 +80,7 @@ fun SelectCategories(
                 value = name,
                 onValueChange = { name = it },
                 isError = observer.second,
-                message = observer.third,
+                message = observer.third ?: EMPTY_TEXT,
                 onGo = {
                     viewModel.findCategoryByName(name = name)
                 }
@@ -216,7 +216,7 @@ private fun FooterSelectCategories(
 @Composable
 private fun ObserveNetworkStateHandlerFindCategoryByName(
     viewModel: CategoryViewModel,
-    onError: (Triple<Boolean, Boolean, String>) -> Unit = {},
+    onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
     onSuccessful: (List<CategoryResponseDTO>) -> Unit = {}
 ) {
@@ -225,9 +225,7 @@ private fun ObserveNetworkStateHandlerFindCategoryByName(
         state = state,
         onLoading = {},
         onError = {
-            it?.let {
                 onError(Triple(first = false, second = true, third = it))
-            }
         },
         goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {

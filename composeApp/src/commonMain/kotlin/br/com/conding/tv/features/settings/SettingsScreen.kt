@@ -80,7 +80,7 @@ fun MobileSettingsScreen(
         viewModel.cleanToken()
         ObserveNetworkStateHandlerLogoutApp(
             viewModel = viewModel,
-            goToLoginScreen = {
+            onSuccessful = {
                 goToNextScreen(AppDestinations.SignIn)
                 logoutApp = false
             }

@@ -15,12 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import br.com.conding.tv.components.ui.IsErrorMessage
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
-import br.com.conding.tv.features.category.ui.viewmodel.ResetCategory
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.resources.GenericsStrings.CATEGORY_NAME
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
@@ -86,7 +83,10 @@ fun SaveCategory(
                 onError = {
                     observer = it
                 },
-                goToAlternativeRoutes = goToAlternativeRoutes,
+                goToAlternativeRoutes = {
+                    goToAlternativeRoutes(it)
+                    reloadViewModels()
+                },
                 onSuccessful = {
                     categoryName = EMPTY_TEXT
                 }
@@ -94,30 +94,4 @@ fun SaveCategory(
         }
         IsErrorMessage(isError = observer.second, message = observer.third ?: EMPTY_TEXT)
     }
-}
-
-@Composable
-private fun ObserveNetworkStateHandlerCreateNewCategory(
-    viewModel: CategoryViewModel,
-    onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
-    onSuccessful: () -> Unit = {}
-) {
-    val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.createNewCategory }
-    ObserveNetworkStateHandler(
-        state = state,
-        onLoading = {},
-        onError = {
-            onError(Triple(first = false, second = true, third = it))
-        },
-        goToAlternativeRoutes = {
-            goToAlternativeRoutes(it)
-            reloadViewModels()
-        },
-        onSuccess = {
-            onError(Triple(first = false, second = false, third = EMPTY_TEXT))
-            viewModel.resetCategory(reset = ResetCategory.CREATE_CATEGORY)
-            onSuccessful()
-        }
-    )
 }

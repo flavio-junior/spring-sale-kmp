@@ -18,20 +18,17 @@ import androidx.compose.ui.text.input.KeyboardType
 import br.com.conding.tv.components.ui.Alert
 import br.com.conding.tv.components.ui.IconDefault
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
 import br.com.conding.tv.components.ui.TextField
-import br.com.conding.tv.features.category.data.dto.EditCategoryRequestDTO
+import br.com.conding.tv.features.category.data.dto.UpdateCategoryRequestDTO
 import br.com.conding.tv.features.category.data.vo.CategoryResponseVO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
-import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.resources.GenericsStrings.ACTUAL_NAME
-import br.com.conding.tv.resources.GenericsStrings.EDIT_CATEGORY
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.ID
 import br.com.conding.tv.resources.GenericsStrings.NEW_NAME_CATEGORY
 import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
+import br.com.conding.tv.resources.GenericsStrings.UPDATE_CATEGORY
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE_2
@@ -41,7 +38,7 @@ import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-fun EditCategory(
+fun UpdateCategory(
     modifier: Modifier = Modifier,
     categoryVO: CategoryResponseVO,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
@@ -52,18 +49,18 @@ fun EditCategory(
         verticalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16)
     ) {
         val viewModel: CategoryViewModel = getKoin().get()
-        var observer: Triple<Boolean, Boolean, String> by remember {
+        var observer: Triple<Boolean, Boolean, String?> by remember {
             mutableStateOf(value = Triple(first = false, second = false, third = EMPTY_TEXT))
         }
         var openDialog by remember { mutableStateOf(value = false) }
         var categoryName by remember { mutableStateOf(value = EMPTY_TEXT) }
-        val editCategory = { category: String ->
+        val updateCategory = { category: String ->
             if (checkNameIsNull(name = category)) {
                 observer = Triple(first = false, second = true, third = NOT_BLANK_OR_EMPTY)
             } else {
                 observer = Triple(first = true, second = false, third = EMPTY_TEXT)
-                viewModel.editCategory(
-                    category = EditCategoryRequestDTO(id = categoryVO.id, name = category)
+                viewModel.updateCategory(
+                    category = UpdateCategoryRequestDTO(id = categoryVO.id, name = category)
                 )
             }
         }
@@ -106,7 +103,7 @@ fun EditCategory(
             iconName = IconName.EDIT,
             keyboardType = KeyboardType.Text,
             isError = observer.second,
-            message = observer.third,
+            message = observer.third ?: EMPTY_TEXT,
             onValueChange = {
                 categoryName = it
             },
@@ -115,7 +112,7 @@ fun EditCategory(
             }
         )
         LoadingButton(
-            label = EDIT_CATEGORY,
+            label = UPDATE_CATEGORY,
             onClick = {
                 openDialog = true
             },
@@ -123,18 +120,18 @@ fun EditCategory(
         )
         if (openDialog) {
             Alert(
-                label = "$EDIT_CATEGORY?",
+                label = "$UPDATE_CATEGORY?",
                 onDismissRequest = {
                     openDialog = false
                 },
                 onConfirmation = {
                     observer = Triple(first = true, second = false, third = EMPTY_TEXT)
-                    editCategory(categoryName)
+                    updateCategory(categoryName)
                     openDialog = false
                 }
             )
         }
-        ObserveNetworkStateHandlerEditCategory(
+        ObserveNetworkStateHandlerUpdateCategory(
             viewModel = viewModel,
             onError = {
                 observer = it
@@ -154,36 +151,8 @@ fun EditCategory(
             },
             goToAlternativeRoutes = goToAlternativeRoutes,
             onSuccessful = {
-                (CategoryResponseVO(id = 0, name = EMPTY_TEXT))
+                CategoryResponseVO(id = 0, name = EMPTY_TEXT)
             }
         )
     }
-}
-
-@Composable
-private fun ObserveNetworkStateHandlerEditCategory(
-    viewModel: CategoryViewModel,
-    onError: (Triple<Boolean, Boolean, String>) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
-    onSuccessful: () -> Unit = {}
-) {
-    val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.editCategory }
-    ObserveNetworkStateHandler(
-        state = state,
-        onLoading = {},
-        onError = {
-            it?.let {
-                onError(Triple(first = false, second = true, third = it))
-            }
-        },
-        goToAlternativeRoutes = {
-            goToAlternativeRoutes(it)
-            reloadViewModels()
-        },
-        onSuccess = {
-            onSuccessful()
-            viewModel.findAllCategories()
-            onError(Triple(first = false, second = false, third = EMPTY_TEXT))
-        }
-    )
 }

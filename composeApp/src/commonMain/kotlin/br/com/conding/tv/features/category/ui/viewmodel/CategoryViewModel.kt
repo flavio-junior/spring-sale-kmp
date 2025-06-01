@@ -8,7 +8,7 @@ import br.com.conding.tv.components.model.LocationRoute
 import br.com.conding.tv.features.category.data.dto.CategoryNameRequestDTO
 import br.com.conding.tv.features.category.data.dto.CategoryRequestDTO
 import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
-import br.com.conding.tv.features.category.data.dto.EditCategoryRequestDTO
+import br.com.conding.tv.features.category.data.dto.UpdateCategoryRequestDTO
 import br.com.conding.tv.features.category.data.repository.CategoryRepository
 import br.com.conding.tv.features.category.data.vo.CategoriesResponseVO
 import br.com.conding.tv.features.category.domain.ConverterCategory
@@ -48,9 +48,9 @@ class CategoryViewModel(
         mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
     val createNewCategory: State<ObserveNetworkStateHandler<Unit>> = _createNewCategory
 
-    private val _editCategory =
+    private val _updateCategory =
         mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
-    val editCategory: State<ObserveNetworkStateHandler<Unit>> = _editCategory
+    val updateCategory: State<ObserveNetworkStateHandler<Unit>> = _updateCategory
 
     private val _deleteCategory =
         mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
@@ -128,14 +128,14 @@ class CategoryViewModel(
         }
     }
 
-    fun editCategory(category: EditCategoryRequestDTO) {
+    fun updateCategory(category: UpdateCategoryRequestDTO) {
         viewModelScope.launch {
-            repository.editCategory(category = category)
+            repository.updateCategory(category = category)
                 .onStart {
-                    _editCategory.value = ObserveNetworkStateHandler.Loading(l = true)
+                    _updateCategory.value = ObserveNetworkStateHandler.Loading(l = true)
                 }
                 .collect {
-                    _editCategory.value = it
+                    _updateCategory.value = it
                 }
         }
     }
@@ -164,6 +164,14 @@ class CategoryViewModel(
                 _createNewCategory.value = ObserveNetworkStateHandler.Loading(l = false)
                 findAllCategories()
             }
+            ResetCategory.UPDATE_CATEGORY -> {
+                _updateCategory.value = ObserveNetworkStateHandler.Loading(l = false)
+                findAllCategories()
+            }
+            ResetCategory.DELETE_CATEGORY -> {
+                _deleteCategory.value = ObserveNetworkStateHandler.Loading(l = false)
+                findAllCategories()
+            }
         }
     }
 }
@@ -171,5 +179,7 @@ class CategoryViewModel(
 enum class ResetCategory {
     FIND_ALL_CATEGORIES,
     FIND_CATEGORY_BY_NAME,
-    CREATE_CATEGORY
+    CREATE_CATEGORY,
+    UPDATE_CATEGORY,
+    DELETE_CATEGORY
 }
