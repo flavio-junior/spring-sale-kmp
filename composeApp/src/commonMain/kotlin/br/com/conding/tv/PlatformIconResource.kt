@@ -14,6 +14,8 @@ import springsale.composeapp.generated.resources.brand_awareness
 import springsale.composeapp.generated.resources.campaign
 import springsale.composeapp.generated.resources.check
 import springsale.composeapp.generated.resources.close
+import springsale.composeapp.generated.resources.create
+import springsale.composeapp.generated.resources.delete
 import springsale.composeapp.generated.resources.downward
 import springsale.composeapp.generated.resources.draw
 import springsale.composeapp.generated.resources.edit
@@ -27,6 +29,7 @@ import springsale.composeapp.generated.resources.power_off
 import springsale.composeapp.generated.resources.refresh
 import springsale.composeapp.generated.resources.search
 import springsale.composeapp.generated.resources.settings
+import springsale.composeapp.generated.resources.user
 import springsale.composeapp.generated.resources.visibility
 import springsale.composeapp.generated.resources.visibility_off
 
@@ -46,6 +49,8 @@ fun getIconResource(iconName: IconName): Painter {
         IconName.BOX -> painterResource(resource = Res.drawable.box)
         IconName.BRAND_AWARENESS -> painterResource(resource = Res.drawable.brand_awareness)
         IconName.CAMPAIGN -> painterResource(resource = Res.drawable.campaign)
+        IconName.CREATE -> painterResource(resource = Res.drawable.create)
+        IconName.DELETE -> painterResource(resource = Res.drawable.delete)
         IconName.CHECK_BOX -> painterResource(resource = Res.drawable.check)
         IconName.CLOSE -> painterResource(resource = Res.drawable.close)
         IconName.DOWNWARD -> painterResource(resource = Res.drawable.downward)
@@ -64,5 +69,6 @@ fun getIconResource(iconName: IconName): Painter {
         IconName.ARROW_UPWARD -> painterResource(resource = Res.drawable.arrow_upward)
         IconName.VISIBILITY -> painterResource(resource = Res.drawable.visibility)
         IconName.VISIBILITY_OFF -> painterResource(resource = Res.drawable.visibility_off)
+        IconName.USER -> painterResource(resource = Res.drawable.user)
     }
 }

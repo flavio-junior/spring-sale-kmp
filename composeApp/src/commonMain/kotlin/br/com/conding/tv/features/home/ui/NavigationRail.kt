@@ -28,7 +28,15 @@ fun NavigationRail(
             ProductsScreen()
         }
         composable(route = BottomNavigationRoute.Settings.route.name) {
-            SettingsScreen()
+            SettingsScreen(
+                goToNextScreen = {
+                    navGraph.navigate(route = it) {
+                        popUpTo(route = BottomNavigationRoute.Settings.route.name) {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
         }
     }
 }

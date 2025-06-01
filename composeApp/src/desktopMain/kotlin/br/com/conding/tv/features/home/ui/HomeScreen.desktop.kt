@@ -87,7 +87,7 @@ actual fun HomeScreen(
                 }
                 if (callViewModel) {
                     viewModel.cleanToken()
-                    ObserveNetworkStateHandlerConfirmExitDialog(
+                    ObserveNetworkStateHandlerLogoutApp(
                         viewModel = viewModel,
                         goToLoginScreen = {
                             showOverlayPanel = false
@@ -97,22 +97,6 @@ actual fun HomeScreen(
                     )
                 }
             }
-        }
-    )
-}
-
-@Composable
-private fun ObserveNetworkStateHandlerConfirmExitDialog(
-    viewModel: AccountViewModel,
-    goToLoginScreen: () -> Unit = {}
-) {
-    val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.cleanToken }
-    ObserveNetworkStateHandler(
-        state = state,
-        goToAlternativeRoutes = {},
-        onSuccess = {
-            reloadViewModels()
-            goToLoginScreen()
         }
     )
 }
