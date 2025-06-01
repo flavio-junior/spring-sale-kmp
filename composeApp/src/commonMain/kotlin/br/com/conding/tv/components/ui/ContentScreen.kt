@@ -7,6 +7,7 @@ import br.com.conding.tv.components.model.DefinitionsScreen
 expect fun ContentScreen(
     definitionsScreen: DefinitionsScreen = DefinitionsScreen(),
     goToBackScreen: () -> Unit = {},
+    goToNextScreen: () -> Unit = {},
     extra: @Composable (Boolean) -> Unit = {},
     content: @Composable () -> Unit = {}
 )

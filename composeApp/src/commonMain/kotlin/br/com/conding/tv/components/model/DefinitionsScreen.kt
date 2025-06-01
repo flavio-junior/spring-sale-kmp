@@ -7,5 +7,6 @@ data class DefinitionsScreen(
     val alignment: Alignment.Vertical = CenterVertically,
     val horizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
     val scroll: Boolean = true,
-    val label: String? = null
+    val label: String? = null,
+    val enableMiniButton: Boolean = false
 )

@@ -8,12 +8,14 @@ import br.com.conding.tv.features.shared.CommonScreen
 actual fun ContentScreen(
     definitionsScreen: DefinitionsScreen,
     goToBackScreen: () -> Unit,
+    goToNextScreen: () -> Unit,
     extra: @Composable (Boolean) -> Unit,
     content: @Composable () -> Unit
 ) {
     CommonScreen(
         definitionsScreen = definitionsScreen,
         goToBackScreen = goToBackScreen,
+        goToNextScreen = goToNextScreen,
         extra = extra,
         content = content
     )

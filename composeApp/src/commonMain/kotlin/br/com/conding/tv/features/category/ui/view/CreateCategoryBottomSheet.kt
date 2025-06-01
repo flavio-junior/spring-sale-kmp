@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
@@ -21,16 +19,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.SimpleButton
-import br.com.conding.tv.components.ui.SubTitle
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.components.ui.Title
-import br.com.conding.tv.features.category.data.dto.UpdateCategoryRequestDTO
-import br.com.conding.tv.features.category.data.vo.CategoryResponseVO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.features.category.ui.viewmodel.ResetCategory
 import br.com.conding.tv.resources.GenericsStrings
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.ITEM_TO_UPDATE
 import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.isNotBlankAndEmpty
@@ -38,33 +32,32 @@ import br.com.conding.tv.theme.Themes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun UpdateCategoryBottomSheet(
+internal fun CreateCategoryBottomSheet(
     viewModel: CategoryViewModel,
-    category: CategoryResponseVO?,
     onDismiss: () -> Unit = {}
 ) {
     val modalBottomSheetState = rememberModalBottomSheetState()
     ModalBottomSheet(
         containerColor = Themes.colors.background,
-        onDismissRequest = onDismiss,
+        onDismissRequest = {
+            viewModel.resetCategory(reset = ResetCategory.CREATE_CATEGORY)
+            onDismiss()
+        },
         sheetState = modalBottomSheetState,
         dragHandle = { BottomSheetDefaults.DragHandle() },
     ) {
         Column(
             modifier = Modifier
                 .background(color = Themes.colors.background)
-                .padding(horizontal = Themes.size.spaceSize36)
-                .verticalScroll(rememberScrollState()),
+                .padding(horizontal = Themes.size.spaceSize36),
             verticalArrangement = Arrangement.spacedBy(Themes.size.spaceSize24)
         ) {
-            SaveUpdateCategoryBottomSheet(
-                viewModel = viewModel,
-                category = category,
-                onDismiss = onDismiss
-            )
+            SaveCategoryBottomSheet(viewModel = viewModel, onDismiss = onDismiss)
             SimpleButton(
-                onClick = onDismiss,
-                label = GenericsStrings.CANCEL,
+                onClick = {
+                    onDismiss()
+                },
+                label = GenericsStrings.CANCEL
             )
             Spacer(modifier = Modifier.size(Themes.size.spaceSize64))
         }
@@ -72,49 +65,46 @@ internal fun UpdateCategoryBottomSheet(
 }
 
 @Composable
-private fun SaveUpdateCategoryBottomSheet(
+private fun SaveCategoryBottomSheet(
     viewModel: CategoryViewModel,
-    category: CategoryResponseVO?,
     onDismiss: () -> Unit = {}
 ) {
-    var newCategoryName: String by remember { mutableStateOf(value = EMPTY_TEXT) }
+    var category: String by remember { mutableStateOf(value = EMPTY_TEXT) }
     var observer: Triple<Boolean, Boolean, String?> by remember {
         mutableStateOf(Triple(first = false, second = false, third = EMPTY_TEXT))
     }
-    ObserveNetworkStateHandlerUpdateCategory(
+    ObserveNetworkStateHandlerCreateNewCategory(
         viewModel = viewModel,
         onError = {
             observer = it
         },
         onSuccessful = {
             observer = (Triple(first = false, second = false, third = EMPTY_TEXT))
-            viewModel.resetCategory(reset = ResetCategory.UPDATE_CATEGORY)
+            viewModel.resetCategory(reset = ResetCategory.CREATE_CATEGORY)
+            viewModel.findAllCategories()
             onDismiss()
         }
     )
-    Title(label = ITEM_TO_UPDATE)
-    SubTitle(label = category?.name ?: EMPTY_TEXT)
+    Title(label = GenericsStrings.ITEM_TO_ADD)
     TextField(
-        label = GenericsStrings.UPDATE_CATEGORY,
-        value = newCategoryName,
+        label = GenericsStrings.CATEGORY_NAME,
+        value = category,
         imeAction = ImeAction.Done,
         isError = observer.first,
         message = observer.third ?: EMPTY_TEXT,
         iconName = IconName.EDIT,
-        onValueChange = { newCategoryName = it }
+        onValueChange = { category = it }
     )
     LoadingButton(
         onClick = {
-            if (newCategoryName.isNotBlankAndEmpty()) {
+            if (category.isNotBlankAndEmpty()) {
                 observer = (Triple(first = false, second = false, third = EMPTY_TEXT))
-                viewModel.updateCategory(
-                    category = UpdateCategoryRequestDTO(id = category?.id, name = newCategoryName)
-                )
+                viewModel.createCategory(category = category)
             } else {
-                observer = Triple(first = true, second = false, third = NOT_BLANK_OR_EMPTY)
+                observer = (Triple(first = true, second = false, third = NOT_BLANK_OR_EMPTY))
             }
         },
         isEnabled = observer.second,
-        label = GenericsStrings.UPDATE_CATEGORY
+        label = GenericsStrings.SAVE_CATEGORY
     )
 }

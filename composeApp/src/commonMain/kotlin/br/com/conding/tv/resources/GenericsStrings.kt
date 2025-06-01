@@ -69,6 +69,7 @@ object GenericsStrings {
     const val SEND_RECOVER_TOKEN = "Enviar Código de recuperação"
     const val RESULT = "Resultado:"
     const val SAVE_MODIFIER = "Salvar modificação"
+    const val ITEM_TO_ADD = "Criar novo item:"
     const val ITEM_TO_DELETE = "Item selecionado para excluir:"
     const val ITEM_TO_UPDATE = "Item selecionado para atualizar:"
     const val DATA_USER = "Dados do Usuário"

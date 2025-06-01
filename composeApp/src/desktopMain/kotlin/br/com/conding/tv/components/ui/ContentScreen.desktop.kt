@@ -18,6 +18,7 @@ import br.com.conding.tv.theme.Themes
 actual fun ContentScreen(
     definitionsScreen: DefinitionsScreen,
     goToBackScreen: () -> Unit,
+    goToNextScreen: () -> Unit,
     extra: @Composable (Boolean) -> Unit,
     content: @Composable () -> Unit
 ) {
