@@ -21,6 +21,7 @@ import br.com.conding.tv.navigation.Navigation
 import br.com.conding.tv.networking.di.networkModule
 import br.com.conding.tv.resources.GenericsStrings.PROJECT_NAME
 import br.com.conding.tv.theme.Themes
+import br.com.conding.tv.utils.DesktopUtils.DELAY
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.painterResource
 import org.koin.core.context.GlobalContext
@@ -46,7 +47,7 @@ fun main() = application {
     }
     var showSplashScreen: Boolean by remember { mutableStateOf(value = true) }
     LaunchedEffect(Unit) {
-        delay(timeMillis = 3000)
+        delay(timeMillis = DELAY)
         showSplashScreen = false
     }
     if (showSplashScreen) {
