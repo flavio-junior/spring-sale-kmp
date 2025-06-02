@@ -18,18 +18,43 @@ import br.com.conding.tv.features.category.ui.view.CategoriesScreen
 import br.com.conding.tv.features.home.ui.HomeScreen
 import br.com.conding.tv.features.product.ui.view.ProductsScreen
 import br.com.conding.tv.features.settings.SettingsScreen
+import br.com.conding.tv.features.splash.SplashScreen
 
 @Composable
 fun Navigation(
     navController: NavHostController = rememberNavController(),
-    startDestination: Any = AppDestinations.SignIn
+    startDestination: Any = AppDestinations.SplashScreen
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
+        splashScreenNavigation(navController = navController)
         signInNavigation(navController = navController)
         homeNavigation(navController = navController)
         categoryNavigation(navController = navController)
         productNavigation(navController = navController)
         settingsNavigation(navController = navController)
+    }
+}
+
+fun NavGraphBuilder.splashScreenNavigation(
+    navController: NavHostController
+) {
+    composable<AppDestinations.SplashScreen> {
+        SplashScreen(
+            goToSignInScreen = {
+                navController.navigate(route = AppDestinations.SignIn) {
+                    popUpTo(route = AppDestinations.SplashScreen::class) {
+                        inclusive = true
+                    }
+                }
+            },
+            goToHomeScreen = {
+                navController.navigate(route = AppDestinations.Home) {
+                    popUpTo(route = AppDestinations.SplashScreen::class) {
+                        inclusive = true
+                    }
+                }
+            }
+        )
     }
 }
 
@@ -183,7 +208,7 @@ fun NavGraphBuilder.homeNavigation(
                 navController.navigate(route = it)
             },
             goToLoginScreen = {
-                navController.navigate(route = AppDestinations.SignIn) {
+                navController.navigate(route = AppDestinations.SplashScreen) {
                     popUpTo(route = AppDestinations.Home) {
                         inclusive = true
                     }

@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,7 +20,6 @@ import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.components.ui.TextPassword
 import br.com.conding.tv.features.account.data.dto.SignInRequestDTO
 import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
-import br.com.conding.tv.features.account.data.vo.TokenResponseVO
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.features.account.ui.viewmodel.ResetAccount
 import br.com.conding.tv.networking.resources.AlternativesRoutes
@@ -38,7 +36,6 @@ import br.com.conding.tv.resources.GenericsStrings.PASSWORD
 import br.com.conding.tv.resources.GenericsStrings.VERSION
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.isNotBlankAndEmpty
-import br.com.conding.tv.resources.isTokenExpired
 import br.com.conding.tv.resources.onClickable
 import br.com.conding.tv.resources.validateEmail
 import br.com.conding.tv.theme.Themes
@@ -110,9 +107,9 @@ fun SignInScreen(
             )
             Spacer(modifier = Modifier.height(height = Themes.size.spaceSize0))
             Description(label = "$VERSION 1.00")
-            ObserveNetworkStateHandlerToken(
+            ObserveNetworkStateHandlerGetTokenSaved(
                 viewModel = viewModel,
-                goToDashboardScreen = goToHomeScreen
+                goToHomeScreen = goToHomeScreen
             )
         }
     )
@@ -187,32 +184,4 @@ private fun checkDataToSignIn(
     } else {
         onError(Triple(first = false, second = true, third = NOT_BLANK_OR_EMPTY))
     }
-}
-
-@Composable
-private fun ObserveNetworkStateHandlerToken(
-    viewModel: AccountViewModel,
-    goToDashboardScreen: () -> Unit = {}
-) {
-    LaunchedEffect(Unit) {
-        viewModel.getToken()
-    }
-    val state: ObserveNetworkStateHandler<TokenResponseVO> by remember { viewModel.getTokenSaved }
-    ObserveNetworkStateHandler(
-        state = state,
-        onLoading = {},
-        onError = {},
-        onSuccess = {
-            if (state.result != null && state.result?.accessToken?.isNotBlankAndEmpty() == true) {
-                val tokenResponseVO = state.result
-                if (tokenResponseVO?.accessToken?.isNotBlankAndEmpty() == true) {
-                    if (isTokenExpired(expirationDate = tokenResponseVO.expiration)) {
-                        viewModel.cleanToken()
-                    } else {
-                        goToDashboardScreen()
-                    }
-                }
-            }
-        }
-    )
 }
