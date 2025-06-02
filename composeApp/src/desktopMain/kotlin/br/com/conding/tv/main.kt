@@ -53,6 +53,7 @@ fun main() = application {
     if (showSplashScreen) {
         Window(
             onCloseRequest = ::exitApplication,
+            icon = painterResource(resource = Res.drawable.campaign),
             undecorated = true,
             transparent = true,
             state = rememberWindowState(
