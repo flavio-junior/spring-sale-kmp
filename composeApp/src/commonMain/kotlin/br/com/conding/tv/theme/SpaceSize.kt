@@ -47,6 +47,7 @@ object SpaceSize {
     val spaceSize400: Dp = 400.dp
     val spaceSize500: Dp = 500.dp
     val spaceSize650: Dp = 650.dp
+    val spaceSize700: Dp = 700.dp
     val spaceSize1000: Dp = 1000.dp
 }
 

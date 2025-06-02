@@ -23,7 +23,7 @@ import br.com.conding.tv.features.splash.SplashScreen
 @Composable
 fun Navigation(
     navController: NavHostController = rememberNavController(),
-    startDestination: Any = AppDestinations.SplashScreen
+    startDestination: AppDestinations
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         splashScreenNavigation(navController = navController)
