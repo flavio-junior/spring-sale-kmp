@@ -16,6 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import br.com.conding.tv.components.ui.IsErrorMessage
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.SimpleButton
 import br.com.conding.tv.components.ui.SubTitle
@@ -64,13 +65,14 @@ internal fun DeleteCategoryBottomSheet(
                 }
             )
             Title(label = ITEM_TO_DELETE)
-            SubTitle(label = category?.name.orEmpty())
+            SubTitle(label = category?.name ?: EMPTY_TEXT)
+            IsErrorMessage(isError = observer.second, message = observer.third ?: EMPTY_TEXT)
             LoadingButton(
                 onClick = {
-                    observer = Triple(first = false, second = true, third = EMPTY_TEXT)
+                    observer = Triple(first = true, second = false, third = EMPTY_TEXT)
                     viewModel.deleteCategory(id = category?.id ?: 0)
                 },
-                isEnabled = observer.second,
+                isEnabled = observer.first,
                 label = DELETE_CATEGORY
             )
             SimpleButton(

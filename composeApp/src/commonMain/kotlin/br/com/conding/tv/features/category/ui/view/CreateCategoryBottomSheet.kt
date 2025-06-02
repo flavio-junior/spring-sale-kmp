@@ -90,7 +90,7 @@ private fun SaveCategoryBottomSheet(
         label = GenericsStrings.CATEGORY_NAME,
         value = category,
         imeAction = ImeAction.Done,
-        isError = observer.first,
+        isError = observer.second,
         message = observer.third ?: EMPTY_TEXT,
         iconName = IconName.EDIT,
         onValueChange = { category = it }
@@ -98,13 +98,13 @@ private fun SaveCategoryBottomSheet(
     LoadingButton(
         onClick = {
             if (category.isNotBlankAndEmpty()) {
-                observer = (Triple(first = false, second = false, third = EMPTY_TEXT))
+                observer = (Triple(first = true, second = false, third = EMPTY_TEXT))
                 viewModel.createCategory(category = category)
             } else {
-                observer = (Triple(first = true, second = false, third = NOT_BLANK_OR_EMPTY))
+                observer = (Triple(first = false, second = true, third = NOT_BLANK_OR_EMPTY))
             }
         },
-        isEnabled = observer.second,
+        isEnabled = observer.first,
         label = GenericsStrings.SAVE_CATEGORY
     )
 }

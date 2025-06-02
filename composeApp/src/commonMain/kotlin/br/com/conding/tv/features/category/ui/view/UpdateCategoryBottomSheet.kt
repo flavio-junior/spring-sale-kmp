@@ -98,7 +98,7 @@ private fun SaveUpdateCategoryBottomSheet(
         label = GenericsStrings.UPDATE_CATEGORY,
         value = newCategoryName,
         imeAction = ImeAction.Done,
-        isError = observer.first,
+        isError = observer.second,
         message = observer.third ?: EMPTY_TEXT,
         iconName = IconName.EDIT,
         onValueChange = { newCategoryName = it }
@@ -106,15 +106,15 @@ private fun SaveUpdateCategoryBottomSheet(
     LoadingButton(
         onClick = {
             if (newCategoryName.isNotBlankAndEmpty()) {
-                observer = (Triple(first = false, second = false, third = EMPTY_TEXT))
+                observer = (Triple(first = true, second = false, third = EMPTY_TEXT))
                 viewModel.updateCategory(
                     category = UpdateCategoryRequestDTO(id = category?.id, name = newCategoryName)
                 )
             } else {
-                observer = Triple(first = true, second = false, third = NOT_BLANK_OR_EMPTY)
+                observer = Triple(first = false, second = true, third = NOT_BLANK_OR_EMPTY)
             }
         },
-        isEnabled = observer.second,
+        isEnabled = observer.first,
         label = GenericsStrings.UPDATE_CATEGORY
     )
 }
