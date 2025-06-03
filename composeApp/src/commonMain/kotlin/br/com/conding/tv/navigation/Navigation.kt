@@ -17,6 +17,7 @@ import br.com.conding.tv.features.account.ui.view.SignUpScreen
 import br.com.conding.tv.features.category.ui.view.CategoriesScreen
 import br.com.conding.tv.features.home.ui.HomeScreen
 import br.com.conding.tv.features.product.ui.view.ProductsScreen
+import br.com.conding.tv.features.settings.EditProfileUserScreen
 import br.com.conding.tv.features.settings.SettingsScreen
 import br.com.conding.tv.features.splash.SplashScreen
 
@@ -291,6 +292,14 @@ fun NavGraphBuilder.settingsNavigation(
                     currentScreen = AppDestinations.Settings,
                     alternativeRoutes = it
                 )
+            }
+        )
+    }
+
+    composable<AppDestinations.EditProfileUser> {
+        EditProfileUserScreen(
+            goToBackScreen = {
+                navController.goBack()
             }
         )
     }

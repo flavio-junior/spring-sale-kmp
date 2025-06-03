@@ -39,4 +39,7 @@ sealed interface AppDestinations {
 
     @Serializable
     data object Settings : AppDestinations
+
+    @Serializable
+    data object EditProfileUser : AppDestinations
 }

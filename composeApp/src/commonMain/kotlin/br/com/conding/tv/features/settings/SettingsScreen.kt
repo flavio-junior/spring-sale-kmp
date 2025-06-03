@@ -56,7 +56,13 @@ fun MobileSettingsScreen(
                     IconDefault(iconName = IconName.USER)
                     SubTitle(
                         label = GenericsStrings.DATA_USER,
-                        modifier = Modifier.weight(weight = WeightSize.WEIGHT_SIZE)
+                        modifier = Modifier
+                            .onClickable(
+                                onClick = {
+                                    goToNextScreen(AppDestinations.EditProfileUser)
+                                }
+                            )
+                            .weight(weight = WeightSize.WEIGHT_SIZE)
                     )
                 }
             )
