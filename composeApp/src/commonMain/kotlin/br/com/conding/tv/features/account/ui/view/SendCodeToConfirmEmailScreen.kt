@@ -30,6 +30,7 @@ import br.com.conding.tv.resources.GenericsStrings.INVALID_EMAIL
 import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
 import br.com.conding.tv.resources.GenericsStrings.OR
 import br.com.conding.tv.resources.GenericsStrings.SEND_CODE_VERIFICATION
+import br.com.conding.tv.resources.GenericsStrings.SEND_CODE_VERIFICATION_MOBILE
 import br.com.conding.tv.resources.GenericsStrings.YOUR_MAIN_EMAIL
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.isNotBlankAndEmpty
@@ -42,6 +43,7 @@ internal fun SendCodeToConfirmEmailScreen(
     goToCheckCodeToConfirmEmailScreen: (AppDestinations.CheckCodeToConfirmEmail) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
+    var changeLabel: Boolean by remember { mutableStateOf(value = false) }
     ContentScreen(
         definitionsScreen = DefinitionsScreen(
             label = CREATE_MY_ACCOUNT
@@ -49,6 +51,7 @@ internal fun SendCodeToConfirmEmailScreen(
         goToBackScreen = goToBackScreen,
         extra = {
             if (it) Title(label = CREATE_MY_ACCOUNT)
+            changeLabel = it
         },
         content = {
             val viewModel: AccountViewModel = getKoin().get()
@@ -92,7 +95,7 @@ internal fun SendCodeToConfirmEmailScreen(
                     checkEmail(email)
                 },
                 isEnabled = observer.first,
-                label = SEND_CODE_VERIFICATION
+                label = if (changeLabel) SEND_CODE_VERIFICATION else SEND_CODE_VERIFICATION_MOBILE
             )
             SimpleText(
                 label = OR,

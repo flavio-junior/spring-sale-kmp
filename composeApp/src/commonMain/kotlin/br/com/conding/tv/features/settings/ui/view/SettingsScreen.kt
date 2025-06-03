@@ -1,4 +1,4 @@
-package br.com.conding.tv.features.settings
+package br.com.conding.tv.features.settings.ui.view
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable

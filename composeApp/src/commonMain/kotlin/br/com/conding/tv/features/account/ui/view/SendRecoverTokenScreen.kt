@@ -30,6 +30,7 @@ import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
 import br.com.conding.tv.resources.GenericsStrings.OR
 import br.com.conding.tv.resources.GenericsStrings.RECOVER_MY_ACCOUNT
 import br.com.conding.tv.resources.GenericsStrings.REGISTERED_EMAIL
+import br.com.conding.tv.resources.GenericsStrings.SEND_CODE_VERIFICATION_MOBILE
 import br.com.conding.tv.resources.GenericsStrings.SEND_RECOVER_TOKEN
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.isNotBlankAndEmpty
@@ -42,6 +43,7 @@ internal fun SendRecoverTokenScreen(
     goToCheckRecoverTokenToConfirmEmailScreen: (AppDestinations.CheckRecoverToken) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
+    var changeLabel: Boolean by remember { mutableStateOf(value = false) }
     ContentScreen(
         definitionsScreen = DefinitionsScreen(
             label = RECOVER_MY_ACCOUNT
@@ -49,6 +51,7 @@ internal fun SendRecoverTokenScreen(
         goToBackScreen = goToBackScreen,
         extra = {
             if (it) Title(label = RECOVER_MY_ACCOUNT)
+            changeLabel = it
         },
         content = {
             val viewModel: AccountViewModel = getKoin().get()
@@ -87,7 +90,7 @@ internal fun SendRecoverTokenScreen(
             )
             LoadingButton(
                 onClick = { sendRecoverToken(email) },
-                label = SEND_RECOVER_TOKEN,
+                label = if (changeLabel) SEND_RECOVER_TOKEN else SEND_CODE_VERIFICATION_MOBILE,
                 isEnabled = observer.first
             )
             SimpleText(

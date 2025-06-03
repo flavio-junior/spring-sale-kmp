@@ -1,4 +1,4 @@
-package br.com.conding.tv.features.settings
+package br.com.conding.tv.features.settings.ui.view
 
 import androidx.compose.runtime.Composable
 import br.com.conding.tv.features.home.factory.availableServices

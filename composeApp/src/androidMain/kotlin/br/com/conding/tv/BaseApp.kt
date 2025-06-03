@@ -5,6 +5,7 @@ import br.com.conding.tv.di.commonModule
 import br.com.conding.tv.features.account.di.accountModule
 import br.com.conding.tv.features.category.di.categoryModule
 import br.com.conding.tv.features.product.di.productModule
+import br.com.conding.tv.features.settings.di.settingsModule
 import br.com.conding.tv.networking.di.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -23,7 +24,8 @@ class BaseApp : Application() {
                     accountModule,
                     categoryModule,
                     networkModule,
-                    productModule
+                    productModule,
+                    settingsModule
                 )
             )
         }

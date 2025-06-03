@@ -17,8 +17,8 @@ import br.com.conding.tv.features.account.ui.view.SignUpScreen
 import br.com.conding.tv.features.category.ui.view.CategoriesScreen
 import br.com.conding.tv.features.home.ui.HomeScreen
 import br.com.conding.tv.features.product.ui.view.ProductsScreen
-import br.com.conding.tv.features.settings.EditProfileUserScreen
-import br.com.conding.tv.features.settings.SettingsScreen
+import br.com.conding.tv.features.settings.ui.view.EditProfileUserScreen
+import br.com.conding.tv.features.settings.ui.view.SettingsScreen
 import br.com.conding.tv.features.splash.SplashScreen
 
 @Composable

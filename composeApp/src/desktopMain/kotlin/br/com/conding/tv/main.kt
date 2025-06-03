@@ -15,6 +15,7 @@ import br.com.conding.tv.di.commonModule
 import br.com.conding.tv.features.account.di.accountModule
 import br.com.conding.tv.features.category.di.categoryModule
 import br.com.conding.tv.features.product.di.productModule
+import br.com.conding.tv.features.settings.di.settingsModule
 import br.com.conding.tv.features.splash.DesktopSplashScreen
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.navigation.Navigation
@@ -40,7 +41,8 @@ fun main() = application {
                     accountModule,
                     categoryModule,
                     networkModule,
-                    productModule
+                    productModule,
+                    settingsModule
                 )
             )
         }

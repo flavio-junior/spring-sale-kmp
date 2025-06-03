@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import br.com.conding.tv.components.model.BottomNavigationRoute
 import br.com.conding.tv.features.category.ui.view.CategoriesScreen
 import br.com.conding.tv.features.product.ui.view.ProductsScreen
-import br.com.conding.tv.features.settings.SettingsScreen
+import br.com.conding.tv.features.settings.ui.view.SettingsScreen
 
 @Composable
 fun NavigationRail(

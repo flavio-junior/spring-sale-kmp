@@ -1,4 +1,4 @@
-package br.com.conding.tv.features.settings
+package br.com.conding.tv.features.settings.ui.view
 
 import androidx.compose.runtime.Composable
 import br.com.conding.tv.navigation.AppDestinations
@@ -10,5 +10,9 @@ actual fun SettingsScreen(
     goToNextScreen: (AppDestinations) -> Unit,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit
 ) {
-    MobileSettingsScreen(goToBackScreen, goToNextScreen, goToAlternativeRoutes)
+    MobileSettingsScreen(
+        goToBackScreen = goToBackScreen,
+        goToNextScreen = goToNextScreen,
+        goToAlternativeRoutes = goToAlternativeRoutes
+    )
 }
