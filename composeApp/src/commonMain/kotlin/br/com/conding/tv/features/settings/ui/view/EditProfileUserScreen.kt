@@ -8,16 +8,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.input.ImeAction
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.LoadingData
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
+import br.com.conding.tv.components.ui.ObserveNetworkStateHandler2
 import br.com.conding.tv.components.ui.TextField
+import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.settings.data.dto.UserRequestDTO
 import br.com.conding.tv.features.settings.data.vo.UserResponseVO
 import br.com.conding.tv.features.settings.ui.viewmodel.SettingViewModel
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
@@ -40,19 +40,13 @@ fun EditProfileUserScreen(
             LaunchedEffect(key1 = Unit) {
                 viewModel.getUserAuthenticated()
             }
-            val state: ObserveNetworkStateHandler<UserResponseVO>
-                    by remember { viewModel.getUserAuthenticated }
-            ObserveNetworkStateHandler(
-                state = state,
-                onLoading = {
-                    LoadingData()
-                },
-                onError = {},
-                goToAlternativeRoutes = {},
+            val uiState by viewModel.getUserAuthenticated.collectAsStateWithLifecycle()
+            ObserveNetworkStateHandler2(
+                state = uiState,
                 onSuccess = {
                     CardProfileUser(
                         viewModel = viewModel,
-                        userResponseVO = it.result
+                        userResponseVO = it
                     )
                 }
             )
@@ -112,7 +106,6 @@ internal fun CardProfileUser(
         value = username,
         iconName = IconName.EDIT,
         isError = observer.second,
-        message = observer.third ?: EMPTY_TEXT,
         onValueChange = { username = it },
         imeAction = ImeAction.Go,
         onGo = saveInfoUser
@@ -122,7 +115,8 @@ internal fun CardProfileUser(
         label = GenericsStrings.EMAIL,
         value = userResponseVO?.email ?: EMPTY_TEXT,
         iconName = IconName.MAIL,
-        isError = observer.second
+        isError = observer.second,
+        message = observer.third ?: EMPTY_TEXT
     )
     LoadingButton(
         onClick = saveInfoUser,
@@ -150,9 +144,9 @@ private fun ObserveNetworkStateHandlerChangeInfoUser(
     viewModel: SettingViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {}
 ) {
-    val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.changeInfoUser }
-    ObserveNetworkStateHandler(
-        state = state,
+    val uiState: UiState<Unit> by viewModel.changeInfoUser.collectAsStateWithLifecycle()
+    ObserveNetworkStateHandler2(
+        state = uiState,
         onError = {
             onError(Triple(first = false, second = true, third = it))
         },
