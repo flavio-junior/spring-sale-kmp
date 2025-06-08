@@ -1,6 +1,6 @@
 package br.com.conding.tv.features.category.data.repository
 
-import br.com.conding.tv.features.account.data.repository.LocalStorageImp
+import br.com.conding.tv.features.account.data.datasource.local.LocalStorage
 import br.com.conding.tv.features.category.data.dto.CategoriesResponseDTO
 import br.com.conding.tv.features.category.data.dto.CategoryNameRequestDTO
 import br.com.conding.tv.features.category.data.dto.CategoryRequestDTO
@@ -23,7 +23,7 @@ import kotlinx.coroutines.runBlocking
 
 class CategoryRemoteDataSource(
     private val httpClient: HttpClient,
-    private val localStorage: LocalStorageImp
+    private val localStorage: LocalStorage
 ) : CategoryRepository {
 
     private val accessToken = runBlocking {

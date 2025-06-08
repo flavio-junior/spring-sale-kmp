@@ -1,17 +1,16 @@
-package br.com.conding.tv.storage
+package br.com.conding.tv.features.account.data.datasource.local
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import br.com.conding.tv.features.account.data.repository.LocalStorageImp
 import br.com.conding.tv.features.account.data.vo.TokenResponseVO
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
-class LocalStorage(
+class LocalStorageImpl(
     private val dataStore: DataStore<Preferences>
-) : LocalStorageImp {
+) : LocalStorage {
 
     override suspend fun cleanToken() {
         dataStore.edit { settings ->

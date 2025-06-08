@@ -9,9 +9,9 @@ import br.com.conding.tv.features.account.data.dto.SignInRequestDTO
 import br.com.conding.tv.features.account.data.dto.SignUpRequestDTO
 import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
 import br.com.conding.tv.features.account.data.repository.AccountRepository
-import br.com.conding.tv.features.account.data.repository.LocalStorageImp
+import br.com.conding.tv.features.account.data.datasource.local.LocalStorage
 import br.com.conding.tv.features.account.data.vo.TokenResponseVO
-import br.com.conding.tv.features.account.domain.converter.ConverterToken
+import br.com.conding.tv.features.account.domain.converter.ConverterAccount
 import br.com.conding.tv.networking.resources.DescriptionError
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.INVALID_EMAIL
@@ -21,9 +21,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class AccountViewModel(
-    private val localStorage: LocalStorageImp,
+    private val localStorage: LocalStorage,
     private val repository: AccountRepository,
-    private val converter: ConverterToken
+    private val converter: ConverterAccount
 ) : ViewModel() {
 
     private val _signIn = MutableStateFlow<UiState<TokenResponseDTO>>(UiState.Init)

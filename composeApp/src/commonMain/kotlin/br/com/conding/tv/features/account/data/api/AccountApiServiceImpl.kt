@@ -1,4 +1,4 @@
-package br.com.conding.tv.features.account.data.repository
+package br.com.conding.tv.features.account.data.api
 
 import br.com.conding.tv.features.account.data.dto.EmailRequestDTO
 import br.com.conding.tv.features.account.data.dto.PasswordRequestDTO
@@ -15,9 +15,9 @@ import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import kotlinx.coroutines.flow.Flow
 
-class AccountRemoteDataSource(
+class AccountApiServiceImpl(
     private val httpClient: HttpClient
-) : AccountRepository {
+) : AccountApiService {
 
     override suspend fun signIn(
         signIn: SignInRequestDTO

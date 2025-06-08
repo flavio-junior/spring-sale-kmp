@@ -1,6 +1,6 @@
 package br.com.conding.tv.features.product.data.repository
 
-import br.com.conding.tv.features.account.data.repository.LocalStorageImp
+import br.com.conding.tv.features.account.data.datasource.local.LocalStorage
 import br.com.conding.tv.features.product.data.dto.ProductRequestDTO
 import br.com.conding.tv.features.product.data.dto.ProductsResponseDTO
 import br.com.conding.tv.features.product.data.dto.RestockProductRequestDTO
@@ -24,7 +24,7 @@ import kotlinx.coroutines.runBlocking
 
 class ProductRemoteDataSource(
     private val httpClient: HttpClient,
-    private val localStorage: LocalStorageImp
+    private val localStorage: LocalStorage
 ) : ProductRepository {
 
     private val accessToken = runBlocking {
