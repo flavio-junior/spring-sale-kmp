@@ -114,6 +114,7 @@ internal fun CardProfileUser(
     TextField(
         label = GenericsStrings.EMAIL,
         value = userResponseVO?.email ?: EMPTY_TEXT,
+        enabled = false,
         iconName = IconName.MAIL,
         isError = observer.second,
         message = observer.third ?: EMPTY_TEXT
