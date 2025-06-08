@@ -1,10 +1,10 @@
 package br.com.conding.tv.features.product.ui.viewmodel
 
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.conding.tv.components.model.LocationRoute
+import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.product.data.dto.ProductRequestDTO
 import br.com.conding.tv.features.product.data.dto.RestockProductRequestDTO
 import br.com.conding.tv.features.product.data.dto.UpdatePriceProductRequestDTO
@@ -18,7 +18,8 @@ import br.com.conding.tv.resources.Settings.ASC
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ONE
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_SIXTY
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class ProductViewModel(
@@ -30,34 +31,25 @@ class ProductViewModel(
     private var sizeDefault: Int = NUMBER_SIXTY
     private var sort: String = ASC
 
-    private val _findAllProducts =
-        mutableStateOf<ObserveNetworkStateHandler<ProductsResponseVO>>(
-            ObserveNetworkStateHandler.Loading(l = false)
-        )
-    val findAllProducts: State<ObserveNetworkStateHandler<ProductsResponseVO>> =
-        _findAllProducts
+    private val _findAllProducts = MutableStateFlow<UiState<ProductsResponseVO>>(UiState.Init)
+    val findAllProducts = _findAllProducts.asStateFlow()
 
     var showEmptyList = mutableStateOf(value = true)
 
-    private val _createProduct =
-        mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
-    val createProduct: State<ObserveNetworkStateHandler<Unit>> = _createProduct
+    private val _createProduct = MutableStateFlow<UiState<Unit>>(UiState.Init)
+    val createProduct = _createProduct.asStateFlow()
 
-    private val _updateProduct =
-        mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
-    val updateProduct: State<ObserveNetworkStateHandler<Unit>> = _updateProduct
+    private val _updateProduct = MutableStateFlow<UiState<Unit>>(UiState.Init)
+    val updateProduct = _updateProduct.asStateFlow()
 
-    private val _updatePriceProduct =
-        mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
-    val updatePriceProduct: State<ObserveNetworkStateHandler<Unit>> = _updatePriceProduct
+    private val _updatePriceProduct = MutableStateFlow<UiState<Unit>>(UiState.Init)
+    val updatePriceProduct = _updatePriceProduct.asStateFlow()
 
-    private val _restockProduct =
-        mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
-    val restockProduct: State<ObserveNetworkStateHandler<Unit>> = _restockProduct
+    private val _restockProduct = MutableStateFlow<UiState<Unit>>(UiState.Init)
+    val restockProduct = _restockProduct.asStateFlow()
 
-    private val _deleteProduct =
-        mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
-    val deleteProduct: State<ObserveNetworkStateHandler<Unit>> = _deleteProduct
+    private val _deleteProduct = MutableStateFlow<UiState<Unit>>(UiState.Init)
+    val deleteProduct = _deleteProduct.asStateFlow()
 
     fun findAllProducts(
         name: String = EMPTY_TEXT,
@@ -80,21 +72,27 @@ class ProductViewModel(
                 size = sizeDefault,
                 sort = sort
             )
-                .onStart {
-                    _findAllProducts.value = ObserveNetworkStateHandler.Loading(l = true)
-                }
-                .collect {
-                    it.result?.let { response ->
-                        val objectConverted = converter.converterContentDTOToVO(content = response)
-                        if (objectConverted.content.isNotEmpty()) {
-                            showEmptyList.value = false
-                            _findAllProducts.value = ObserveNetworkStateHandler.Success(
-                                s = objectConverted
-                            )
-                        } else {
-                            _findAllProducts.value = ObserveNetworkStateHandler.Success(
-                                s = objectConverted
-                            )
+                .collect { response ->
+                    when (response) {
+                        is ObserveNetworkStateHandler.Loading -> {
+                            _findAllProducts.value = UiState.Loading
+                        }
+
+                        is ObserveNetworkStateHandler.Error -> {
+                            _findAllProducts.value = UiState.Error(error = response.exception)
+                        }
+
+                        is ObserveNetworkStateHandler.Success -> {
+                            val objectConverted =
+                                converter.converterContentDTOToVO(content = response.result)
+                            if (objectConverted.content?.isNotEmpty() == true) {
+                                showEmptyList.value = false
+                                _findAllProducts.value =
+                                    UiState.OnSuccess(response = objectConverted)
+                            } else {
+                                _findAllProducts.value =
+                                    UiState.OnSuccess(response = objectConverted)
+                            }
                         }
                     }
                 }
@@ -106,10 +104,13 @@ class ProductViewModel(
     }
 
     fun loadNextPage() {
-        val lastPage = _findAllProducts.value.result?.totalPages ?: 0
-        if (currentPage < lastPage - NUMBER_ONE) {
-            currentPage++
-            findAllProducts()
+        val currentDataState = _findAllProducts.value
+        if (currentDataState is UiState.OnSuccess) {
+            val lastPage = currentDataState.response.totalPages ?: 0
+            if (currentPage < lastPage - NUMBER_ONE) {
+                currentPage++
+                findAllProducts()
+            }
         }
     }
 
@@ -122,85 +123,111 @@ class ProductViewModel(
 
     fun createProduct(product: ProductRequestDTO) {
         viewModelScope.launch {
-            repository.createNewProduct(product = product)
-                .onStart {
-                    _createProduct.value = ObserveNetworkStateHandler.Loading(l = true)
+            repository.createNewProduct(product = product).collect { response ->
+                when (response) {
+                    is ObserveNetworkStateHandler.Loading -> {
+                        _createProduct.value = UiState.Loading
+                    }
+
+                    is ObserveNetworkStateHandler.Error -> {
+                        _createProduct.value = UiState.Error(error = response.exception)
+                    }
+
+                    is ObserveNetworkStateHandler.Success -> {
+                        _createProduct.value = UiState.OnSuccess(response = Unit)
+                    }
                 }
-                .collect {
-                    _createProduct.value = it
-                }
+            }
         }
     }
 
     fun updateProduct(product: UpdateProductRequestDTO) {
         viewModelScope.launch {
-            repository.updateProduct(product = product)
-                .onStart {
-                    _updateProduct.value = ObserveNetworkStateHandler.Loading(l = true)
+            repository.updateProduct(product = product).collect { response ->
+                when (response) {
+                    is ObserveNetworkStateHandler.Loading -> {
+                        _updateProduct.value = UiState.Loading
+                    }
+
+                    is ObserveNetworkStateHandler.Error -> {
+                        _updateProduct.value = UiState.Error(error = response.exception)
+                    }
+
+                    is ObserveNetworkStateHandler.Success -> {
+                        _updateProduct.value = UiState.OnSuccess(response = Unit)
+                    }
                 }
-                .collect {
-                    _updateProduct.value = it
-                }
+            }
         }
     }
 
     fun updatePriceProduct(id: Long, price: UpdatePriceProductRequestDTO) {
         viewModelScope.launch {
-            repository.updatePriceProduct(id = id, price = price)
-                .onStart {
-                    _updatePriceProduct.value = ObserveNetworkStateHandler.Loading(l = true)
+            repository.updatePriceProduct(id = id, price = price).collect { response ->
+                when (response) {
+                    is ObserveNetworkStateHandler.Loading -> {
+                        _updatePriceProduct.value = UiState.Loading
+                    }
+
+                    is ObserveNetworkStateHandler.Error -> {
+                        _updateProduct.value = UiState.Error(error = response.exception)
+                    }
+
+                    is ObserveNetworkStateHandler.Success -> {
+                        _updatePriceProduct.value = UiState.OnSuccess(response = Unit)
+                    }
                 }
-                .collect {
-                    _updatePriceProduct.value = it
-                }
+            }
         }
     }
 
     fun restockProduct(id: Long, stock: RestockProductRequestDTO) {
         viewModelScope.launch {
-            repository.restockProduct(id = id, stock = stock)
-                .onStart {
-                    _restockProduct.value = ObserveNetworkStateHandler.Loading(l = true)
+            repository.restockProduct(id = id, stock = stock).collect { response ->
+                when (response) {
+                    is ObserveNetworkStateHandler.Loading -> {
+                        _restockProduct.value = UiState.Loading
+                    }
+
+                    is ObserveNetworkStateHandler.Error -> {
+                        _restockProduct.value = UiState.Error(error = response.exception)
+                    }
+
+                    is ObserveNetworkStateHandler.Success -> {
+                        _restockProduct.value = UiState.OnSuccess(response = Unit)
+                    }
                 }
-                .collect {
-                    _restockProduct.value = it
-                }
+            }
         }
     }
 
     fun deleteProduct(id: Long) {
         viewModelScope.launch {
-            repository.deleteProduct(id = id)
-                .onStart {
-                    _deleteProduct.value = ObserveNetworkStateHandler.Loading(l = true)
+            repository.deleteProduct(id = id).collect { response ->
+                when (response) {
+                    is ObserveNetworkStateHandler.Loading -> {
+                        _deleteProduct.value = UiState.Loading
+                    }
+
+                    is ObserveNetworkStateHandler.Error -> {
+                        _deleteProduct.value = UiState.Error(error = response.exception)
+                    }
+
+                    is ObserveNetworkStateHandler.Success -> {
+                        _deleteProduct.value = UiState.OnSuccess(response = Unit)
+                    }
                 }
-                .collect {
-                    _deleteProduct.value = it
-                }
+            }
         }
     }
 
     fun resetProduct(reset: ResetProduct) {
         when (reset) {
-            ResetProduct.CREATE_PRODUCT -> {
-                _createProduct.value = ObserveNetworkStateHandler.Loading(l = false)
-            }
-
-            ResetProduct.UPDATE_PRODUCT -> {
-                _updateProduct.value = ObserveNetworkStateHandler.Loading(l = false)
-            }
-
-            ResetProduct.UPDATE_PRICE_PRODUCT -> {
-                _updatePriceProduct.value = ObserveNetworkStateHandler.Loading(l = false)
-            }
-
-            ResetProduct.RESTOCK_PRODUCT -> {
-                _restockProduct.value = ObserveNetworkStateHandler.Loading(l = false)
-            }
-
-            ResetProduct.DELETE_PRODUCT -> {
-                _deleteProduct.value = ObserveNetworkStateHandler.Loading(l = false)
-            }
+            ResetProduct.CREATE_PRODUCT -> _createProduct.value = UiState.Init
+            ResetProduct.UPDATE_PRODUCT -> _updateProduct.value = UiState.Init
+            ResetProduct.UPDATE_PRICE_PRODUCT -> _updatePriceProduct.value = UiState.Init
+            ResetProduct.RESTOCK_PRODUCT -> _restockProduct.value = UiState.Init
+            ResetProduct.DELETE_PRODUCT -> _deleteProduct.value = UiState.Init
         }
     }
 }

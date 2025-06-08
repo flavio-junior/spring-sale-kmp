@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ProductsResponseDTO(
-    val totalPages: Int,
-    val content: List<ProductResponseDTO>,
-    val pageable: PageableDTO
+    val totalPages: Int? = 0,
+    val content: List<ProductResponseDTO>? = null,
+    val pageable: PageableDTO? = null
 )

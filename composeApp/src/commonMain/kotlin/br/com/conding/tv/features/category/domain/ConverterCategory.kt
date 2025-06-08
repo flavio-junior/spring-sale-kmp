@@ -8,18 +8,20 @@ import br.com.conding.tv.features.others.converterPageableDTOToVO
 
 class ConverterCategory {
 
-    fun converterContentDTOToVO(content: CategoriesResponseDTO): CategoriesResponseVO {
+    fun converterContentDTOToVO(
+        content: CategoriesResponseDTO? = null
+    ): CategoriesResponseVO {
         return CategoriesResponseVO(
-            totalPages = content.totalPages,
-            content = converterCategoriesResponseDTOToVO(categories = content.content),
-            pageable = converterPageableDTOToVO(pageable = content.pageable)
+            totalPages = content?.totalPages,
+            content = converterCategoriesResponseDTOToVO(categories = content?.content),
+            pageable = converterPageableDTOToVO(pageable = content?.pageable)
         )
     }
 
     fun converterCategoriesResponseDTOToVO(
-        categories: List<CategoryResponseDTO>
-    ): List<CategoryResponseVO> {
-        return categories.map {
+        categories: List<CategoryResponseDTO>? = null
+    ): List<CategoryResponseVO>? {
+        return categories?.map {
             CategoryResponseVO(
                 id = it.id,
                 name = it.name

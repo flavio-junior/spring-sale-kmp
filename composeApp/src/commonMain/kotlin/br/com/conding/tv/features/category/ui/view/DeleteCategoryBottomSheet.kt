@@ -53,7 +53,7 @@ internal fun DeleteCategoryBottomSheet(
             var observer: Triple<Boolean, Boolean, String?> by remember {
                 mutableStateOf(Triple(first = false, second = false, third = EMPTY_TEXT))
             }
-            ObserveNetworkStateHandlerDeleteCategory(
+            UiResponseDeleteCategoryScreen(
                 viewModel = viewModel,
                 onError = {
                     observer = it

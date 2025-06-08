@@ -10,11 +10,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.ui.Alert
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
+import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.Price
 import br.com.conding.tv.components.ui.TextField
+import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
 import br.com.conding.tv.features.category.ui.view.SelectCategories
 import br.com.conding.tv.features.product.data.dto.UpdateProductRequestDTO
@@ -22,7 +24,6 @@ import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.features.product.ui.viewmodel.ResetProduct
 import br.com.conding.tv.features.product.utils.checkBodyProductIsNull
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.resources.GenericsStrings.ADD_CATEGORIES
 import br.com.conding.tv.resources.GenericsStrings.CONFIRM_UPDATE
@@ -53,7 +54,7 @@ fun UpdateProduct(
     var price: String by remember { mutableStateOf(value = ZERO_DOUBLE) }
     var quantity: Int by remember { mutableIntStateOf(value = NUMBER_ZERO) }
     var cleanText by remember { mutableStateOf(value = false) }
-    var observer: Triple<Boolean, Boolean, String> by remember {
+    var observer: Triple<Boolean, Boolean, String?> by remember {
         mutableStateOf(value = Triple(first = false, second = false, third = EMPTY_TEXT))
     }
     var openDialog by remember { mutableStateOf(value = false) }
@@ -90,7 +91,7 @@ fun UpdateProduct(
             label = NEW_NAME_PRODUCT,
             value = name,
             isError = observer.second,
-            message = observer.third,
+            message = observer.third ?: EMPTY_TEXT,
             onValueChange = {
                 name = it
             },
@@ -144,7 +145,7 @@ fun UpdateProduct(
             onRefresh = onRefresh
         )
     }
-    ObserveNetworkStateHandlerUpdateProduct(
+    UiResponseUpdateProductScreen(
         viewModel = viewModel,
         onError = {
             observer = it
@@ -184,25 +185,22 @@ fun UpdateProduct(
 }
 
 @Composable
-private fun ObserveNetworkStateHandlerUpdateProduct(
+private fun UiResponseUpdateProductScreen(
     viewModel: ProductViewModel,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
-    onError: (Triple<Boolean, Boolean, String>) -> Unit = {},
+    onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     onSuccessful: () -> Unit = {}
 ) {
-    val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.updateProduct }
-    ObserveNetworkStateHandler(
-        state = state,
+    val uiState: UiState<Unit> by viewModel.updateProduct.collectAsStateWithLifecycle()
+    UiResponse(
+        state = uiState,
         onLoading = {},
-        onError = {
-            onError(Triple(first = false, second = true, third = it.orEmpty()))
-        },
+        onError = onError,
         goToAlternativeRoutes = {
             goToAlternativeRoutes(it)
             reloadViewModels()
         },
         onSuccess = {
-            onError(Triple(first = false, second = false, third = EMPTY_TEXT))
             viewModel.resetProduct(reset = ResetProduct.UPDATE_PRODUCT)
             onSuccessful()
         }

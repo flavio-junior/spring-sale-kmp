@@ -49,8 +49,9 @@ import kotlinx.coroutines.launch
 @Composable
 fun ListProducts(
     modifier: Modifier = Modifier,
-    products: ProductsResponseVO,
-    onItemSelected: (ProductResponseVO) -> Unit = {}
+    products: ProductsResponseVO? = null,
+    onItemSelected: (ProductResponseVO) -> Unit = {},
+    showEmptyList: () -> Unit = {}
 ) {
     Column(
         modifier = modifier
@@ -83,17 +84,19 @@ fun ListProducts(
                 .fillMaxWidth()
                 .padding(all = Themes.size.spaceSize36)
         ) {
-            itemsIndexed(products.content) { index, product ->
-                ItemProduct(
-                    index = index,
-                    selected = selectedIndex == index,
-                    product = product,
-                    onItemSelected = onItemSelected,
-                    onDisableItem = {
-                        selectedIndex = index
-                    }
-                )
-            }
+            products?.content?.let { response ->
+                itemsIndexed(items = response) { index, product ->
+                    ItemProduct(
+                        index = index,
+                        selected = selectedIndex == index,
+                        product = product,
+                        onItemSelected = onItemSelected,
+                        onDisableItem = {
+                            selectedIndex = index
+                        }
+                    )
+                }
+            } ?: showEmptyList()
         }
     }
 }

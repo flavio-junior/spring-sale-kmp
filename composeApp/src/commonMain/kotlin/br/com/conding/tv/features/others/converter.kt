@@ -4,9 +4,9 @@ import br.com.conding.tv.features.others.dto.PageableDTO
 import br.com.conding.tv.features.others.vo.PageableVO
 
 fun converterPageableDTOToVO(
-    pageable: PageableDTO
+    pageable: PageableDTO? = null
 ): PageableVO {
     return PageableVO(
-        pageNumber = pageable.pageNumber
+        pageNumber = pageable?.pageNumber
     )
 }

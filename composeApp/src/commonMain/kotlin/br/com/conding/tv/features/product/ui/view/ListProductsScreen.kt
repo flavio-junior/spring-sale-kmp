@@ -8,15 +8,15 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.ui.EmptyList
 import br.com.conding.tv.components.ui.HeaderSearch
-import br.com.conding.tv.components.ui.LoadingData
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
+import br.com.conding.tv.components.ui.UiResponse
+import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.product.data.vo.ProductResponseVO
 import br.com.conding.tv.features.product.data.vo.ProductsResponseVO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.resources.GenericsStrings.CREATE_PRODUCT
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_LIST_PRODUCTS
@@ -57,7 +57,7 @@ fun ListProductsScreen(
                 viewModel.findAllProducts(name = name, size = size, sort = sort, route = route)
             }
         )
-        ObserveNetworkStateHandlerProducts(
+        UiResponseListProductsScreen(
             viewModel = viewModel,
             onItemSelected = onItemSelected,
             onToCreateNewProduct = onToCreateNewProduct,
@@ -67,19 +67,16 @@ fun ListProductsScreen(
 }
 
 @Composable
-private fun ObserveNetworkStateHandlerProducts(
+private fun UiResponseListProductsScreen(
     viewModel: ProductViewModel,
     onItemSelected: (ProductResponseVO) -> Unit = {},
     onToCreateNewProduct: () -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
-    val state: ObserveNetworkStateHandler<ProductsResponseVO> by remember { viewModel.findAllProducts }
+    val state: UiState<ProductsResponseVO> by viewModel.findAllProducts.collectAsStateWithLifecycle()
     val showEmptyList: Boolean by remember { viewModel.showEmptyList }
-    ObserveNetworkStateHandler(
+    UiResponse(
         state = state,
-        onLoading = {
-            LoadingData()
-        },
         onError = {
             Triple(first = true, second = false, third = it)
         },
@@ -98,9 +95,13 @@ private fun ObserveNetworkStateHandlerProducts(
                     }
                 )
             } else {
-                it.result?.let { response ->
-                    ProductsResult(productsResponseVO = response, onItemSelected = onItemSelected)
-                } ?: viewModel.showEmptyList(show = true)
+                ProductsResult(
+                    productsResponseVO = it,
+                    onItemSelected = onItemSelected,
+                    showEmptyList = {
+                        viewModel.showEmptyList(show = true)
+                    }
+                )
             }
         }
     )
@@ -108,8 +109,9 @@ private fun ObserveNetworkStateHandlerProducts(
 
 @Composable
 private fun ProductsResult(
-    productsResponseVO: ProductsResponseVO,
-    onItemSelected: (ProductResponseVO) -> Unit = {}
+    productsResponseVO: ProductsResponseVO? = null,
+    onItemSelected: (ProductResponseVO) -> Unit = {},
+    showEmptyList: () -> Unit = {}
 ) {
     Column {
         ListProducts(
@@ -118,7 +120,8 @@ private fun ProductsResult(
                 .weight(weight = WEIGHT_SIZE_4)
                 .padding(top = Themes.size.spaceSize12),
             products = productsResponseVO,
-            onItemSelected = onItemSelected
+            onItemSelected = onItemSelected,
+            showEmptyList = showEmptyList
         )
         PageIndicatorProducts(content = productsResponseVO)
     }

@@ -9,20 +9,21 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
+import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.SimpleText
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.components.ui.TextPassword
 import br.com.conding.tv.components.ui.Title
+import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.account.data.dto.PasswordRequestDTO
 import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.CONFIRM_PASSWORD
 import br.com.conding.tv.resources.GenericsStrings.CREATE_NEW_PASSWORD
 import br.com.conding.tv.resources.GenericsStrings.EMAIL
@@ -82,7 +83,7 @@ internal fun ResetPasswordScreen(
                     confirmPassword = it.second
                 }
             )
-            ObserveNetworkStateHandlerResetPassword(
+            UiResponseResetPasswordScreen(
                 viewModel = viewModel,
                 goToSignInScreen = goToSignInScreen,
                 onError = {
@@ -173,19 +174,19 @@ private fun checkDataResetPassword(
 }
 
 @Composable
-private fun ObserveNetworkStateHandlerResetPassword(
+private fun UiResponseResetPasswordScreen(
     viewModel: AccountViewModel,
     goToSignInScreen: () -> Unit = {},
     goToHomeScreen: () -> Unit = {},
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
-    val resetState: ObserveNetworkStateHandler<Unit> by remember { viewModel.createNewPassword }
-    ObserveNetworkStateHandler(
-        state = resetState,
+    val uiStateCreateNewPassword: UiState<Unit> by viewModel.createNewPassword.collectAsStateWithLifecycle()
+    UiResponse(
+        state = uiStateCreateNewPassword,
         onError = {
-            onError(Triple(first = true, second = false, third = it))
-            if (it == EXPIRED_CODE) {
+            onError(it)
+            if (it.third == EXPIRED_CODE) {
                 goToSignInScreen()
             }
         },
@@ -194,15 +195,12 @@ private fun ObserveNetworkStateHandlerResetPassword(
             onError(Triple(first = false, second = false, third = EMPTY_TEXT))
         }
     )
-    val state: ObserveNetworkStateHandler<TokenResponseDTO> by remember { viewModel.signIn }
-    ObserveNetworkStateHandler(
-        state = state,
-        onError = {
-            onError(Triple(first = true, second = false, third = it))
-        },
+    val uiStateSignIn: UiState<TokenResponseDTO> by viewModel.signIn.collectAsStateWithLifecycle()
+    UiResponse(
+        state = uiStateSignIn,
+        onError = onError,
         goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
-            onError(Triple(first = false, second = false, third = EMPTY_TEXT))
             goToHomeScreen()
         }
     )

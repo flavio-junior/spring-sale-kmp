@@ -10,7 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.ui.Title
-import br.com.conding.tv.features.account.ui.view.ObserveNetworkStateHandlerGetTokenSaved
+import br.com.conding.tv.features.account.ui.view.UiResponseGetTokenSaved
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.resources.GenericsStrings
 import br.com.conding.tv.theme.Themes
@@ -57,7 +57,7 @@ internal fun DesktopSplashScreen(
     LaunchedEffect(Unit) {
         viewModel.getToken()
     }
-    ObserveNetworkStateHandlerGetTokenSaved(
+    UiResponseGetTokenSaved(
         viewModel = viewModel,
         goToSignInScreen = goToSignInScreen,
         goToHomeScreen = goToHomeScreen

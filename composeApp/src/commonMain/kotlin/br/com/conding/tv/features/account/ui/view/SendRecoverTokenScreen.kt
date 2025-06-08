@@ -10,19 +10,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
+import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.SimpleText
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.components.ui.Title
+import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.account.data.dto.EmailRequestDTO
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.features.account.ui.viewmodel.ResetAccount
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.ENTER_YOUR_ACCOUNT
 import br.com.conding.tv.resources.GenericsStrings.INVALID_EMAIL
@@ -76,7 +77,7 @@ internal fun SendRecoverTokenScreen(
                 onValueChange = { email = it },
                 onGo = { sendRecoverToken(email) }
             )
-            ObserveNetworkStateHandlerSendRecoverToken(
+            UiResponseSendRecoverTokenScreen(
                 viewModel = viewModel,
                 onError = {
                     observer = it
@@ -123,22 +124,21 @@ private fun checkSendRecoverToken(
 }
 
 @Composable
-private fun ObserveNetworkStateHandlerSendRecoverToken(
+private fun UiResponseSendRecoverTokenScreen(
     viewModel: AccountViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToCheckRecoverTokenToConfirmEmailScreen: () -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
-    val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.confirmEmailAddress }
-    ObserveNetworkStateHandler(
-        state = state,
+    val uiState: UiState<Unit> by viewModel.confirmEmailAddress.collectAsStateWithLifecycle()
+    UiResponse(
+        state = uiState,
         onError = {
-            onError(Triple(first = false, second = true, third = it))
+            onError(it)
             viewModel.resetStateSignIn(resetAccount = ResetAccount.SEND_RECOVER_PASSWORD)
         },
         goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
-            onError(Triple(first = false, second = false, third = EMPTY_TEXT))
             viewModel.resetStateSignIn(resetAccount = ResetAccount.SEND_RECOVER_PASSWORD)
             goToCheckRecoverTokenToConfirmEmailScreen()
         }

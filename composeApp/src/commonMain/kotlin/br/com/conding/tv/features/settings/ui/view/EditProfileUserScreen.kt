@@ -12,7 +12,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler2
+import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.settings.data.dto.UserRequestDTO
@@ -41,7 +41,7 @@ fun EditProfileUserScreen(
                 viewModel.getUserAuthenticated()
             }
             val uiState by viewModel.getUserAuthenticated.collectAsStateWithLifecycle()
-            ObserveNetworkStateHandler2(
+            UiResponse(
                 state = uiState,
                 onSuccess = {
                     CardProfileUser(
@@ -132,7 +132,7 @@ internal fun CardProfileUser(
             GenericsStrings.SAVE_DATA_USER
         }
     )
-    ObserveNetworkStateHandlerChangeInfoUser(
+    UiResponseChangeInfoUserScreen(
         viewModel = viewModel,
         onError = {
             observer = it
@@ -141,19 +141,16 @@ internal fun CardProfileUser(
 }
 
 @Composable
-private fun ObserveNetworkStateHandlerChangeInfoUser(
+private fun UiResponseChangeInfoUserScreen(
     viewModel: SettingViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {}
 ) {
     val uiState: UiState<Unit> by viewModel.changeInfoUser.collectAsStateWithLifecycle()
-    ObserveNetworkStateHandler2(
+    UiResponse(
         state = uiState,
-        onError = {
-            onError(Triple(first = false, second = true, third = it))
-        },
+        onError = onError,
         goToAlternativeRoutes = {},
         onSuccess = {
-            onError(Triple(first = false, second = false, third = EMPTY_TEXT))
             viewModel.getUserAuthenticated()
         }
     )

@@ -15,7 +15,7 @@ import br.com.conding.tv.components.ui.IconDefault
 import br.com.conding.tv.components.ui.SubTitle
 import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
-import br.com.conding.tv.features.home.ui.ObserveNetworkStateHandlerLogoutApp
+import br.com.conding.tv.features.home.ui.UiResponseLogoutApp
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.resources.GenericsStrings
@@ -84,7 +84,7 @@ fun MobileSettingsScreen(
     )
     if (logoutApp) {
         viewModel.cleanToken()
-        ObserveNetworkStateHandlerLogoutApp(
+        UiResponseLogoutApp(
             viewModel = viewModel,
             onSuccessful = {
                 goToNextScreen(AppDestinations.SignIn)

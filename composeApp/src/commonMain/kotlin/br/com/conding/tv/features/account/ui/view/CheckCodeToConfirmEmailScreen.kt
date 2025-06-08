@@ -8,17 +8,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
+import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.SimpleText
 import br.com.conding.tv.components.ui.Title
+import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.features.account.ui.viewmodel.ResetAccount
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.CREATE_MY_ACCOUNT
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.ENTER_YOUR_ACCOUNT
@@ -61,7 +62,7 @@ internal fun CheckCodeToConfirmEmailScreen(
                 onValueChange = { code = it },
                 checkCode = { code = it }
             )
-            ObserverStateCheckCodeToConfirmEmail(
+            UiResponseCheckCodeToConfirmEmailScreen(
                 viewModel = viewModel,
                 onError = {
                     state = it
@@ -91,17 +92,17 @@ internal fun CheckCodeToConfirmEmailScreen(
 }
 
 @Composable
-private fun ObserverStateCheckCodeToConfirmEmail(
+private fun UiResponseCheckCodeToConfirmEmailScreen(
     viewModel: AccountViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToSignUpScreen: () -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
-    val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.checkCodeAlreadyExists }
-    ObserveNetworkStateHandler(
-        state = state,
+    val uiState: UiState<Unit> by viewModel.checkCodeAlreadyExists.collectAsStateWithLifecycle()
+    UiResponse(
+        state = uiState,
         onError = {
-            onError(Triple(first = true, second = false, third = it))
+            onError(it)
             viewModel.resetStateSignIn(resetAccount = ResetAccount.CHECK_CODE_ALREADY_EXISTS)
         },
         goToAlternativeRoutes = {

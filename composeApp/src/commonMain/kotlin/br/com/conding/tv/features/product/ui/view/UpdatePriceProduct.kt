@@ -10,16 +10,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.ui.Alert
 import br.com.conding.tv.components.ui.Description
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
+import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.Price
+import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.product.data.dto.UpdatePriceProductRequestDTO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.features.product.ui.viewmodel.ResetProduct
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.resources.GenericsStrings.CONFIRM_UPDATE
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
@@ -45,7 +46,7 @@ fun UpdatePriceProduct(
     var price: String by remember { mutableStateOf(value = ZERO_DOUBLE) }
     var cleanText by remember { mutableStateOf(value = false) }
     var openDialog by remember { mutableStateOf(value = false) }
-    var observer: Triple<Boolean, Boolean, String> by remember {
+    var observer: Triple<Boolean, Boolean, String?> by remember {
         mutableStateOf(value = Triple(first = false, second = false, third = EMPTY_TEXT))
     }
     val checkUpdatePriceProduct = {
@@ -78,7 +79,7 @@ fun UpdatePriceProduct(
                 label = PRICE,
                 value = price,
                 isError = observer.second,
-                message = observer.third,
+                message = observer.third ?: EMPTY_TEXT,
                 cleanText = cleanText,
                 onCleanText = {
                     cleanText = it
@@ -113,7 +114,7 @@ fun UpdatePriceProduct(
                 }
             )
         }
-        ObserveNetworkStateHandlerUpdatePriceProduct(
+        UiResponseUpdatePriceProductScreen(
             viewModel = viewModel,
             onError = {
                 observer = it
@@ -129,25 +130,22 @@ fun UpdatePriceProduct(
 }
 
 @Composable
-private fun ObserveNetworkStateHandlerUpdatePriceProduct(
+private fun UiResponseUpdatePriceProductScreen(
     viewModel: ProductViewModel,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
-    onError: (Triple<Boolean, Boolean, String>) -> Unit = {},
+    onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     onSuccessful: () -> Unit = {}
 ) {
-    val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.updatePriceProduct }
-    ObserveNetworkStateHandler(
-        state = state,
+    val uiState: UiState<Unit> by viewModel.updatePriceProduct.collectAsStateWithLifecycle()
+    UiResponse(
+        state = uiState,
         onLoading = {},
-        onError = {
-            Triple(first = true, second = false, third = it)
-        },
+        onError = onError,
         goToAlternativeRoutes = {
             goToAlternativeRoutes(it)
             reloadViewModels()
         },
         onSuccess = {
-            onError(Triple(first = false, second = false, third = EMPTY_TEXT))
             viewModel.resetProduct(reset = ResetProduct.UPDATE_PRICE_PRODUCT)
             onSuccessful()
         }

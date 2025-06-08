@@ -25,17 +25,18 @@ import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Dialog
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.ui.Description
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
+import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.Search
 import br.com.conding.tv.components.ui.SimpleButton
 import br.com.conding.tv.components.ui.Tag
 import br.com.conding.tv.components.ui.Title
+import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.features.category.ui.viewmodel.ResetCategory
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.ADD_CATEGORIES
 import br.com.conding.tv.resources.GenericsStrings.CANCEL
 import br.com.conding.tv.resources.GenericsStrings.CONFIRM
@@ -108,7 +109,7 @@ fun SelectCategories(
                     }
                 }
             )
-            ObserveNetworkStateHandlerFindCategoryByName(
+            UiResponseFindCategoryByNameScreen(
                 viewModel = viewModel,
                 onError = {
                     observer = it
@@ -214,24 +215,23 @@ private fun FooterSelectCategories(
 }
 
 @Composable
-private fun ObserveNetworkStateHandlerFindCategoryByName(
+private fun UiResponseFindCategoryByNameScreen(
     viewModel: CategoryViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
     onSuccessful: (List<CategoryResponseDTO>) -> Unit = {}
 ) {
-    val state: ObserveNetworkStateHandler<List<CategoryResponseDTO>> by remember { viewModel.findCategoryByName }
-    ObserveNetworkStateHandler(
-        state = state,
+    val uiState: UiState<List<CategoryResponseDTO>?> by viewModel.findCategoryByName.collectAsStateWithLifecycle()
+    UiResponse(
+        state = uiState,
         onLoading = {},
-        onError = {
-                onError(Triple(first = false, second = true, third = it))
-        },
+        onError = onError,
         goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
-            onError(Triple(first = false, second = false, third = EMPTY_TEXT))
             viewModel.findAllCategories()
-            it.result?.let { result -> onSuccessful(result) }
+            if (it != null) {
+                onSuccessful(it)
+            }
         }
     )
 }

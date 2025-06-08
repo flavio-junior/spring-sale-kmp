@@ -84,7 +84,7 @@ actual fun HomeScreen(
                 }
                 if (callViewModel) {
                     viewModel.cleanToken()
-                    ObserveNetworkStateHandlerLogoutApp(
+                    UiResponseLogoutApp(
                         viewModel = viewModel,
                         onSuccessful = {
                             showOverlayPanel = false

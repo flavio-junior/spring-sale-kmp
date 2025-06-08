@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PageableDTO(
-    val pageNumber: Int
+    val pageNumber: Int? = 0
 )

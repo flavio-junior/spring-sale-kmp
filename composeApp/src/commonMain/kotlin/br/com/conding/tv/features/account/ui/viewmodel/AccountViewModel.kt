@@ -1,9 +1,8 @@
 package br.com.conding.tv.features.account.ui.viewmodel
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.account.data.dto.EmailRequestDTO
 import br.com.conding.tv.features.account.data.dto.PasswordRequestDTO
 import br.com.conding.tv.features.account.data.dto.SignInRequestDTO
@@ -17,7 +16,8 @@ import br.com.conding.tv.networking.resources.DescriptionError
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.INVALID_EMAIL
 import br.com.conding.tv.resources.validateEmail
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class AccountViewModel(
@@ -26,149 +26,171 @@ class AccountViewModel(
     private val converter: ConverterToken
 ) : ViewModel() {
 
-    private val _signIn =
-        mutableStateOf<ObserveNetworkStateHandler<TokenResponseDTO>>(
-            ObserveNetworkStateHandler.Loading(
-                l = false
-            )
-        )
-    val signIn: State<ObserveNetworkStateHandler<TokenResponseDTO>> = _signIn
+    private val _signIn = MutableStateFlow<UiState<TokenResponseDTO>>(UiState.Init)
+    val signIn = _signIn.asStateFlow()
 
-    private val _confirmEmailAddress =
-        mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
-    val confirmEmailAddress: State<ObserveNetworkStateHandler<Unit>> = _confirmEmailAddress
+    private val _confirmEmailAddress = MutableStateFlow<UiState<Unit>>(UiState.Init)
+    val confirmEmailAddress = _confirmEmailAddress.asStateFlow()
 
-    private val _checkCodeAlreadyExists =
-        mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
-    val checkCodeAlreadyExists: State<ObserveNetworkStateHandler<Unit>> = _checkCodeAlreadyExists
+    private val _checkCodeAlreadyExists = MutableStateFlow<UiState<Unit>>(UiState.Init)
+    val checkCodeAlreadyExists = _checkCodeAlreadyExists.asStateFlow()
 
-    private val _signUp =
-        mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
+    private val _signUp = MutableStateFlow<UiState<Unit>>(UiState.Init)
 
-    private val _checkRecoverPassword =
-        mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
-    val checkRecoverPassword: State<ObserveNetworkStateHandler<Unit>> = _checkRecoverPassword
+    private val _checkRecoverPassword = MutableStateFlow<UiState<Unit>>(UiState.Init)
+    val checkRecoverPassword = _checkRecoverPassword.asStateFlow()
 
-    private val _createNewPassword =
-        mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
-    val createNewPassword: State<ObserveNetworkStateHandler<Unit>> = _createNewPassword
+    private val _createNewPassword = MutableStateFlow<UiState<Unit>>(UiState.Init)
+    val createNewPassword = _createNewPassword.asStateFlow()
 
+    private val _getTokenSaved = MutableStateFlow<UiState<TokenResponseVO>>(UiState.Init)
+    val getTokenSaved = _getTokenSaved.asStateFlow()
 
-    private val _getTokenSaved =
-        mutableStateOf<ObserveNetworkStateHandler<TokenResponseVO>>(
-            ObserveNetworkStateHandler.Loading(
-                l = false
-            )
-        )
-    val getTokenSaved: State<ObserveNetworkStateHandler<TokenResponseVO>> = _getTokenSaved
-
-    private val _cleanToken =
-        mutableStateOf<ObserveNetworkStateHandler<Unit>>(ObserveNetworkStateHandler.Loading(l = false))
-    val cleanToken: State<ObserveNetworkStateHandler<Unit>> = _cleanToken
+    private val _cleanToken = MutableStateFlow<UiState<Unit>>(UiState.Init)
+    val cleanToken = _cleanToken.asStateFlow()
 
     fun signIn(signInRequestDTO: SignInRequestDTO) {
         viewModelScope.launch {
-            repository.signIn(signIn = signInRequestDTO)
-                .onStart {
-                    _signIn.value = ObserveNetworkStateHandler.Loading(l = true)
+            repository.signIn(signIn = signInRequestDTO).collect { response ->
+                when (response) {
+                    is ObserveNetworkStateHandler.Loading ->
+                        _signIn.value = UiState.Loading
+
+                    is ObserveNetworkStateHandler.Error ->
+                        _signIn.value = UiState.Error(error = response.exception)
+
+                    is ObserveNetworkStateHandler.Success -> {
+                        if (response.result != null) {
+                            saveToken(token = response.result)
+                            _signIn.value = UiState.OnSuccess(response = response.result)
+                        }
+                    }
                 }
-                .collect {
-                    _signIn.value = it
-                    it.result?.let { result -> saveToken(token = result) }
-                }
+            }
         }
     }
 
     fun confirmEmailAddress(email: EmailRequestDTO) {
         if (validateEmail(email = email.email)) {
             viewModelScope.launch {
-                repository.confirmEmailAddress(email = email)
-                    .onStart {
-                        _confirmEmailAddress.value = ObserveNetworkStateHandler.Loading(l = true)
+                repository.confirmEmailAddress(email = email).collect { response ->
+                    when (response) {
+                        is ObserveNetworkStateHandler.Loading ->
+                            _confirmEmailAddress.value = UiState.Loading
+
+                        is ObserveNetworkStateHandler.Error ->
+                            _confirmEmailAddress.value = UiState.Error(error = response.exception)
+
+                        is ObserveNetworkStateHandler.Success ->
+                            _confirmEmailAddress.value = UiState.OnSuccess(response = Unit)
                     }
-                    .collect {
-                        _confirmEmailAddress.value = it
-                    }
+                }
             }
         } else {
-            _confirmEmailAddress.value = ObserveNetworkStateHandler.Error(
-                e = DescriptionError(
-                    message = INVALID_EMAIL
-                )
-            )
+            _confirmEmailAddress.value =
+                UiState.Error(error = DescriptionError(message = INVALID_EMAIL))
         }
     }
 
     fun checkCodeAlreadyExists(code: String) {
         viewModelScope.launch {
-            repository.checkCodeAlreadyExists(code = code)
-                .onStart {
-                    _checkCodeAlreadyExists.value = ObserveNetworkStateHandler.Loading(l = true)
+            repository.checkCodeAlreadyExists(code = code).collect { response ->
+                when (response) {
+                    is ObserveNetworkStateHandler.Loading ->
+                        _checkCodeAlreadyExists.value = UiState.Loading
+
+                    is ObserveNetworkStateHandler.Error ->
+                        _checkCodeAlreadyExists.value = UiState.Error(error = response.exception)
+
+                    is ObserveNetworkStateHandler.Success ->
+                        _checkCodeAlreadyExists.value = UiState.OnSuccess(response = Unit)
                 }
-                .collect {
-                    _checkCodeAlreadyExists.value = it
-                }
+            }
         }
     }
 
     fun signUp(signUpRequestDTO: SignUpRequestDTO) {
         viewModelScope.launch {
-            repository.signUp(signUpRequestDTO = signUpRequestDTO)
-                .onStart {
-                    _signUp.value = ObserveNetworkStateHandler.Loading(l = true)
+            repository.signUp(signUpRequestDTO = signUpRequestDTO).collect { response ->
+                when (response) {
+                    is ObserveNetworkStateHandler.Loading ->
+                        _signUp.value = UiState.Loading
+
+                    is ObserveNetworkStateHandler.Error ->
+                        _signUp.value = UiState.Error(error = response.exception)
+
+                    is ObserveNetworkStateHandler.Success -> {
+                        val signIn = SignInRequestDTO(
+                            email = signUpRequestDTO.email,
+                            password = signUpRequestDTO.password
+                        )
+                        signIn(signInRequestDTO = signIn)
+                    }
                 }
-                .collect {
-                    val signIn = SignInRequestDTO(
-                        email = signUpRequestDTO.email,
-                        password = signUpRequestDTO.password
-                    )
-                    signIn(signInRequestDTO = signIn)
-                }
+            }
         }
     }
 
     fun sendRecoverPassword(email: EmailRequestDTO) {
         if (validateEmail(email = email.email)) {
             viewModelScope.launch {
-                repository.sendRecoverPassword(email = email)
-                    .onStart {
-                        _confirmEmailAddress.value = ObserveNetworkStateHandler.Loading(l = true)
+                repository.sendRecoverPassword(email = email).collect { response ->
+                    when (response) {
+                        is ObserveNetworkStateHandler.Loading ->
+                            _confirmEmailAddress.value = UiState.Loading
+
+                        is ObserveNetworkStateHandler.Error ->
+                            _confirmEmailAddress.value = UiState.Error(error = response.exception)
+
+                        is ObserveNetworkStateHandler.Success ->
+                            _confirmEmailAddress.value = UiState.OnSuccess(response = Unit)
                     }
-                    .collect {
-                        _confirmEmailAddress.value = it
-                    }
+                }
             }
         } else {
             _confirmEmailAddress.value =
-                ObserveNetworkStateHandler.Error(e = DescriptionError(message = INVALID_EMAIL))
+                UiState.Error(error = DescriptionError(message = INVALID_EMAIL))
         }
     }
 
     fun checkRecoverPassword(code: String) {
         viewModelScope.launch {
-            repository.checkRecoverPassword(code = code)
-                .onStart {
-                    _checkRecoverPassword.value = ObserveNetworkStateHandler.Loading(l = true)
+            repository.checkRecoverPassword(code = code).collect { response ->
+                when (response) {
+                    is ObserveNetworkStateHandler.Loading ->
+                        _checkRecoverPassword.value = UiState.Loading
+
+                    is ObserveNetworkStateHandler.Error ->
+                        _checkRecoverPassword.value = UiState.Error(error = response.exception)
+
+                    is ObserveNetworkStateHandler.Success ->
+                        _checkRecoverPassword.value = UiState.OnSuccess(response = Unit)
+
                 }
-                .collect {
-                    _checkRecoverPassword.value = it
-                }
+            }
         }
     }
 
     fun createNewPassword(passwordRequestDTO: PasswordRequestDTO) {
         viewModelScope.launch {
             repository.createNewPassword(passwordRequestDTO = passwordRequestDTO)
-                .onStart {
-                    _createNewPassword.value = ObserveNetworkStateHandler.Loading(l = true)
-                }
-                .collect {
-                    _createNewPassword.value = it
-                    val signIn = SignInRequestDTO(
-                        email = passwordRequestDTO.email,
-                        password = passwordRequestDTO.password
-                    )
-                    signIn(signInRequestDTO = signIn)
+                .collect { response ->
+                    when (response) {
+                        is ObserveNetworkStateHandler.Loading ->
+                            _createNewPassword.value = UiState.Loading
+
+                        is ObserveNetworkStateHandler.Error ->
+                            _createNewPassword.value = UiState.Error(error = response.exception)
+
+                        is ObserveNetworkStateHandler.Success -> {
+                            _createNewPassword.value = UiState.OnSuccess(response = Unit)
+                            val signIn = SignInRequestDTO(
+                                email = passwordRequestDTO.email,
+                                password = passwordRequestDTO.password
+                            )
+                            signIn(signInRequestDTO = signIn)
+                        }
+                    }
                 }
         }
     }
@@ -177,7 +199,7 @@ class AccountViewModel(
         viewModelScope.launch {
             localStorage.saveToken(
                 converter.converterTokenRequestDTOToTokenResponseVO(
-                    token
+                    tokenResponseDTO = token
                 )
             )
         }
@@ -185,42 +207,42 @@ class AccountViewModel(
 
     fun getToken() {
         viewModelScope.launch {
-            _getTokenSaved.value = ObserveNetworkStateHandler.Loading(l = true)
+            _getTokenSaved.value = UiState.Loading
             val token = localStorage.getToken()
-            _getTokenSaved.value = ObserveNetworkStateHandler.Success(s = token)
+            _getTokenSaved.value = UiState.OnSuccess(response = token)
         }
     }
 
     fun cleanToken() {
         viewModelScope.launch {
-            _cleanToken.value = ObserveNetworkStateHandler.Loading(l = true)
+            _cleanToken.value = UiState.Loading
             localStorage.cleanToken()
-            _cleanToken.value = ObserveNetworkStateHandler.Success(s = Unit)
+            _cleanToken.value = UiState.OnSuccess(response = Unit)
         }
     }
 
     fun resetStateSignIn(resetAccount: ResetAccount) {
         when (resetAccount) {
             ResetAccount.SIGN_IN ->
-                _signIn.value = ObserveNetworkStateHandler.Loading(l = false)
+                _signIn.value = UiState.Init
 
             ResetAccount.CONFIRM_EMAIL_ADDRESS ->
-                _confirmEmailAddress.value = ObserveNetworkStateHandler.Loading(l = false)
+                _confirmEmailAddress.value = UiState.Init
 
             ResetAccount.CHECK_CODE_ALREADY_EXISTS ->
-                _checkCodeAlreadyExists.value = ObserveNetworkStateHandler.Loading(l = false)
+                _checkCodeAlreadyExists.value = UiState.Init
 
             ResetAccount.SIGN_UP ->
-                _signUp.value = ObserveNetworkStateHandler.Loading(l = false)
+                _signUp.value = UiState.Init
 
             ResetAccount.SEND_RECOVER_PASSWORD ->
-                _confirmEmailAddress.value = ObserveNetworkStateHandler.Loading(l = false)
+                _confirmEmailAddress.value = UiState.Init
 
             ResetAccount.CHECK_RECOVER_PASSWORD ->
-                _checkRecoverPassword.value = ObserveNetworkStateHandler.Loading(l = false)
+                _checkRecoverPassword.value = UiState.Init
 
             ResetAccount.CREATE_NEW_PASSWORD ->
-                _createNewPassword.value = ObserveNetworkStateHandler.Loading(l = false)
+                _createNewPassword.value = UiState.Init
         }
     }
 }

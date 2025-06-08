@@ -17,7 +17,7 @@ fun MobileListCategories(
     LaunchedEffect(key1 = Unit) {
         viewModel.findAllCategories()
     }
-    ObserveNetworkStateHandlerFindAllCategories(
+    UiResponseFindAllCategoriesScreen(
         viewModel = viewModel,
         goToAlternativeRoutes = {},
         onSuccess = { onSuccess ->

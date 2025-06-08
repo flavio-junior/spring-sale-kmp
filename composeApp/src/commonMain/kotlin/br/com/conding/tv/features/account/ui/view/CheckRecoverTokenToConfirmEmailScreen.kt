@@ -8,16 +8,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
+import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.SimpleText
 import br.com.conding.tv.components.ui.Title
+import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.CREATE_ONE_ACCOUNT
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.OR
@@ -60,7 +61,7 @@ internal fun CheckRecoverTokenToConfirmEmailScreen(
                 onValueChange = { code = it },
                 checkCode = { code = it }
             )
-            ObserverStateCheckRecoverTokenToConfirmEmail(
+            UiResponseCheckRecoverTokenToConfirmEmailScreen(
                 viewModel = viewModel,
                 onError = {
                     observer = it
@@ -90,21 +91,18 @@ internal fun CheckRecoverTokenToConfirmEmailScreen(
 }
 
 @Composable
-private fun ObserverStateCheckRecoverTokenToConfirmEmail(
+private fun UiResponseCheckRecoverTokenToConfirmEmailScreen(
     viewModel: AccountViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToCreateNewPasswordScreen: () -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
-    val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.checkRecoverPassword }
-    ObserveNetworkStateHandler(
-        state = state,
-        onError = {
-            onError(Triple(first = true, second = false, third = it))
-        },
+    val uiState: UiState<Unit> by viewModel.checkRecoverPassword.collectAsStateWithLifecycle()
+    UiResponse(
+        state = uiState,
+        onError = onError,
         goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
-            onError(Triple(first = false, second = false, third = EMPTY_TEXT))
             goToCreateNewPasswordScreen()
         }
     )

@@ -47,7 +47,7 @@ fun DesktopCardCategories(
         LaunchedEffect(key1 = Unit) {
             viewModel.findAllCategories()
         }
-        ObserveNetworkStateHandlerFindAllCategories(
+        UiResponseFindAllCategoriesScreen(
             viewModel = viewModel,
             goToAlternativeRoutes = {
                 goToAlternativeRoutes(it)

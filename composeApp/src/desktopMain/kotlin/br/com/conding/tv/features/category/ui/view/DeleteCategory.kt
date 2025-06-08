@@ -41,7 +41,7 @@ fun DeleteCategory(
             },
             isEnabled = observer.first
         )
-        ObserveNetworkStateHandlerDeleteCategory(
+        UiResponseDeleteCategoryScreen(
             viewModel = viewModel,
             onError = {
                 onError(it)

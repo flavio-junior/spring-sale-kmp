@@ -12,19 +12,19 @@ class ConverterProduct(
 ) {
 
     fun converterContentDTOToVO(
-        content: ProductsResponseDTO
+        content: ProductsResponseDTO? = null
     ): ProductsResponseVO {
         return ProductsResponseVO(
-            totalPages = content.totalPages,
-            content = converterProductsResponseDTOToVO(products = content.content),
-            pageable = converterPageableDTOToVO(pageable = content.pageable)
+            totalPages = content?.totalPages,
+            content = converterProductsResponseDTOToVO(products = content?.content),
+            pageable = converterPageableDTOToVO(pageable = content?.pageable)
         )
     }
 
     private fun converterProductsResponseDTOToVO(
-        products: List<ProductResponseDTO>
-    ): List<ProductResponseVO> {
-        return products.map {
+        products: List<ProductResponseDTO>? = null
+    ): List<ProductResponseVO>? {
+        return products?.map {
             ProductResponseVO(
                 id = it.id,
                 name = it.name,

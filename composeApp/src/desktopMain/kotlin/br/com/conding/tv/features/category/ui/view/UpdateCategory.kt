@@ -131,7 +131,7 @@ fun UpdateCategory(
                 }
             )
         }
-        ObserveNetworkStateHandlerUpdateCategory(
+        UiResponseUpdateCategoryScreen(
             viewModel = viewModel,
             onError = {
                 observer = it

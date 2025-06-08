@@ -6,13 +6,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.ui.Alert
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
+import br.com.conding.tv.components.ui.UiResponse
+import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.features.product.ui.viewmodel.ResetProduct
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.resources.GenericsStrings.DELETE_PRODUCT
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
@@ -27,7 +28,7 @@ fun DeleteProduct(
 ) {
     val viewModel: ProductViewModel = getKoin().get()
     var openDialog by remember { mutableStateOf(value = false) }
-    var observer: Triple<Boolean, Boolean, String> by remember {
+    var observer: Triple<Boolean, Boolean, String?> by remember {
         mutableStateOf(value = Triple(first = false, second = false, third = EMPTY_TEXT))
     }
     LoadingButton(
@@ -51,7 +52,7 @@ fun DeleteProduct(
             }
         )
     }
-    ObserveNetworkStateHandlerUpdatePriceProduct(
+    UiResponseDeleteProductScreen(
         viewModel = viewModel,
         onError = {
             observer = it
@@ -65,25 +66,22 @@ fun DeleteProduct(
 }
 
 @Composable
-private fun ObserveNetworkStateHandlerUpdatePriceProduct(
+private fun UiResponseDeleteProductScreen(
     viewModel: ProductViewModel,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
-    onError: (Triple<Boolean, Boolean, String>) -> Unit = {},
+    onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     onSuccessful: () -> Unit = {}
 ) {
-    val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.deleteProduct }
-    ObserveNetworkStateHandler(
+    val state: UiState<Unit> by viewModel.deleteProduct.collectAsStateWithLifecycle()
+    UiResponse(
         state = state,
         onLoading = {},
-        onError = {
-            Triple(first = true, second = false, third = it)
-        },
+        onError = onError,
         goToAlternativeRoutes = {
             goToAlternativeRoutes(it)
             reloadViewModels()
         },
         onSuccess = {
-            onError(Triple(first = false, second = false, third = EMPTY_TEXT))
             viewModel.resetProduct(reset = ResetProduct.DELETE_PRODUCT)
             viewModel.findAllProducts()
             onSuccessful()

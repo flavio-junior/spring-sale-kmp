@@ -73,7 +73,7 @@ private fun SaveCategoryBottomSheet(
     var observer: Triple<Boolean, Boolean, String?> by remember {
         mutableStateOf(Triple(first = false, second = false, third = EMPTY_TEXT))
     }
-    ObserveNetworkStateHandlerCreateNewCategory(
+    UiResponseCreateNewCategoryScreen(
         viewModel = viewModel,
         onError = {
             observer = it

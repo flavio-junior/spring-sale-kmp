@@ -9,19 +9,20 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
+import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.SimpleText
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.components.ui.TextPassword
+import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.account.data.dto.SignUpRequestDTO
 import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.resources.GenericsStrings.CONFIRM_PASSWORD
 import br.com.conding.tv.resources.GenericsStrings.CREATE_MY_ACCOUNT
 import br.com.conding.tv.resources.GenericsStrings.EMAIL
@@ -73,7 +74,7 @@ internal fun SignUpScreen(
                     confirmPassword = it.second
                 }
             )
-            ObserveNetworkStateHandlerSignUp(
+            UiResponseSignUpScreen(
                 viewModel = viewModel,
                 onError = {
                     observer = it
@@ -159,18 +160,16 @@ private fun checkDataSignUp(
 }
 
 @Composable
-private fun ObserveNetworkStateHandlerSignUp(
+private fun UiResponseSignUpScreen(
     viewModel: AccountViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToHomeScreen: () -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
-    val state: ObserveNetworkStateHandler<TokenResponseDTO> by remember { viewModel.signIn }
-    ObserveNetworkStateHandler(
-        state = state,
-        onError = {
-            onError(Triple(first = false, second = true, third = it))
-        },
+    val uiState: UiState<TokenResponseDTO> by viewModel.signIn.collectAsStateWithLifecycle()
+    UiResponse(
+        state = uiState,
+        onError = onError,
         goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
             onError(Triple(first = false, second = false, third = EMPTY_TEXT))

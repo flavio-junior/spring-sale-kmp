@@ -78,7 +78,7 @@ fun SaveCategory(
                 isEnabled = observer.first,
                 modifier = modifier.weight(weight = WEIGHT_SIZE)
             )
-            ObserveNetworkStateHandlerCreateNewCategory(
+            UiResponseCreateNewCategoryScreen(
                 viewModel = viewModel,
                 onError = {
                     observer = it

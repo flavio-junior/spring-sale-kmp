@@ -12,16 +12,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.ui.Alert
 import br.com.conding.tv.components.ui.Description
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.ObserveNetworkStateHandler
+import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.TextField
+import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.product.data.dto.RestockProductRequestDTO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.features.product.ui.viewmodel.ResetProduct
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.resources.GenericsStrings.CONFIRM_UPDATE
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
@@ -44,7 +45,7 @@ fun RestockProduct(
     val viewModel: ProductViewModel = getKoin().get()
     var quantity: Int by remember { mutableIntStateOf(value = NUMBER_ZERO) }
     var openDialog by remember { mutableStateOf(value = false) }
-    var observer: Triple<Boolean, Boolean, String> by remember {
+    var observer: Triple<Boolean, Boolean, String?> by remember {
         mutableStateOf(value = Triple(first = false, second = false, third = EMPTY_TEXT))
     }
     val checkRestockProduct = {
@@ -73,7 +74,7 @@ fun RestockProduct(
                 label = QUANTITY,
                 value = quantity.toString(),
                 isError = observer.second,
-                message = observer.third,
+                message = observer.third ?: EMPTY_TEXT,
                 keyboardType = KeyboardType.Number,
                 onValueChange = {
                     quantity = it.toIntOrNull() ?: NUMBER_ZERO
@@ -106,7 +107,7 @@ fun RestockProduct(
             }
         )
     }
-    ObserveNetworkStateHandlerRestockProduct(
+    UiResponseRestockProductScreen(
         viewModel = viewModel,
         onError = {
             observer = it
@@ -121,25 +122,22 @@ fun RestockProduct(
 }
 
 @Composable
-private fun ObserveNetworkStateHandlerRestockProduct(
+private fun UiResponseRestockProductScreen(
     viewModel: ProductViewModel,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
-    onError: (Triple<Boolean, Boolean, String>) -> Unit = {},
+    onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     onSuccessful: () -> Unit = {}
 ) {
-    val state: ObserveNetworkStateHandler<Unit> by remember { viewModel.restockProduct }
-    ObserveNetworkStateHandler(
+    val state: UiState<Unit> by viewModel.restockProduct.collectAsStateWithLifecycle()
+    UiResponse(
         state = state,
         onLoading = {},
-        onError = {
-            Triple(first = true, second = false, third = it)
-        },
+        onError = onError,
         goToAlternativeRoutes = {
             goToAlternativeRoutes(it)
             reloadViewModels()
         },
         onSuccess = {
-            onError(Triple(first = false, second = false, third = EMPTY_TEXT))
             viewModel.resetProduct(reset = ResetProduct.RESTOCK_PRODUCT)
             onSuccessful()
         }
