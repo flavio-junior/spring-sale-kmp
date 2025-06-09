@@ -13,7 +13,7 @@ import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-fun PageIndicatorCategories(
+internal fun PageIndicatorCategories(
     modifier: Modifier = Modifier,
     categoriesResponseVO: CategoriesResponseVO? = null
 ) {

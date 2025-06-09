@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserResponseDTO(
+internal data class UserResponseDTO(
     @SerialName(value = "id")
     var id: Long? = 0,
     @SerialName(value = "name")

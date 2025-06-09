@@ -1,6 +1,6 @@
 package br.com.conding.tv.features.utils
 
-enum class TypeLayout {
+internal enum class TypeLayout {
     BOX,
     COLUMN,
     ROW

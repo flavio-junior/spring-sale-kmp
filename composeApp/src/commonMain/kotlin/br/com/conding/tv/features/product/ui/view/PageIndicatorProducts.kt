@@ -12,7 +12,7 @@ import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE_2
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-fun PageIndicatorProducts(
+internal fun PageIndicatorProducts(
     modifier: Modifier = Modifier,
     content: ProductsResponseVO? = null
 ) {

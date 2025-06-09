@@ -4,7 +4,7 @@ import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ProductRequestDTO(
+internal data class ProductRequestDTO(
     val name: String,
     val categories: List<CategoryResponseDTO>,
     val price: Double,

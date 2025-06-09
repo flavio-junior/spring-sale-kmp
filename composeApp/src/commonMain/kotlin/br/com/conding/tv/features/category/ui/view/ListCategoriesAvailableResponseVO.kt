@@ -20,7 +20,7 @@ import br.com.conding.tv.theme.Themes
 import kotlinx.coroutines.launch
 
 @Composable
-fun ListCategoriesAvailableResponseVO(
+internal fun ListCategoriesAvailableResponseVO(
     categories: List<CategoryResponseVO>? = null
 ) {
     Description(label = "$CATEGORIES:")

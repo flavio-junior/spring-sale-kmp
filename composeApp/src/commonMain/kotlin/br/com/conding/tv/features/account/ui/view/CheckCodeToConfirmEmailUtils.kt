@@ -16,7 +16,7 @@ import br.com.conding.tv.resources.GenericsStrings.VERIFY_CODE_SENT
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_FOUR
 
 @Composable
-fun GetCodeToConfirmEmail(
+internal fun GetCodeToConfirmEmail(
     code: String,
     onError: Pair<Boolean, String?>,
     onValueChange: (String) -> Unit = {},
@@ -58,7 +58,7 @@ internal fun checkCodeToConfirmEmail(
 }
 
 @Composable
-fun PasteCodeToConfirmEmail(
+internal fun PasteCodeToConfirmEmail(
     onClick: () -> Unit = {}
 ) {
     SimpleButton(
@@ -68,7 +68,7 @@ fun PasteCodeToConfirmEmail(
 }
 
 @Composable
-fun CheckCodeToConfirmEmail(
+internal fun CheckCodeToConfirmEmail(
     onClick: () -> Unit = {},
     isEnabled: Boolean = false
 ) {

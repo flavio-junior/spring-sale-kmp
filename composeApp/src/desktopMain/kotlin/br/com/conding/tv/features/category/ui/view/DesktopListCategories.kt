@@ -121,7 +121,7 @@ fun DesktopHeaderCategoriesPanel(
 }
 
 @Composable
-fun DesktopItemCategory(
+internal fun DesktopItemCategory(
     index: Int,
     selected: Boolean = false,
     modifier: Modifier = Modifier,

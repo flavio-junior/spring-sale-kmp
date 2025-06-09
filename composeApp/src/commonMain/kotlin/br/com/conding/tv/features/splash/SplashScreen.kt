@@ -16,7 +16,7 @@ import springsale.composeapp.generated.resources.Res
 import springsale.composeapp.generated.resources.coding_tv
 
 @Composable
-expect fun SplashScreen(
+internal expect fun SplashScreen(
     goToSignInScreen: () -> Unit = {},
     goToHomeScreen: () -> Unit = {}
 )

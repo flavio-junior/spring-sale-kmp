@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserRequestDTO(
+internal data class UserRequestDTO(
     var name: String? = null,
     @SerialName(value = "surname")
     var surname: String? = null,

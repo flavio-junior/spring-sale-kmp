@@ -4,7 +4,7 @@ import br.com.conding.tv.features.others.dto.PageableDTO
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CategoriesResponseDTO(
+internal data class CategoriesResponseDTO(
     val totalPages: Int? = 0,
     val content: List<CategoryResponseDTO>? = null,
     val pageable: PageableDTO? = null

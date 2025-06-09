@@ -1,6 +1,6 @@
 package br.com.conding.tv.features.product.utils
 
-fun checkBodyProductIsNull(
+internal fun checkBodyProductIsNull(
     name: String,
     price: Double,
     quantity: Int

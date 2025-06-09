@@ -26,7 +26,7 @@ import br.com.conding.tv.resources.isNotBlankAndEmpty
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-fun EditProfileUserScreen(
+internal fun EditProfileUserScreen(
     goToBackScreen: () -> Unit = {}
 ) {
     ContentScreen(

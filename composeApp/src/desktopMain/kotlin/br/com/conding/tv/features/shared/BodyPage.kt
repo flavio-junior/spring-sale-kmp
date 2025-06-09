@@ -13,7 +13,7 @@ import br.com.conding.tv.features.utils.TypeLayout
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun BodyPage(
+internal fun BodyPage(
     modifier: Modifier = Modifier,
     alignment: Alignment = Alignment.Center,
     typeLayout: TypeLayout = TypeLayout.COLUMN,

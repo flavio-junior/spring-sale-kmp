@@ -4,7 +4,7 @@ import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UpdateProductRequestDTO(
+internal data class UpdateProductRequestDTO(
     val id: Long,
     val name: String,
     val categories: List<CategoryResponseDTO>,

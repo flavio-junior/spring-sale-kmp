@@ -11,7 +11,7 @@ import br.com.conding.tv.features.product.ui.view.ProductsScreen
 import br.com.conding.tv.features.settings.ui.view.SettingsScreen
 
 @Composable
-fun NavigationRail(
+internal fun NavigationRail(
     modifier: Modifier,
     navController: NavHostController,
     navGraph: NavHostController

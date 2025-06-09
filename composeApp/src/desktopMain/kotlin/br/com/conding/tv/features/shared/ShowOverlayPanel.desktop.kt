@@ -25,7 +25,7 @@ import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 
 @Composable
-actual fun ShowOverlayPanel(
+internal actual fun ShowOverlayPanel(
     onCloseProgram: () -> Unit,
     onChangeAccountRequest: () -> Unit,
     onDismissRequest: () -> Unit

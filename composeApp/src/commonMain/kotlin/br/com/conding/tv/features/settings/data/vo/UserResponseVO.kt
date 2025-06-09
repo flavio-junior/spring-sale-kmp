@@ -1,6 +1,6 @@
 package br.com.conding.tv.features.settings.data.vo
 
-data class UserResponseVO(
+internal data class UserResponseVO(
     var id: Long? = 0,
     var name: String? = "",
     var surname: String? = "",

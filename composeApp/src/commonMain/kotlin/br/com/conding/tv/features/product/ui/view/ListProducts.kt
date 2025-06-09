@@ -47,7 +47,7 @@ import br.com.conding.tv.theme.Themes
 import kotlinx.coroutines.launch
 
 @Composable
-fun ListProducts(
+internal fun ListProducts(
     modifier: Modifier = Modifier,
     products: ProductsResponseVO? = null,
     onItemSelected: (ProductResponseVO) -> Unit = {},
@@ -102,7 +102,7 @@ fun ListProducts(
 }
 
 @Composable
-fun HeaderProductsPanel(
+internal fun HeaderProductsPanel(
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -153,7 +153,7 @@ fun HeaderProductsPanel(
 }
 
 @Composable
-fun ItemProduct(
+internal fun ItemProduct(
     index: Int,
     selected: Boolean = false,
     modifier: Modifier = Modifier,

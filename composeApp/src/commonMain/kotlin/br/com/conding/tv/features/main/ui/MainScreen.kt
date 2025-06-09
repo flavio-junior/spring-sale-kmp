@@ -9,7 +9,7 @@ import br.com.conding.tv.navigation.Navigation
 import br.com.conding.tv.theme.Theme
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
+internal fun MainScreen(modifier: Modifier = Modifier) {
     Surface(modifier = modifier.fillMaxSize()) {
         Theme {
             Navigation(startDestination = AppDestinations.SplashScreen)

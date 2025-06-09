@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PasswordRequestDTO(
+internal data class PasswordRequestDTO(
     @SerialName(value = "email")
     var email: String,
     @SerialName(value = "password")
