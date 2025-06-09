@@ -10,7 +10,7 @@ import br.com.conding.tv.features.account.domain.converter.ConverterAccount
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import org.koin.dsl.module
 
-val accountModule = module {
+internal val accountModule = module {
     single<AccountApiService> { AccountApiServiceImpl(httpClient = get()) }
     single<AccountRemoteDataSource> { AccountRemoteDataSourceImpl(accountApiService = get()) }
     single<AccountRepository> { AccountRepositoryImpl(accountRemoteDataSource = get()) }

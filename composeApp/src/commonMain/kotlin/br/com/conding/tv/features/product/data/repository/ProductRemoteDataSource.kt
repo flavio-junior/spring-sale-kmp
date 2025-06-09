@@ -22,7 +22,7 @@ import io.ktor.http.path
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.runBlocking
 
-class ProductRemoteDataSource(
+internal class ProductRemoteDataSource(
     private val httpClient: HttpClient,
     private val localStorage: LocalStorage
 ) : ProductRepository {

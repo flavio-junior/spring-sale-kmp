@@ -11,7 +11,7 @@ import br.com.conding.tv.resources.GenericsStrings.EMPTY_LIST_CATEGORIES
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun MobileListCategories(
+internal fun MobileListCategories(
     viewModel: CategoryViewModel
 ) {
     LaunchedEffect(key1 = Unit) {

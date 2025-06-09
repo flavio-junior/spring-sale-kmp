@@ -11,7 +11,7 @@ import br.com.conding.tv.features.settings.ui.viewmodel.SettingViewModel
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
-val settingsModule = module {
+internal val settingsModule = module {
     single<SettingsApiService> { SettingsApiServiceImpl(httpClient = get(), localStorage = get()) }
     single<SettingsRemoteDataSource> { SettingsRemoteDataSourceImpl(settingsApiService = get()) }
     single<SettingsRepository> { SettingsRepositoryImpl(settingsRemoteDataSource = get()) }

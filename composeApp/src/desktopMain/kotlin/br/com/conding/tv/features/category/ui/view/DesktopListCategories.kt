@@ -39,7 +39,7 @@ import br.com.conding.tv.theme.Themes
 import kotlinx.coroutines.launch
 
 @Composable
-fun DesktopListCategories(
+internal fun DesktopListCategories(
     modifier: Modifier = Modifier,
     categoriesResponseVO: CategoriesResponseVO? = null,
     onItemSelected: (CategoryResponseVO) -> Unit

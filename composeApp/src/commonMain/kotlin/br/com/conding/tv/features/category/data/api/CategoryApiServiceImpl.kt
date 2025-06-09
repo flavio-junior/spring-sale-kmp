@@ -1,4 +1,4 @@
-package br.com.conding.tv.features.category.data.repository
+package br.com.conding.tv.features.category.data.api
 
 import br.com.conding.tv.features.account.data.datasource.local.LocalStorage
 import br.com.conding.tv.features.category.data.dto.CategoriesResponseDTO
@@ -21,10 +21,10 @@ import io.ktor.http.path
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.runBlocking
 
-class CategoryRemoteDataSource(
+internal class CategoryApiServiceImpl(
     private val httpClient: HttpClient,
     private val localStorage: LocalStorage
-) : CategoryRepository {
+): CategoryApiService {
 
     private val accessToken = runBlocking {
         localStorage.getToken().accessToken

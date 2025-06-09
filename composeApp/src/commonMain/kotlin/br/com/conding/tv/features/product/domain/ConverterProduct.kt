@@ -7,7 +7,7 @@ import br.com.conding.tv.features.product.data.dto.ProductsResponseDTO
 import br.com.conding.tv.features.product.data.vo.ProductResponseVO
 import br.com.conding.tv.features.product.data.vo.ProductsResponseVO
 
-class ConverterProduct(
+internal class ConverterProduct(
     private val converter: ConverterCategory
 ) {
 

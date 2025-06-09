@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class ProductViewModel(
+internal class ProductViewModel(
     private val repository: ProductRepository,
     private val converter: ConverterProduct
 ) : ViewModel() {

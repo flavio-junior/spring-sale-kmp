@@ -40,7 +40,7 @@ enum class TypeScreen {
     SIGN_UP
 }
 
-fun checkCodeToConfirmEmail(
+internal fun checkCodeToConfirmEmail(
     data: Pair<String, AccountViewModel>,
     route: TypeScreen,
     onError: (Triple<Boolean, Boolean, String>) -> Unit = {}

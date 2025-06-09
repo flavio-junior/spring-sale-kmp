@@ -8,7 +8,7 @@ import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import kotlinx.coroutines.flow.Flow
 
-interface AccountRepository {
+internal interface AccountRepository {
     suspend fun signIn(signIn: SignInRequestDTO): Flow<ObserveNetworkStateHandler<TokenResponseDTO>>
     suspend fun confirmEmailAddress(email: EmailRequestDTO): Flow<ObserveNetworkStateHandler<Unit>>
     suspend fun checkCodeAlreadyExists(code: String): Flow<ObserveNetworkStateHandler<Unit>>

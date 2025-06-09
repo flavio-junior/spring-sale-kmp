@@ -32,7 +32,7 @@ import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-fun SaveCategory(
+internal fun SaveCategory(
     modifier: Modifier = Modifier,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {

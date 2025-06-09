@@ -15,7 +15,7 @@ import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import kotlinx.coroutines.flow.Flow
 
-class AccountApiServiceImpl(
+internal class AccountApiServiceImpl(
     private val httpClient: HttpClient
 ) : AccountApiService {
 

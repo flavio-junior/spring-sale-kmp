@@ -7,7 +7,7 @@ import br.com.conding.tv.features.account.data.datasource.local.LocalStorageImpl
 import br.com.conding.tv.storage.createDataStore
 import org.koin.dsl.module
 
-val commonModule = module {
+internal val commonModule = module {
     single<LocalStorage> {
         LocalStorageImpl(dataStore = get())
     }

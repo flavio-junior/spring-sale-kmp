@@ -9,7 +9,7 @@ import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.networking.resources.reloadViewModels
 
 @Composable
-fun UiResponseLogoutApp(
+internal fun UiResponseLogoutApp(
     viewModel: AccountViewModel,
     onSuccessful: () -> Unit = {}
 ) {

@@ -18,7 +18,7 @@ import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun DeleteCategory(
+internal fun DeleteCategory(
     viewModel: CategoryViewModel,
     id: Long,
     modifier: Modifier = Modifier,

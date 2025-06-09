@@ -39,7 +39,7 @@ import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-fun UpdateCategory(
+internal fun UpdateCategory(
     modifier: Modifier = Modifier,
     categoryVO: CategoryResponseVO,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},

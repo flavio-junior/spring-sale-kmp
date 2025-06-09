@@ -12,7 +12,7 @@ import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.reloadViewModels
 
 @Composable
-fun UiResponseFindAllCategoriesScreen(
+internal fun UiResponseFindAllCategoriesScreen(
     viewModel: CategoryViewModel,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
     onSuccess: @Composable (CategoriesResponseVO?) -> Unit = {}
@@ -28,7 +28,7 @@ fun UiResponseFindAllCategoriesScreen(
 }
 
 @Composable
-fun UiResponseCreateNewCategoryScreen(
+internal fun UiResponseCreateNewCategoryScreen(
     viewModel: CategoryViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
@@ -51,7 +51,7 @@ fun UiResponseCreateNewCategoryScreen(
 }
 
 @Composable
-fun UiResponseUpdateCategoryScreen(
+internal fun UiResponseUpdateCategoryScreen(
     viewModel: CategoryViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
@@ -71,7 +71,7 @@ fun UiResponseUpdateCategoryScreen(
 }
 
 @Composable
-fun UiResponseDeleteCategoryScreen(
+internal fun UiResponseDeleteCategoryScreen(
     viewModel: CategoryViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},

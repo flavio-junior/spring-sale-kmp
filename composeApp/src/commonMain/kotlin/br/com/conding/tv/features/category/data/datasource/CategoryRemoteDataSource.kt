@@ -1,4 +1,4 @@
-package br.com.conding.tv.features.category.data.repository
+package br.com.conding.tv.features.category.data.datasource
 
 import br.com.conding.tv.features.category.data.dto.CategoriesResponseDTO
 import br.com.conding.tv.features.category.data.dto.CategoryNameRequestDTO
@@ -11,7 +11,7 @@ import br.com.conding.tv.theme.NumbersUtils.NUMBER_SIXTY
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import kotlinx.coroutines.flow.Flow
 
-internal interface CategoryRepository {
+internal interface CategoryRemoteDataSource {
     fun findAllCategories(
         name: String = EMPTY_TEXT,
         page: Int = NUMBER_ZERO,

@@ -8,7 +8,7 @@ import br.com.conding.tv.features.account.data.vo.TokenResponseVO
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
-class LocalStorageImpl(
+internal class LocalStorageImpl(
     private val dataStore: DataStore<Preferences>
 ) : LocalStorage {
 

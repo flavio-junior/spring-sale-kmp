@@ -6,7 +6,7 @@ import br.com.conding.tv.features.category.data.vo.CategoriesResponseVO
 import br.com.conding.tv.features.category.data.vo.CategoryResponseVO
 import br.com.conding.tv.features.others.converterPageableDTOToVO
 
-class ConverterCategory {
+internal class ConverterCategory {
 
     fun converterContentDTOToVO(
         content: CategoriesResponseDTO? = null

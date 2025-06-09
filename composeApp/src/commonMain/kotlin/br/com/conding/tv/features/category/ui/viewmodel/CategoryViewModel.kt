@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class CategoryViewModel(
+internal class CategoryViewModel(
     private val repository: CategoryRepository,
     private val converter: ConverterCategory
 ) : ViewModel() {

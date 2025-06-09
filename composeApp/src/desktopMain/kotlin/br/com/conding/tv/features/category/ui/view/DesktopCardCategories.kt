@@ -16,7 +16,7 @@ import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-fun DesktopCardCategories(
+internal fun DesktopCardCategories(
     modifier: Modifier = Modifier,
     onItemSelected: (CategoryResponseVO) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}

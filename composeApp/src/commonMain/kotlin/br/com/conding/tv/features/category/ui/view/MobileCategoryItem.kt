@@ -24,7 +24,7 @@ import br.com.conding.tv.resources.onClickable
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun MobileCategoryItem(
+internal fun MobileCategoryItem(
     viewModel: CategoryViewModel,
     categoryResponseVO: CategoryResponseVO
 ) {
