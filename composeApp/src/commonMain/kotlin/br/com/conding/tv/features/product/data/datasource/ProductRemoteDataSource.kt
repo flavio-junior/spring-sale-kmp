@@ -1,4 +1,4 @@
-package br.com.conding.tv.features.product.data.repository
+package br.com.conding.tv.features.product.data.datasource
 
 import br.com.conding.tv.features.product.data.dto.ProductRequestDTO
 import br.com.conding.tv.features.product.data.dto.ProductsResponseDTO
@@ -11,7 +11,7 @@ import br.com.conding.tv.theme.NumbersUtils.NUMBER_SIXTY
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import kotlinx.coroutines.flow.Flow
 
-internal interface ProductRepository {
+internal interface ProductRemoteDataSource {
     fun findAllProducts(
         name: String = EMPTY_TEXT,
         page: Int = NUMBER_ZERO,

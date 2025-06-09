@@ -1,4 +1,4 @@
-package br.com.conding.tv.features.product.data.repository
+package br.com.conding.tv.features.product.data.api
 
 import br.com.conding.tv.features.account.data.datasource.local.LocalStorage
 import br.com.conding.tv.features.product.data.dto.ProductRequestDTO
@@ -22,10 +22,10 @@ import io.ktor.http.path
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.runBlocking
 
-internal class ProductRemoteDataSource(
+internal class ProductApiServiceImpl(
     private val httpClient: HttpClient,
     private val localStorage: LocalStorage
-) : ProductRepository {
+) : ProductApiService {
 
     private val accessToken = runBlocking {
         localStorage.getToken().accessToken
@@ -41,13 +41,13 @@ internal class ProductRemoteDataSource(
             httpClient.get {
                 url {
                     path(path = arrayOf("/api/spring/sale/products/v1"))
-                    parameters.append(name= "name", value = name)
-                    parameters.append(name= "page", value = page.toString())
-                    parameters.append(name= "size", value = size.toString())
-                    parameters.append(name= "sort", value = sort)
+                    parameters.append(name = "name", value = name)
+                    parameters.append(name = "page", value = page.toString())
+                    parameters.append(name = "size", value = size.toString())
+                    parameters.append(name = "sort", value = sort)
                 }
                 headers {
-                    append(name= HttpHeaders.Authorization, value = "Bearer $accessToken")
+                    append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
                 }
             }
         }
@@ -60,7 +60,7 @@ internal class ProductRemoteDataSource(
             httpClient.post {
                 url(urlString = "/api/spring/sale/products/v1")
                 headers {
-                    append(name= HttpHeaders.Authorization, value = "Bearer $accessToken")
+                    append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
                 }
                 setBody(body = product)
             }
@@ -74,7 +74,7 @@ internal class ProductRemoteDataSource(
             httpClient.put {
                 url(urlString = "/api/spring/sale/products/v1")
                 headers {
-                    append(name= HttpHeaders.Authorization, value = "Bearer $accessToken")
+                    append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
                 }
                 setBody(body = product)
             }
@@ -89,7 +89,7 @@ internal class ProductRemoteDataSource(
             httpClient.patch {
                 url(urlString = "/api/spring/sale/products/v1/update/product/price/$id")
                 headers {
-                    append(name= HttpHeaders.Authorization, value = "Bearer $accessToken")
+                    append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
                 }
                 setBody(body = price)
             }
@@ -104,7 +104,7 @@ internal class ProductRemoteDataSource(
             httpClient.patch {
                 url(urlString = "/api/spring/sale/products/v1/restock/product/$id")
                 headers {
-                    append(name= HttpHeaders.Authorization, value = "Bearer $accessToken")
+                    append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
                 }
                 setBody(body = stock)
             }
@@ -118,7 +118,7 @@ internal class ProductRemoteDataSource(
             httpClient.delete {
                 url(urlString = "/api/spring/sale/products/v1/$id")
                 headers {
-                    append(name= HttpHeaders.Authorization, value = "Bearer $accessToken")
+                    append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
                 }
             }
         }

@@ -1,4 +1,4 @@
-package br.com.conding.tv.features.product.data.repository
+package br.com.conding.tv.features.product.data.api
 
 import br.com.conding.tv.features.product.data.dto.ProductRequestDTO
 import br.com.conding.tv.features.product.data.dto.ProductsResponseDTO
@@ -11,16 +11,25 @@ import br.com.conding.tv.theme.NumbersUtils.NUMBER_SIXTY
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import kotlinx.coroutines.flow.Flow
 
-internal interface ProductRepository {
+internal interface ProductApiService {
     fun findAllProducts(
         name: String = EMPTY_TEXT,
         page: Int = NUMBER_ZERO,
         size: Int = NUMBER_SIXTY,
         sort: String
     ): Flow<ObserveNetworkStateHandler<ProductsResponseDTO>>
+
     fun createNewProduct(product: ProductRequestDTO): Flow<ObserveNetworkStateHandler<Unit>>
     fun updateProduct(product: UpdateProductRequestDTO): Flow<ObserveNetworkStateHandler<Unit>>
-    fun updatePriceProduct(id: Long, price: UpdatePriceProductRequestDTO): Flow<ObserveNetworkStateHandler<Unit>>
-    fun restockProduct(id: Long, stock: RestockProductRequestDTO): Flow<ObserveNetworkStateHandler<Unit>>
+    fun updatePriceProduct(
+        id: Long,
+        price: UpdatePriceProductRequestDTO
+    ): Flow<ObserveNetworkStateHandler<Unit>>
+
+    fun restockProduct(
+        id: Long,
+        stock: RestockProductRequestDTO
+    ): Flow<ObserveNetworkStateHandler<Unit>>
+
     fun deleteProduct(id: Long): Flow<ObserveNetworkStateHandler<Unit>>
 }
