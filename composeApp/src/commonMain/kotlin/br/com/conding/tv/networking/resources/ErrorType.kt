@@ -1,6 +1,6 @@
 package br.com.conding.tv.networking.resources
 
-enum class ErrorType {
+internal enum class ErrorType {
     CLIENT,
     SERVER,
     INTERNAL,

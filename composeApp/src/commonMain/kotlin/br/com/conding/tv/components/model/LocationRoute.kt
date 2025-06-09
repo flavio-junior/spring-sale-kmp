@@ -1,6 +1,6 @@
 package br.com.conding.tv.components.model
 
-enum class LocationRoute {
+internal enum class LocationRoute {
     SEARCH,
     SORT,
     FILTER,

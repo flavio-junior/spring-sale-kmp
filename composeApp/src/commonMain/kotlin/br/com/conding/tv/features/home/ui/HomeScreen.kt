@@ -16,14 +16,14 @@ import br.com.conding.tv.resources.GenericsStrings.PROJECT_NAME
 import br.com.conding.tv.theme.Themes
 
 @Composable
-expect fun HomeScreen(
+internal expect fun HomeScreen(
     navGraph: NavHostController,
     goToNextScreen: (AppDestinations) -> Unit = {},
     goToLoginScreen: () -> Unit = {}
 )
 
 @Composable
-fun MobileHomeScreen(
+internal fun MobileHomeScreen(
     navGraph: NavHostController,
     goToNextScreen: (AppDestinations) -> Unit = {},
     goToLoginScreen: () -> Unit = {}

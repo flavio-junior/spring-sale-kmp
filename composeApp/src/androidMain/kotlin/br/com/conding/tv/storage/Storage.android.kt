@@ -10,7 +10,7 @@ internal object AndroidAppContextProvider : KoinComponent {
     val context: Context by inject()
 }
 
-actual fun createDataStore(): DataStore<Preferences> {
+internal actual fun createDataStore(): DataStore<Preferences> {
     val appContext = AndroidAppContextProvider.context.applicationContext
     return buildPreferencesDataStore(
         producePath = { appContext.filesDir.resolve(DATA_STORE_FILE_NAME).absolutePath }

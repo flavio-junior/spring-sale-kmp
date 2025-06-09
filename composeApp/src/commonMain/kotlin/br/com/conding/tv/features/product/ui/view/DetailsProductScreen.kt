@@ -27,7 +27,7 @@ import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun DetailsProductScreen(
+internal fun DetailsProductScreen(
     product: ProductResponseVO,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
     onRefresh: () -> Unit = {}
@@ -44,7 +44,7 @@ fun DetailsProductScreen(
 }
 
 @Composable
-fun DetailsProductBody(
+internal fun DetailsProductBody(
     product: ProductResponseVO,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
     onRefresh: () -> Unit = {}

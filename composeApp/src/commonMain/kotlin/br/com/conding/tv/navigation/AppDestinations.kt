@@ -2,7 +2,7 @@ package br.com.conding.tv.navigation
 
 import kotlinx.serialization.Serializable
 
-sealed interface AppDestinations {
+internal sealed interface AppDestinations {
 
     @Serializable
     data object SplashScreen : AppDestinations

@@ -24,7 +24,7 @@ import br.com.conding.tv.theme.Themes
 import br.com.conding.tv.theme.Typography
 
 @Composable
-fun TextField(
+internal fun TextField(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     label: String,

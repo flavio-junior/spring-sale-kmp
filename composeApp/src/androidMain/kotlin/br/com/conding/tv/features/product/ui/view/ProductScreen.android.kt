@@ -5,7 +5,7 @@ import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 
 @Composable
-actual fun ProductsScreen(
+internal actual fun ProductsScreen(
     goToBackScreen: () -> Unit,
     goToNextScreen: (AppDestinations) -> Unit,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit

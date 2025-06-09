@@ -8,7 +8,7 @@ import br.com.conding.tv.theme.NumbersUtils.NUMBER_TWO
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 
 @Composable
-fun ProductTabMain(
+internal fun ProductTabMain(
     index: Int,
     productsResponseVO: ProductResponseVO = ProductResponseVO(),
     onItemSelected: (ProductResponseVO) -> Unit = {},

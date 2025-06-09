@@ -17,7 +17,7 @@ import br.com.conding.tv.resources.onClickable
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun EmptyList(
+internal fun EmptyList(
     modifier: Modifier = Modifier,
     type: TypeSystem = TypeSystem.DESKTOP,
     title: String,

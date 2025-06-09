@@ -1,6 +1,6 @@
 package br.com.conding.tv.networking.resources
 
-object StatusCode {
+internal object StatusCode {
     const val NUMBER_200 = 200
     const val NUMBER_299 = 299
     const val NUMBER_400 = 400

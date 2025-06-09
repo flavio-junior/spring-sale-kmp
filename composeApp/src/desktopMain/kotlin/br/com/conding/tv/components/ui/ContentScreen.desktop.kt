@@ -15,7 +15,7 @@ import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 
 @Composable
-actual fun ContentScreen(
+internal actual fun ContentScreen(
     definitionsScreen: DefinitionsScreen,
     goToBackScreen: () -> Unit,
     goToNextScreen: () -> Unit,

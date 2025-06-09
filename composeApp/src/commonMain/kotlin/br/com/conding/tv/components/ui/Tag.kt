@@ -15,7 +15,7 @@ import br.com.conding.tv.theme.CommonColors.ITEM_SELECTED
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun <T> Tag(
+internal fun <T> Tag(
     text: String,
     value: T,
     enabled: Boolean = false,

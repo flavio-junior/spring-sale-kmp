@@ -25,7 +25,7 @@ import br.com.conding.tv.theme.Themes
 import br.com.conding.tv.theme.Typography
 
 @Composable
-fun Price(
+internal fun Price(
     enabled: Boolean = true,
     value: String,
     label: String? = null,

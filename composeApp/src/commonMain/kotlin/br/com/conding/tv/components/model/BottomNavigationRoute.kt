@@ -3,13 +3,13 @@ package br.com.conding.tv.components.model
 import br.com.conding.tv.resources.GenericsStrings
 import br.com.conding.tv.resources.IconName
 
-enum class BottomNavigationItem {
+internal enum class BottomNavigationItem {
     Categories,
     Products,
     SETTINGS
 }
 
-sealed class BottomNavigationRoute(
+internal sealed class BottomNavigationRoute(
     val label: String,
     val icon: IconName,
     val route: BottomNavigationItem

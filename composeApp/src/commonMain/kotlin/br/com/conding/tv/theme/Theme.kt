@@ -10,7 +10,7 @@ import br.com.conding.tv.theme.Themes.size
 import br.com.conding.tv.theme.Themes.typography
 
 @Composable
-fun Theme(
+internal fun Theme(
     content: @Composable () -> Unit
 ) {
     val isDarkTheme = isSystemInDarkTheme()
@@ -31,7 +31,7 @@ fun Theme(
     }
 }
 
-object Themes {
+internal object Themes {
     val colors: Colors
         @Composable @ReadOnlyComposable
         get() = LocalColors.current

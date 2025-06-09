@@ -26,7 +26,7 @@ import br.com.conding.tv.theme.Themes
 import br.com.conding.tv.theme.Typography
 
 @Composable
-fun Search(
+internal fun Search(
     modifier: Modifier = Modifier,
     value: String,
     isError: Boolean = false,

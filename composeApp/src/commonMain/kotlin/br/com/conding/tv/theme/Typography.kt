@@ -18,7 +18,7 @@ import springsale.composeapp.generated.resources.Res
 
 private val fontSize = FontSize
 
-data class Typography(
+internal data class Typography(
     val color: Color = Color.Black,
     val textAlign: TextAlign = TextAlign.Start,
     val typeFont: TypeFont? = null
@@ -115,7 +115,7 @@ data class Typography(
     )
 }
 
-val LocalTypography = staticCompositionLocalOf {
+internal val LocalTypography = staticCompositionLocalOf {
     Typography()
 }
 

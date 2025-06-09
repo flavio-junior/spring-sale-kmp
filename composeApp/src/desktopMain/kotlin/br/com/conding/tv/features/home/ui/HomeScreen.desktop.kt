@@ -29,7 +29,7 @@ import org.koin.mp.KoinPlatform.getKoin
 import kotlin.system.exitProcess
 
 @Composable
-actual fun HomeScreen(
+internal actual fun HomeScreen(
     navGraph: NavHostController,
     goToNextScreen: (AppDestinations) -> Unit,
     goToLoginScreen: () -> Unit

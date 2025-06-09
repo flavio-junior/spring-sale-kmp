@@ -13,7 +13,7 @@ import br.com.conding.tv.theme.Themes
 import androidx.compose.material3.Icon
 
 @Composable
-fun MiniButton(
+internal fun MiniButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     iconName: IconName = IconName.CREATE

@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-inline fun <reified T> toResultFlow(
+internal inline fun <reified T> toResultFlow(
     dispatcher: CoroutineDispatcher = Dispatchers.IO,
     crossinline call: suspend () -> HttpResponse
 ): Flow<ObserveNetworkStateHandler<T>> = flow {

@@ -14,7 +14,7 @@ import br.com.conding.tv.resources.onClickable
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun IconDefault(
+internal fun IconDefault(
     modifier: Modifier = Modifier,
     iconName: IconName,
     backgroundColor: Color = Themes.colors.background,

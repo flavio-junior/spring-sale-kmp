@@ -15,7 +15,7 @@ import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun SortBy(
+internal fun SortBy(
     onClick: (String) -> Unit = {}
 ) {
     var sortBy: Boolean by remember { mutableStateOf(value = false) }

@@ -5,7 +5,7 @@ import br.com.conding.tv.components.settings.TypeSystem
 import br.com.conding.tv.features.category.data.vo.CategoriesResponseVO
 
 @Composable
-fun CategoriesResult(
+internal fun CategoriesResult(
     categoriesResponseVO: CategoriesResponseVO? = null,
     system: TypeSystem = TypeSystem.DESKTOP,
     showDesktopScreen: @Composable (CategoriesResponseVO?) -> Unit = {},

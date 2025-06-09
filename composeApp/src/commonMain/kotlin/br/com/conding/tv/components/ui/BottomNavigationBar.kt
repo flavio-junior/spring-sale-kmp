@@ -16,7 +16,7 @@ import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun BottomNavigationBar(
+internal fun BottomNavigationBar(
     navController: NavHostController
 ) {
     NavigationBar(

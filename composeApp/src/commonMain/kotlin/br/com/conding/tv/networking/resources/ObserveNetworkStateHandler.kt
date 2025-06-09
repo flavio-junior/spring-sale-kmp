@@ -1,6 +1,6 @@
 package br.com.conding.tv.networking.resources
 
-sealed class ObserveNetworkStateHandler<T>(
+internal sealed class ObserveNetworkStateHandler<T>(
     val status: NetworkStatus,
     val result: T? = null,
     val exception: DescriptionError = DescriptionError(

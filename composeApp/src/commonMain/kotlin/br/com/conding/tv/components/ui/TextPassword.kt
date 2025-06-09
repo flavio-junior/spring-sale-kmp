@@ -22,7 +22,7 @@ import br.com.conding.tv.theme.Themes
 import br.com.conding.tv.theme.Typography
 
 @Composable
-fun TextPassword(
+internal fun TextPassword(
     label: String,
     value: String,
     imeAction: ImeAction = ImeAction.Go,

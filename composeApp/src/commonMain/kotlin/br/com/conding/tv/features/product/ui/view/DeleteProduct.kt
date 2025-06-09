@@ -20,7 +20,7 @@ import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-fun DeleteProduct(
+internal fun DeleteProduct(
     modifier: Modifier = Modifier,
     id: Long,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},

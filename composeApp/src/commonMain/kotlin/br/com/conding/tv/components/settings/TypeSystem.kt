@@ -1,6 +1,6 @@
 package br.com.conding.tv.components.settings
 
-enum class TypeSystem {
+internal enum class TypeSystem {
     MOBILE,
     DESKTOP
 }

@@ -1,6 +1,6 @@
 package br.com.conding.tv.theme
 
-object NumbersUtils {
+internal object NumbersUtils {
     const val NUMBER_ZERO = 0
     const val NUMBER_ONE = 1
     const val NUMBER_TWO = 2

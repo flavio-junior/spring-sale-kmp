@@ -16,7 +16,7 @@ import br.com.conding.tv.theme.Typography
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun Title(
+internal fun Title(
     modifier: Modifier = Modifier,
     color: Color = Themes.colors.primary,
     typeFont: TypeFont? = null,
@@ -33,7 +33,7 @@ fun Title(
 }
 
 @Composable
-fun SubTitle(
+internal fun SubTitle(
     modifier: Modifier = Modifier,
     color: Color = Themes.colors.primary,
     label: String,
@@ -50,7 +50,7 @@ fun SubTitle(
 }
 
 @Composable
-fun Description(
+internal fun Description(
     modifier: Modifier = Modifier,
     label: String,
     color: Color = Themes.colors.primary,
@@ -67,7 +67,7 @@ fun Description(
 }
 
 @Composable
-fun SimpleText(
+internal fun SimpleText(
     modifier: Modifier = Modifier,
     color: Color = Themes.colors.primary,
     label: String,
@@ -84,7 +84,7 @@ fun SimpleText(
 }
 
 @Composable
-fun InfoText(
+internal fun InfoText(
     modifier: Modifier = Modifier,
     color: Color = Themes.colors.primary,
     label: String,
@@ -101,7 +101,7 @@ fun InfoText(
 }
 
 @Composable
-fun SmallText(
+internal fun SmallText(
     modifier: Modifier = Modifier,
     color: Color = Themes.colors.primary,
     label: String,
@@ -118,7 +118,7 @@ fun SmallText(
 }
 
 @Composable
-fun MiniText(
+internal fun MiniText(
     modifier: Modifier = Modifier,
     color: Color = Themes.colors.primary,
     label: String,
@@ -143,7 +143,7 @@ private fun ShowTextPreview() {
 val LocalTextStyleDefault = compositionLocalOf(structuralEqualityPolicy()) { TextStyle.Default }
 
 @Composable
-fun ProvideTextStyleDefault(value: TextStyle, content: @Composable () -> Unit) {
+internal fun ProvideTextStyleDefault(value: TextStyle, content: @Composable () -> Unit) {
     val mergedStyle: TextStyle = LocalTextStyleDefault.current.merge(value)
     CompositionLocalProvider(value = LocalTextStyleDefault provides mergedStyle, content = content)
 }

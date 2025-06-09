@@ -18,7 +18,7 @@ import br.com.conding.tv.resources.onClickable
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun Header(
+internal fun Header(
     label: String,
     textAlign: TextAlign = TextAlign.Start,
     goToBackScreen: () -> Unit = {}

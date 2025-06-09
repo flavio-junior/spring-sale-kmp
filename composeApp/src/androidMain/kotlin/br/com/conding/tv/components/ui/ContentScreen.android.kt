@@ -5,7 +5,7 @@ import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.features.shared.CommonScreen
 
 @Composable
-actual fun ContentScreen(
+internal actual fun ContentScreen(
     definitionsScreen: DefinitionsScreen,
     goToBackScreen: () -> Unit,
     goToNextScreen: () -> Unit,

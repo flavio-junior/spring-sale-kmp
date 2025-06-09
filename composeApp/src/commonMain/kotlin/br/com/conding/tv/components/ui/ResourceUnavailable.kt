@@ -13,7 +13,7 @@ import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun ResourceUnavailable(
+internal fun ResourceUnavailable(
     modifier: Modifier = Modifier
 ) {
     Row(

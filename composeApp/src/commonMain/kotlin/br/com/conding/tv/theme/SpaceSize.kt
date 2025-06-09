@@ -4,7 +4,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-object SpaceSize {
+internal object SpaceSize {
     val spaceSize0: Dp = 0.dp
     val spaceSize0_5: Dp = 0.5.dp
     val spaceSize1: Dp = 1.dp
@@ -51,4 +51,4 @@ object SpaceSize {
     val spaceSize1000: Dp = 1000.dp
 }
 
-val LocalSpaces = staticCompositionLocalOf { SpaceSize }
+internal val LocalSpaces = staticCompositionLocalOf { SpaceSize }

@@ -4,9 +4,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 
-fun NavController.goBack() = this.navigateUp()
+internal fun NavController.goBack() = this.navigateUp()
 
-fun navigateToAlternativeRoutes(
+internal fun navigateToAlternativeRoutes(
     navController: NavHostController,
     currentScreen: Any,
     alternativeRoutes: AlternativesRoutes?

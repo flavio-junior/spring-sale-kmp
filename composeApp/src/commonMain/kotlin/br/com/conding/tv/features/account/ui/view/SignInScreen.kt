@@ -43,7 +43,7 @@ import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-fun SignInScreen(
+internal fun SignInScreen(
     goToHomeScreen: () -> Unit = {},
     goToSendRecoverPasswordScreen: () -> Unit = {},
     goToConfirmEmailAddressScreen: () -> Unit = {},

@@ -22,7 +22,7 @@ import br.com.conding.tv.features.settings.ui.view.SettingsScreen
 import br.com.conding.tv.features.splash.SplashScreen
 
 @Composable
-fun Navigation(
+internal fun Navigation(
     navController: NavHostController = rememberNavController(),
     startDestination: AppDestinations
 ) {
@@ -36,7 +36,7 @@ fun Navigation(
     }
 }
 
-fun NavGraphBuilder.splashScreenNavigation(
+internal fun NavGraphBuilder.splashScreenNavigation(
     navController: NavHostController
 ) {
     composable<AppDestinations.SplashScreen> {
@@ -59,7 +59,7 @@ fun NavGraphBuilder.splashScreenNavigation(
     }
 }
 
-fun NavGraphBuilder.signInNavigation(
+internal fun NavGraphBuilder.signInNavigation(
     navController: NavHostController
 ) {
     composable<AppDestinations.SignIn> {
@@ -90,7 +90,7 @@ fun NavGraphBuilder.signInNavigation(
     signUp(navController = navController)
 }
 
-private fun NavGraphBuilder.recoverPassword(
+internal fun NavGraphBuilder.recoverPassword(
     navController: NavHostController
 ) {
     composable<AppDestinations.SendRecoverToken> {
@@ -141,7 +141,7 @@ private fun NavGraphBuilder.recoverPassword(
     }
 }
 
-private fun NavGraphBuilder.signUp(
+internal fun NavGraphBuilder.signUp(
     navController: NavHostController
 ) {
     composable<AppDestinations.SendCodeToConfirmEmail> {
@@ -199,7 +199,7 @@ private fun NavGraphBuilder.signUp(
     }
 }
 
-fun NavGraphBuilder.homeNavigation(
+internal fun NavGraphBuilder.homeNavigation(
     navController: NavHostController
 ) {
     composable<AppDestinations.Home> {
@@ -219,7 +219,7 @@ fun NavGraphBuilder.homeNavigation(
     }
 }
 
-fun NavGraphBuilder.categoryNavigation(
+internal fun NavGraphBuilder.categoryNavigation(
     navController: NavHostController
 ) {
     composable<AppDestinations.Categories> {
@@ -245,7 +245,7 @@ fun NavGraphBuilder.categoryNavigation(
     }
 }
 
-fun NavGraphBuilder.productNavigation(
+internal fun NavGraphBuilder.productNavigation(
     navController: NavHostController
 ) {
     composable<AppDestinations.Products> {
@@ -271,7 +271,7 @@ fun NavGraphBuilder.productNavigation(
     }
 }
 
-fun NavGraphBuilder.settingsNavigation(
+internal fun NavGraphBuilder.settingsNavigation(
     navController: NavHostController
 ) {
     composable<AppDestinations.Settings> {

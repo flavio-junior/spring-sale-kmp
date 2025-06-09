@@ -17,7 +17,7 @@ import br.com.conding.tv.resources.scroll
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun CommonScreen(
+internal fun CommonScreen(
     definitionsScreen: DefinitionsScreen,
     goToBackScreen: () -> Unit = {},
     goToNextScreen: () -> Unit = {},

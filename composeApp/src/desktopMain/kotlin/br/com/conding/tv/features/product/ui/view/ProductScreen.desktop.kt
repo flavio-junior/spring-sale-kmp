@@ -10,7 +10,7 @@ import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.resources.GenericsStrings.PRODUCTS
 
 @Composable
-actual fun ProductsScreen(
+internal actual fun ProductsScreen(
     goToBackScreen: () -> Unit,
     goToNextScreen: (AppDestinations) -> Unit,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit

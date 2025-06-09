@@ -17,14 +17,14 @@ import br.com.conding.tv.resources.GenericsStrings
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-expect fun CategoriesScreen(
+internal expect fun CategoriesScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: (AppDestinations) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 )
 
 @Composable
-fun MobileCategoryScreen(
+internal fun MobileCategoryScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: (AppDestinations) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}

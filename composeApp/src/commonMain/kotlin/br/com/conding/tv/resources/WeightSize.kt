@@ -1,6 +1,6 @@
 package br.com.conding.tv.resources
 
-object WeightSize {
+internal object WeightSize {
     const val WEIGHT_SIZE = 1f
     const val WEIGHT_SIZE_1_5 = 1.5f
     const val WEIGHT_SIZE_2 = 2f

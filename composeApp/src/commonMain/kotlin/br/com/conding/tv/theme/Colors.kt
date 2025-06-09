@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-val DarkColor = Colors(
+internal val DarkColor = Colors(
     primary = Color(color = 0xFFA9B7C6),
     secondary = Color(color = 0xFFCC7832),
     background = Color(color = 0xFF2B2B2B),
@@ -14,7 +14,7 @@ val DarkColor = Colors(
     error = Color(color = 0xFFFF0000)
 )
 
-val LightColor = Colors(
+internal val LightColor = Colors(
     primary = Color(color = 0xFF010205),
     secondary = Color(color = 0xFFCC7832),
     background = Color(color = 0xFFFF1F1F2),
@@ -22,11 +22,11 @@ val LightColor = Colors(
     error = Color(color = 0xFFCC1922)
 )
 
-object CommonColors {
+internal object CommonColors {
     val ITEM_SELECTED = Color(color = 0xFF17202a)
 }
 
-class Colors(
+internal class Colors(
     primary: Color,
     secondary: Color,
     background: Color,
@@ -71,4 +71,4 @@ class Colors(
     }
 }
 
-val LocalColors = staticCompositionLocalOf { LightColor }
+internal val LocalColors = staticCompositionLocalOf { LightColor }

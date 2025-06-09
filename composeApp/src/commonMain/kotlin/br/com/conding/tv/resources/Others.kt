@@ -8,7 +8,7 @@ import br.com.conding.tv.theme.NumbersUtils.NUMBER_SIXTY
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_TEN
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_TWENTY
 
-fun converterSizeStringToInt(size: String): Int {
+internal fun converterSizeStringToInt(size: String): Int {
     return when (size) {
         "10 Itens" -> NUMBER_TEN
         "20 Itens" -> NUMBER_TWENTY

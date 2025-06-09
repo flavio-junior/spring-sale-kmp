@@ -10,7 +10,7 @@ import br.com.conding.tv.resources.GenericsStrings.PRODUCTS
 import br.com.conding.tv.resources.GenericsStrings.SETTINGS
 import br.com.conding.tv.resources.IconName
 
-val home = listOf(
+internal val home = listOf(
     Menu(
         icon = IconName.LABEL,
         label = CATEGORIES,
@@ -33,7 +33,7 @@ val home = listOf(
     )
 )
 
-val availableServices = listOf(
+internal val availableServices = listOf(
     Menu(
         icon = IconName.HOME_PIN,
         label = HOME,

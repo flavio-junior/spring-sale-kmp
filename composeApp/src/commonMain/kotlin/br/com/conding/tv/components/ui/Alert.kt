@@ -21,7 +21,7 @@ import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun Alert(
+internal fun Alert(
     label: String,
     onDismissRequest: () -> Unit = {},
     onConfirmation: () -> Unit = {}

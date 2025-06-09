@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import br.com.conding.tv.components.model.DefinitionsScreen
 
 @Composable
-expect fun ContentScreen(
+internal expect fun ContentScreen(
     definitionsScreen: DefinitionsScreen = DefinitionsScreen(),
     goToBackScreen: () -> Unit = {},
     goToNextScreen: () -> Unit = {},

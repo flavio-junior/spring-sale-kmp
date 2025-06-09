@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.Dp
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun ContentHorizontal(
+internal fun ContentHorizontal(
     spaceBy: Dp = Themes.size.spaceSize0,
     content: @Composable RowScope.() -> Unit = {}
 ) {

@@ -2,7 +2,7 @@ package br.com.conding.tv.components.mask
 
 import kotlin.math.round
 
-fun formatterMaskToMoney(price: Double): String {
+internal fun formatterMaskToMoney(price: Double): String {
     val currencySymbol = "R$"
     val numericValue = price
         .toString()

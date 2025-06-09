@@ -23,7 +23,7 @@ import br.com.conding.tv.theme.CommonColors.ITEM_SELECTED
 import br.com.conding.tv.theme.SpaceSize
 import br.com.conding.tv.theme.Themes
 
-fun Modifier.onClickable(
+internal fun Modifier.onClickable(
     onClick: () -> Unit
 ): Modifier {
     return this.then(
@@ -38,7 +38,7 @@ fun Modifier.onClickable(
 }
 
 @Composable
-fun Modifier.onSelectable(
+internal fun Modifier.onSelectable(
     selected: Boolean,
     enabled: Boolean = true,
     onClick: () -> Unit
@@ -55,7 +55,7 @@ fun Modifier.onSelectable(
     )
 }
 
-fun Modifier.onBorder(
+internal fun Modifier.onBorder(
     onClick: () -> Unit = {},
     spaceSize: Dp,
     width: Dp,
@@ -79,7 +79,7 @@ fun Modifier.onBorder(
     )
 }
 
-fun Modifier.onCircle(
+internal fun Modifier.onCircle(
     color: Color = Color.Black,
     shape: Shape = CircleShape,
     width: Dp = SpaceSize.spaceSize2
@@ -94,7 +94,7 @@ fun Modifier.onCircle(
     )
 }
 
-fun Modifier.onBorderDefault(
+internal fun Modifier.onBorderDefault(
     color: Color = Color.Black,
     onClick: () -> Unit = {},
     spaceSize: Dp = SpaceSize.spaceSize10,
@@ -115,7 +115,7 @@ fun Modifier.onBorderDefault(
 }
 
 @Composable
-fun Modifier.scroll(scroll: Boolean): Modifier {
+internal fun Modifier.scroll(scroll: Boolean): Modifier {
     return this.then(
         if (scroll) {
             Modifier.verticalScroll(state = rememberScrollState(), enabled = true)
@@ -126,7 +126,7 @@ fun Modifier.scroll(scroll: Boolean): Modifier {
 }
 
 @Composable
-fun Modifier.changeColor(enabled: Boolean = false): Modifier {
+internal fun Modifier.changeColor(enabled: Boolean = false): Modifier {
     return this.then(
         if (enabled) {
             Modifier.background(color = ITEM_SELECTED)

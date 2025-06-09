@@ -49,7 +49,7 @@ import kotlinx.coroutines.launch
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-fun SelectCategories(
+internal fun SelectCategories(
     onDismissRequest: () -> Unit = {},
     onConfirmation: (List<CategoryResponseDTO>) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}

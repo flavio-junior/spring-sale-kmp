@@ -28,7 +28,7 @@ import br.com.conding.tv.theme.Themes
 import kotlinx.coroutines.launch
 
 @Composable
-fun Services(
+internal fun Services(
     modifier: Modifier = Modifier,
     label: String,
     options: List<Menu> = availableServices,
@@ -72,7 +72,7 @@ fun Services(
 }
 
 @Composable
-fun Service(
+internal fun Service(
     enabled: Boolean = false,
     menu: Menu,
     goToBackScreen: () -> Unit = {},

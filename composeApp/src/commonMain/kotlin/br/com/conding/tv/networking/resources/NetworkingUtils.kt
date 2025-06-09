@@ -5,7 +5,7 @@ import br.com.conding.tv.features.category.di.categoryModule
 import br.com.conding.tv.features.product.di.productModule
 import br.com.conding.tv.networking.di.networkModule
 
-object NetworkingUtils {
+internal object NetworkingUtils {
     const val ERROR_TIMEOUT = "Conexão Perdida com o Servidor!"
     const val ERROR_UNKNOWN = "Error desconhecido"
     const val TIMEOUT_SIZE = 600000L

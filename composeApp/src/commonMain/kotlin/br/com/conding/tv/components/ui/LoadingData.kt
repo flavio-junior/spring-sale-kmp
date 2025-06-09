@@ -16,7 +16,7 @@ import br.com.conding.tv.resources.GenericsStrings.LOADING
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun LoadingData(
+internal fun LoadingData(
     label: String = LOADING
 ) {
     Box(

@@ -27,14 +27,14 @@ import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-expect fun SettingsScreen(
+internal expect fun SettingsScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: (AppDestinations) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 )
 
 @Composable
-fun MobileSettingsScreen(
+internal fun MobileSettingsScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: (AppDestinations) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}

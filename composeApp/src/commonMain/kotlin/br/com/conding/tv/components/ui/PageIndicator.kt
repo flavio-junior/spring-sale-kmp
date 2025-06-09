@@ -15,7 +15,7 @@ import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun PageIndicator(
+internal fun PageIndicator(
     modifier: Modifier = Modifier,
     currentPage: Int,
     totalPages: Int,

@@ -26,7 +26,7 @@ import br.com.conding.tv.theme.Themes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FilterBottomSheet(
+internal fun FilterBottomSheet(
     onDismiss: (String?) -> Unit = {}
 ) {
     val modalBottomSheetState = rememberModalBottomSheetState()

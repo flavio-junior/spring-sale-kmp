@@ -1,5 +1,5 @@
 package br.com.conding.tv.resources
 
-actual fun isTokenExpired(expirationDate: String): Boolean {
+internal actual fun isTokenExpired(expirationDate: String): Boolean {
     return false
 }

@@ -25,7 +25,7 @@ import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-fun ListProductsScreen(
+internal fun ListProductsScreen(
     onItemSelected: (ProductResponseVO) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
     onToCreateNewProduct: () -> Unit = {}

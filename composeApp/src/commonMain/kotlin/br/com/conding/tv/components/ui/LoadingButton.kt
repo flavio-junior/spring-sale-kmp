@@ -17,7 +17,7 @@ import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun LoadingButton(
+internal fun LoadingButton(
     modifier: Modifier = Modifier,
     background: Color = Themes.colors.secondary,
     label: String,

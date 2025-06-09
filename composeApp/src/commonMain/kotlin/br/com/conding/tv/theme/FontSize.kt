@@ -2,7 +2,7 @@ package br.com.conding.tv.theme
 
 import androidx.compose.ui.unit.sp
 
-object FontSize {
+internal object FontSize {
     val fontSize8 = 8.sp
     val fontSize10 = 10.sp
     val fontSize12 = 12.sp

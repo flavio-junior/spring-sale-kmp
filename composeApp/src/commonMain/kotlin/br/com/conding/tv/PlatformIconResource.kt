@@ -41,7 +41,7 @@ import springsale.composeapp.generated.resources.visibility_off
 
 //TODO You can remove this and set icon inside each composable
 @Composable
-fun getIconResource(iconName: IconName): Painter {
+internal fun getIconResource(iconName: IconName): Painter {
     return when (iconName) {
         IconName.ARROW_BACK -> painterResource(resource = Res.drawable.arrow_back)
         IconName.ARROW_FORWARD -> painterResource(resource = Res.drawable.arrow_forward)

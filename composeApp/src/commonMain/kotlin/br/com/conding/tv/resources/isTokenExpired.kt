@@ -1,3 +1,3 @@
 package br.com.conding.tv.resources
 
-expect fun isTokenExpired(expirationDate: String): Boolean
+internal expect fun isTokenExpired(expirationDate: String): Boolean

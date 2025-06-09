@@ -9,7 +9,7 @@ import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.resources.GenericsStrings.ADJUSTMENTS
 
 @Composable
-actual fun SettingsScreen(
+internal actual fun SettingsScreen(
     goToBackScreen: () -> Unit,
     goToNextScreen: (AppDestinations) -> Unit,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit

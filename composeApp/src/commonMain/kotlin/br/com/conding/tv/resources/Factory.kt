@@ -1,6 +1,6 @@
 package br.com.conding.tv.resources
 
-val currentItems = listOf(
+internal val currentItems = listOf(
     "10 Itens",
     "20 Itens",
     "40 Itens",

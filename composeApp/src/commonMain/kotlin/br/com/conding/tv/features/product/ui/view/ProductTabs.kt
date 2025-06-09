@@ -30,7 +30,7 @@ import br.com.conding.tv.theme.Themes
 import kotlinx.coroutines.launch
 
 @Composable
-fun ProductsTabs(
+internal fun ProductsTabs(
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     val scope = rememberCoroutineScope()

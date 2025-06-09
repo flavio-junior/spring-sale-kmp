@@ -12,7 +12,7 @@ import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun SimpleButton(
+internal fun SimpleButton(
     modifier: Modifier = Modifier,
     label: String,
     background: Color = Themes.colors.success,

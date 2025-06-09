@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 
 @Composable
-fun IsErrorMessage(
+internal fun IsErrorMessage(
     isError: Boolean,
     message: String
 ) {

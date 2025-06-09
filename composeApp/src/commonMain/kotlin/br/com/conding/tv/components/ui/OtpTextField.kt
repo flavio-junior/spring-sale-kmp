@@ -22,7 +22,7 @@ import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun OtpTextField(
+internal fun OtpTextField(
     modifier: Modifier = Modifier,
     otpText: String,
     otpCount: Int = 4,

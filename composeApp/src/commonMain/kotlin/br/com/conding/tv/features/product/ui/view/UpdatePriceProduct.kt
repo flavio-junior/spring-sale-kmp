@@ -36,7 +36,7 @@ import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-fun UpdatePriceProduct(
+internal fun UpdatePriceProduct(
     modifier: Modifier = Modifier,
     id: Long,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},

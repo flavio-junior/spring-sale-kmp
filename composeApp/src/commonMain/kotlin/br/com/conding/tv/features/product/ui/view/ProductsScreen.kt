@@ -11,14 +11,14 @@ import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.resources.GenericsStrings
 
 @Composable
-expect fun ProductsScreen(
+internal expect fun ProductsScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: (AppDestinations) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 )
 
 @Composable
-fun MobileProductsScreen(
+internal fun MobileProductsScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: (AppDestinations) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}

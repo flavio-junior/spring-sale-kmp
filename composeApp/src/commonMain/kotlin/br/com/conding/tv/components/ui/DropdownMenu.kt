@@ -21,7 +21,7 @@ import br.com.conding.tv.theme.Themes
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun DropdownMenu(
+internal fun DropdownMenu(
     modifier: Modifier = Modifier,
     selectedValue: String,
     items: List<String>,

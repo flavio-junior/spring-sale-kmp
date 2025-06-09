@@ -17,7 +17,7 @@ import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun CheckBox(
+internal fun CheckBox(
     label: String,
     isSelected: Boolean,
     onCheckedChange: (String) -> Unit,

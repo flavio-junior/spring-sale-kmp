@@ -1,6 +1,6 @@
 package br.com.conding.tv.networking.resources
 
-enum class NetworkStatus {
+internal enum class NetworkStatus {
     LOADING,
     ERROR,
     SUCCESS

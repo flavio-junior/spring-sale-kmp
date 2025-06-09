@@ -15,7 +15,7 @@ import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun ItemMenu(
+internal fun ItemMenu(
     modifier: Modifier = Modifier,
     menu: Menu,
     goToNextScreen: (AppDestinations) -> Unit = {}

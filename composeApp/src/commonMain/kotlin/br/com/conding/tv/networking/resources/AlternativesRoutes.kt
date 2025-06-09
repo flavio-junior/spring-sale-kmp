@@ -1,6 +1,6 @@
 package br.com.conding.tv.networking.resources
 
-enum class AlternativesRoutes {
+internal enum class AlternativesRoutes {
     ERROR_401,
     ERROR_403,
     ERROR_404,
@@ -9,7 +9,7 @@ enum class AlternativesRoutes {
     ERROR_504
 }
 
-fun selectAlternativeRoute(
+internal fun selectAlternativeRoute(
     code: Int
 ): AlternativesRoutes {
     return when (code) {

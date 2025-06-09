@@ -29,7 +29,7 @@ import br.com.conding.tv.resources.currentItems
 import br.com.conding.tv.theme.Themes
 
 @Composable
-fun HeaderSearch(
+internal fun HeaderSearch(
     modifier: Modifier = Modifier,
     label: String? = null,
     system: TypeSystem = TypeSystem.DESKTOP,

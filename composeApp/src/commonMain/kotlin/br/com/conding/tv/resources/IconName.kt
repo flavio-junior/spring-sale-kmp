@@ -1,6 +1,6 @@
 package br.com.conding.tv.resources
 
-enum class IconName {
+internal enum class IconName {
     ARROW_BACK,
     ARROW_FORWARD,
     CHECK_BOX,

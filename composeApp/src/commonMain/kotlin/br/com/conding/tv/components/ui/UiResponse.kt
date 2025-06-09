@@ -10,7 +10,7 @@ import br.com.conding.tv.resources.Warnings.UNAUTHORIZED_MESSAGE
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 
 @Composable
-fun <T> UiResponse(
+internal fun <T> UiResponse(
     state: UiState<T>,
     onLoading: @Composable () -> Unit = {},
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},

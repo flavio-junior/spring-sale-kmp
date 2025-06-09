@@ -11,7 +11,7 @@ import androidx.compose.ui.text.withStyle
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_THREE
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_TWO
 
-class CurrencyVisualTransformation : VisualTransformation {
+internal class CurrencyVisualTransformation : VisualTransformation {
     override fun filter(text: AnnotatedString): TransformedText {
         val originalText = text.text
         val digitsOnly = originalText.filter { it.isDigit() }
