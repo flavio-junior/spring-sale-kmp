@@ -24,7 +24,7 @@ internal actual fun ProductsScreen(
                     goToBackScreen = goToBackScreen,
                     goToNextScreen = goToNextScreen
                 )
-                ProductsTabs(goToAlternativeRoutes = goToAlternativeRoutes)
+                DesktopProductsTabs(goToAlternativeRoutes = goToAlternativeRoutes)
             }
         }
     )

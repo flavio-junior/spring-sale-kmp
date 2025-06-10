@@ -47,7 +47,7 @@ import br.com.conding.tv.theme.Themes
 import kotlinx.coroutines.launch
 
 @Composable
-internal fun ListProducts(
+internal fun DesktopListProducts(
     modifier: Modifier = Modifier,
     products: ProductsResponseVO? = null,
     onItemSelected: (ProductResponseVO) -> Unit = {},
@@ -59,7 +59,7 @@ internal fun ListProducts(
             .fillMaxWidth()
             .wrapContentHeight()
     ) {
-        HeaderProductsPanel(modifier = Modifier.padding(top = Themes.size.spaceSize16))
+        DesktopHeaderProductsPanel(modifier = Modifier.padding(top = Themes.size.spaceSize16))
         val scrollState = rememberLazyListState()
         val coroutineScope = rememberCoroutineScope()
         var selectedIndex by remember { mutableStateOf(value = -1) }
@@ -86,7 +86,7 @@ internal fun ListProducts(
         ) {
             products?.content?.let { response ->
                 itemsIndexed(items = response) { index, product ->
-                    ItemProduct(
+                    DesktopItemProduct(
                         index = index,
                         selected = selectedIndex == index,
                         product = product,
@@ -102,7 +102,7 @@ internal fun ListProducts(
 }
 
 @Composable
-internal fun HeaderProductsPanel(
+internal fun DesktopHeaderProductsPanel(
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -153,7 +153,7 @@ internal fun HeaderProductsPanel(
 }
 
 @Composable
-internal fun ItemProduct(
+internal fun DesktopItemProduct(
     index: Int,
     selected: Boolean = false,
     modifier: Modifier = Modifier,

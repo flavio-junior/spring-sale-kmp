@@ -8,7 +8,7 @@ import br.com.conding.tv.theme.NumbersUtils.NUMBER_TWO
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 
 @Composable
-internal fun ProductTabMain(
+internal fun DesktopProductTabMain(
     index: Int,
     productsResponseVO: ProductResponseVO = ProductResponseVO(),
     onItemSelected: (ProductResponseVO) -> Unit = {},
@@ -17,13 +17,13 @@ internal fun ProductTabMain(
     onRefresh: (Int) -> Unit = {}
 ) {
     when (index) {
-        NUMBER_ZERO -> ListProductsScreen(
+        NUMBER_ZERO -> DesktopListProductsScreen(
             onItemSelected = onItemSelected,
             onToCreateNewProduct = onToCreateNewProduct,
             goToAlternativeRoutes = goToAlternativeRoutes
         )
 
-        NUMBER_ONE -> DetailsProductScreen(
+        NUMBER_ONE -> DesktopDetailsProductScreen(
             product = productsResponseVO,
             goToAlternativeRoutes = goToAlternativeRoutes,
             onRefresh = {
@@ -31,7 +31,7 @@ internal fun ProductTabMain(
             }
         )
 
-        NUMBER_TWO -> CreateNewProductScreen(
+        NUMBER_TWO -> DesktopCreateNewProductScreen(
             goToAlternativeRoutes = goToAlternativeRoutes,
             onRefresh = {
                 onRefresh(NUMBER_TWO)

@@ -25,7 +25,7 @@ import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-internal fun ListProductsScreen(
+internal fun DesktopListProductsScreen(
     onItemSelected: (ProductResponseVO) -> Unit = {},
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
     onToCreateNewProduct: () -> Unit = {}
@@ -95,7 +95,7 @@ private fun UiResponseListProductsScreen(
                     }
                 )
             } else {
-                ProductsResult(
+                DesktopProductsResult(
                     productsResponseVO = it,
                     onItemSelected = onItemSelected,
                     showEmptyList = {
@@ -108,13 +108,13 @@ private fun UiResponseListProductsScreen(
 }
 
 @Composable
-private fun ProductsResult(
+private fun DesktopProductsResult(
     productsResponseVO: ProductsResponseVO? = null,
     onItemSelected: (ProductResponseVO) -> Unit = {},
     showEmptyList: () -> Unit = {}
 ) {
     Column {
-        ListProducts(
+        DesktopListProducts(
             modifier = Modifier
                 .fillMaxSize()
                 .weight(weight = WEIGHT_SIZE_4)
@@ -123,6 +123,6 @@ private fun ProductsResult(
             onItemSelected = onItemSelected,
             showEmptyList = showEmptyList
         )
-        PageIndicatorProducts(content = productsResponseVO)
+        PageIndicatorProducts(productsResponseVO = productsResponseVO)
     }
 }

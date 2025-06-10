@@ -15,20 +15,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.Price
 import br.com.conding.tv.components.ui.TextField
-import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
 import br.com.conding.tv.features.category.ui.view.SelectCategories
 import br.com.conding.tv.features.product.data.dto.ProductRequestDTO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
-import br.com.conding.tv.features.product.ui.viewmodel.ResetProduct
 import br.com.conding.tv.features.product.utils.checkBodyProductIsNull
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.resources.GenericsStrings.ADD_CATEGORIES
 import br.com.conding.tv.resources.GenericsStrings.CREATE_PRODUCT
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
@@ -47,7 +42,7 @@ import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
-internal fun CreateNewProductScreen(
+internal fun DesktopCreateNewProductScreen(
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
     onRefresh: () -> Unit
 ) {
@@ -175,27 +170,4 @@ internal fun CreateNewProductScreen(
             }
         )
     }
-}
-
-@Composable
-private fun UiResponseCreateNewProductScreen(
-    viewModel: ProductViewModel,
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
-    onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
-    onSuccessful: () -> Unit = {}
-) {
-    val uiState: UiState<Unit> by viewModel.createProduct.collectAsStateWithLifecycle()
-    UiResponse(
-        state = uiState,
-        onLoading = {},
-        onError = onError,
-        goToAlternativeRoutes = {
-            goToAlternativeRoutes(it)
-            reloadViewModels()
-        },
-        onSuccess = {
-            viewModel.resetProduct(reset = ResetProduct.CREATE_PRODUCT)
-            onSuccessful()
-        }
-    )
 }

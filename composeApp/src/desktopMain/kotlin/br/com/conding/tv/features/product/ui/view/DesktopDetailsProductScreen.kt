@@ -27,13 +27,13 @@ import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import br.com.conding.tv.theme.Themes
 
 @Composable
-internal fun DetailsProductScreen(
+internal fun DesktopDetailsProductScreen(
     product: ProductResponseVO,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
     onRefresh: () -> Unit = {}
 ) {
     if (product.id > NUMBER_ZERO) {
-        DetailsProductBody(
+        DesktopDetailsProductBody(
             product = product,
             goToAlternativeRoutes = goToAlternativeRoutes,
             onRefresh = onRefresh
@@ -44,7 +44,7 @@ internal fun DetailsProductScreen(
 }
 
 @Composable
-internal fun DetailsProductBody(
+internal fun DesktopDetailsProductBody(
     product: ProductResponseVO,
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
     onRefresh: () -> Unit = {}
@@ -91,7 +91,7 @@ internal fun DetailsProductBody(
         }
         ListCategoriesAvailableResponseVO(categories = product.categories)
         Description(label = UPDATE_PRODUCT)
-        UpdateProduct(
+        DesktopUpdateProduct(
             id = product.id,
             goToAlternativeRoutes = goToAlternativeRoutes,
             onRefresh = onRefresh
@@ -100,14 +100,14 @@ internal fun DetailsProductBody(
             horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16),
             modifier = Modifier.weight(weight = WEIGHT_SIZE)
         ) {
-            UpdatePriceProduct(
+            DesktopUpdatePriceProduct(
                 id = product.id,
                 goToAlternativeRoutes = goToAlternativeRoutes,
                 modifier = Modifier
                     .weight(weight = WEIGHT_SIZE_2),
                 onRefresh = onRefresh
             )
-            RestockProduct(
+            DesktopRestockProduct(
                 id = product.id,
                 goToAlternativeRoutes = goToAlternativeRoutes,
                 modifier = Modifier.weight(weight = WEIGHT_SIZE_2),

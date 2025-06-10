@@ -14,7 +14,7 @@ import org.koin.mp.KoinPlatform.getKoin
 @Composable
 internal fun PageIndicatorProducts(
     modifier: Modifier = Modifier,
-    content: ProductsResponseVO? = null
+    productsResponseVO: ProductsResponseVO? = null
 ) {
     val viewModel: ProductViewModel = getKoin().get()
     Row(
@@ -22,8 +22,8 @@ internal fun PageIndicatorProducts(
     ) {
         PageIndicator(
             modifier = modifier.fillMaxWidth(),
-            currentPage = content?.pageable?.pageNumber ?: 0,
-            totalPages = content?.totalPages ?: 0,
+            currentPage = productsResponseVO?.pageable?.pageNumber ?: 0,
+            totalPages = productsResponseVO?.totalPages ?: 0,
             loadNextPage = {
                 viewModel.loadNextPage()
             },

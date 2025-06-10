@@ -30,11 +30,11 @@ import br.com.conding.tv.theme.Themes
 import kotlinx.coroutines.launch
 
 @Composable
-internal fun ProductsTabs(
+internal fun DesktopProductsTabs(
     goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
 ) {
     val scope = rememberCoroutineScope()
-    val pagerState = rememberPagerState(pageCount = { ItemsProduct.entries.size })
+    val pagerState = rememberPagerState(pageCount = { DesktopItemsProduct.entries.size })
     val selectedTabIndex = remember { derivedStateOf { pagerState.currentPage } }
     var productsResponseVO: ProductResponseVO by remember { mutableStateOf(value = ProductResponseVO()) }
     Column(
@@ -49,7 +49,7 @@ internal fun ProductsTabs(
                 .background(color = Themes.colors.background)
                 .fillMaxWidth()
         ) {
-            ItemsProduct.entries.forEachIndexed { index, currentTab ->
+            DesktopItemsProduct.entries.forEachIndexed { index, currentTab ->
                 Tab(
                     selected = selectedTabIndex.value == index,
                     onClick = {
@@ -75,7 +75,7 @@ internal fun ProductsTabs(
                     .fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                ProductTabMain(
+                DesktopProductTabMain(
                     index = it,
                     productsResponseVO = productsResponseVO,
                     onItemSelected = {
