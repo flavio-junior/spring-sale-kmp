@@ -20,7 +20,7 @@ import springsale.composeapp.generated.resources.Res
 import springsale.composeapp.generated.resources.coding_tv
 
 @Composable
-actual fun SplashScreen(
+internal actual fun SplashScreen(
     goToSignInScreen: () -> Unit,
     goToHomeScreen: () -> Unit
 ) {

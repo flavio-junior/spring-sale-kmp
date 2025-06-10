@@ -14,7 +14,7 @@ import br.com.conding.tv.components.ui.ResourceUnavailable
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.features.category.ui.view.ListCategoriesAvailableResponseVO
 import br.com.conding.tv.features.product.data.vo.ProductResponseVO
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings.DETAILS_PRODUCT
 import br.com.conding.tv.resources.GenericsStrings.ID
 import br.com.conding.tv.resources.GenericsStrings.NAME
@@ -29,7 +29,7 @@ import br.com.conding.tv.theme.Themes
 @Composable
 internal fun DesktopDetailsProductScreen(
     product: ProductResponseVO,
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onRefresh: () -> Unit = {}
 ) {
     if (product.id > NUMBER_ZERO) {
@@ -46,7 +46,7 @@ internal fun DesktopDetailsProductScreen(
 @Composable
 internal fun DesktopDetailsProductBody(
     product: ProductResponseVO,
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onRefresh: () -> Unit = {}
 ) {
     Column(

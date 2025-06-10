@@ -12,7 +12,7 @@ import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.HeaderSearch
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.navigation.AppDestinations
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings
 import org.koin.mp.KoinPlatform.getKoin
 
@@ -20,14 +20,14 @@ import org.koin.mp.KoinPlatform.getKoin
 internal expect fun CategoriesScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: (AppDestinations) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 )
 
 @Composable
 internal fun MobileCategoryScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: (AppDestinations) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     val viewModel: CategoryViewModel = getKoin().get()
     var createCategory: Boolean by remember { mutableStateOf(value = false) }

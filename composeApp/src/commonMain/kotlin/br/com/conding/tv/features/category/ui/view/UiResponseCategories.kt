@@ -8,12 +8,12 @@ import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.category.data.vo.CategoriesResponseVO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.features.category.ui.viewmodel.ResetCategory
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 
 @Composable
 internal fun UiResponseFindAllCategoriesScreen(
     viewModel: CategoryViewModel,
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onSuccess: @Composable (CategoriesResponseVO?) -> Unit = {}
 ) {
     val state: UiState<CategoriesResponseVO> by viewModel.findAllCategories.collectAsStateWithLifecycle()
@@ -30,7 +30,7 @@ internal fun UiResponseFindAllCategoriesScreen(
 internal fun UiResponseCreateNewCategoryScreen(
     viewModel: CategoryViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onSuccessful: () -> Unit = {}
 ) {
     val state: UiState<Unit> by viewModel.createNewCategory.collectAsStateWithLifecycle()
@@ -50,7 +50,7 @@ internal fun UiResponseCreateNewCategoryScreen(
 internal fun UiResponseUpdateCategoryScreen(
     viewModel: CategoryViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onSuccessful: () -> Unit = {}
 ) {
     val state: UiState<Unit> by viewModel.updateCategory.collectAsStateWithLifecycle()
@@ -70,7 +70,7 @@ internal fun UiResponseUpdateCategoryScreen(
 internal fun UiResponseDeleteCategoryScreen(
     viewModel: CategoryViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onSuccessful: () -> Unit = {}
 ) {
     val state: UiState<Unit> by viewModel.deleteCategory.collectAsStateWithLifecycle()

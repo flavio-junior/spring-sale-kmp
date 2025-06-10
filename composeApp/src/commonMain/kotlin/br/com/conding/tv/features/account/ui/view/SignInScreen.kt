@@ -24,7 +24,7 @@ import br.com.conding.tv.features.account.data.dto.SignInRequestDTO
 import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.features.account.ui.viewmodel.ResetAccount
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings.CREATE_ONE_ACCOUNT
 import br.com.conding.tv.resources.GenericsStrings.EMAIL
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
@@ -47,7 +47,7 @@ internal fun SignInScreen(
     goToHomeScreen: () -> Unit = {},
     goToSendRecoverPasswordScreen: () -> Unit = {},
     goToConfirmEmailAddressScreen: () -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     ContentScreen(
         content = {
@@ -150,7 +150,7 @@ private fun UiResponseSignInScreen(
     viewModel: AccountViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToDashboardScreen: () -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     val uiState: UiState<TokenResponseDTO> by viewModel.signIn.collectAsStateWithLifecycle()
     UiResponse(

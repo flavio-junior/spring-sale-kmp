@@ -2,7 +2,7 @@ package br.com.conding.tv.features.product.ui.view
 
 import androidx.compose.runtime.Composable
 import br.com.conding.tv.features.product.data.vo.ProductResponseVO
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ONE
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_TWO
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
@@ -13,7 +13,7 @@ internal fun DesktopProductTabMain(
     productsResponseVO: ProductResponseVO = ProductResponseVO(),
     onItemSelected: (ProductResponseVO) -> Unit = {},
     onToCreateNewProduct: () -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onRefresh: (Int) -> Unit = {}
 ) {
     when (index) {

@@ -23,7 +23,7 @@ import br.com.conding.tv.features.account.data.dto.EmailRequestDTO
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.features.account.ui.viewmodel.ResetAccount
 import br.com.conding.tv.navigation.AppDestinations
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings.CREATE_MY_ACCOUNT
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.ENTER_YOUR_ACCOUNT
@@ -42,7 +42,7 @@ import org.koin.mp.KoinPlatform.getKoin
 internal fun SendCodeToConfirmEmailScreen(
     goToBackScreen: () -> Unit = {},
     goToCheckCodeToConfirmEmailScreen: (AppDestinations.CheckCodeToConfirmEmail) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     var changeLabel: Boolean by remember { mutableStateOf(value = false) }
     ContentScreen(
@@ -116,7 +116,7 @@ private fun UiResponseSendCodeToConfirmEmailScreen(
     viewModel: AccountViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToCheckCodeToConfirmEmailScreen: @Composable () -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     val uiState: UiState<Unit> by viewModel.confirmEmailAddress.collectAsStateWithLifecycle()
     UiResponse(

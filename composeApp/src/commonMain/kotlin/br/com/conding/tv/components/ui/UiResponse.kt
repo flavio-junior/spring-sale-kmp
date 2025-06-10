@@ -1,11 +1,11 @@
 package br.com.conding.tv.components.ui
 
 import androidx.compose.runtime.Composable
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.networking.resources.ErrorType
 import br.com.conding.tv.networking.resources.StatusCode.NUMBER_403
 import br.com.conding.tv.networking.resources.reloadViewModels
-import br.com.conding.tv.networking.resources.selectAlternativeRoute
+import br.com.conding.tv.networking.resources.determineErrorRoute
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.Warnings.UNAUTHORIZED_MESSAGE
 
@@ -14,7 +14,7 @@ internal fun <T> UiResponse(
     state: UiState<T>,
     onLoading: @Composable () -> Unit = {},
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onSuccess: @Composable (T) -> Unit = {}
 ) {
     when (state) {
@@ -27,7 +27,7 @@ internal fun <T> UiResponse(
             when (error.type) {
                 ErrorType.CLIENT -> {
                     if (error.code == NUMBER_403 && error.message == UNAUTHORIZED_MESSAGE) {
-                        goToAlternativeRoutes(AlternativesRoutes.ERROR_403)
+                        goToAlternativeRoutes(HttpError.ERROR_403)
                     } else {
                         onError(Triple(first = false, second = true, third = error.message))
                     }
@@ -35,7 +35,7 @@ internal fun <T> UiResponse(
 
                 ErrorType.INTERNAL, ErrorType.EXTERNAL, ErrorType.SERVER -> {
                     reloadViewModels()
-                    selectAlternativeRoute(
+                    determineErrorRoute(
                         code = error.code,
                         goToAlternativeRoutes = goToAlternativeRoutes
                     )

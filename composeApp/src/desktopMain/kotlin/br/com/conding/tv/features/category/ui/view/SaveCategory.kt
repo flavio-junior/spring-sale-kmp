@@ -18,7 +18,7 @@ import br.com.conding.tv.components.ui.IsErrorMessage
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings.CATEGORY_NAME
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
@@ -33,7 +33,7 @@ import org.koin.mp.KoinPlatform.getKoin
 @Composable
 internal fun SaveCategory(
     modifier: Modifier = Modifier,
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     var observer: Triple<Boolean, Boolean, String?> by remember {
         mutableStateOf(value = Triple(first = false, second = false, third = EMPTY_TEXT))

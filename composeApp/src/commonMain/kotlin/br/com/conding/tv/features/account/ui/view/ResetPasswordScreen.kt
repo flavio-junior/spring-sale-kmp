@@ -23,7 +23,7 @@ import br.com.conding.tv.features.account.data.dto.PasswordRequestDTO
 import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.navigation.AppDestinations
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings.CONFIRM_PASSWORD
 import br.com.conding.tv.resources.GenericsStrings.CREATE_NEW_PASSWORD
 import br.com.conding.tv.resources.GenericsStrings.EMAIL
@@ -46,7 +46,7 @@ internal fun ResetPasswordScreen(
     recoverToken: AppDestinations.RecoverToken? = null,
     goToSignInScreen: () -> Unit = {},
     goToHomeScreen: () -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     ContentScreen(
         definitionsScreen = DefinitionsScreen(
@@ -179,7 +179,7 @@ private fun UiResponseResetPasswordScreen(
     goToSignInScreen: () -> Unit = {},
     goToHomeScreen: () -> Unit = {},
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     val uiStateCreateNewPassword: UiState<Unit> by viewModel.createNewPassword.collectAsStateWithLifecycle()
     UiResponse(

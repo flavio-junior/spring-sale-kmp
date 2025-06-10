@@ -8,12 +8,12 @@ import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.product.data.vo.ProductsResponseVO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.features.product.ui.viewmodel.ResetProduct
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 
 @Composable
 internal fun UiResponseFindAllProductsScreen(
     viewModel: ProductViewModel,
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onSuccess: @Composable (ProductsResponseVO?) -> Unit = {}
 ) {
     val state: UiState<ProductsResponseVO> by viewModel.findAllProducts.collectAsStateWithLifecycle()
@@ -30,7 +30,7 @@ internal fun UiResponseFindAllProductsScreen(
 internal fun UiResponseCreateNewProductScreen(
     viewModel: ProductViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onSuccessful: () -> Unit = {}
 ) {
     val state: UiState<Unit> by viewModel.createProduct.collectAsStateWithLifecycle()
@@ -50,7 +50,7 @@ internal fun UiResponseCreateNewProductScreen(
 internal fun UiResponseUpdateProductScreen(
     viewModel: ProductViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onSuccessful: () -> Unit = {}
 ) {
     val state: UiState<Unit> by viewModel.updateProduct.collectAsStateWithLifecycle()
@@ -69,7 +69,7 @@ internal fun UiResponseUpdateProductScreen(
 @Composable
 internal fun UiResponseUpdatePriceProductScreen(
     viewModel: ProductViewModel,
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     onSuccessful: () -> Unit = {}
 ) {
@@ -89,7 +89,7 @@ internal fun UiResponseUpdatePriceProductScreen(
 @Composable
 internal fun UiResponseRestockProductScreen(
     viewModel: ProductViewModel,
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     onSuccessful: () -> Unit = {}
 ) {
@@ -110,7 +110,7 @@ internal fun UiResponseRestockProductScreen(
 internal fun UiResponseDeleteProductScreen(
     viewModel: ProductViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onSuccessful: () -> Unit = {}
 ) {
     val state: UiState<Unit> by viewModel.deleteProduct.collectAsStateWithLifecycle()

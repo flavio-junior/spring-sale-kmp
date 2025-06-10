@@ -17,7 +17,7 @@ import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.features.home.ui.UiResponseLogoutApp
 import br.com.conding.tv.navigation.AppDestinations
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings
 import br.com.conding.tv.resources.GenericsStrings.EXIT
 import br.com.conding.tv.resources.IconName
@@ -30,14 +30,14 @@ import org.koin.mp.KoinPlatform.getKoin
 internal expect fun SettingsScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: (AppDestinations) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 )
 
 @Composable
 internal fun MobileSettingsScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: (AppDestinations) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     val viewModel: AccountViewModel = getKoin().get()
     var logoutApp: Boolean by remember { mutableStateOf(value = false) }

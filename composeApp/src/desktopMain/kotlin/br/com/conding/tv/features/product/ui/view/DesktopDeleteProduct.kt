@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.ui.Alert
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings.DELETE_PRODUCT
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import org.koin.mp.KoinPlatform.getKoin
@@ -18,7 +18,7 @@ import org.koin.mp.KoinPlatform.getKoin
 internal fun DesktopDeleteProduct(
     modifier: Modifier = Modifier,
     id: Long,
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onRefresh: () -> Unit
 ) {
     val viewModel: ProductViewModel = getKoin().get()

@@ -23,7 +23,7 @@ import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.features.category.data.dto.UpdateCategoryRequestDTO
 import br.com.conding.tv.features.category.data.vo.CategoryResponseVO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings.ACTUAL_NAME
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.ID
@@ -42,7 +42,7 @@ import org.koin.mp.KoinPlatform.getKoin
 internal fun UpdateCategory(
     modifier: Modifier = Modifier,
     categoryVO: CategoryResponseVO,
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onCleanCategory: () -> Unit = {}
 ) {
     Column(

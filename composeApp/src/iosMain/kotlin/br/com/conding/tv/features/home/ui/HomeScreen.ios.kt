@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import br.com.conding.tv.navigation.AppDestinations
 
 @Composable
-actual fun HomeScreen(
+internal actual fun HomeScreen(
     navGraph: NavHostController,
     goToNextScreen: (AppDestinations) -> Unit,
     goToLoginScreen: () -> Unit

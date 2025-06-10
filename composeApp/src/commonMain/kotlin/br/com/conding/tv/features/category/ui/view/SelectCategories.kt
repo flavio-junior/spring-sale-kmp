@@ -36,7 +36,7 @@ import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.features.category.ui.viewmodel.ResetCategory
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings.ADD_CATEGORIES
 import br.com.conding.tv.resources.GenericsStrings.CANCEL
 import br.com.conding.tv.resources.GenericsStrings.CONFIRM
@@ -52,7 +52,7 @@ import org.koin.mp.KoinPlatform.getKoin
 internal fun SelectCategories(
     onDismissRequest: () -> Unit = {},
     onConfirmation: (List<CategoryResponseDTO>) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     var observer: Triple<Boolean, Boolean, String?> by remember {
         mutableStateOf(value = Triple(first = false, second = false, third = EMPTY_TEXT))
@@ -218,7 +218,7 @@ private fun FooterSelectCategories(
 private fun UiResponseFindCategoryByNameScreen(
     viewModel: CategoryViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onSuccessful: (List<CategoryResponseDTO>) -> Unit = {}
 ) {
     val uiState: UiState<List<CategoryResponseDTO>?> by viewModel.findCategoryByName.collectAsStateWithLifecycle()

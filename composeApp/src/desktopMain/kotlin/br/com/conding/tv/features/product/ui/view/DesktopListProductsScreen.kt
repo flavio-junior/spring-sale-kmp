@@ -16,7 +16,7 @@ import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.product.data.vo.ProductResponseVO
 import br.com.conding.tv.features.product.data.vo.ProductsResponseVO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings.CREATE_PRODUCT
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_LIST_PRODUCTS
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE_4
@@ -26,7 +26,7 @@ import org.koin.mp.KoinPlatform.getKoin
 @Composable
 internal fun DesktopListProductsScreen(
     onItemSelected: (ProductResponseVO) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onToCreateNewProduct: () -> Unit = {}
 ) {
     Column(
@@ -70,7 +70,7 @@ private fun UiResponseListProductsScreen(
     viewModel: ProductViewModel,
     onItemSelected: (ProductResponseVO) -> Unit = {},
     onToCreateNewProduct: () -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     val state: UiState<ProductsResponseVO> by viewModel.findAllProducts.collectAsStateWithLifecycle()
     val showEmptyList: Boolean by remember { viewModel.showEmptyList }

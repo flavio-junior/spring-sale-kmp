@@ -19,7 +19,7 @@ import br.com.conding.tv.features.category.ui.view.SelectCategories
 import br.com.conding.tv.features.product.data.dto.UpdateProductRequestDTO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.features.product.utils.checkBodyProductIsNull
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings.ADD_CATEGORIES
 import br.com.conding.tv.resources.GenericsStrings.CONFIRM_UPDATE
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
@@ -40,7 +40,7 @@ import org.koin.mp.KoinPlatform.getKoin
 @Composable
 internal fun DesktopUpdateProduct(
     id: Long,
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onRefresh: () -> Unit
 ) {
     val viewModel: ProductViewModel = getKoin().get()

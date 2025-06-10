@@ -8,7 +8,7 @@ import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.HeaderSearch
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.navigation.AppDestinations
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings
 import org.koin.mp.KoinPlatform.getKoin
 
@@ -16,14 +16,14 @@ import org.koin.mp.KoinPlatform.getKoin
 internal expect fun ProductsScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: (AppDestinations) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 )
 
 @Composable
 internal fun MobileProductsScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: (AppDestinations) -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     val viewModel: ProductViewModel = getKoin().get()
     ContentScreen(

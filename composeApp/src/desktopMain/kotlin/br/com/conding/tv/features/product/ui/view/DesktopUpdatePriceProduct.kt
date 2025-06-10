@@ -16,7 +16,7 @@ import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.Price
 import br.com.conding.tv.features.product.data.dto.UpdatePriceProductRequestDTO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings.CONFIRM_UPDATE
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.MESSAGE_ZERO_DOUBLE
@@ -34,7 +34,7 @@ import org.koin.mp.KoinPlatform.getKoin
 internal fun DesktopUpdatePriceProduct(
     modifier: Modifier = Modifier,
     id: Long,
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
     onRefresh: () -> Unit = {}
 ) {
     val viewModel: ProductViewModel = getKoin().get()

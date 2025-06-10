@@ -19,7 +19,7 @@ import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.features.account.ui.viewmodel.ResetAccount
 import br.com.conding.tv.navigation.AppDestinations
-import br.com.conding.tv.networking.resources.AlternativesRoutes
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings.CREATE_MY_ACCOUNT
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.ENTER_YOUR_ACCOUNT
@@ -31,7 +31,7 @@ internal fun CheckCodeToConfirmEmailScreen(
     checkCodeToConfirmEmail: AppDestinations.CheckCodeToConfirmEmail? = null,
     goToSignUpScreen: (AppDestinations.SignUp) -> Unit = {},
     goToSignInScreen: () -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     ContentScreen(
         definitionsScreen = DefinitionsScreen(
@@ -96,7 +96,7 @@ private fun UiResponseCheckCodeToConfirmEmailScreen(
     viewModel: AccountViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToSignUpScreen: () -> Unit = {},
-    goToAlternativeRoutes: (AlternativesRoutes?) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     val uiState: UiState<Unit> by viewModel.checkCodeAlreadyExists.collectAsStateWithLifecycle()
     UiResponse(
