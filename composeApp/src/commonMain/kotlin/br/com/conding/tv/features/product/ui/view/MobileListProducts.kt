@@ -22,7 +22,7 @@ internal fun MobileListProducts(
         goToAlternativeRoutes = {},
         onSuccess = { onSuccess ->
             ProductsResult(
-                categoriesResponseVO = onSuccess,
+                productsResponseVO = onSuccess,
                 system = TypeSystem.MOBILE,
                 showMobileScreen = { response ->
                     if (response?.content?.isNotEmpty() == true) {

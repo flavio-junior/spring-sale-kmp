@@ -49,7 +49,7 @@ import kotlinx.coroutines.launch
 @Composable
 internal fun DesktopListProducts(
     modifier: Modifier = Modifier,
-    products: ProductsResponseVO? = null,
+    productsResponseVO: ProductsResponseVO? = null,
     onItemSelected: (ProductResponseVO) -> Unit = {},
     showEmptyList: () -> Unit = {}
 ) {
@@ -84,7 +84,7 @@ internal fun DesktopListProducts(
                 .fillMaxWidth()
                 .padding(all = Themes.size.spaceSize36)
         ) {
-            products?.content?.let { response ->
+            productsResponseVO?.content?.let { response ->
                 itemsIndexed(items = response) { index, product ->
                     DesktopItemProduct(
                         index = index,

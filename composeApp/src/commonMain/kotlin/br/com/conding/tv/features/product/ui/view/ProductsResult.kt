@@ -6,18 +6,18 @@ import br.com.conding.tv.features.product.data.vo.ProductsResponseVO
 
 @Composable
 internal fun ProductsResult(
-    categoriesResponseVO: ProductsResponseVO? = null,
+    productsResponseVO: ProductsResponseVO? = null,
     system: TypeSystem = TypeSystem.DESKTOP,
     showDesktopScreen: @Composable (ProductsResponseVO?) -> Unit = {},
     showMobileScreen: @Composable (ProductsResponseVO?) -> Unit = {}
 ) {
     when (system) {
         TypeSystem.DESKTOP -> {
-            showDesktopScreen(categoriesResponseVO)
+            showDesktopScreen(productsResponseVO)
         }
 
         TypeSystem.MOBILE -> {
-            showMobileScreen(categoriesResponseVO)
+            showMobileScreen(productsResponseVO)
         }
     }
 }

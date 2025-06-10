@@ -17,7 +17,7 @@ internal fun DesktopProductTabMain(
     onRefresh: (Int) -> Unit = {}
 ) {
     when (index) {
-        NUMBER_ZERO -> DesktopListProductsScreen(
+        NUMBER_ZERO -> DesktopFindAllProductsScreen(
             onItemSelected = onItemSelected,
             onToCreateNewProduct = onToCreateNewProduct,
             goToAlternativeRoutes = goToAlternativeRoutes
