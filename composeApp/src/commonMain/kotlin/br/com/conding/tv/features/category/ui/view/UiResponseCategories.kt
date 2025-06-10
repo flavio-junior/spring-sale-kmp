@@ -9,7 +9,6 @@ import br.com.conding.tv.features.category.data.vo.CategoriesResponseVO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.features.category.ui.viewmodel.ResetCategory
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.reloadViewModels
 
 @Composable
 internal fun UiResponseFindAllCategoriesScreen(
@@ -39,10 +38,7 @@ internal fun UiResponseCreateNewCategoryScreen(
         state = state,
         onLoading = {},
         onError = onError,
-        goToAlternativeRoutes = {
-            goToAlternativeRoutes(it)
-            reloadViewModels()
-        },
+        goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
             viewModel.resetCategory(reset = ResetCategory.CREATE_CATEGORY)
             onSuccessful()

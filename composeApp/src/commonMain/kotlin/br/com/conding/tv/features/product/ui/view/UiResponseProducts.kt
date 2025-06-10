@@ -9,7 +9,6 @@ import br.com.conding.tv.features.product.data.vo.ProductsResponseVO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.features.product.ui.viewmodel.ResetProduct
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.reloadViewModels
 
 @Composable
 internal fun UiResponseFindAllProductsScreen(
@@ -39,10 +38,7 @@ internal fun UiResponseCreateNewProductScreen(
         state = state,
         onLoading = {},
         onError = onError,
-        goToAlternativeRoutes = {
-            goToAlternativeRoutes(it)
-            reloadViewModels()
-        },
+        goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
             viewModel.resetProduct(reset = ResetProduct.CREATE_PRODUCT)
             onSuccessful()
@@ -82,10 +78,7 @@ internal fun UiResponseUpdatePriceProductScreen(
         state = uiState,
         onLoading = {},
         onError = onError,
-        goToAlternativeRoutes = {
-            goToAlternativeRoutes(it)
-            reloadViewModels()
-        },
+        goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
             viewModel.resetProduct(reset = ResetProduct.UPDATE_PRICE_PRODUCT)
             onSuccessful()
@@ -105,10 +98,7 @@ internal fun UiResponseRestockProductScreen(
         state = state,
         onLoading = {},
         onError = onError,
-        goToAlternativeRoutes = {
-            goToAlternativeRoutes(it)
-            reloadViewModels()
-        },
+        goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
             viewModel.resetProduct(reset = ResetProduct.RESTOCK_PRODUCT)
             onSuccessful()

@@ -4,10 +4,10 @@ import androidx.compose.runtime.Composable
 import br.com.conding.tv.networking.resources.AlternativesRoutes
 import br.com.conding.tv.networking.resources.ErrorType
 import br.com.conding.tv.networking.resources.StatusCode.NUMBER_403
+import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.networking.resources.selectAlternativeRoute
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.Warnings.UNAUTHORIZED_MESSAGE
-import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 
 @Composable
 internal fun <T> UiResponse(
@@ -23,20 +23,21 @@ internal fun <T> UiResponse(
         is UiState.Loading -> onLoading()
 
         is UiState.Error -> {
-            when (state.error.type) {
+            val error = state.error
+            when (error.type) {
                 ErrorType.CLIENT -> {
-                    if (state.error.code == NUMBER_403 && state.error.message == UNAUTHORIZED_MESSAGE) {
-                        goToAlternativeRoutes(selectAlternativeRoute(code = state.error.code))
+                    if (error.code == NUMBER_403 && error.message == UNAUTHORIZED_MESSAGE) {
+                        goToAlternativeRoutes(AlternativesRoutes.ERROR_403)
                     } else {
-                        onError(Triple(first = false, second = true, third = state.error.message))
+                        onError(Triple(first = false, second = true, third = error.message))
                     }
                 }
 
                 ErrorType.INTERNAL, ErrorType.EXTERNAL, ErrorType.SERVER -> {
-                    goToAlternativeRoutes(
-                        selectAlternativeRoute(
-                            code = state.error.code ?: NUMBER_ZERO
-                        )
+                    reloadViewModels()
+                    selectAlternativeRoute(
+                        code = error.code,
+                        goToAlternativeRoutes = goToAlternativeRoutes
                     )
                 }
             }

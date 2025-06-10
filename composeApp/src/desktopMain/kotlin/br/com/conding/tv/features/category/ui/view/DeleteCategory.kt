@@ -12,7 +12,6 @@ import br.com.conding.tv.components.ui.Alert
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.resources.GenericsStrings.DELETE_CATEGORY
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.theme.Themes
@@ -47,10 +46,7 @@ internal fun DeleteCategory(
                 onError(it)
                 observer = it
             },
-            goToAlternativeRoutes = {
-                goToAlternativeRoutes(it)
-                reloadViewModels()
-            },
+            goToAlternativeRoutes = goToAlternativeRoutes,
             onSuccessful = {
                 observer = Triple(first = false, second = false, third = EMPTY_TEXT)
                 onSuccessful()

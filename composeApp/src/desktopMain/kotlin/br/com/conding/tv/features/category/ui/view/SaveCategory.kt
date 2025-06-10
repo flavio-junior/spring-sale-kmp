@@ -19,7 +19,6 @@ import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.resources.GenericsStrings.CATEGORY_NAME
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
@@ -85,10 +84,7 @@ internal fun SaveCategory(
                 onError = {
                     observer = it
                 },
-                goToAlternativeRoutes = {
-                    goToAlternativeRoutes(it)
-                    reloadViewModels()
-                },
+                goToAlternativeRoutes = goToAlternativeRoutes,
                 onSuccessful = {
                     categoryName = EMPTY_TEXT
                 }

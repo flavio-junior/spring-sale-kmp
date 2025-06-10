@@ -17,7 +17,6 @@ import br.com.conding.tv.features.product.data.vo.ProductResponseVO
 import br.com.conding.tv.features.product.data.vo.ProductsResponseVO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.networking.resources.AlternativesRoutes
-import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.resources.GenericsStrings.CREATE_PRODUCT
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_LIST_PRODUCTS
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE_4
@@ -80,10 +79,7 @@ private fun UiResponseListProductsScreen(
         onError = {
             Triple(first = true, second = false, third = it)
         },
-        goToAlternativeRoutes = {
-            goToAlternativeRoutes(it)
-            reloadViewModels()
-        },
+        goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
             if (showEmptyList) {
                 EmptyList(
