@@ -84,7 +84,7 @@ internal fun DesktopProductsTabs(
                             pagerState.animateScrollToPage(page = NUMBER_ONE)
                         }
                     },
-                    onToCreateNewProduct = {
+                    goToCreateNewProduct = {
                         scope.launch {
                             pagerState.animateScrollToPage(page = + NUMBER_TWO)
                         }

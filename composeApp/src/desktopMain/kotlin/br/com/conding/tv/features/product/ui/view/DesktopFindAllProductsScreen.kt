@@ -23,7 +23,7 @@ import org.koin.mp.KoinPlatform.getKoin
 internal fun DesktopFindAllProductsScreen(
     onItemSelected: (ProductResponseVO) -> Unit = {},
     goToAlternativeRoutes: (HttpError) -> Unit = {},
-    onToCreateNewProduct: () -> Unit = {}
+    goToCreateNewProduct: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -52,7 +52,7 @@ internal fun DesktopFindAllProductsScreen(
                     EmptyList(
                         title = EMPTY_LIST_PRODUCTS,
                         description = "$CREATE_PRODUCT?",
-                        onClick = onToCreateNewProduct,
+                        onClick = goToCreateNewProduct,
                         refresh = {
                             viewModel.findAllProducts()
                         }

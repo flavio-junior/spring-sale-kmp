@@ -12,19 +12,19 @@ internal fun DesktopProductTabMain(
     index: Int,
     productsResponseVO: ProductResponseVO = ProductResponseVO(),
     onItemSelected: (ProductResponseVO) -> Unit = {},
-    onToCreateNewProduct: () -> Unit = {},
     goToAlternativeRoutes: (HttpError) -> Unit = {},
+    goToCreateNewProduct: () -> Unit = {},
     onRefresh: (Int) -> Unit = {}
 ) {
     when (index) {
         NUMBER_ZERO -> DesktopFindAllProductsScreen(
             onItemSelected = onItemSelected,
-            onToCreateNewProduct = onToCreateNewProduct,
-            goToAlternativeRoutes = goToAlternativeRoutes
+            goToAlternativeRoutes = goToAlternativeRoutes,
+            goToCreateNewProduct = goToCreateNewProduct
         )
 
         NUMBER_ONE -> DesktopDetailsProductScreen(
-            product = productsResponseVO,
+            productResponseVO = productsResponseVO,
             goToAlternativeRoutes = goToAlternativeRoutes,
             onRefresh = {
                 onRefresh(NUMBER_ONE)

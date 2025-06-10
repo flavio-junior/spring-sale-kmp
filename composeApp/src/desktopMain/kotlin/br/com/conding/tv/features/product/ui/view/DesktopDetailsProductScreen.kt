@@ -28,13 +28,13 @@ import br.com.conding.tv.theme.Themes
 
 @Composable
 internal fun DesktopDetailsProductScreen(
-    product: ProductResponseVO,
+    productResponseVO: ProductResponseVO,
     goToAlternativeRoutes: (HttpError) -> Unit = {},
     onRefresh: () -> Unit = {}
 ) {
-    if (product.id > NUMBER_ZERO) {
+    if (productResponseVO.id > NUMBER_ZERO) {
         DesktopDetailsProductBody(
-            product = product,
+            productResponseVO = productResponseVO,
             goToAlternativeRoutes = goToAlternativeRoutes,
             onRefresh = onRefresh
         )
@@ -45,7 +45,7 @@ internal fun DesktopDetailsProductScreen(
 
 @Composable
 internal fun DesktopDetailsProductBody(
-    product: ProductResponseVO,
+    productResponseVO: ProductResponseVO,
     goToAlternativeRoutes: (HttpError) -> Unit = {},
     onRefresh: () -> Unit = {}
 ) {
@@ -63,36 +63,36 @@ internal fun DesktopDetailsProductBody(
             TextField(
                 enabled = false,
                 label = ID,
-                value = product.id.toString(),
+                value = productResponseVO.id.toString(),
                 onValueChange = {},
                 modifier = Modifier.weight(weight = WEIGHT_SIZE)
             )
             TextField(
                 enabled = false,
                 label = NAME,
-                value = product.name,
+                value = productResponseVO.name,
                 onValueChange = {},
                 modifier = Modifier.weight(weight = WEIGHT_SIZE_2)
             )
             TextField(
                 enabled = false,
                 label = PRICE,
-                value = formatterMaskToMoney(price = product.price),
+                value = formatterMaskToMoney(price = productResponseVO.price),
                 onValueChange = {},
                 modifier = Modifier.weight(weight = WEIGHT_SIZE)
             )
             TextField(
                 enabled = false,
                 label = QUANTITY,
-                value = product.quantity.toString(),
+                value = productResponseVO.quantity.toString(),
                 onValueChange = {},
                 modifier = Modifier.weight(weight = WEIGHT_SIZE)
             )
         }
-        ListCategoriesAvailableResponseVO(categories = product.categories)
+        ListCategoriesAvailableResponseVO(categories = productResponseVO.categories)
         Description(label = UPDATE_PRODUCT)
         DesktopUpdateProduct(
-            id = product.id,
+            id = productResponseVO.id,
             goToAlternativeRoutes = goToAlternativeRoutes,
             onRefresh = onRefresh
         )
@@ -101,14 +101,14 @@ internal fun DesktopDetailsProductBody(
             modifier = Modifier.weight(weight = WEIGHT_SIZE)
         ) {
             DesktopUpdatePriceProduct(
-                id = product.id,
+                id = productResponseVO.id,
                 goToAlternativeRoutes = goToAlternativeRoutes,
                 modifier = Modifier
                     .weight(weight = WEIGHT_SIZE_2),
                 onRefresh = onRefresh
             )
             DesktopRestockProduct(
-                id = product.id,
+                id = productResponseVO.id,
                 goToAlternativeRoutes = goToAlternativeRoutes,
                 modifier = Modifier.weight(weight = WEIGHT_SIZE_2),
                 onRefresh = onRefresh
