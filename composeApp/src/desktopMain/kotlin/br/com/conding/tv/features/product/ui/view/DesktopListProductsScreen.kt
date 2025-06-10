@@ -43,17 +43,8 @@ internal fun DesktopListProductsScreen(
             viewModel.findAllProducts()
         }
         HeaderSearch(
-            onSearch = { name, size, sort, route ->
-                viewModel.findAllProducts(name = name, size = size, sort = sort, route = route)
-            },
-            onSort = { name, size, sort, route ->
-                viewModel.findAllProducts(name = name, size = size, sort = sort, route = route)
-            },
-            onFilter = { name, size, sort, route ->
-                viewModel.findAllProducts(name = name, size = size, sort = sort, route = route)
-            },
-            onRefresh = { name, size, sort, route ->
-                viewModel.findAllProducts(name = name, size = size, sort = sort, route = route)
+            filter = { name, size, sort ->
+                viewModel.findAllProducts(name = name, size = size, sort = sort)
             }
         )
         UiResponseListProductsScreen(

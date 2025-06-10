@@ -30,17 +30,8 @@ internal fun DesktopCardCategories(
     ) {
         val viewModel: CategoryViewModel = getKoin().get()
         HeaderSearch(
-            onSearch = { name, size, sort, route ->
-                viewModel.findAllCategories(name = name, size = size, sort = sort, route = route)
-            },
-            onSort = { name, size, sort, route ->
-                viewModel.findAllCategories(name = name, size = size, sort = sort, route = route)
-            },
-            onFilter = { name, size, sort, route ->
-                viewModel.findAllCategories(name = name, size = size, sort = sort, route = route)
-            },
-            onRefresh = { name, size, sort, route ->
-                viewModel.findAllCategories(name = name, size = size, sort = sort, route = route)
+            filter = { name, size, sort ->
+                viewModel.findAllCategories(name = name, size = size, sort = sort)
             }
         )
         LaunchedEffect(key1 = Unit) {

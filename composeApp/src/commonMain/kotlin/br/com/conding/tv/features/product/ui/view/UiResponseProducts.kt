@@ -121,6 +121,7 @@ internal fun UiResponseDeleteProductScreen(
         goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
             onSuccessful()
+            viewModel.resetProduct(reset = ResetProduct.DELETE_PRODUCT)
             viewModel.findAllProducts()
         }
     )

@@ -14,7 +14,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import br.com.conding.tv.components.model.LocationRoute
 import br.com.conding.tv.components.settings.TypeSystem
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.RESULT
@@ -33,28 +32,15 @@ internal fun HeaderSearch(
     modifier: Modifier = Modifier,
     label: String? = null,
     system: TypeSystem = TypeSystem.DESKTOP,
-    onSearch: (String, Int, String, LocationRoute) -> Unit,
-    onSort: (String, Int, String, LocationRoute) -> Unit,
-    onFilter: (String, Int, String, LocationRoute) -> Unit,
-    onRefresh: (String, Int, String, LocationRoute) -> Unit
+    filter: (String, Int, String) -> Unit
 ) {
     when (system) {
         TypeSystem.DESKTOP -> {
-            HeaderSearchDesktop(
-                modifier = modifier,
-                onSearch = onSearch,
-                onSort = onSort,
-                onFilter = onFilter,
-                onRefresh = onRefresh
-            )
+            HeaderSearchDesktop(modifier = modifier, filter = filter)
         }
 
         TypeSystem.MOBILE -> {
-            HeaderSearchMobile(
-                label = label,
-                onSearch = onSearch,
-                onSort = onSort
-            )
+            HeaderSearchMobile(label = label, filter = filter)
         }
     }
 }
@@ -62,8 +48,7 @@ internal fun HeaderSearch(
 @Composable
 private fun HeaderSearchMobile(
     label: String? = null,
-    onSearch: (String, Int, String, LocationRoute) -> Unit,
-    onSort: (String, Int, String, LocationRoute) -> Unit
+    filter: (String, Int, String) -> Unit,
 ) {
     var name by remember { mutableStateOf(value = EMPTY_TEXT) }
     var sortBy: String by remember { mutableStateOf(value = ASC) }
@@ -100,7 +85,7 @@ private fun HeaderSearchMobile(
             name = it
         },
         onGo = {
-            onSearch(name, converterSizeStringToInt(size = size), sortBy, LocationRoute.SEARCH)
+            filter(name, converterSizeStringToInt(size = size), sortBy)
         }
     )
     ContentHorizontal(
@@ -114,7 +99,7 @@ private fun HeaderSearchMobile(
             SortBy(
                 onClick = {
                     sortBy = it
-                    onSort(name, converterSizeStringToInt(size = size), sortBy, LocationRoute.SORT)
+                    filter(name, converterSizeStringToInt(size = size), sortBy)
                 }
             )
         }
@@ -124,7 +109,7 @@ private fun HeaderSearchMobile(
             onDismiss = {
                 openBottomSheet = false
                 size = it ?: EMPTY_TEXT
-                onSearch(name, converterSizeStringToInt(size = size), sortBy, LocationRoute.SEARCH)
+                filter(name, converterSizeStringToInt(size = size), sortBy)
             }
         )
     }
@@ -133,10 +118,7 @@ private fun HeaderSearchMobile(
 @Composable
 private fun HeaderSearchDesktop(
     modifier: Modifier = Modifier,
-    onSearch: (String, Int, String, LocationRoute) -> Unit,
-    onSort: (String, Int, String, LocationRoute) -> Unit,
-    onFilter: (String, Int, String, LocationRoute) -> Unit,
-    onRefresh: (String, Int, String, LocationRoute) -> Unit
+    filter: (String, Int, String) -> Unit
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16),
@@ -151,13 +133,13 @@ private fun HeaderSearchDesktop(
             onValueChange = { name = it },
             modifier = Modifier.weight(weight = WEIGHT_SIZE),
             onGo = {
-                onSearch(name, converterSizeStringToInt(size = size), sortBy, LocationRoute.SEARCH)
+                filter(name, converterSizeStringToInt(size = size), sortBy)
             }
         )
         SortBy(
             onClick = {
                 sortBy = it
-                onSort(name, converterSizeStringToInt(size = size), sortBy, LocationRoute.SORT)
+                filter(name, converterSizeStringToInt(size = size), sortBy)
             }
         )
         DropdownMenu(
@@ -166,7 +148,7 @@ private fun HeaderSearchDesktop(
             label = SIZE_LIST,
             onValueChangedEvent = {
                 size = it
-                onFilter(name, converterSizeStringToInt(size = size), sortBy, LocationRoute.FILTER)
+                filter(name, converterSizeStringToInt(size = size), sortBy)
             }
         )
         IconDefault(
@@ -181,7 +163,7 @@ private fun HeaderSearchDesktop(
                 .size(size = Themes.size.spaceSize64)
                 .padding(all = Themes.size.spaceSize8),
             onClick = {
-                onRefresh(name, converterSizeStringToInt(size = size), sortBy, LocationRoute.RELOAD)
+                filter(name, converterSizeStringToInt(size = size), sortBy)
             }
         )
     }

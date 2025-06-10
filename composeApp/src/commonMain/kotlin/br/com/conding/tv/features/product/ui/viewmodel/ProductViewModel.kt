@@ -3,7 +3,6 @@ package br.com.conding.tv.features.product.ui.viewmodel
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.conding.tv.components.model.LocationRoute
 import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.product.data.dto.ProductRequestDTO
 import br.com.conding.tv.features.product.data.dto.RestockProductRequestDTO
@@ -27,9 +26,10 @@ internal class ProductViewModel(
     private val converter: ConverterProduct
 ) : ViewModel() {
 
+    private var nameDefault: String = EMPTY_TEXT
     private var currentPage: Int = NUMBER_ZERO
     private var sizeDefault: Int = NUMBER_SIXTY
-    private var sort: String = ASC
+    private var sortDefault: String = ASC
 
     private val _findAllProducts = MutableStateFlow<UiState<ProductsResponseVO>>(UiState.Init)
     val findAllProducts = _findAllProducts.asStateFlow()
@@ -52,25 +52,19 @@ internal class ProductViewModel(
     val deleteProduct = _deleteProduct.asStateFlow()
 
     fun findAllProducts(
-        name: String = EMPTY_TEXT,
-        sort: String = this.sort,
-        size: Int = this.sizeDefault,
-        route: LocationRoute = LocationRoute.SEARCH
+        name: String = this.nameDefault,
+        sort: String = this.sortDefault,
+        size: Int = this.sizeDefault
     ) {
-        when (route) {
-            LocationRoute.SEARCH, LocationRoute.SORT, LocationRoute.RELOAD -> {}
-            LocationRoute.FILTER -> {
-                this.currentPage = NUMBER_ZERO
-                showEmptyList.value = false
-            }
-        }
+        this.nameDefault = name
+        this.sortDefault = sort
+        this.sizeDefault = size
         viewModelScope.launch {
-            sizeDefault = size
             repository.findAllProducts(
-                name = name,
+                name = nameDefault,
                 page = currentPage,
                 size = sizeDefault,
-                sort = sort
+                sort = sortDefault
             )
                 .collect { response ->
                     when (response) {

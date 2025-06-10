@@ -43,37 +43,8 @@ internal fun MobileCategoryScreen(
             HeaderSearch(
                 label = GenericsStrings.CATEGORIES,
                 system = TypeSystem.MOBILE,
-                onSearch = { name, size, sort, route ->
-                    viewModel.findAllCategories(
-                        name = name,
-                        size = size,
-                        sort = sort,
-                        route = route
-                    )
-                },
-                onSort = { name, size, sort, route ->
-                    viewModel.findAllCategories(
-                        name = name,
-                        size = size,
-                        sort = sort,
-                        route = route
-                    )
-                },
-                onFilter = { name, size, sort, route ->
-                    viewModel.findAllCategories(
-                        name = name,
-                        size = size,
-                        sort = sort,
-                        route = route
-                    )
-                },
-                onRefresh = { name, size, sort, route ->
-                    viewModel.findAllCategories(
-                        name = name,
-                        size = size,
-                        sort = sort,
-                        route = route
-                    )
+                filter = { name, size, sort ->
+                    viewModel.findAllCategories(name = name, size = size, sort = sort)
                 }
             )
             MobileListCategories(viewModel = viewModel)
