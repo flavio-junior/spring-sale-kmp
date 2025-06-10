@@ -20,7 +20,7 @@ import br.com.conding.tv.theme.Themes
 @Composable
 internal fun Header(
     label: String,
-    textAlign: TextAlign = TextAlign.Start,
+    disableIcon: Boolean = false,
     goToBackScreen: () -> Unit = {}
 ) {
     Row(
@@ -29,10 +29,10 @@ internal fun Header(
             .background(color = Themes.colors.background)
             .fillMaxWidth()
             .height(height = Themes.size.spaceSize64)
-            .padding(horizontal = Themes.size.spaceSize36),
+            .padding(horizontal = Themes.size.spaceSize16),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        if (textAlign == TextAlign.Start) {
+        if (!disableIcon) {
             Icon(
                 painter = getIconResource(iconName = IconName.ARROW_BACK),
                 contentDescription = label,
@@ -44,7 +44,7 @@ internal fun Header(
             label = label,
             color = Themes.colors.primary,
             modifier = Modifier.weight(weight = WEIGHT_SIZE),
-            textAlign = textAlign
+            textAlign = TextAlign.Center
         )
     }
 }

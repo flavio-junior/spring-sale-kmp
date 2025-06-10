@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,31 +25,40 @@ internal fun CommonScreen(
     extra: @Composable (Boolean) -> Unit = {},
     content: @Composable () -> Unit = {}
 ) {
-    Box(
-        modifier = Modifier
-            .background(color = Themes.colors.background)
-            .padding(horizontal = Themes.size.spaceSize16)
-    ) {
-        if (definitionsScreen.label != null) {
-            Header(label = definitionsScreen.label, goToBackScreen = goToBackScreen)
+    Scaffold(
+        topBar = {
+            if (definitionsScreen.label != null) {
+                Header(
+                    label = definitionsScreen.label,
+                    goToBackScreen = goToBackScreen
+                )
+            }
+        },
+        content = {
+            Box(
+                modifier = Modifier
+                    .background(color = Themes.colors.background)
+                    .padding(horizontal = Themes.size.spaceSize16)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .background(color = Themes.colors.background)
+                        .fillMaxSize()
+                        .scroll(scroll = definitionsScreen.scroll)
+                        .wrapContentHeight(align = definitionsScreen.alignment),
+                    horizontalAlignment = definitionsScreen.horizontalAlignment,
+                    verticalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16)
+                ) {
+                    extra(false)
+                    content()
+                }
+                if (definitionsScreen.enableMiniButton) {
+                    MiniButton(
+                        modifier = Modifier.align(alignment = Alignment.BottomEnd),
+                        onClick = goToNextScreen
+                    )
+                }
+            }
         }
-        Column(
-            modifier = Modifier
-                .background(color = Themes.colors.background)
-                .fillMaxSize()
-                .scroll(scroll = definitionsScreen.scroll)
-                .wrapContentHeight(align = definitionsScreen.alignment),
-            horizontalAlignment = definitionsScreen.horizontalAlignment,
-            verticalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16)
-        ) {
-            extra(false)
-            content()
-        }
-        if (definitionsScreen.enableMiniButton) {
-            MiniButton(
-                modifier = Modifier.align(alignment = Alignment.BottomEnd),
-                onClick = goToNextScreen
-            )
-        }
-    }
+    )
 }

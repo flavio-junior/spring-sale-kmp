@@ -6,14 +6,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.input.ImeAction
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.TextField
+import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.settings.data.dto.UserRequestDTO
 import br.com.conding.tv.features.settings.data.vo.UserResponseVO
@@ -31,8 +30,8 @@ internal fun EditProfileUserScreen(
 ) {
     ContentScreen(
         definitionsScreen = DefinitionsScreen(
-            alignment = Alignment.Top,
-            label = GenericsStrings.DATA_USER
+            label = GenericsStrings.DATA_USER,
+            scroll = true
         ),
         goToBackScreen = goToBackScreen,
         content = {

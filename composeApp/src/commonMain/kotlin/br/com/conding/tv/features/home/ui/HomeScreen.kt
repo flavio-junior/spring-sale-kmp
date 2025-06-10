@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import br.com.conding.tv.components.ui.BottomNavigationBar
@@ -31,7 +30,7 @@ internal fun MobileHomeScreen(
     val navController: NavHostController = rememberNavController()
     Scaffold(
         topBar = {
-            Header(label = PROJECT_NAME, textAlign = TextAlign.Center)
+            Header(label = PROJECT_NAME, disableIcon = true)
         },
         bottomBar = {
             Column(
