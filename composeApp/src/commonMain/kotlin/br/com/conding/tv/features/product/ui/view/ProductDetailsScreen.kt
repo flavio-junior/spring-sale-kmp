@@ -55,12 +55,13 @@ internal fun ProductDetailsScreen(
                 iconName = IconName.BOX
             )
             SimpleButton(
-                label = GenericsStrings.UPDATE_PRODUCT_SINGLE,
+                label = GenericsStrings.UPDATE_PRODUCT_MOBILE,
                 onClick = {}
             )
-            SimpleButton(
-                label = GenericsStrings.UPDATE_PRICE_PRODUCT,
-                onClick = {}
+            UpdatePriceProduct(
+                goToBackScreen = goToBackScreen,
+                productResponseVO = productResponseVO,
+                goToAlternativeRoutes = goToAlternativeRoutes
             )
             RestockProduct(
                 goToBackScreen = goToBackScreen,
@@ -74,6 +75,37 @@ internal fun ProductDetailsScreen(
             )
         }
     )
+}
+
+@Composable
+private fun UpdatePriceProduct(
+    goToBackScreen: () -> Unit = {},
+    productResponseVO: ProductResponseVO,
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
+) {
+    var openDialog: Boolean by remember { mutableStateOf(value = false) }
+    SimpleButton(
+        label = GenericsStrings.UPDATE_PRICE_PRODUCT,
+        onClick = {
+            openDialog = true
+        },
+        background = Themes.colors.error
+    )
+    if (openDialog) {
+        UpdatePriceProductBottomSheet(
+            productResponseVO = productResponseVO,
+            goToAlternativeRoutes = {
+                openDialog = false
+                goToAlternativeRoutes(it)
+            },
+            onDismiss = {
+                openDialog = false
+            },
+            goToBackScreen = {
+                goToBackScreen()
+            }
+        )
+    }
 }
 
 @Composable
