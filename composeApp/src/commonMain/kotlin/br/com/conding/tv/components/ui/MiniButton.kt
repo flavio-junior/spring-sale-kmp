@@ -34,7 +34,7 @@ internal fun MiniButton(
             modifier = Modifier
                 .padding(all = Themes.size.spaceSize16)
                 .size(size = Themes.size.spaceSize24),
-            tint = Themes.colors.primary
+            tint = Themes.colors.background
         )
     }
 }

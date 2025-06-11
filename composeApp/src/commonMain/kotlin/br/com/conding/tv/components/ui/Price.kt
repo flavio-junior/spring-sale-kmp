@@ -29,7 +29,7 @@ internal fun Price(
     enabled: Boolean = true,
     value: String,
     label: String? = null,
-    onValueChange: (String) -> Unit,
+    onValueChange: (String) -> Unit = {},
     modifier: Modifier = Modifier,
     keyboardType: KeyboardType = KeyboardType.Number,
     imeAction: ImeAction = ImeAction.Next,

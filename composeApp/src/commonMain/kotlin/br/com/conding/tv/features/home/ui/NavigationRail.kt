@@ -25,7 +25,11 @@ internal fun NavigationRail(
             CategoriesScreen()
         }
         composable(route = BottomNavigationRoute.Products.route.name) {
-            ProductsScreen()
+            ProductsScreen(
+                goToNextScreen = {
+                    navGraph.navigate(route = it)
+                }
+            )
         }
         composable(route = BottomNavigationRoute.Settings.route.name) {
             SettingsScreen(

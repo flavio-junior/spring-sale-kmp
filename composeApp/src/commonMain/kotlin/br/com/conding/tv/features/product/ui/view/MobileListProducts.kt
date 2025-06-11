@@ -7,12 +7,14 @@ import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.settings.TypeSystem
 import br.com.conding.tv.components.ui.EmptyList
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
+import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_LIST_PRODUCTS
 import br.com.conding.tv.theme.Themes
 
 @Composable
 internal fun MobileListProducts(
-    viewModel: ProductViewModel
+    viewModel: ProductViewModel,
+    goToNextScreen: (AppDestinations) -> Unit = {}
 ) {
     LaunchedEffect(key1 = Unit) {
         viewModel.findAllProducts()
@@ -27,7 +29,11 @@ internal fun MobileListProducts(
                 showMobileScreen = { response ->
                     if (response?.content?.isNotEmpty() == true) {
                         response.content.forEach {
-                            MobileProductItem(viewModel = viewModel, productResponseVO = it)
+                            MobileProductItem(
+                                viewModel = viewModel,
+                                productResponseVO = it,
+                                goToNextScreen = goToNextScreen
+                            )
                         }
                         PageIndicatorProducts(
                             modifier = Modifier.padding(bottom = Themes.size.spaceSize2),

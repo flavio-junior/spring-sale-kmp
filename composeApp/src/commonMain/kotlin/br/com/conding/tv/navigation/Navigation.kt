@@ -16,6 +16,8 @@ import br.com.conding.tv.features.account.ui.view.SignInScreen
 import br.com.conding.tv.features.account.ui.view.SignUpScreen
 import br.com.conding.tv.features.category.ui.view.CategoriesScreen
 import br.com.conding.tv.features.home.ui.HomeScreen
+import br.com.conding.tv.features.product.ui.view.CreateNewProductScreen
+import br.com.conding.tv.features.product.ui.view.ProductDetailsScreen
 import br.com.conding.tv.features.product.ui.view.ProductsScreen
 import br.com.conding.tv.features.settings.ui.view.EditProfileUserScreen
 import br.com.conding.tv.features.settings.ui.view.SettingsScreen
@@ -264,6 +266,38 @@ internal fun NavGraphBuilder.productNavigation(
                 navigateToAlternativeRoutes(
                     navController = navController,
                     currentScreen = AppDestinations.Products,
+                    alternativeRoutes = it
+                )
+            }
+        )
+    }
+
+    composable<AppDestinations.CreateNewProduct> {
+        CreateNewProductScreen(
+            goToBackScreen = {
+                navController.goBack()
+            },
+            goToAlternativeRoutes = {
+                navigateToAlternativeRoutes(
+                    navController = navController,
+                    currentScreen = AppDestinations.CreateNewProduct,
+                    alternativeRoutes = it
+                )
+            }
+        )
+    }
+
+    composable<AppDestinations.ProductDetails> { backStackEntry ->
+        val route = backStackEntry.toRoute<AppDestinations.ProductDetails>()
+        ProductDetailsScreen(
+            goToBackScreen = {
+                navController.goBack()
+            },
+            productResponseVO = route.data.fromJson(),
+            goToAlternativeRoutes = {
+                navigateToAlternativeRoutes(
+                    navController = navController,
+                    currentScreen = AppDestinations.ProductDetails,
                     alternativeRoutes = it
                 )
             }

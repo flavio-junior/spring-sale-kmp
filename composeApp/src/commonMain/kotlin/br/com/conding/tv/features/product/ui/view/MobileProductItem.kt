@@ -17,6 +17,8 @@ import br.com.conding.tv.components.ui.Description
 import br.com.conding.tv.features.product.data.vo.ProductResponseVO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.getIconResource
+import br.com.conding.tv.navigation.AppDestinations
+import br.com.conding.tv.navigation.toJson
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.resources.onBorder
@@ -28,7 +30,7 @@ import br.com.conding.tv.theme.Themes
 internal fun MobileProductItem(
     viewModel: ProductViewModel,
     productResponseVO: ProductResponseVO,
-    goToNextScreen: (ProductResponseVO) -> Unit = {}
+    goToNextScreen: (AppDestinations) -> Unit = {}
 ) {
     var deleteProduct: Boolean by remember { mutableStateOf(value = false) }
     Row(
@@ -48,7 +50,13 @@ internal fun MobileProductItem(
             backgroundTransparent = true,
             maxLines = NumbersUtils.NUMBER_ONE,
             modifier = Modifier
-                .onClickable(onClick = { goToNextScreen(productResponseVO) })
+                .onClickable(
+                    onClick = {
+                        goToNextScreen(
+                            AppDestinations.ProductDetails(data = productResponseVO.toJson())
+                        )
+                    }
+                )
                 .padding(all = Themes.size.spaceSize12)
                 .weight(weight = WEIGHT_SIZE)
         )

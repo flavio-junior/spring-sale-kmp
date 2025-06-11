@@ -21,11 +21,13 @@ import kotlinx.coroutines.launch
 
 @Composable
 internal fun ListCategoriesAvailableResponseVO(
-    categories: List<CategoryResponseVO>? = null
+    categories: List<CategoryResponseVO>? = null,
+    modifier: Modifier = Modifier
 ) {
-    Description(label = "$CATEGORIES:", backgroundTransparent = true)
+    Description(label = "$CATEGORIES:", backgroundTransparent = true, modifier = modifier)
     Row(
         horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16),
+        modifier = modifier
     ) {
         val scrollState = rememberLazyListState()
         val coroutineScope = rememberCoroutineScope()

@@ -32,7 +32,7 @@ internal fun MobileProductsScreen(
             enableMiniButton = true
         ),
         goToNextScreen = {
-
+            goToNextScreen(AppDestinations.CreateNewProduct)
         },
         content = {
             HeaderSearch(
@@ -42,7 +42,10 @@ internal fun MobileProductsScreen(
                     viewModel.findAllProducts(name = name, size = size, sort = sort)
                 }
             )
-            MobileListProducts(viewModel = viewModel)
+            MobileListProducts(
+                viewModel = viewModel,
+                goToNextScreen = goToNextScreen
+            )
         }
     )
 }

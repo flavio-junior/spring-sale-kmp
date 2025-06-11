@@ -38,6 +38,12 @@ internal sealed interface AppDestinations {
     data object Products : AppDestinations
 
     @Serializable
+    data object CreateNewProduct : AppDestinations
+
+    @Serializable
+    data class ProductDetails(val data: String) : AppDestinations
+
+    @Serializable
     data object Settings : AppDestinations
 
     @Serializable
