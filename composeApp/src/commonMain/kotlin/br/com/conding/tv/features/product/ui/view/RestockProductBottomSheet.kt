@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
@@ -59,7 +61,8 @@ internal fun RestockProductBottomSheet(
         Column(
             modifier = Modifier
                 .background(color = Themes.colors.background)
-                .padding(horizontal = Themes.size.spaceSize36),
+                .padding(horizontal = Themes.size.spaceSize36)
+                .verticalScroll(state = rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(Themes.size.spaceSize24)
         ) {
             var observer: Triple<Boolean, Boolean, String?> by remember {
