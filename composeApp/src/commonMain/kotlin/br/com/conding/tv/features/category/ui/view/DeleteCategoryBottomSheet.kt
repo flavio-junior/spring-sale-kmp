@@ -73,11 +73,12 @@ internal fun DeleteCategoryBottomSheet(
                     viewModel.deleteCategory(id = category?.id ?: 0)
                 },
                 isEnabled = observer.first,
-                label = DELETE_CATEGORY
+                label = DELETE_CATEGORY,
             )
             SimpleButton(
                 onClick = onDismiss,
-                label = GenericsStrings.CANCEL
+                label = GenericsStrings.CANCEL,
+                background = Themes.colors.error
             )
             Spacer(modifier = Modifier.size(Themes.size.spaceSize64))
         }

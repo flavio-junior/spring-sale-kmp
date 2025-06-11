@@ -65,6 +65,7 @@ internal fun UpdateCategoryBottomSheet(
             SimpleButton(
                 onClick = onDismiss,
                 label = GenericsStrings.CANCEL,
+                background = Themes.colors.error
             )
             Spacer(modifier = Modifier.size(Themes.size.spaceSize64))
         }

@@ -57,7 +57,8 @@ internal fun CreateCategoryBottomSheet(
                 onClick = {
                     onDismiss()
                 },
-                label = GenericsStrings.CANCEL
+                label = GenericsStrings.CANCEL,
+                background = Themes.colors.error
             )
             Spacer(modifier = Modifier.size(Themes.size.spaceSize64))
         }

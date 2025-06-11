@@ -66,7 +66,14 @@ internal fun FilterBottomSheet(
                 onClick = {
                     onDismiss(itemFiltered)
                 },
-                label = GenericsStrings.SAVE_MODIFIER,
+                label = GenericsStrings.SAVE_MODIFIER
+            )
+            SimpleButton(
+                onClick = {
+                    onDismiss(null)
+                },
+                label = GenericsStrings.CANCEL,
+                background = Themes.colors.error
             )
             Spacer(modifier = Modifier.size(size = Themes.size.spaceSize64))
         }
