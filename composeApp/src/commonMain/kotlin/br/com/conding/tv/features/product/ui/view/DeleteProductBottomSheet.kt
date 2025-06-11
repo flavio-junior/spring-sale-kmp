@@ -24,19 +24,23 @@ import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.product.data.vo.ProductResponseVO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.features.product.ui.viewmodel.ResetProduct
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings
 import br.com.conding.tv.resources.GenericsStrings.DELETE_PRODUCT
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.ITEM_TO_DELETE
 import br.com.conding.tv.theme.Themes
+import org.koin.mp.KoinPlatform.getKoin
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun DeleteProductBottomSheet(
-    viewModel: ProductViewModel,
     productResponseVO: ProductResponseVO?,
-    onDismiss: () -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
+    onDismiss: () -> Unit = {},
+    goToBackScreen: () -> Unit = {}
 ) {
+    val viewModel: ProductViewModel = getKoin().get()
     val modalBottomSheetState = rememberModalBottomSheetState()
     ModalBottomSheet(
         containerColor = Themes.colors.background,
@@ -58,14 +62,16 @@ internal fun DeleteProductBottomSheet(
                 onError = {
                     observer = it
                 },
+                goToAlternativeRoutes = goToAlternativeRoutes,
                 onSuccessful = {
                     observer = Triple(first = false, second = false, third = EMPTY_TEXT)
                     viewModel.resetProduct(reset = ResetProduct.DELETE_PRODUCT)
                     onDismiss()
+                    goToBackScreen()
                 }
             )
-            Title(label = ITEM_TO_DELETE)
-            SubTitle(label = productResponseVO?.name ?: EMPTY_TEXT)
+            Title(label = ITEM_TO_DELETE, backgroundTransparent = true)
+            SubTitle(label = productResponseVO?.name ?: EMPTY_TEXT, backgroundTransparent = true)
             IsErrorMessage(isError = observer.second, message = observer.third ?: EMPTY_TEXT)
             LoadingButton(
                 onClick = {
@@ -77,7 +83,8 @@ internal fun DeleteProductBottomSheet(
             )
             SimpleButton(
                 onClick = onDismiss,
-                label = GenericsStrings.CANCEL
+                label = GenericsStrings.CANCEL,
+                background = Themes.colors.error
             )
             Spacer(modifier = Modifier.size(Themes.size.spaceSize64))
         }

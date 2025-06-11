@@ -15,7 +15,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.ui.Description
 import br.com.conding.tv.features.product.data.vo.ProductResponseVO
-import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.getIconResource
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.navigation.toJson
@@ -28,7 +27,6 @@ import br.com.conding.tv.theme.Themes
 
 @Composable
 internal fun MobileProductItem(
-    viewModel: ProductViewModel,
     productResponseVO: ProductResponseVO,
     goToNextScreen: (AppDestinations) -> Unit = {}
 ) {
@@ -75,7 +73,6 @@ internal fun MobileProductItem(
     }
     if (deleteProduct) {
         DeleteProductBottomSheet(
-            viewModel = viewModel,
             productResponseVO = productResponseVO,
             onDismiss = {
                 deleteProduct = false

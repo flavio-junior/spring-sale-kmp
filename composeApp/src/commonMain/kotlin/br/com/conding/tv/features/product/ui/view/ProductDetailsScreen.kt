@@ -2,6 +2,10 @@ package br.com.conding.tv.features.product.ui.view
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.components.ui.ContentScreen
@@ -14,6 +18,7 @@ import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings
 import br.com.conding.tv.resources.GenericsStrings.PRICE
 import br.com.conding.tv.resources.IconName
+import br.com.conding.tv.theme.Themes
 
 @Composable
 internal fun ProductDetailsScreen(
@@ -61,10 +66,42 @@ internal fun ProductDetailsScreen(
                 label = GenericsStrings.RESTOCK_PRODUCT,
                 onClick = {}
             )
-            SimpleButton(
-                label = GenericsStrings.DELETE_PRODUCT,
-                onClick = {}
+            DeleteProduct(
+                goToBackScreen = goToBackScreen,
+                productResponseVO = productResponseVO,
+                goToAlternativeRoutes = goToAlternativeRoutes
             )
         }
     )
+}
+
+@Composable
+private fun DeleteProduct(
+    goToBackScreen: () -> Unit = {},
+    productResponseVO: ProductResponseVO,
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
+) {
+    var openDialog: Boolean by remember { mutableStateOf(value = false) }
+    SimpleButton(
+        label = GenericsStrings.DELETE_PRODUCT,
+        onClick = {
+            openDialog = true
+        },
+        background = Themes.colors.error
+    )
+    if (openDialog) {
+        DeleteProductBottomSheet(
+            productResponseVO = productResponseVO,
+            goToAlternativeRoutes = {
+                openDialog = false
+                goToAlternativeRoutes(it)
+            },
+            onDismiss = {
+                openDialog = false
+            },
+            goToBackScreen = {
+                goToBackScreen()
+            }
+        )
+    }
 }

@@ -30,7 +30,6 @@ internal fun MobileListProducts(
                     if (response?.content?.isNotEmpty() == true) {
                         response.content.forEach {
                             MobileProductItem(
-                                viewModel = viewModel,
                                 productResponseVO = it,
                                 goToNextScreen = goToNextScreen
                             )
