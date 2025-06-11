@@ -37,7 +37,8 @@ internal fun BottomNavigationBar(
                     Icon(
                         painter = getIconResource(iconName = item.icon),
                         contentDescription = item.label,
-                        tint = Themes.colors.primary
+                        tint = if (currentRoute == item.route.name)
+                            Themes.colors.background else Themes.colors.primary
                     )
                 },
                 label = {
