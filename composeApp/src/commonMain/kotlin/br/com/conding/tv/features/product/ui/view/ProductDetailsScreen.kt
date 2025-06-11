@@ -62,9 +62,10 @@ internal fun ProductDetailsScreen(
                 label = GenericsStrings.UPDATE_PRICE_PRODUCT,
                 onClick = {}
             )
-            SimpleButton(
-                label = GenericsStrings.RESTOCK_PRODUCT,
-                onClick = {}
+            RestockProduct(
+                goToBackScreen = goToBackScreen,
+                productResponseVO = productResponseVO,
+                goToAlternativeRoutes = goToAlternativeRoutes
             )
             DeleteProduct(
                 goToBackScreen = goToBackScreen,
@@ -73,6 +74,36 @@ internal fun ProductDetailsScreen(
             )
         }
     )
+}
+
+@Composable
+private fun RestockProduct(
+    goToBackScreen: () -> Unit = {},
+    productResponseVO: ProductResponseVO,
+    goToAlternativeRoutes: (HttpError) -> Unit = {}
+) {
+    var openDialog: Boolean by remember { mutableStateOf(value = false) }
+    SimpleButton(
+        label = GenericsStrings.RESTOCK_PRODUCT,
+        onClick = {
+            openDialog = true
+        }
+    )
+    if (openDialog) {
+        RestockProductBottomSheet(
+            productResponseVO = productResponseVO,
+            goToAlternativeRoutes = {
+                openDialog = false
+                goToAlternativeRoutes(it)
+            },
+            onDismiss = {
+                openDialog = false
+            },
+            goToBackScreen = {
+                goToBackScreen()
+            }
+        )
+    }
 }
 
 @Composable
