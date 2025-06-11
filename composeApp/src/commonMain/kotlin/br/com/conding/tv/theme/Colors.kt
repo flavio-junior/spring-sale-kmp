@@ -10,14 +10,16 @@ internal val DarkColor = Colors(
     primary = Color(color = 0xFFA9B7C6),
     secondary = Color(color = 0xFFCC7832),
     background = Color(color = 0xFF2B2B2B),
+    text = Color(color = 0xFFFFFFFF),
     success = Color(color = 0xFF6A8759),
     error = Color(color = 0xFFFF0000)
 )
 
 internal val LightColor = Colors(
     primary = Color(color = 0xFF010205),
-    secondary = Color(color = 0xFFCC7832),
+    secondary = Color(color = 0xFF4a13b7),
     background = Color(color = 0xFFFF1F1F2),
+    text = Color(color = 0xFFFFFFFF),
     success = Color(color = 0xFF197E10),
     error = Color(color = 0xFFCC1922)
 )
@@ -30,6 +32,7 @@ internal class Colors(
     primary: Color,
     secondary: Color,
     background: Color,
+    text: Color,
     success: Color,
     error: Color,
 ) {
@@ -48,6 +51,9 @@ internal class Colors(
     var background by mutableStateOf(background)
         private set
 
+    var text by mutableStateOf(text)
+        private set
+
     fun copy(
         primary: Color = this.primary,
         secondary: Color = this.secondary,
@@ -58,6 +64,7 @@ internal class Colors(
         primary = primary,
         secondary = secondary,
         background = background,
+        text = text,
         success = success,
         error = error
     )
@@ -65,8 +72,9 @@ internal class Colors(
     fun updateColorsFrom(other: Colors) {
         primary = other.primary
         secondary = other.secondary
-        success = other.success
         background = other.background
+        text = other.text
+        success = other.success
         error = other.error
     }
 }

@@ -113,7 +113,7 @@ private fun TextFieldWithIcon(
             maxLines = maxLines,
             singleLine = singleLine,
             label = {
-                Description(label = label, color = textColor)
+                Description(label = label, backgroundTransparent = true)
             },
             isError = isError,
             modifier = Modifier.fillMaxWidth(),
@@ -124,7 +124,7 @@ private fun TextFieldWithIcon(
                     tint = textColor
                 )
             },
-            textStyle = Typography(color = textColor).simpleText(),
+            textStyle = Typography(backgroundTransparent = true).simpleText(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = keyboardType,
                 imeAction = imeAction
@@ -177,11 +177,11 @@ private fun TextFieldWithoutIcon(
             maxLines = maxLines,
             singleLine = singleLine,
             label = {
-                InfoText(label = label, color = textColor)
+                InfoText(label = label, backgroundTransparent = true)
             },
             isError = isError,
             modifier = Modifier.fillMaxWidth(),
-            textStyle = Typography(color = textColor).simpleText(),
+            textStyle = Typography(backgroundTransparent = true).simpleText(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = keyboardType,
                 imeAction = imeAction

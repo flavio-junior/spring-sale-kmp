@@ -4,7 +4,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -74,6 +73,7 @@ internal fun OtpTextField(
                                 .padding(all = Themes.size.spaceSize16)
                         },
                         label = position.toString(),
+                        backgroundTransparent = true,
                         textAlign = TextAlign.Center
                     )
                     Spacer(modifier = Modifier.width(width = Themes.size.spaceSize16))
@@ -81,7 +81,5 @@ internal fun OtpTextField(
             }
         }
     )
-    if (isError && message.isNotEmpty()) {
-        InfoText(modifier = Modifier.fillMaxWidth(), label = message, textAlign = TextAlign.Start)
-    }
+    IsErrorMessage(isError = isError, message = message)
 }

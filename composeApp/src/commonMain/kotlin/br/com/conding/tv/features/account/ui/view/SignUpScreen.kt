@@ -91,6 +91,7 @@ internal fun SignUpScreen(
             )
             SimpleText(
                 label = OR,
+                backgroundTransparent = true,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )

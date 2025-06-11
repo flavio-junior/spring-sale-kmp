@@ -48,6 +48,7 @@ internal fun MobileSettingsScreen(
         content = {
             Title(
                 label = GenericsStrings.SETTINGS,
+                backgroundTransparent = true,
                 modifier = Modifier.fillMaxWidth()
             )
             ContentHorizontal(
@@ -56,6 +57,7 @@ internal fun MobileSettingsScreen(
                     IconDefault(iconName = IconName.USER)
                     SubTitle(
                         label = GenericsStrings.DATA_USER,
+                        backgroundTransparent = true,
                         modifier = Modifier
                             .onClickable(
                                 onClick = {
@@ -72,6 +74,7 @@ internal fun MobileSettingsScreen(
                     IconDefault(iconName = IconName.LOGOUT)
                     SubTitle(
                         label = EXIT,
+                        backgroundTransparent = true,
                         modifier = Modifier
                             .onClickable {
                                 logoutApp = true

@@ -103,8 +103,8 @@ internal fun Service(
         )
         Title(
             label = menu.label,
+            selectedItem = enabled,
             modifier = Modifier.onClickable(onClick = goToNavigation),
-            color = if (enabled) Themes.colors.background else ITEM_SELECTED
         )
     }
 }

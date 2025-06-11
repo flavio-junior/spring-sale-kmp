@@ -39,7 +39,9 @@ internal fun DropdownMenu(
             readOnly = true,
             value = selectedValue,
             onValueChange = {},
-            label = { Description(label = label) },
+            label = {
+                Description(label = label, backgroundTransparent = true)
+            },
             isError = isError,
             leadingIcon = {
                 Icon(
@@ -69,7 +71,7 @@ internal fun DropdownMenu(
             items.forEach { item ->
                 DropdownMenuItem(
                     content = {
-                        Description(label = item)
+                        Description(label = item, backgroundTransparent = true)
                     },
                     onClick = {
                         expanded = false

@@ -51,7 +51,7 @@ internal fun SendCodeToConfirmEmailScreen(
         ),
         goToBackScreen = goToBackScreen,
         extra = {
-            if (it) Title(label = CREATE_MY_ACCOUNT)
+            if (it) Title(label = CREATE_MY_ACCOUNT, backgroundTransparent = true)
             changeLabel = it
         },
         content = {
@@ -100,6 +100,7 @@ internal fun SendCodeToConfirmEmailScreen(
             )
             SimpleText(
                 label = OR,
+                backgroundTransparent = true,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )

@@ -35,10 +35,13 @@ internal fun TextPassword(
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        textStyle = Typography(color = Themes.colors.primary).simpleText(),
+        textStyle = Typography(backgroundTransparent = true).simpleText(),
         singleLine = true,
         label = {
-            Description(label = label)
+            Description(
+                label = label,
+                backgroundTransparent = true
+            )
         },
         isError = isError,
         modifier = Modifier.fillMaxWidth(),

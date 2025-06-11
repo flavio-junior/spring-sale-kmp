@@ -44,6 +44,7 @@ internal fun MobileCategoryItem(
     ) {
         Description(
             label = categoryResponseVO.name,
+            backgroundTransparent = true,
             modifier = Modifier
                 .onClickable(
                     onClick = {

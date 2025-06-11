@@ -45,6 +45,7 @@ internal fun MobileProductItem(
     ) {
         Description(
             label = productResponseVO.name,
+            backgroundTransparent = true,
             maxLines = NumbersUtils.NUMBER_ONE,
             modifier = Modifier
                 .onClickable(onClick = { goToNextScreen(productResponseVO) })

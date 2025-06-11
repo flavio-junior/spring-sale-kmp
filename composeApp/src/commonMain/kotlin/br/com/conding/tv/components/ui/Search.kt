@@ -73,7 +73,7 @@ private fun BodySearch(
             },
             singleLine = true,
             label = {
-                InfoText(label = label, color = Themes.colors.primary)
+                InfoText(label = label, backgroundTransparent = true)
             },
             isError = isError,
             modifier = Modifier.fillMaxWidth(),
@@ -87,7 +87,7 @@ private fun BodySearch(
                     )
                 }
             },
-            textStyle = Typography(color = Themes.colors.primary).infoText(),
+            textStyle = Typography(backgroundTransparent = true).infoText(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Text,
                 imeAction = ImeAction.Go

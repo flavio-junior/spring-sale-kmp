@@ -52,12 +52,14 @@ internal fun Alert(
                 )
                 Title(
                     label = ALERT,
+                    backgroundTransparent = true,
                     modifier = Modifier.weight(weight = WEIGHT_SIZE),
                     textAlign = TextAlign.Start
                 )
             }
             Description(
                 label = label,
+                backgroundTransparent = true,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = Themes.size.spaceSize8)

@@ -85,7 +85,7 @@ private fun SaveCategoryBottomSheet(
             onDismiss()
         }
     )
-    Title(label = GenericsStrings.ITEM_TO_ADD)
+    Title(label = GenericsStrings.ITEM_TO_ADD, backgroundTransparent = true)
     TextField(
         label = GenericsStrings.CATEGORY_NAME,
         value = category,

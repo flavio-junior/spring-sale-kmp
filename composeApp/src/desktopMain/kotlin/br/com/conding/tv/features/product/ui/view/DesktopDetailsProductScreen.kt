@@ -56,7 +56,7 @@ internal fun DesktopDetailsProductBody(
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16)
     ) {
-        Description(label = "${DETAILS_PRODUCT}:")
+        Description(label = "${DETAILS_PRODUCT}:", backgroundTransparent = true)
         Row(
             horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16),
         ) {
@@ -90,7 +90,7 @@ internal fun DesktopDetailsProductBody(
             )
         }
         ListCategoriesAvailableResponseVO(categories = productResponseVO.categories)
-        Description(label = UPDATE_PRODUCT)
+        Description(label = UPDATE_PRODUCT, backgroundTransparent = true)
         DesktopUpdateProduct(
             id = productResponseVO.id,
             goToAlternativeRoutes = goToAlternativeRoutes,

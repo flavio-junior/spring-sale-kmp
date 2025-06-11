@@ -40,7 +40,7 @@ internal fun LoadingButton(
             .fillMaxWidth()
     ) {
         if (enabled) {
-            CircularProgressIndicator()
+            CircularProgressIndicator(color = Themes.colors.background)
         } else {
             Description(label = label.lowercase())
         }

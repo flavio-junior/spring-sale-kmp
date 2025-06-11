@@ -26,6 +26,6 @@ internal fun ResourceUnavailable(
             size = Themes.size.spaceSize100
         )
         Spacer(modifier = Modifier.height(height = Themes.size.spaceSize16))
-        Title(label = RESOURCE_UNAVAILABLE)
+        Title(label = RESOURCE_UNAVAILABLE, backgroundTransparent = true)
     }
 }

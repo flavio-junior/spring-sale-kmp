@@ -38,6 +38,10 @@ internal fun ItemMenu(
             iconName = menu.icon,
             contentDescription = menu.label
         )
-        Title(label = menu.label, textAlign = TextAlign.Center)
+        Title(
+            label = menu.label,
+            backgroundTransparent = true,
+            textAlign = TextAlign.Center
+        )
     }
 }

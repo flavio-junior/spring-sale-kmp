@@ -51,6 +51,10 @@ internal fun CheckBox(
                 )
             }
         }
-        Description(label = label, modifier = Modifier.fillMaxWidth())
+        Description(
+            label = label,
+            backgroundTransparent = true,
+            modifier = Modifier.fillMaxWidth()
+        )
     }
 }

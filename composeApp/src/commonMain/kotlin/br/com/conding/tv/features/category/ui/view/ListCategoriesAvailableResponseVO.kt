@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 internal fun ListCategoriesAvailableResponseVO(
     categories: List<CategoryResponseVO>? = null
 ) {
-    Description(label = "$CATEGORIES:")
+    Description(label = "$CATEGORIES:", backgroundTransparent = true)
     Row(
         horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16),
     ) {

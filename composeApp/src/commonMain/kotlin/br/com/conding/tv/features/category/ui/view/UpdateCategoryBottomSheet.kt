@@ -92,8 +92,8 @@ private fun SaveUpdateCategoryBottomSheet(
             onDismiss()
         }
     )
-    Title(label = ITEM_TO_UPDATE)
-    SubTitle(label = category?.name ?: EMPTY_TEXT)
+    Title(label = ITEM_TO_UPDATE, backgroundTransparent = true)
+    SubTitle(label = category?.name ?: EMPTY_TEXT, backgroundTransparent = true)
     TextField(
         label = GenericsStrings.UPDATE_CATEGORY,
         value = newCategoryName,

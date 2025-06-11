@@ -42,7 +42,7 @@ internal fun <T> Tag(
     ) {
         Description(
             label = text,
-            color = if (selected) Themes.colors.background else ITEM_SELECTED
+            selectedItem = selected
         )
     }
     if (isChecked) {

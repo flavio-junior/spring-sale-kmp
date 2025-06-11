@@ -64,8 +64,8 @@ internal fun DeleteCategoryBottomSheet(
                     onDismiss()
                 }
             )
-            Title(label = ITEM_TO_DELETE)
-            SubTitle(label = category?.name ?: EMPTY_TEXT)
+            Title(label = ITEM_TO_DELETE, backgroundTransparent = true)
+            SubTitle(label = category?.name ?: EMPTY_TEXT, backgroundTransparent = true)
             IsErrorMessage(isError = observer.second, message = observer.third ?: EMPTY_TEXT)
             LoadingButton(
                 onClick = {

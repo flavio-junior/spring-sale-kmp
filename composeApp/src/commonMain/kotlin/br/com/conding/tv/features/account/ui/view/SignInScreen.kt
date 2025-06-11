@@ -85,6 +85,7 @@ internal fun SignInScreen(
             )
             SimpleText(
                 label = FORGOT_PASS,
+                backgroundTransparent = true,
                 textAlign = TextAlign.End,
                 modifier = Modifier
                     .onClickable(onClick = goToSendRecoverPasswordScreen)
@@ -99,6 +100,7 @@ internal fun SignInScreen(
             )
             SimpleText(
                 label = OR,
+                backgroundTransparent = true,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -107,7 +109,7 @@ internal fun SignInScreen(
                 onClick = goToConfirmEmailAddressScreen
             )
             Spacer(modifier = Modifier.height(height = Themes.size.spaceSize0))
-            Description(label = "$VERSION 1.00")
+            Description(label = "$VERSION 1.00", backgroundTransparent = true)
             UiResponseGetTokenSaved(
                 viewModel = viewModel,
                 goToHomeScreen = goToHomeScreen

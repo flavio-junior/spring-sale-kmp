@@ -17,11 +17,34 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.Dp
 import br.com.conding.tv.theme.CommonColors.ITEM_SELECTED
 import br.com.conding.tv.theme.SpaceSize
 import br.com.conding.tv.theme.Themes
+
+@Composable
+internal fun backgroundTransparent(
+    backgroundTransparent: Boolean = false
+): Color {
+    return if (backgroundTransparent) {
+        Color(color = Themes.colors.primary.toArgb())
+    } else {
+        Color(color = Themes.colors.text.toArgb())
+    }
+}
+
+@Composable
+internal fun selectedItem(
+    selectedItem: Boolean = false
+): Color {
+    return if (selectedItem) {
+        Color(color = Themes.colors.background.toArgb())
+    } else {
+        Color(color = ITEM_SELECTED.toArgb())
+    }
+}
 
 internal fun Modifier.onClickable(
     onClick: () -> Unit

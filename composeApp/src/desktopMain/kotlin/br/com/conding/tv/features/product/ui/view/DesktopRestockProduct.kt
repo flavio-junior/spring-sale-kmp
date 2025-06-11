@@ -59,7 +59,7 @@ internal fun DesktopRestockProduct(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16)
     ) {
-        Description(label = "$RESTOCK_PRODUCT:")
+        Description(label = "$RESTOCK_PRODUCT:", backgroundTransparent = true)
         Row(
             horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16),
             modifier = modifier,

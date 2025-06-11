@@ -64,7 +64,7 @@ internal fun DesktopUpdatePriceProduct(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16)
     ) {
-        Description(label = "$UPDATE_PRICE_PRODUCT:")
+        Description(label = "$UPDATE_PRICE_PRODUCT:", backgroundTransparent = true)
         Row(
             horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16),
             modifier = modifier,

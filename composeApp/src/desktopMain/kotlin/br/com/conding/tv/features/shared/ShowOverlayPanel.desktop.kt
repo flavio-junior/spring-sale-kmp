@@ -55,12 +55,14 @@ internal actual fun ShowOverlayPanel(
                 )
                 Title(
                     label = WARNING,
+                    backgroundTransparent = true,
                     modifier = Modifier.weight(weight = WEIGHT_SIZE),
                     textAlign = TextAlign.Start
                 )
             }
             Description(
                 label = YOUR_ACTION,
+                backgroundTransparent = true,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = Themes.size.spaceSize8)

@@ -42,7 +42,7 @@ internal fun Header(
         }
         Description(
             label = label,
-            color = Themes.colors.primary,
+            backgroundTransparent = true,
             modifier = Modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center
         )

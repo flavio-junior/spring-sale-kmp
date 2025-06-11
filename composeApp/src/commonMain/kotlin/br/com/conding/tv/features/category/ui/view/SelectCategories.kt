@@ -76,7 +76,7 @@ internal fun SelectCategories(
             var name: String by remember { mutableStateOf(value = EMPTY_TEXT) }
             val categories = remember { mutableStateListOf<CategoryResponseDTO>() }
             var selectedCategories = remember { mutableStateListOf<CategoryResponseDTO>() }
-            Title(label = ADD_CATEGORIES)
+            Title(label = ADD_CATEGORIES, backgroundTransparent = true)
             Search(
                 value = name,
                 onValueChange = { name = it },
@@ -184,7 +184,7 @@ private fun ListCategoriesAvailable(
             )
     ) {
         items(categories) { category ->
-            Description(label = category.name)
+            Description(label = category.name, backgroundTransparent = true)
         }
     }
 }

@@ -47,7 +47,6 @@ internal fun DesktopSplashScreen(
         )
         Title(
             label = GenericsStrings.PROJECT_NAME,
-            color = Themes.colors.background,
             modifier = Modifier
                 .align(alignment = Alignment.Center)
                 .padding(top = Themes.size.spaceSize128)

@@ -38,7 +38,7 @@ internal fun CheckRecoverTokenToConfirmEmailScreen(
         ),
         goToBackScreen = goToSignInScreen,
         extra = {
-            if (it) Title(label = RECOVER_MY_ACCOUNT)
+            if (it) Title(label = RECOVER_MY_ACCOUNT, backgroundTransparent = true)
         },
         content = {
             val viewModel: AccountViewModel = getKoin().get()
@@ -57,7 +57,7 @@ internal fun CheckRecoverTokenToConfirmEmailScreen(
             }
             GetCodeToConfirmEmail(
                 code = code,
-                onError = Pair(observer.first, observer.third),
+                onError = Pair(observer.second, observer.third),
                 onValueChange = { code = it },
                 checkCode = { code = it }
             )
@@ -75,10 +75,11 @@ internal fun CheckRecoverTokenToConfirmEmailScreen(
             )
             CheckCodeToConfirmEmail(
                 onClick = { checkCode(code) },
-                isEnabled = observer.second
+                isEnabled = observer.first
             )
             SimpleText(
                 label = OR,
+                backgroundTransparent = true,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )

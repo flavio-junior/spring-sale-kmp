@@ -2,7 +2,6 @@ package br.com.conding.tv.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -10,6 +9,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.TextUnit
+import br.com.conding.tv.resources.backgroundTransparent
+import br.com.conding.tv.resources.selectedItem
 import org.jetbrains.compose.resources.Font
 import springsale.composeapp.generated.resources.JetBrainsMono_Bold
 import springsale.composeapp.generated.resources.JetBrainsMono_Medium
@@ -19,13 +20,16 @@ import springsale.composeapp.generated.resources.Res
 private val fontSize = FontSize
 
 internal data class Typography(
-    val color: Color = Color.Black,
+    val selectedItem: Boolean = false,
+    val backgroundTransparent: Boolean = false,
     val textAlign: TextAlign = TextAlign.Start,
     val typeFont: TypeFont? = null
 ) {
     @Composable
     fun title() = TextStyle(
-        color = color,
+        color = if (selectedItem) selectedItem(selectedItem = selectedItem) else backgroundTransparent(
+            backgroundTransparent = backgroundTransparent
+        ),
         fontSize = fontSize.fontSize32,
         fontWeight = FontWeight.SemiBold,
         textAlign = textAlign,
@@ -38,7 +42,9 @@ internal data class Typography(
 
     @Composable
     fun subTitle() = TextStyle(
-        color = color,
+        color = if (selectedItem) selectedItem(selectedItem = selectedItem) else backgroundTransparent(
+            backgroundTransparent = backgroundTransparent
+        ),
         fontSize = fontSize.fontSize24,
         fontWeight = FontWeight.Medium,
         textAlign = textAlign,
@@ -51,7 +57,9 @@ internal data class Typography(
 
     @Composable
     fun description() = TextStyle(
-        color = color,
+        color = if (selectedItem) selectedItem(selectedItem = selectedItem) else backgroundTransparent(
+            backgroundTransparent = backgroundTransparent
+        ),
         fontSize = fontSize.fontSize20,
         fontWeight = FontWeight.Bold,
         textAlign = textAlign,
@@ -64,7 +72,9 @@ internal data class Typography(
 
     @Composable
     fun simpleText(): TextStyle = TextStyle(
-        color = color,
+        color = if (selectedItem) selectedItem(selectedItem = selectedItem) else backgroundTransparent(
+            backgroundTransparent = backgroundTransparent
+        ),
         fontSize = fontSize.fontSize16,
         fontWeight = FontWeight.Bold,
         textAlign = textAlign,
@@ -77,7 +87,9 @@ internal data class Typography(
 
     @Composable
     fun infoText() = TextStyle(
-        color = color,
+        color = if (selectedItem) selectedItem(selectedItem = selectedItem) else backgroundTransparent(
+            backgroundTransparent = backgroundTransparent
+        ),
         fontSize = fontSize.fontSize14,
         fontWeight = FontWeight.Bold,
         textAlign = textAlign,
@@ -90,7 +102,9 @@ internal data class Typography(
 
     @Composable
     fun smallText() = TextStyle(
-        color = color,
+        color = if (selectedItem) selectedItem(selectedItem = selectedItem) else backgroundTransparent(
+            backgroundTransparent = backgroundTransparent
+        ),
         fontSize = fontSize.fontSize12,
         fontWeight = FontWeight.Bold,
         textAlign = textAlign,
@@ -103,7 +117,9 @@ internal data class Typography(
 
     @Composable
     fun miniText() = TextStyle(
-        color = color,
+        color = if (selectedItem) selectedItem(selectedItem = selectedItem) else backgroundTransparent(
+            backgroundTransparent = backgroundTransparent
+        ),
         fontSize = fontSize.fontSize8,
         fontWeight = FontWeight.Bold,
         textAlign = textAlign,

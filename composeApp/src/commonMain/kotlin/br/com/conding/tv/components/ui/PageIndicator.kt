@@ -54,6 +54,7 @@ internal fun PageIndicator(
         )
         Title(
             label = "$newValue/$totalPages",
+            backgroundTransparent = true,
             modifier = Modifier.padding(horizontal = Themes.size.spaceSize16)
         )
         IconDefault(

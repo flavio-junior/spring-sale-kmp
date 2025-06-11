@@ -121,31 +121,37 @@ internal fun DesktopHeaderProductsPanel(
     ) {
         Description(
             label = NUMBER,
+            backgroundTransparent = true,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center
         )
         Description(
             label = NAME,
+            backgroundTransparent = true,
             modifier = modifier.weight(weight = WEIGHT_SIZE_2),
             textAlign = TextAlign.Center
         )
         Description(
             label = CATEGORIES,
+            backgroundTransparent = true,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center
         )
         Description(
             label = PRICE,
+            backgroundTransparent = true,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center
         )
         Description(
             label = QUANTITY,
+            backgroundTransparent = true,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center
         )
         Description(
             label = OPTIONS,
+            backgroundTransparent = true,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center
         )
@@ -175,33 +181,38 @@ internal fun DesktopItemProduct(
         add++
         Description(
             label = add.toString(),
+            selectedItem = selected,
+            backgroundTransparent = true,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center,
-            color = if (selected) Themes.colors.background else Themes.colors.primary
         )
         Description(
             label = product.name,
+            selectedItem = selected,
+            backgroundTransparent = true,
             maxLines = NUMBER_ONE,
             modifier = modifier.weight(weight = WEIGHT_SIZE_2),
-            color = if (selected) Themes.colors.background else Themes.colors.primary,
             textAlign = TextAlign.Center
         )
         Description(
             label = product.categories?.size.toString(),
+            selectedItem = selected,
+            backgroundTransparent = true,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
-            color = if (selected) Themes.colors.background else Themes.colors.primary,
             textAlign = TextAlign.Center
         )
         Description(
             label = formatterMaskToMoney(price = product.price),
+            selectedItem = selected,
+            backgroundTransparent = true,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
-            color = if (selected) Themes.colors.background else Themes.colors.primary,
             textAlign = TextAlign.Center
         )
         Description(
             label = product.quantity.toString(),
+            selectedItem = selected,
+            backgroundTransparent = true,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
-            color = if (selected) Themes.colors.background else Themes.colors.primary,
             textAlign = TextAlign.Center
         )
         IconDefault(

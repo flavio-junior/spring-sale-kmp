@@ -58,7 +58,7 @@ internal fun DesktopProductsTabs(
                         }
                     },
                     text = {
-                        Description(label = currentTab.text)
+                        Description(label = currentTab.text, backgroundTransparent = true)
                     }
                 )
             }

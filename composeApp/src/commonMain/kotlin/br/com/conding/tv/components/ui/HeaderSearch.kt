@@ -58,6 +58,7 @@ private fun HeaderSearchMobile(
         content = {
             Title(
                 label = label ?: EMPTY_TEXT,
+                backgroundTransparent = true,
                 modifier = Modifier
                     .fillMaxSize()
                     .weight(weight = WEIGHT_SIZE)
@@ -92,6 +93,7 @@ private fun HeaderSearchMobile(
         content = {
             SubTitle(
                 label = RESULT,
+                backgroundTransparent = true,
                 modifier = Modifier
                     .fillMaxSize()
                     .weight(weight = WEIGHT_SIZE)

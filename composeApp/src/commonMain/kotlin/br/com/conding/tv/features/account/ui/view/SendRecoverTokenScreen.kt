@@ -51,7 +51,7 @@ internal fun SendRecoverTokenScreen(
         ),
         goToBackScreen = goToBackScreen,
         extra = {
-            if (it) Title(label = RECOVER_MY_ACCOUNT)
+            if (it) Title(label = RECOVER_MY_ACCOUNT, backgroundTransparent = true)
             changeLabel = it
         },
         content = {
@@ -96,6 +96,7 @@ internal fun SendRecoverTokenScreen(
             )
             SimpleText(
                 label = OR,
+                backgroundTransparent = true,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )

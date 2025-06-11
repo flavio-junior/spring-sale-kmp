@@ -110,11 +110,13 @@ fun DesktopHeaderCategoriesPanel(
     ) {
         Description(
             label = NUMBER,
+            backgroundTransparent = true,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
             textAlign = TextAlign.Center
         )
         Description(
             label = NAME,
+            backgroundTransparent = true,
             modifier = modifier.weight(weight = WEIGHT_SIZE_4)
         )
     }
@@ -144,14 +146,16 @@ internal fun DesktopItemCategory(
         add++
         Description(
             label = add.toString(),
+            selectedItem = selected,
+            backgroundTransparent = true,
             modifier = modifier.weight(weight = WEIGHT_SIZE),
-            textAlign = TextAlign.Center,
-            color = if (selected) Themes.colors.background else Themes.colors.primary
+            textAlign = TextAlign.Center
         )
         Description(
             label = category.name,
-            modifier = modifier.weight(weight = WEIGHT_SIZE_4),
-            color = if (selected) Themes.colors.background else Themes.colors.primary
+            selectedItem = selected,
+            backgroundTransparent = true,
+            modifier = modifier.weight(weight = WEIGHT_SIZE_4)
         )
     }
 }

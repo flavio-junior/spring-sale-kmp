@@ -46,14 +46,14 @@ internal fun checkCodeToConfirmEmail(
     onError: (Triple<Boolean, Boolean, String>) -> Unit = {}
 ) {
     if (data.first.length >= NUMBER_FOUR) {
-        onError(Triple(first = false, second = true, third = EMPTY_TEXT))
+        onError(Triple(first = true, second = false, third = EMPTY_TEXT))
         if (route == TypeScreen.RECOVER_TOKEN) {
             data.second.checkRecoverPassword(code = data.first)
         } else {
             data.second.checkCodeAlreadyExists(code = data.first)
         }
     } else {
-        onError(Triple(first = true, second = false, third = NOT_BLANK_OR_EMPTY))
+        onError(Triple(first = false, second = true, third = NOT_BLANK_OR_EMPTY))
     }
 }
 

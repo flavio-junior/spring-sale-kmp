@@ -6,11 +6,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.structuralEqualityPolicy
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import br.com.conding.tv.resources.GenericsStrings.PROJECT_NAME
-import br.com.conding.tv.theme.Themes
 import br.com.conding.tv.theme.TypeFont
 import br.com.conding.tv.theme.Typography
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -18,16 +16,22 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 internal fun Title(
     modifier: Modifier = Modifier,
-    color: Color = Themes.colors.primary,
+    label: String,
+    selectedItem: Boolean = false,
+    backgroundTransparent: Boolean = false,
     typeFont: TypeFont? = null,
     textAlign: TextAlign = TextAlign.Start,
     maxLines: Int = Int.MAX_VALUE,
-    label: String
 ) {
     BasicText(
         text = label,
         modifier = modifier,
-        style = Typography(color = color, textAlign = textAlign, typeFont = typeFont).title(),
+        style = Typography(
+            selectedItem = selectedItem,
+            backgroundTransparent = backgroundTransparent,
+            textAlign = textAlign,
+            typeFont = typeFont
+        ).title(),
         maxLines = maxLines
     )
 }
@@ -35,8 +39,9 @@ internal fun Title(
 @Composable
 internal fun SubTitle(
     modifier: Modifier = Modifier,
-    color: Color = Themes.colors.primary,
     label: String,
+    selectedItem: Boolean = false,
+    backgroundTransparent: Boolean = false,
     typeFont: TypeFont? = null,
     maxLines: Int = Int.MAX_VALUE,
     textAlign: TextAlign = TextAlign.Start
@@ -44,7 +49,12 @@ internal fun SubTitle(
     BasicText(
         text = label,
         modifier = modifier,
-        style = Typography(color = color, textAlign = textAlign, typeFont = typeFont).subTitle(),
+        style = Typography(
+            selectedItem = selectedItem,
+            backgroundTransparent = backgroundTransparent,
+            textAlign = textAlign,
+            typeFont = typeFont
+        ).subTitle(),
         maxLines = maxLines
     )
 }
@@ -53,7 +63,8 @@ internal fun SubTitle(
 internal fun Description(
     modifier: Modifier = Modifier,
     label: String,
-    color: Color = Themes.colors.primary,
+    selectedItem: Boolean = false,
+    backgroundTransparent: Boolean = false,
     typeFont: TypeFont? = null,
     maxLines: Int = Int.MAX_VALUE,
     textAlign: TextAlign = TextAlign.Start
@@ -61,7 +72,12 @@ internal fun Description(
     BasicText(
         text = label,
         modifier = modifier,
-        style = Typography(color = color, textAlign = textAlign, typeFont = typeFont).description(),
+        style = Typography(
+            selectedItem = selectedItem,
+            backgroundTransparent = backgroundTransparent,
+            textAlign = textAlign,
+            typeFont = typeFont
+        ).description(),
         maxLines = maxLines
     )
 }
@@ -69,8 +85,9 @@ internal fun Description(
 @Composable
 internal fun SimpleText(
     modifier: Modifier = Modifier,
-    color: Color = Themes.colors.primary,
     label: String,
+    selectedItem: Boolean = false,
+    backgroundTransparent: Boolean = false,
     typeFont: TypeFont? = null,
     maxLines: Int = Int.MAX_VALUE,
     textAlign: TextAlign = TextAlign.Start
@@ -78,7 +95,12 @@ internal fun SimpleText(
     BasicText(
         text = label,
         modifier = modifier,
-        style = Typography(color = color, textAlign = textAlign, typeFont = typeFont).simpleText(),
+        style = Typography(
+            selectedItem = selectedItem,
+            backgroundTransparent = backgroundTransparent,
+            textAlign = textAlign,
+            typeFont = typeFont
+        ).simpleText(),
         maxLines = maxLines
     )
 }
@@ -86,8 +108,9 @@ internal fun SimpleText(
 @Composable
 internal fun InfoText(
     modifier: Modifier = Modifier,
-    color: Color = Themes.colors.primary,
     label: String,
+    selectedItem: Boolean = false,
+    backgroundTransparent: Boolean = false,
     typeFont: TypeFont? = null,
     maxLines: Int = Int.MAX_VALUE,
     textAlign: TextAlign = TextAlign.Start
@@ -95,7 +118,12 @@ internal fun InfoText(
     BasicText(
         text = label,
         modifier = modifier,
-        style = Typography(color = color, textAlign = textAlign, typeFont = typeFont).infoText(),
+        style = Typography(
+            selectedItem = selectedItem,
+            backgroundTransparent = backgroundTransparent,
+            textAlign = textAlign,
+            typeFont = typeFont
+        ).infoText(),
         maxLines = maxLines
     )
 }
@@ -103,8 +131,9 @@ internal fun InfoText(
 @Composable
 internal fun SmallText(
     modifier: Modifier = Modifier,
-    color: Color = Themes.colors.primary,
     label: String,
+    selectedItem: Boolean = false,
+    backgroundTransparent: Boolean = false,
     typeFont: TypeFont? = null,
     maxLines: Int = Int.MAX_VALUE,
     textAlign: TextAlign = TextAlign.Start
@@ -112,7 +141,12 @@ internal fun SmallText(
     BasicText(
         text = label,
         modifier = modifier,
-        style = Typography(color = color, textAlign = textAlign, typeFont = typeFont).smallText(),
+        style = Typography(
+            selectedItem = selectedItem,
+            backgroundTransparent = backgroundTransparent,
+            textAlign = textAlign,
+            typeFont = typeFont
+        ).smallText(),
         maxLines = maxLines
     )
 }
@@ -120,8 +154,9 @@ internal fun SmallText(
 @Composable
 internal fun MiniText(
     modifier: Modifier = Modifier,
-    color: Color = Themes.colors.primary,
     label: String,
+    selectedItem: Boolean = false,
+    backgroundTransparent: Boolean = false,
     typeFont: TypeFont? = null,
     maxLines: Int = Int.MAX_VALUE,
     textAlign: TextAlign = TextAlign.Start
@@ -129,7 +164,12 @@ internal fun MiniText(
     BasicText(
         text = label,
         modifier = modifier,
-        style = Typography(color = color, textAlign = textAlign, typeFont = typeFont).miniText(),
+        style = Typography(
+            selectedItem = selectedItem,
+            backgroundTransparent = backgroundTransparent,
+            textAlign = textAlign,
+            typeFont = typeFont
+        ).miniText(),
         maxLines = maxLines
     )
 }

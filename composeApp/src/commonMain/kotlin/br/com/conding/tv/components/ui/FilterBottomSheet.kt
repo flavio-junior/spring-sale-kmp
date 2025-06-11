@@ -45,6 +45,7 @@ internal fun FilterBottomSheet(
         ) {
             SubTitle(
                 label = GenericsStrings.FILTER,
+                backgroundTransparent = true,
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center
             )

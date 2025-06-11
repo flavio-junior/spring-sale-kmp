@@ -39,12 +39,12 @@ internal fun CheckCodeToConfirmEmailScreen(
         ),
         goToBackScreen = goToSignInScreen,
         extra = {
-            if (it) Title(label = CREATE_MY_ACCOUNT)
+            if (it) Title(label = CREATE_MY_ACCOUNT, backgroundTransparent = true,)
         },
         content = {
             val viewModel: AccountViewModel = getKoin().get()
             var code: String by remember { mutableStateOf(value = EMPTY_TEXT) }
-            var state: Triple<Boolean, Boolean, String?> by remember {
+            var observer: Triple<Boolean, Boolean, String?> by remember {
                 mutableStateOf(value = Triple(first = false, second = false, third = EMPTY_TEXT))
             }
             val checkCode = { codeArg: String ->
@@ -52,20 +52,20 @@ internal fun CheckCodeToConfirmEmailScreen(
                     data = Pair(first = codeArg, second = viewModel),
                     route = TypeScreen.SIGN_UP,
                     onError = {
-                        state = it
+                        observer = it
                     }
                 )
             }
             GetCodeToConfirmEmail(
                 code = code,
-                onError = Pair(state.first, state.third),
+                onError = Pair(observer.second, observer.third),
                 onValueChange = { code = it },
                 checkCode = { code = it }
             )
             UiResponseCheckCodeToConfirmEmailScreen(
                 viewModel = viewModel,
                 onError = {
-                    state = it
+                    observer = it
                 },
                 goToSignUpScreen = {
                     goToSignUpScreen(
@@ -76,10 +76,11 @@ internal fun CheckCodeToConfirmEmailScreen(
             )
             CheckCodeToConfirmEmail(
                 onClick = { checkCode(code) },
-                isEnabled = state.second
+                isEnabled = observer.first
             )
             SimpleText(
                 label = OR,
+                backgroundTransparent = true,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
