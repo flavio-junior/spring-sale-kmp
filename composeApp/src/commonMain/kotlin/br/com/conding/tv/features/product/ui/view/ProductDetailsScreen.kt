@@ -14,6 +14,7 @@ import br.com.conding.tv.components.ui.SimpleButton
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.features.category.ui.view.ListCategoriesAvailableResponseVO
 import br.com.conding.tv.features.product.data.vo.ProductResponseVO
+import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings
 import br.com.conding.tv.resources.GenericsStrings.PRICE
@@ -24,7 +25,8 @@ import br.com.conding.tv.theme.Themes
 internal fun ProductDetailsScreen(
     goToBackScreen: () -> Unit = {},
     productResponseVO: ProductResponseVO,
-    goToAlternativeRoutes: (HttpError) -> Unit = {}
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
+    goToNextScreen: (AppDestinations) -> Unit = {}
 ) {
     ContentScreen(
         definitionsScreen = DefinitionsScreen(
@@ -56,7 +58,9 @@ internal fun ProductDetailsScreen(
             )
             SimpleButton(
                 label = GenericsStrings.UPDATE_PRODUCT_MOBILE,
-                onClick = {}
+                onClick = {
+                    goToNextScreen(AppDestinations.UpdateProduct(id = productResponseVO.id))
+                }
             )
             UpdatePriceProduct(
                 goToBackScreen = goToBackScreen,
@@ -89,7 +93,7 @@ private fun UpdatePriceProduct(
         onClick = {
             openDialog = true
         },
-        background = Themes.colors.error
+        background = Themes.colors.secondary
     )
     if (openDialog) {
         UpdatePriceProductBottomSheet(

@@ -19,6 +19,7 @@ import br.com.conding.tv.features.home.ui.HomeScreen
 import br.com.conding.tv.features.product.ui.view.CreateNewProductScreen
 import br.com.conding.tv.features.product.ui.view.ProductDetailsScreen
 import br.com.conding.tv.features.product.ui.view.ProductsScreen
+import br.com.conding.tv.features.product.ui.view.UpdateProductScreen
 import br.com.conding.tv.features.settings.ui.view.EditProfileUserScreen
 import br.com.conding.tv.features.settings.ui.view.SettingsScreen
 import br.com.conding.tv.features.splash.SplashScreen
@@ -298,6 +299,25 @@ internal fun NavGraphBuilder.productNavigation(
                 navigateToAlternativeRoutes(
                     navController = navController,
                     currentScreen = AppDestinations.ProductDetails,
+                    alternativeRoutes = it
+                )
+            },
+            goToNextScreen = {
+                navController.navigate(route = it)
+            }
+        )
+    }
+
+    composable<AppDestinations.UpdateProduct> { backStackEntry ->
+        UpdateProductScreen(
+            id = backStackEntry.toRoute<AppDestinations.UpdateProduct>().id,
+            goToBackScreen = {
+                navController.goBack()
+            },
+            goToAlternativeRoutes = {
+                navigateToAlternativeRoutes(
+                    navController = navController,
+                    currentScreen = AppDestinations.UpdateProduct,
                     alternativeRoutes = it
                 )
             }

@@ -44,6 +44,9 @@ internal sealed interface AppDestinations {
     data class ProductDetails(val data: String) : AppDestinations
 
     @Serializable
+    data class UpdateProduct(val id: Long) : AppDestinations
+
+    @Serializable
     data object Settings : AppDestinations
 
     @Serializable

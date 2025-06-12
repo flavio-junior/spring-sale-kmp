@@ -126,7 +126,7 @@ internal fun SelectCategories(
 }
 
 @Composable
-private fun SelectCategories(
+internal fun SelectCategories(
     categories: List<CategoryResponseDTO>,
     selectedCategories: MutableList<CategoryResponseDTO>,
     onResult: (List<CategoryResponseDTO>) -> Unit = {}
@@ -165,7 +165,7 @@ private fun SelectCategories(
 }
 
 @Composable
-private fun ListCategoriesAvailable(
+internal fun ListCategoriesAvailable(
     categories: List<CategoryResponseDTO>
 ) {
     val scrollState = rememberLazyListState()
@@ -190,7 +190,7 @@ private fun ListCategoriesAvailable(
 }
 
 @Composable
-private fun FooterSelectCategories(
+fun FooterSelectCategories(
     onDismissRequest: () -> Unit = {},
     onConfirmation: () -> Unit = {}
 ) {
@@ -215,7 +215,7 @@ private fun FooterSelectCategories(
 }
 
 @Composable
-private fun UiResponseFindCategoryByNameScreen(
+internal fun UiResponseFindCategoryByNameScreen(
     viewModel: CategoryViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToAlternativeRoutes: (HttpError) -> Unit = {},
