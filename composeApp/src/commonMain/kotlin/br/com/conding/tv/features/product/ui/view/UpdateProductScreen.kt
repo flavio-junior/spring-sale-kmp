@@ -11,10 +11,8 @@ import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.Price
-import br.com.conding.tv.components.ui.SimpleButton
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
-import br.com.conding.tv.features.category.ui.view.SelectCategoriesBottomSheet
 import br.com.conding.tv.features.category.ui.view.ShowAllCategoriesSelected
 import br.com.conding.tv.features.product.data.dto.UpdateProductRequestDTO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
@@ -150,29 +148,5 @@ private fun saveUpdateProduct(
         onError(Triple(first = false, second = true, third = GenericsStrings.MESSAGE_ZERO_DOUBLE))
     } else {
         onError(Triple(first = false, second = true, third = GenericsStrings.NOT_BLANK_OR_EMPTY))
-    }
-}
-
-@Composable
-private fun GetCategoriesProductBottomSheet(
-    onResult: (List<CategoryResponseDTO>) -> Unit = {}
-) {
-    var openDialog: Boolean by remember { mutableStateOf(value = false) }
-    SimpleButton(
-        onClick = {
-            openDialog = true
-        },
-        label = GenericsStrings.ADD_CATEGORIES
-    )
-    if (openDialog) {
-        SelectCategoriesBottomSheet(
-            onDismissRequest = {
-                openDialog = false
-            },
-            onConfirmation = {
-                onResult(it)
-                openDialog = false
-            }
-        )
     }
 }
