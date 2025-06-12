@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class ProductRequestDTO(
+    val id: Long = 0,
     val name: String,
     val categories: List<CategoryResponseDTO>,
     val price: Double,

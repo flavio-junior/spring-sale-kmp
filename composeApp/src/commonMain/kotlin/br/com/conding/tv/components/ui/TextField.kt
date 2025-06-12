@@ -19,7 +19,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import br.com.conding.tv.getIconResource
 import br.com.conding.tv.resources.IconName
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.theme.Themes
 import br.com.conding.tv.theme.Typography
 
@@ -37,7 +36,7 @@ internal fun TextField(
     maxLines: Int = Int.MAX_VALUE,
     singleLine: Boolean = true,
     isError: Boolean = false,
-    message: String = EMPTY_TEXT,
+    message: String? = null,
     onValueChange: (String) -> Unit = {},
     onGo: () -> Unit = {}
 ) {
@@ -93,7 +92,7 @@ private fun TextFieldWithIcon(
     maxLines: Int = Int.MAX_VALUE,
     singleLine: Boolean = true,
     isError: Boolean = false,
-    message: String = EMPTY_TEXT,
+    message: String? = null,
     onValueChange: (String) -> Unit = {},
     onGo: () -> Unit = {}
 ) {
@@ -157,7 +156,7 @@ private fun TextFieldWithoutIcon(
     maxLines: Int = Int.MAX_VALUE,
     singleLine: Boolean = true,
     isError: Boolean = false,
-    message: String = EMPTY_TEXT,
+    message: String? = null,
     onValueChange: (String) -> Unit = {},
     onGo: () -> Unit = {}
 ) {

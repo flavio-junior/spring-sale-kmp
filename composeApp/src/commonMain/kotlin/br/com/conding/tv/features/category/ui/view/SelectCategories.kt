@@ -25,14 +25,11 @@ import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Dialog
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.ui.Description
-import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.Search
 import br.com.conding.tv.components.ui.SimpleButton
 import br.com.conding.tv.components.ui.Tag
 import br.com.conding.tv.components.ui.Title
-import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.features.category.ui.viewmodel.ResetCategory
@@ -190,7 +187,7 @@ internal fun ListCategoriesAvailable(
 }
 
 @Composable
-fun FooterSelectCategories(
+internal fun FooterSelectCategories(
     onDismissRequest: () -> Unit = {},
     onConfirmation: () -> Unit = {}
 ) {
@@ -212,26 +209,4 @@ fun FooterSelectCategories(
             modifier = Modifier.weight(weight = WEIGHT_SIZE)
         )
     }
-}
-
-@Composable
-internal fun UiResponseFindCategoryByNameScreen(
-    viewModel: CategoryViewModel,
-    onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
-    goToAlternativeRoutes: (HttpError) -> Unit = {},
-    onSuccessful: (List<CategoryResponseDTO>) -> Unit = {}
-) {
-    val uiState: UiState<List<CategoryResponseDTO>?> by viewModel.findCategoryByName.collectAsStateWithLifecycle()
-    UiResponse(
-        state = uiState,
-        onLoading = {},
-        onError = onError,
-        goToAlternativeRoutes = goToAlternativeRoutes,
-        onSuccess = {
-            viewModel.findAllCategories()
-            if (it != null) {
-                onSuccessful(it)
-            }
-        }
-    )
 }

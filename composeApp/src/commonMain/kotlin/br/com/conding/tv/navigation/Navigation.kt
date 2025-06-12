@@ -320,6 +320,9 @@ internal fun NavGraphBuilder.productNavigation(
                     currentScreen = AppDestinations.UpdateProduct,
                     alternativeRoutes = it
                 )
+            },
+            onSuccessful = {
+                navController.navigate(route = AppDestinations.Home)
             }
         )
     }

@@ -27,6 +27,7 @@ internal class ConverterProduct(
         return products?.map {
             ProductResponseVO(
                 id = it.id,
+                createdAt = it.createdAt,
                 name = it.name,
                 categories = converter.converterCategoriesResponseDTOToVO(
                     categories = it.categories ?: emptyList()

@@ -8,9 +8,9 @@ import androidx.compose.ui.text.style.TextAlign
 @Composable
 internal fun IsErrorMessage(
     isError: Boolean,
-    message: String
+    message: String? = null
 ) {
-    if (isError && message.isNotEmpty()) {
+    if (isError && message?.isNotEmpty() == true) {
         InfoText(
             label = message,
             backgroundTransparent = true,

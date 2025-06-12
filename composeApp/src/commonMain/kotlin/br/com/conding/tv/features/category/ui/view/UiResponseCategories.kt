@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.UiState
+import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
 import br.com.conding.tv.features.category.data.vo.CategoriesResponseVO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.features.category.ui.viewmodel.ResetCategory
@@ -22,6 +23,28 @@ internal fun UiResponseFindAllCategoriesScreen(
         goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
             onSuccess(it)
+        }
+    )
+}
+
+@Composable
+internal fun UiResponseFindCategoryByNameScreen(
+    viewModel: CategoryViewModel,
+    onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
+    onSuccessful: (List<CategoryResponseDTO>) -> Unit = {}
+) {
+    val uiState: UiState<List<CategoryResponseDTO>?> by viewModel.findCategoryByName.collectAsStateWithLifecycle()
+    UiResponse(
+        state = uiState,
+        onLoading = {},
+        onError = onError,
+        goToAlternativeRoutes = goToAlternativeRoutes,
+        onSuccess = {
+            viewModel.findAllCategories()
+            if (it != null) {
+                onSuccessful(it)
+            }
         }
     )
 }
