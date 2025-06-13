@@ -115,6 +115,15 @@ internal class ProductViewModel(
         }
     }
 
+    fun reloadPage() {
+        currentPage = NUMBER_ZERO
+        findAllProducts(
+            name = nameDefault,
+            sort = sortDefault,
+            size = sizeDefault
+        )
+    }
+
     fun createProduct(product: ProductRequestDTO) {
         viewModelScope.launch {
             repository.createNewProduct(product = product).collect { response ->

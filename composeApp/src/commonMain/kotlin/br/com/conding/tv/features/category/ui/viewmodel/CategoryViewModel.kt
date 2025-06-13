@@ -105,6 +105,15 @@ internal class CategoryViewModel(
         }
     }
 
+    fun reloadPage() {
+        currentPage = NUMBER_ZERO
+        findAllCategories(
+            name = nameDefault,
+            sort = sortDefault,
+            size = sizeDefault
+        )
+    }
+
     fun findCategoryByName(name: String) {
         viewModelScope.launch {
             repository

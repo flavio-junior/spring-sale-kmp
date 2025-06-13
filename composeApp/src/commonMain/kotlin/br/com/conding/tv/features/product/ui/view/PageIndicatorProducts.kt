@@ -30,6 +30,9 @@ internal fun PageIndicatorProducts(
                     },
                     reloadPreviousPage = {
                         viewModel.reloadPreviousPage()
+                    },
+                    reloadPage = {
+                        viewModel.reloadPage()
                     }
                 )
                 Spacer(modifier = Modifier.weight(weight = WEIGHT_SIZE_2))
