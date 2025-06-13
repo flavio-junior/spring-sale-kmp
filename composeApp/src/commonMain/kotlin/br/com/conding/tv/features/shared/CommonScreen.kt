@@ -34,16 +34,17 @@ internal fun CommonScreen(
                 )
             }
         },
-        content = {
+        content = { innerPadding ->
             Box(
                 modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
                     .background(color = Themes.colors.background)
-                    .padding(horizontal = Themes.size.spaceSize16)
             ) {
                 Column(
                     modifier = Modifier
-                        .background(color = Themes.colors.background)
                         .fillMaxSize()
+                        .padding(horizontal = Themes.size.spaceSize16)
                         .scroll(scroll = definitionsScreen.scroll)
                         .wrapContentHeight(align = definitionsScreen.alignment),
                     horizontalAlignment = definitionsScreen.horizontalAlignment,
@@ -54,7 +55,9 @@ internal fun CommonScreen(
                 }
                 if (definitionsScreen.enableMiniButton) {
                     MiniButton(
-                        modifier = Modifier.align(alignment = Alignment.BottomEnd),
+                        modifier = Modifier
+                            .align(alignment = Alignment.BottomEnd)
+                            .padding(end = Themes.size.spaceSize16),
                         onClick = goToNextScreen
                     )
                 }
