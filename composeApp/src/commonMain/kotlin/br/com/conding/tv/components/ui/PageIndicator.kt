@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.onBorder
+import br.com.conding.tv.theme.NumbersUtils
 import br.com.conding.tv.theme.Themes
 
 @Composable
@@ -21,9 +22,9 @@ internal fun PageIndicator(
     reloadPreviousPage: () -> Unit = {},
     reloadPage: () -> Unit = {}
 ) {
-    if (totalPages in 1..currentPage) {
+    if (totalPages in NumbersUtils.NUMBER_ONE..currentPage) {
         reloadPage()
-    } else if (totalPages == 0 && currentPage > 0) {
+    } else if (totalPages == NumbersUtils.NUMBER_ZERO && currentPage > NumbersUtils.NUMBER_ZERO) {
         reloadPage()
     }
     Row(
@@ -37,24 +38,27 @@ internal fun PageIndicator(
         verticalAlignment = Alignment.CenterVertically
     ) {
         val displayPage = when {
-            totalPages == 0 -> 0
+            totalPages == NumbersUtils.NUMBER_ZERO -> NumbersUtils.NUMBER_ZERO
             currentPage >= totalPages -> totalPages
-            else -> currentPage + 1
+            else -> currentPage + NumbersUtils.NUMBER_ONE
         }
-        val canGoPrevious = totalPages > 0 && currentPage > 0
-        val canGoNext = totalPages > 0 && currentPage < totalPages - 1
+        val canGoPreviousScreen =
+            totalPages > NumbersUtils.NUMBER_ZERO && currentPage > NumbersUtils.NUMBER_ZERO
+        val canGoNextScreen =
+            totalPages > NumbersUtils.NUMBER_ZERO && currentPage < totalPages - NumbersUtils.NUMBER_ONE
         IconDefault(
             iconName = IconName.ARROW_BACK,
+            tint = if (canGoPreviousScreen) Themes.colors.primary else Themes.colors.disabled,
             modifier = Modifier
                 .onBorder(
-                    onClick = { if (canGoPrevious) reloadPreviousPage() },
+                    onClick = { if (canGoPreviousScreen) reloadPreviousPage() },
                     color = Themes.colors.primary,
                     spaceSize = Themes.size.spaceSize8,
                     width = Themes.size.spaceSize2
                 )
                 .size(size = Themes.size.spaceSize48)
                 .padding(all = Themes.size.spaceSize16),
-            onClick = { if (canGoPrevious) reloadPreviousPage() }
+            onClick = { if (canGoPreviousScreen) reloadPreviousPage() }
         )
         Title(
             label = "$displayPage/$totalPages",
@@ -63,16 +67,17 @@ internal fun PageIndicator(
         )
         IconDefault(
             iconName = IconName.ARROW_FORWARD,
+            tint = if (canGoNextScreen) Themes.colors.primary else Themes.colors.disabled,
             modifier = Modifier
                 .onBorder(
-                    onClick = { if (canGoNext) loadNextPage() },
+                    onClick = { if (canGoNextScreen) loadNextPage() },
                     color = Themes.colors.primary,
                     spaceSize = Themes.size.spaceSize8,
                     width = Themes.size.spaceSize2
                 )
                 .size(size = Themes.size.spaceSize48)
                 .padding(all = Themes.size.spaceSize16),
-            onClick = { if (canGoNext) loadNextPage() }
+            onClick = { if (canGoNextScreen) loadNextPage() }
         )
     }
 }

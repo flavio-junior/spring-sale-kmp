@@ -12,7 +12,8 @@ internal val DarkColor = Colors(
     background = Color(color = 0xFF2B2B2B),
     text = Color(color = 0xFFFFFFFF),
     success = Color(color = 0xFF6A8759),
-    error = Color(color = 0xFFFF0000)
+    error = Color(color = 0xFFFF0000),
+    disabled = Color(color = 0xFF545B62)
 )
 
 internal val LightColor = Colors(
@@ -21,7 +22,8 @@ internal val LightColor = Colors(
     background = Color(color = 0xFFFF1F1F2),
     text = Color(color = 0xFFFFFFFF),
     success = Color(color = 0xFF197E10),
-    error = Color(color = 0xFFCC1922)
+    error = Color(color = 0xFFCC1922),
+    disabled = Color(color = 0xFF545B62)
 )
 
 internal object CommonColors {
@@ -35,6 +37,7 @@ internal class Colors(
     text: Color,
     success: Color,
     error: Color,
+    disabled: Color
 ) {
     var primary by mutableStateOf(primary)
         private set
@@ -48,6 +51,9 @@ internal class Colors(
     var error by mutableStateOf(error)
         private set
 
+    var disabled by mutableStateOf(disabled)
+        private set
+
     var background by mutableStateOf(background)
         private set
 
@@ -59,14 +65,17 @@ internal class Colors(
         secondary: Color = this.secondary,
         background: Color = this.background,
         success: Color = this.success,
-        error: Color = this.error
+        error: Color = this.error,
+        text: Color = this.text,
+        disabled: Color = this.disabled
     ) = Colors(
         primary = primary,
         secondary = secondary,
         background = background,
         text = text,
         success = success,
-        error = error
+        error = error,
+        disabled = disabled
     )
 
     fun updateColorsFrom(other: Colors) {
@@ -76,6 +85,7 @@ internal class Colors(
         text = other.text
         success = other.success
         error = other.error
+        disabled = other.disabled
     }
 }
 
