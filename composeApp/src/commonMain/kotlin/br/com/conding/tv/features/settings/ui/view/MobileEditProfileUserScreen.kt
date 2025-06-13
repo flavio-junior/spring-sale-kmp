@@ -11,6 +11,7 @@ import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.features.settings.data.dto.UserRequestDTO
 import br.com.conding.tv.features.settings.data.vo.UserResponseVO
 import br.com.conding.tv.features.settings.ui.viewmodel.SettingViewModel
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
@@ -20,7 +21,9 @@ import br.com.conding.tv.resources.isNotBlankAndEmpty
 @Composable
 internal fun MobileEditProfileUserScreen(
     viewModel: SettingViewModel,
-    userResponseVO: UserResponseVO? = null
+    userResponseVO: UserResponseVO? = null,
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
+    onSuccess: () -> Unit = {}
 ) {
     var name: String by remember {
         mutableStateOf(value = userResponseVO?.name ?: EMPTY_TEXT)
@@ -95,10 +98,15 @@ internal fun MobileEditProfileUserScreen(
             GenericsStrings.SAVE_DATA_USER
         }
     )
+    MobileDeleteMyAccount(
+        goToAlternativeRoutes = goToAlternativeRoutes,
+        onSuccess = onSuccess
+    )
     UiResponseChangeInfoUser(
         viewModel = viewModel,
         onError = {
             observer = it
-        }
+        },
+        goToAlternativeRoutes = goToAlternativeRoutes
     )
 }

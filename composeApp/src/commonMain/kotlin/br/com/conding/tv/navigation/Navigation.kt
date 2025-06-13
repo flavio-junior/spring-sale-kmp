@@ -357,6 +357,16 @@ internal fun NavGraphBuilder.settingsNavigation(
         EditProfileUserScreen(
             goToBackScreen = {
                 navController.goBack()
+            },
+            goToAlternativeRoutes = {
+                navigateToAlternativeRoutes(
+                    navController = navController,
+                    currentScreen = AppDestinations.EditProfileUser,
+                    alternativeRoutes = it
+                )
+            },
+            onSuccess = {
+                navController.navigate(route = AppDestinations.SplashScreen)
             }
         )
     }
