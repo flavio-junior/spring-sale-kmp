@@ -48,7 +48,10 @@ internal fun EmptyList(
 private fun MobileEmptyList(
     title: String,
 ) {
-    Title(label = title)
+    Title(
+        label = title,
+        backgroundTransparent = true
+    )
 }
 
 @Composable
