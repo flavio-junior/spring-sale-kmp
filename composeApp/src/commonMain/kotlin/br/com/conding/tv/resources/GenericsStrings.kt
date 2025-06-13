@@ -83,4 +83,5 @@ internal object GenericsStrings {
     const val DATA_USER = "Dados do Usuário"
     const val SAVE_DATA_USER = "Salvar dados do usuário"
     const val ALTER_DATA_USER = "Alterar dados do usuário"
+    const val DELETE_MY_ACCOUNT = "Apagar minha conta"
 }

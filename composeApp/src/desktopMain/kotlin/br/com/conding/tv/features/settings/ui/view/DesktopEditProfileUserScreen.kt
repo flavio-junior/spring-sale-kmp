@@ -16,6 +16,7 @@ import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.features.settings.data.dto.UserRequestDTO
 import br.com.conding.tv.features.settings.ui.viewmodel.SettingViewModel
+import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
@@ -27,7 +28,9 @@ import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
 internal fun DesktopEditProfileUserScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    goToAlternativeRoutes: (HttpError) -> Unit = {},
+    onSuccess: () -> Unit = {}
 ) {
     val viewModel: SettingViewModel = getKoin().get()
     LaunchedEffect(key1 = Unit) {
@@ -95,6 +98,7 @@ internal fun DesktopEditProfileUserScreen(
                         value = username,
                         iconName = IconName.EDIT,
                         isError = observer.second,
+                        message = observer.third,
                         onValueChange = { username = it },
                         imeAction = ImeAction.Go,
                         onGo = saveInfoUser,
@@ -105,25 +109,31 @@ internal fun DesktopEditProfileUserScreen(
                         value = response.email ?: EMPTY_TEXT,
                         enabled = false,
                         iconName = IconName.MAIL,
-                        isError = observer.second,
-                        message = observer.third,
                         modifier = modifier.weight(weight = WeightSize.WEIGHT_SIZE)
                     )
                 }
-                LoadingButton(
-                    onClick = saveInfoUser,
-                    isEnabled = observer.first,
-                    label = if (
-                        response.name?.isNotBlankAndEmpty() == true &&
-                        response.surname?.isNotBlankAndEmpty() == true &&
-                        response.username?.isNotBlankAndEmpty() == true
-                    ) {
-                        GenericsStrings.ALTER_DATA_USER
-                    } else {
-                        GenericsStrings.SAVE_DATA_USER
-                    }
-                )
-                UiResponseChangeInfoUserScreen(
+                ContentHorizontal(spaceBy = Themes.size.spaceSize18) {
+                    LoadingButton(
+                        onClick = saveInfoUser,
+                        isEnabled = observer.first,
+                        label = if (
+                            response.name?.isNotBlankAndEmpty() == true &&
+                            response.surname?.isNotBlankAndEmpty() == true &&
+                            response.username?.isNotBlankAndEmpty() == true
+                        ) {
+                            GenericsStrings.ALTER_DATA_USER
+                        } else {
+                            GenericsStrings.SAVE_DATA_USER
+                        },
+                        modifier = modifier.weight(weight = WeightSize.WEIGHT_SIZE)
+                    )
+                    DeleteMyAccount(
+                        goToAlternativeRoutes = goToAlternativeRoutes,
+                        onSuccess = onSuccess,
+                        modifier = modifier.weight(weight = WeightSize.WEIGHT_SIZE)
+                    )
+                }
+                UiResponseChangeInfoUser(
                     viewModel = viewModel,
                     onError = {
                         observer = it

@@ -24,7 +24,12 @@ internal actual fun SettingsScreen(
                 goToBackScreen = goToBackScreen,
                 goToNextScreen = goToNextScreen
             )
-            DesktopEditProfileUserScreen()
+            DesktopEditProfileUserScreen(
+                goToAlternativeRoutes = goToAlternativeRoutes,
+                onSuccess = {
+                    goToNextScreen(AppDestinations.SignIn)
+                }
+            )
         }
     )
 }

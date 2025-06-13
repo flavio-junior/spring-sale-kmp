@@ -19,4 +19,8 @@ internal class SettingsRemoteDataSourceImpl(
     ): Flow<ObserveNetworkStateHandler<Unit>> {
         return settingsApiService.changeInfoUser(userRequestDTO)
     }
+
+    override suspend fun deleteMyAccount(): Flow<ObserveNetworkStateHandler<Unit>> {
+        return settingsApiService.deleteMyAccount()
+    }
 }

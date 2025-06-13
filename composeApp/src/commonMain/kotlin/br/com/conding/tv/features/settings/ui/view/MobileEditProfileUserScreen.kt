@@ -95,7 +95,7 @@ internal fun MobileEditProfileUserScreen(
             GenericsStrings.SAVE_DATA_USER
         }
     )
-    UiResponseChangeInfoUserScreen(
+    UiResponseChangeInfoUser(
         viewModel = viewModel,
         onError = {
             observer = it

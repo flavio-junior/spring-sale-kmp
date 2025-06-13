@@ -81,13 +81,17 @@ private fun DesktopEmptyList(
             verticalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize16),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Title(label = title)
+            Title(
+                label = title,
+                backgroundTransparent = true
+            )
             Row(
                 horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize8),
                 modifier = modifier.onClickable(onClick = onClick)
             ) {
                 Description(
                     label = description ?: EMPTY_TEXT,
+                    backgroundTransparent = true,
                     modifier = modifier.onClickable(onClick = onClick)
                 )
                 IconDefault(

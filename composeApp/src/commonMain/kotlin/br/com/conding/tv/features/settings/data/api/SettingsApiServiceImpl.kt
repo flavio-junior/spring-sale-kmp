@@ -6,6 +6,7 @@ import br.com.conding.tv.features.settings.data.dto.UserResponseDTO
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
 import br.com.conding.tv.networking.resources.toResultFlow
 import io.ktor.client.HttpClient
+import io.ktor.client.request.delete
 import io.ktor.client.request.get
 import io.ktor.client.request.headers
 import io.ktor.client.request.patch
@@ -45,6 +46,17 @@ internal class SettingsApiServiceImpl(
                     append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
                 }
                 setBody(body = userRequestDTO)
+            }
+        }
+    }
+
+    override suspend fun deleteMyAccount(): Flow<ObserveNetworkStateHandler<Unit>> {
+        return toResultFlow {
+            httpClient.delete {
+                url(urlString = "/api/spring/sale/use/settings/v1")
+                headers {
+                    append(name = HttpHeaders.Authorization, value = "Bearer $accessToken")
+                }
             }
         }
     }

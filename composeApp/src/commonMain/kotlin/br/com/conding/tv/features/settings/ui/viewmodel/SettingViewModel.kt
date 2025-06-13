@@ -24,6 +24,9 @@ internal class SettingViewModel(
     private val _changeInfoUser = MutableStateFlow<UiState<Unit>>(UiState.Init)
     val changeInfoUser = _changeInfoUser.asStateFlow()
 
+    private val _deleteMyAccount = MutableStateFlow<UiState<Unit>>(UiState.Init)
+    val deleteMyAccount = _deleteMyAccount.asStateFlow()
+
     override fun getUserAuthenticated() {
         viewModelScope.launch {
             settingsRepository.getUserAuthenticated().collect { response ->
@@ -60,6 +63,23 @@ internal class SettingViewModel(
 
                     is ObserveNetworkStateHandler.Success ->
                         _changeInfoUser.value = UiState.OnSuccess(response = Unit)
+                }
+            }
+        }
+    }
+
+    override fun deleteMyAccount() {
+        viewModelScope.launch {
+            settingsRepository.deleteMyAccount().collect { response ->
+                when (response) {
+                    is ObserveNetworkStateHandler.Loading ->
+                        _deleteMyAccount.value = UiState.Loading
+
+                    is ObserveNetworkStateHandler.Error ->
+                        _deleteMyAccount.value = UiState.Error(error = response.exception)
+
+                    is ObserveNetworkStateHandler.Success ->
+                        _deleteMyAccount.value = UiState.OnSuccess(response = Unit)
                 }
             }
         }

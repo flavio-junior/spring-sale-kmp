@@ -8,4 +8,5 @@ import kotlinx.coroutines.flow.Flow
 internal interface SettingsRemoteDataSource {
     suspend fun getUserAuthenticated(): Flow<ObserveNetworkStateHandler<UserResponseDTO>>
     suspend fun changeInfoUser(userRequestDTO: UserRequestDTO): Flow<ObserveNetworkStateHandler<Unit>>
+    suspend fun deleteMyAccount(): Flow<ObserveNetworkStateHandler<Unit>>
 }
