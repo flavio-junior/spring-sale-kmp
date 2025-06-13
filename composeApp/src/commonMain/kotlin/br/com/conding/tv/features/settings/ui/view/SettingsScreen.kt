@@ -15,7 +15,6 @@ import br.com.conding.tv.components.ui.IconDefault
 import br.com.conding.tv.components.ui.SubTitle
 import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.account.ui.view.UiResponseCleanToken
-import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings
@@ -24,7 +23,6 @@ import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize
 import br.com.conding.tv.resources.onClickable
 import br.com.conding.tv.theme.Themes
-import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
 internal expect fun SettingsScreen(
@@ -39,8 +37,8 @@ internal fun MobileSettingsScreen(
     goToNextScreen: (AppDestinations) -> Unit = {},
     goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
-    val viewModel: AccountViewModel = getKoin().get()
-    var logoutApp: Boolean by remember { mutableStateOf(value = false) }
+    var openDialog: Boolean by remember { mutableStateOf(value = false) }
+    var cleanToken: Boolean by remember { mutableStateOf(value = false) }
     ContentScreen(
         definitionsScreen = DefinitionsScreen(
             alignment = Alignment.Top
@@ -77,7 +75,7 @@ internal fun MobileSettingsScreen(
                         backgroundTransparent = true,
                         modifier = Modifier
                             .onClickable {
-                                logoutApp = true
+                                openDialog = true
                             }
                             .weight(weight = WeightSize.WEIGHT_SIZE)
                     )
@@ -85,13 +83,22 @@ internal fun MobileSettingsScreen(
             )
         }
     )
-    if (logoutApp) {
-        viewModel.cleanToken()
+    if (openDialog) {
+        ExitAppBottomSheet(
+            cleanToken = {
+                openDialog = false
+                cleanToken = true
+            },
+            onDismiss = {
+                openDialog = false
+            }
+        )
+    }
+    if (cleanToken) {
         UiResponseCleanToken(
             goToAlternativeRoutes = goToAlternativeRoutes,
             onSuccess = {
                 goToNextScreen(AppDestinations.SignIn)
-                logoutApp = false
             }
         )
     }
