@@ -22,6 +22,7 @@ import br.com.conding.tv.features.home.factory.home
 import br.com.conding.tv.features.shared.BodyPage
 import br.com.conding.tv.features.shared.ShowOverlayPanel
 import br.com.conding.tv.navigation.AppDestinations
+import br.com.conding.tv.resources.GenericsStrings
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_FOUR
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import br.com.conding.tv.theme.Themes
@@ -68,10 +69,13 @@ internal actual fun HomeScreen(
                 }
                 if (showOverlayPanel) {
                     ShowOverlayPanel(
-                        onChangeAccountRequest = {
+                        labelStart = GenericsStrings.CHANGE_TO_OTHER_ACCOUNT,
+                        labelEnd = GenericsStrings.EXIT,
+                        description = GenericsStrings.YOUR_ACTION,
+                        callNextAction = {
                             callViewModel = true
                         },
-                        onCloseProgram = {
+                        cancelAction = {
                             showOverlayPanel = false
                             exitProcess(status = NUMBER_ZERO)
                         },

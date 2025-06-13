@@ -15,21 +15,20 @@ import br.com.conding.tv.components.ui.Description
 import br.com.conding.tv.components.ui.IconDefault
 import br.com.conding.tv.components.ui.SimpleButton
 import br.com.conding.tv.components.ui.Title
-import br.com.conding.tv.resources.GenericsStrings.CHANGE_TO_OTHER_ACCOUNT
-import br.com.conding.tv.resources.GenericsStrings.EXIT
 import br.com.conding.tv.resources.GenericsStrings.WARNING
-import br.com.conding.tv.resources.GenericsStrings.YOUR_ACTION
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes
 
 @Composable
-internal actual fun ShowOverlayPanel(
-    onCloseProgram: () -> Unit,
-    onChangeAccountRequest: () -> Unit,
+internal fun ShowOverlayPanel(
+    labelStart: String,
+    labelEnd: String,
+    description: String,
+    callNextAction: () -> Unit,
+    cancelAction: () -> Unit,
     onDismissRequest: () -> Unit
-
 ) {
     Dialog(onDismissRequest = onDismissRequest) {
         Column(
@@ -61,7 +60,7 @@ internal actual fun ShowOverlayPanel(
                 )
             }
             Description(
-                label = YOUR_ACTION,
+                label = description,
                 backgroundTransparent = true,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -74,14 +73,14 @@ internal actual fun ShowOverlayPanel(
                 horizontalArrangement = Arrangement.spacedBy(space = Themes.size.spaceSize8),
             ) {
                 SimpleButton(
-                    onClick = onChangeAccountRequest,
-                    label = CHANGE_TO_OTHER_ACCOUNT,
-                    background = Themes.colors.error,
+                    onClick = callNextAction,
+                    label = labelStart,
                     modifier = Modifier.weight(weight = WEIGHT_SIZE)
                 )
                 SimpleButton(
-                    onClick = onCloseProgram,
-                    label = EXIT,
+                    onClick = cancelAction,
+                    label = labelEnd,
+                    background = Themes.colors.error,
                     modifier = Modifier.weight(weight = WEIGHT_SIZE)
                 )
             }
