@@ -8,5 +8,6 @@ internal data class DefinitionsScreen(
     val horizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
     val scroll: Boolean = true,
     val label: String? = null,
+    val enableBottomBar: Boolean = false,
     val enableMiniButton: Boolean = false
 )

@@ -10,13 +10,15 @@ internal actual fun ContentScreen(
     goToBackScreen: () -> Unit,
     goToNextScreen: () -> Unit,
     extra: @Composable (Boolean) -> Unit,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
+    bottomBar: @Composable () -> Unit
 ) {
     CommonScreen(
         definitionsScreen = definitionsScreen,
         goToBackScreen = goToBackScreen,
         goToNextScreen = goToNextScreen,
         extra = extra,
-        content = content
+        content = content,
+        bottomBar = bottomBar
     )
 }

@@ -29,6 +29,7 @@ internal fun MobileProductsScreen(
     ContentScreen(
         definitionsScreen = DefinitionsScreen(
             alignment = Alignment.Top,
+            enableBottomBar = true,
             enableMiniButton = true
         ),
         goToNextScreen = {
@@ -46,6 +47,9 @@ internal fun MobileProductsScreen(
                 viewModel = viewModel,
                 goToNextScreen = goToNextScreen
             )
+        },
+        bottomBar = {
+            PageIndicatorProducts()
         }
     )
 }

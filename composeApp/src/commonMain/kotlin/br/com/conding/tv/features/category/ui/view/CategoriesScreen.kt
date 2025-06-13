@@ -34,6 +34,7 @@ internal fun MobileCategoryScreen(
     ContentScreen(
         definitionsScreen = DefinitionsScreen(
             alignment = Alignment.Top,
+            enableBottomBar = true,
             enableMiniButton = true
         ),
         goToNextScreen = {
@@ -48,6 +49,9 @@ internal fun MobileCategoryScreen(
                 }
             )
             MobileListCategories(viewModel = viewModel)
+        },
+        bottomBar = {
+            PageIndicatorCategories()
         }
     )
     if (createCategory) {

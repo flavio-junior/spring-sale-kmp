@@ -54,6 +54,11 @@ private fun HeaderSearchMobile(
     var sortBy: String by remember { mutableStateOf(value = ASC) }
     var size: String by remember { mutableStateOf(value = SIZE_DEFAULT) }
     var openBottomSheet: Boolean by remember { mutableStateOf(value = false) }
+    val callFilter = {
+        converterSizeStringToInt(size = size)?.let {
+            filter(name, it, sortBy)
+        }
+    }
     ContentHorizontal(
         content = {
             Title(
@@ -86,7 +91,7 @@ private fun HeaderSearchMobile(
             name = it
         },
         onGo = {
-            filter(name, converterSizeStringToInt(size = size), sortBy)
+            callFilter()
         }
     )
     ContentHorizontal(
@@ -101,7 +106,7 @@ private fun HeaderSearchMobile(
             SortBy(
                 onClick = {
                     sortBy = it
-                    filter(name, converterSizeStringToInt(size = size), sortBy)
+                    callFilter()
                 }
             )
         }
@@ -111,7 +116,7 @@ private fun HeaderSearchMobile(
             onDismiss = {
                 openBottomSheet = false
                 size = it ?: EMPTY_TEXT
-                filter(name, converterSizeStringToInt(size = size), sortBy)
+                callFilter()
             }
         )
     }
@@ -130,18 +135,23 @@ private fun HeaderSearchDesktop(
         var name: String by remember { mutableStateOf(value = EMPTY_TEXT) }
         var sortBy: String by remember { mutableStateOf(value = ASC) }
         var size: String by remember { mutableStateOf(value = SIZE_DEFAULT) }
+        val callFilter = {
+            converterSizeStringToInt(size = size)?.let {
+                filter(name, it, sortBy)
+            }
+        }
         Search(
             value = name,
             onValueChange = { name = it },
             modifier = Modifier.weight(weight = WEIGHT_SIZE),
             onGo = {
-                filter(name, converterSizeStringToInt(size = size), sortBy)
+                callFilter()
             }
         )
         SortBy(
             onClick = {
                 sortBy = it
-                filter(name, converterSizeStringToInt(size = size), sortBy)
+                callFilter()
             }
         )
         DropdownMenu(
@@ -150,7 +160,7 @@ private fun HeaderSearchDesktop(
             label = SIZE_LIST,
             onValueChangedEvent = {
                 size = it
-                filter(name, converterSizeStringToInt(size = size), sortBy)
+                callFilter()
             }
         )
         IconDefault(
@@ -165,7 +175,7 @@ private fun HeaderSearchDesktop(
                 .size(size = Themes.size.spaceSize64)
                 .padding(all = Themes.size.spaceSize8),
             onClick = {
-                filter(name, converterSizeStringToInt(size = size), sortBy)
+                callFilter()
             }
         )
     }

@@ -9,5 +9,6 @@ internal expect fun ContentScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: () -> Unit = {},
     extra: @Composable (Boolean) -> Unit = {},
-    content: @Composable () -> Unit = {}
+    content: @Composable () -> Unit = {},
+    bottomBar: @Composable () -> Unit = {}
 )

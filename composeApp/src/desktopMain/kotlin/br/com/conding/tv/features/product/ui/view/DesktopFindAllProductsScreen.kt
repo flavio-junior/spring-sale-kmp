@@ -73,7 +73,7 @@ internal fun DesktopFindAllProductsScreen(
                                         viewModel.showEmptyList(show = true)
                                     }
                                 )
-                                PageIndicatorProducts(productsResponseVO = result)
+                                PageIndicatorProducts()
                             }
                         }
                     )

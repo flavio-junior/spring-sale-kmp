@@ -53,7 +53,7 @@ internal fun DesktopCardCategories(
                                 categoriesResponseVO = result,
                                 onItemSelected = onItemSelected
                             )
-                            PageIndicatorCategories(categoriesResponseVO = result)
+                            PageIndicatorCategories()
                             SaveCategory(goToAlternativeRoutes = goToAlternativeRoutes)
                         }
                     }

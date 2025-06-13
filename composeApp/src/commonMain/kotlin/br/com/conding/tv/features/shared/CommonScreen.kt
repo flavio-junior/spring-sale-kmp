@@ -23,8 +23,14 @@ internal fun CommonScreen(
     goToBackScreen: () -> Unit = {},
     goToNextScreen: () -> Unit = {},
     extra: @Composable (Boolean) -> Unit = {},
-    content: @Composable () -> Unit = {}
+    content: @Composable () -> Unit = {},
+    bottomBar: @Composable () -> Unit = {}
 ) {
+    val bottomBarHeight = if (definitionsScreen.enableBottomBar) {
+        Themes.size.spaceSize64
+    } else {
+        Themes.size.spaceSize0
+    }
     Scaffold(
         topBar = {
             if (definitionsScreen.label != null) {
@@ -45,6 +51,7 @@ internal fun CommonScreen(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(horizontal = Themes.size.spaceSize16)
+                        .padding(bottom = bottomBarHeight)
                         .scroll(scroll = definitionsScreen.scroll)
                         .wrapContentHeight(align = definitionsScreen.alignment),
                     horizontalAlignment = definitionsScreen.horizontalAlignment,
@@ -53,13 +60,21 @@ internal fun CommonScreen(
                     extra(false)
                     content()
                 }
-                if (definitionsScreen.enableMiniButton) {
-                    MiniButton(
-                        modifier = Modifier
-                            .align(alignment = Alignment.BottomEnd)
-                            .padding(end = Themes.size.spaceSize16),
-                        onClick = goToNextScreen
-                    )
+                if (definitionsScreen.enableBottomBar) {
+                    Column(
+                        modifier = Modifier.align(alignment = Alignment.BottomCenter),
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        bottomBar()
+                    }
+                    if (definitionsScreen.enableMiniButton) {
+                        MiniButton(
+                            modifier = Modifier
+                                .align(alignment = Alignment.BottomEnd)
+                                .padding(end = Themes.size.spaceSize16),
+                            onClick = goToNextScreen
+                        )
+                    }
                 }
             }
         }
