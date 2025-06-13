@@ -27,7 +27,7 @@ internal actual fun SettingsScreen(
             DesktopEditProfileUserScreen(
                 goToAlternativeRoutes = goToAlternativeRoutes,
                 onSuccess = {
-                    goToNextScreen(AppDestinations.SignIn)
+                    goToNextScreen(AppDestinations.SplashScreen)
                 }
             )
         }

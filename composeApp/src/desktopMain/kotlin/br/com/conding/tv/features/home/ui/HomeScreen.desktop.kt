@@ -17,7 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import br.com.conding.tv.components.ui.ItemMenu
-import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
+import br.com.conding.tv.features.account.ui.view.UiResponseCleanToken
 import br.com.conding.tv.features.home.factory.home
 import br.com.conding.tv.features.shared.BodyPage
 import br.com.conding.tv.features.shared.ShowOverlayPanel
@@ -25,7 +25,6 @@ import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_FOUR
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import br.com.conding.tv.theme.Themes
-import org.koin.mp.KoinPlatform.getKoin
 import kotlin.system.exitProcess
 
 @Composable
@@ -38,7 +37,6 @@ internal actual fun HomeScreen(
         body = {
             var callViewModel: Boolean by remember { mutableStateOf(value = false) }
             var showOverlayPanel: Boolean by remember { mutableStateOf(value = false) }
-            val viewModel: AccountViewModel = getKoin().get()
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
@@ -83,10 +81,8 @@ internal actual fun HomeScreen(
                     )
                 }
                 if (callViewModel) {
-                    viewModel.cleanToken()
-                    UiResponseLogoutApp(
-                        viewModel = viewModel,
-                        onSuccessful = {
+                    UiResponseCleanToken(
+                        onSuccess = {
                             showOverlayPanel = false
                             callViewModel = false
                             goToLoginScreen()

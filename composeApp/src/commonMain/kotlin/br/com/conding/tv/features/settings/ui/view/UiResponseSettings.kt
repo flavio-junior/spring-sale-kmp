@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.UiState
+import br.com.conding.tv.features.account.ui.view.UiResponseCleanToken
 import br.com.conding.tv.features.settings.data.vo.UserResponseVO
 import br.com.conding.tv.features.settings.ui.viewmodel.SettingViewModel
 import br.com.conding.tv.networking.resources.HttpError
@@ -47,7 +48,7 @@ internal fun UiResponseDeleteMyAccount(
     viewModel: SettingViewModel,
     onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
     goToAlternativeRoutes: (HttpError) -> Unit = {},
-    onSuccess: @Composable () -> Unit = {}
+    onSuccess: () -> Unit = {}
 ) {
     val uiState: UiState<Unit> by viewModel.deleteMyAccount.collectAsStateWithLifecycle()
     UiResponse(
@@ -55,7 +56,9 @@ internal fun UiResponseDeleteMyAccount(
         onError = onError,
         goToAlternativeRoutes = goToAlternativeRoutes,
         onSuccess = {
-            onSuccess()
+            UiResponseCleanToken(
+                onSuccess = onSuccess
+            )
         }
     )
 }

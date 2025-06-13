@@ -8,8 +8,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.ui.IsErrorMessage
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
-import br.com.conding.tv.features.home.ui.UiResponseLogoutApp
 import br.com.conding.tv.features.settings.ui.viewmodel.SettingViewModel
 import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings
@@ -47,12 +45,6 @@ internal fun DeleteMyAccount(
             observer = it
         },
         goToAlternativeRoutes = goToAlternativeRoutes,
-        onSuccess = {
-            val accountViewModel: AccountViewModel = getKoin().get()
-            UiResponseLogoutApp(
-                viewModel = accountViewModel,
-                onSuccessful = onSuccess
-            )
-        }
+        onSuccess = onSuccess
     )
 }

@@ -1,11 +1,13 @@
 package br.com.conding.tv.components.ui
 
 import androidx.compose.runtime.Composable
-import br.com.conding.tv.networking.resources.HttpError
+import br.com.conding.tv.features.account.ui.view.UiResponseCleanToken
 import br.com.conding.tv.networking.resources.ErrorType
+import br.com.conding.tv.networking.resources.HttpError
+import br.com.conding.tv.networking.resources.StatusCode.NUMBER_401
 import br.com.conding.tv.networking.resources.StatusCode.NUMBER_403
-import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.networking.resources.determineErrorRoute
+import br.com.conding.tv.networking.resources.reloadViewModels
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.Warnings.UNAUTHORIZED_MESSAGE
 
@@ -28,6 +30,12 @@ internal fun <T> UiResponse(
                 ErrorType.CLIENT -> {
                     if (error.code == NUMBER_403 && error.message == UNAUTHORIZED_MESSAGE) {
                         goToAlternativeRoutes(HttpError.ERROR_403)
+                    } else if (error.code == NUMBER_401) {
+                        UiResponseCleanToken(
+                            onSuccess = {
+                                goToAlternativeRoutes(HttpError.ERROR_401)
+                            }
+                        )
                     } else {
                         onError(Triple(first = false, second = true, third = error.message))
                     }

@@ -16,6 +16,14 @@ internal fun navigateToAlternativeRoutes(
     alternativeRoutes: HttpError
 ) {
     when (alternativeRoutes) {
+        HttpError.ERROR_401 -> {
+            navController.navigate(route = AppDestinations.SplashScreen) {
+                popUpTo(route = currentScreen::class) {
+                    inclusive = true
+                }
+            }
+        }
+
         HttpError.ERROR_403 -> {
             navController.navigate(route = AppDestinations.SignIn) {
                 popUpTo(route = currentScreen::class) {

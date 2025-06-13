@@ -14,8 +14,8 @@ import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.IconDefault
 import br.com.conding.tv.components.ui.SubTitle
 import br.com.conding.tv.components.ui.Title
+import br.com.conding.tv.features.account.ui.view.UiResponseCleanToken
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
-import br.com.conding.tv.features.home.ui.UiResponseLogoutApp
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings
@@ -87,9 +87,9 @@ internal fun MobileSettingsScreen(
     )
     if (logoutApp) {
         viewModel.cleanToken()
-        UiResponseLogoutApp(
-            viewModel = viewModel,
-            onSuccessful = {
+        UiResponseCleanToken(
+            goToAlternativeRoutes = goToAlternativeRoutes,
+            onSuccess = {
                 goToNextScreen(AppDestinations.SignIn)
                 logoutApp = false
             }

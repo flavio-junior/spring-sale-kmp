@@ -11,19 +11,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.Description
 import br.com.conding.tv.components.ui.LoadingButton
-import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.components.ui.SimpleText
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.components.ui.TextPassword
-import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.account.data.dto.SignInRequestDTO
-import br.com.conding.tv.features.account.data.dto.TokenResponseDTO
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
-import br.com.conding.tv.features.account.ui.viewmodel.ResetAccount
 import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericsStrings.CREATE_ONE_ACCOUNT
 import br.com.conding.tv.resources.GenericsStrings.EMAIL
@@ -75,13 +70,13 @@ internal fun SignInScreen(
                     password = it.second
                 }
             )
-            UiResponseSignInScreen(
+            UiResponseSignIn(
                 viewModel = viewModel,
                 onError = {
                     observer = it
                 },
-                goToDashboardScreen = goToHomeScreen,
-                goToAlternativeRoutes = goToAlternativeRoutes
+                goToAlternativeRoutes = goToAlternativeRoutes,
+                goToHomeScreen = goToHomeScreen
             )
             SimpleText(
                 label = FORGOT_PASS,
@@ -145,25 +140,6 @@ private fun GetDataInputsSignIn(
         onGo = { checkSignIn(emailMutable, passwordMutable) }
     )
     onValueChange(Pair(first = emailMutable, second = passwordMutable))
-}
-
-@Composable
-private fun UiResponseSignInScreen(
-    viewModel: AccountViewModel,
-    onError: (Triple<Boolean, Boolean, String?>) -> Unit = {},
-    goToDashboardScreen: () -> Unit = {},
-    goToAlternativeRoutes: (HttpError) -> Unit = {}
-) {
-    val uiState: UiState<TokenResponseDTO> by viewModel.signIn.collectAsStateWithLifecycle()
-    UiResponse(
-        state = uiState,
-        onError = onError,
-        goToAlternativeRoutes = goToAlternativeRoutes,
-        onSuccess = {
-            viewModel.resetStateSignIn(resetAccount = ResetAccount.SIGN_IN)
-            goToDashboardScreen()
-        }
-    )
 }
 
 private fun checkDataToSignIn(
