@@ -97,7 +97,7 @@ internal fun Service(
     ) {
         IconDefault(
             backgroundColor = if (enabled) ITEM_SELECTED else Themes.colors.secondary,
-            tint = if (enabled) Themes.colors.background else ITEM_SELECTED,
+            tint = Themes.colors.background,
             iconName = menu.icon,
             onClick = goToNavigation
         )
