@@ -11,11 +11,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.conding.tv.components.ui.ContentHorizontal
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.TextField
-import br.com.conding.tv.components.ui.UiResponse
 import br.com.conding.tv.features.settings.data.dto.UserRequestDTO
 import br.com.conding.tv.features.settings.ui.viewmodel.SettingViewModel
 import br.com.conding.tv.resources.GenericsStrings
@@ -35,9 +33,8 @@ internal fun DesktopEditProfileUserScreen(
     LaunchedEffect(key1 = Unit) {
         viewModel.getUserAuthenticated()
     }
-    val uiState by viewModel.getUserAuthenticated.collectAsStateWithLifecycle()
-    UiResponse(
-        state = uiState,
+    UiResponseGetUserAuthenticated(
+        viewModel = viewModel,
         onSuccess = { response ->
             var name: String by remember {
                 mutableStateOf(value = response.name ?: EMPTY_TEXT)
