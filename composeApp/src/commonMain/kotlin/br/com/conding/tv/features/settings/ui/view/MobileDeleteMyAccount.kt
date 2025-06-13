@@ -27,7 +27,7 @@ internal fun MobileDeleteMyAccount(
         background = Themes.colors.error
     )
     if (openDialog) {
-        DeleteCategoryBottomSheet(
+        DeleteMyAccountBottomSheet(
             viewModel = viewModel,
             onDismiss = {
                 openDialog = false

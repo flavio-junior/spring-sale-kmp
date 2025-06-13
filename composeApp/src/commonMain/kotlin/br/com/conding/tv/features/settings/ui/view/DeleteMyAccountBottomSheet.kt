@@ -35,7 +35,7 @@ import br.com.conding.tv.theme.Themes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun DeleteCategoryBottomSheet(
+internal fun DeleteMyAccountBottomSheet(
     viewModel: SettingViewModel,
     onDismiss: () -> Unit = {}
 ) {
