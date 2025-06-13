@@ -127,7 +127,7 @@ internal fun DesktopEditProfileUserScreen(
                         },
                         modifier = modifier.weight(weight = WeightSize.WEIGHT_SIZE)
                     )
-                    DeleteMyAccount(
+                    DesktopDeleteMyAccount(
                         goToAlternativeRoutes = goToAlternativeRoutes,
                         onSuccess = onSuccess,
                         modifier = modifier.weight(weight = WeightSize.WEIGHT_SIZE)
