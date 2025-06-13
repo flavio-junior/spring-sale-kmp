@@ -70,7 +70,7 @@ internal fun SendRecoverTokenScreen(
                 label = REGISTERED_EMAIL,
                 value = email,
                 isError = observer.second,
-                message = observer.third ?: EMPTY_TEXT,
+                message = observer.third,
                 iconName = IconName.MAIL,
                 keyboardType = KeyboardType.Email,
                 imeAction = ImeAction.Go,

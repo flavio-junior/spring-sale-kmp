@@ -75,7 +75,7 @@ internal fun SendCodeToConfirmEmailScreen(
                 imeAction = ImeAction.Go,
                 iconName = IconName.MAIL,
                 isError = observer.second,
-                message = observer.third ?: EMPTY_TEXT,
+                message = observer.third,
                 onValueChange = { email = it },
                 onGo = { checkEmail(email) }
             )

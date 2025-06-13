@@ -116,7 +116,7 @@ internal fun CardProfileUser(
         enabled = false,
         iconName = IconName.MAIL,
         isError = observer.second,
-        message = observer.third ?: EMPTY_TEXT
+        message = observer.third
     )
     LoadingButton(
         onClick = saveInfoUser,

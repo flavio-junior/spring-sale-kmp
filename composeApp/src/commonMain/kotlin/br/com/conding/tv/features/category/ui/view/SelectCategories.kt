@@ -78,7 +78,7 @@ internal fun SelectCategories(
                 value = name,
                 onValueChange = { name = it },
                 isError = observer.second,
-                message = observer.third ?: EMPTY_TEXT,
+                message = observer.third,
                 onGo = {
                     viewModel.findCategoryByName(name = name)
                 }

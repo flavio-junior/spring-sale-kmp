@@ -92,7 +92,7 @@ private fun SaveCategoryBottomSheet(
         value = category,
         imeAction = ImeAction.Done,
         isError = observer.second,
-        message = observer.third ?: EMPTY_TEXT,
+        message = observer.third,
         iconName = IconName.EDIT,
         onValueChange = { category = it }
     )

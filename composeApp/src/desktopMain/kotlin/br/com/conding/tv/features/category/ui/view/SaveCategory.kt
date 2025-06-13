@@ -90,6 +90,6 @@ internal fun SaveCategory(
                 }
             )
         }
-        IsErrorMessage(isError = observer.second, message = observer.third ?: EMPTY_TEXT)
+        IsErrorMessage(isError = observer.second, message = observer.third)
     }
 }

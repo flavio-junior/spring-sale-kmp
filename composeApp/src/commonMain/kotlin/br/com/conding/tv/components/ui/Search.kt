@@ -30,7 +30,7 @@ internal fun Search(
     modifier: Modifier = Modifier,
     value: String,
     isError: Boolean = false,
-    message: String = EMPTY_TEXT,
+    message: String? = null,
     onValueChange: (String) -> Unit = {},
     onGo: () -> Unit = {}
 ) {
@@ -57,7 +57,7 @@ private fun BodySearch(
     value: String = EMPTY_TEXT,
     label: String = EMPTY_TEXT,
     isError: Boolean = false,
-    message: String = EMPTY_TEXT,
+    message: String? = null,
     onValueChange: (String) -> Unit = {},
     onGo: () -> Unit = {}
 ) {

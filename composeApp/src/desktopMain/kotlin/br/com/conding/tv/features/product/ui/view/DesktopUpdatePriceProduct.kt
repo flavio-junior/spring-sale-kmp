@@ -74,7 +74,7 @@ internal fun DesktopUpdatePriceProduct(
                 label = PRICE,
                 value = price,
                 isError = observer.second,
-                message = observer.third ?: EMPTY_TEXT,
+                message = observer.third,
                 cleanText = cleanText,
                 onCleanText = {
                     cleanText = it

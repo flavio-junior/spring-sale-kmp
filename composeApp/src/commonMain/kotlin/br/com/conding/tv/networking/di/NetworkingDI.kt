@@ -28,7 +28,7 @@ internal val networkModule = module {
             install(plugin = DefaultRequest) {
                 url {
                     protocol = io.ktor.http.URLProtocol.HTTP
-                    host = "192.168.1.3"
+                    host = "192.168.1.102"
                     port = 8002
                 }
                 contentType(type = ContentType.Application.Json)

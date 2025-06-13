@@ -105,7 +105,7 @@ internal fun UpdateCategory(
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Go,
             isError = observer.second,
-            message = observer.third ?: EMPTY_TEXT,
+            message = observer.third,
             onValueChange = {
                 categoryName = it
             },

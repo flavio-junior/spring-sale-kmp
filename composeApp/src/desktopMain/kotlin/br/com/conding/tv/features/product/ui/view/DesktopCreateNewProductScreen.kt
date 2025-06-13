@@ -94,7 +94,7 @@ internal fun DesktopCreateNewProductScreen(
                 label = NEW_NAME_PRODUCT,
                 value = name,
                 isError = observer.second,
-                message = observer.third ?: EMPTY_TEXT,
+                message = observer.third,
                 onValueChange = {
                     name = it
                 },

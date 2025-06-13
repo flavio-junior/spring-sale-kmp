@@ -69,7 +69,7 @@ internal fun DesktopRestockProduct(
                 label = QUANTITY,
                 value = quantity.toString(),
                 isError = observer.second,
-                message = observer.third ?: EMPTY_TEXT,
+                message = observer.third,
                 keyboardType = KeyboardType.Number,
                 onValueChange = {
                     quantity = it.toIntOrNull() ?: NUMBER_ZERO

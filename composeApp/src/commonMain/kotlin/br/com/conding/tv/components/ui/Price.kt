@@ -35,7 +35,7 @@ internal fun Price(
     imeAction: ImeAction = ImeAction.Next,
     isError: Boolean = false,
     cleanText: Boolean = false,
-    message: String = EMPTY_TEXT,
+    message: String? = null,
     onGo: () -> Unit = {},
     onCleanText: (Boolean) -> Unit = {}
 ) {

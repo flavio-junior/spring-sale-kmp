@@ -109,7 +109,7 @@ internal fun UpdatePriceProductBottomSheet(
                 label = GenericsStrings.PRICE,
                 value = price,
                 isError = observer.second,
-                message = observer.third ?: GenericsStrings.EMPTY_TEXT,
+                message = observer.third,
                 onValueChange = {
                     price = it
                 },
