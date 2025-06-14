@@ -15,7 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.ui.Description
 import br.com.conding.tv.features.product.data.vo.ProductResponseVO
-import br.com.conding.tv.getIconResource
+import br.com.conding.tv.resources.getIconResource
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.navigation.toJson
 import br.com.conding.tv.resources.IconName

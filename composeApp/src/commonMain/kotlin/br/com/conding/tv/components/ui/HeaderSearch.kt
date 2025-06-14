@@ -14,6 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import br.com.conding.tv.components.factory.currentItems
 import br.com.conding.tv.components.settings.TypeSystem
 import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.GenericsStrings.RESULT
@@ -24,7 +25,6 @@ import br.com.conding.tv.resources.Settings.SIZE_DEFAULT
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.resources.converterSizeStringToInt
 import br.com.conding.tv.resources.onBorder
-import br.com.conding.tv.resources.currentItems
 import br.com.conding.tv.theme.Themes
 
 @Composable

@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.ui.Description
 import br.com.conding.tv.features.category.data.vo.CategoryResponseVO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
-import br.com.conding.tv.getIconResource
+import br.com.conding.tv.resources.getIconResource
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.resources.onBorder

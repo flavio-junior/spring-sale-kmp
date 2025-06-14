@@ -18,8 +18,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import br.com.conding.tv.components.factory.FilterFactory
+import br.com.conding.tv.components.factory.currentItems
 import br.com.conding.tv.resources.GenericsStrings
-import br.com.conding.tv.resources.currentItems
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import br.com.conding.tv.theme.Themes
 
@@ -29,7 +30,7 @@ internal fun FilterBottomSheet(
     onDismiss: (String?) -> Unit = {}
 ) {
     val modalBottomSheetState = rememberModalBottomSheetState()
-    var itemFiltered: String by remember { mutableStateOf(value = "10 Itens") }
+    var itemFiltered: String by remember { mutableStateOf(value = FilterFactory.TEN_ITEMS) }
     ModalBottomSheet(
         containerColor = Themes.colors.background,
         onDismissRequest = { onDismiss(null) },

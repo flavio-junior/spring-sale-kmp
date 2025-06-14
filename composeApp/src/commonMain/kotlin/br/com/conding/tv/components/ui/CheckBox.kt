@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import br.com.conding.tv.getIconResource
+import br.com.conding.tv.resources.getIconResource
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes

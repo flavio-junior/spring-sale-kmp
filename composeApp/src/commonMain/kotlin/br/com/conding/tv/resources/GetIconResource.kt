@@ -1,8 +1,7 @@
-package br.com.conding.tv
+package br.com.conding.tv.resources
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter
-import br.com.conding.tv.resources.IconName
 import org.jetbrains.compose.resources.painterResource
 import springsale.composeapp.generated.resources.Res
 import springsale.composeapp.generated.resources.arrow_back

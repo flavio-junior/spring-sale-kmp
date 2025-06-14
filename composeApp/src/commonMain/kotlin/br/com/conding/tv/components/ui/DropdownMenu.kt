@@ -15,7 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import br.com.conding.tv.getIconResource
+import br.com.conding.tv.resources.getIconResource
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.theme.Themes
 
