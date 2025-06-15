@@ -104,6 +104,27 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = SettingsDefault.PACKAGE_NAME
             packageVersion = DesktopSettings.ACTUAL_VERSION_DESKTOP
+            windows {
+                iconFile.set(project.file("src/desktopMain/resources/icons/coding-tv.ico"))
+            }
         }
     }
 }
+
+tasks.register("generateVersion") {
+    doLast {
+        val versionFile = file("src/desktopMain/kotlin/br/com/conding/tv/resources/DesktopVersion.kt")
+        versionFile.writeText(
+            """
+            package br.com.conding.tv.resources
+
+            internal object DesktopVersion {
+                const val NUMBER_VERSION = "${DesktopSettings.ACTUAL_VERSION_DESKTOP}"
+            }
+            
+            """.trimIndent()
+        )
+    }
+}
+
+tasks.getByName("compileKotlinDesktop").dependsOn("generateVersion")
