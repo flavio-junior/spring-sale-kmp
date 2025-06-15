@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import br.com.conding.tv.resources.GenericsStrings.RESOURCE_UNAVAILABLE
+import br.com.conding.tv.resources.GenericStrings.RESOURCE_UNAVAILABLE
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.theme.Themes
 

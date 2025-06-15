@@ -7,7 +7,7 @@ import br.com.conding.tv.features.shared.Services
 import br.com.conding.tv.features.utils.TypeLayout
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings.ADJUSTMENTS
+import br.com.conding.tv.resources.GenericStrings.ADJUSTMENTS
 
 @Composable
 internal actual fun SettingsScreen(

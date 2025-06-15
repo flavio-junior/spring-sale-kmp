@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.account.ui.view.UiResponseGetTokenSaved
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
-import br.com.conding.tv.resources.GenericsStrings
+import br.com.conding.tv.resources.GenericStrings
 import br.com.conding.tv.theme.Themes
 import org.jetbrains.compose.resources.painterResource
 import org.koin.mp.KoinPlatform.getKoin
@@ -46,7 +46,7 @@ internal fun DesktopSplashScreen(
                 .align(alignment = Alignment.Center)
         )
         Title(
-            label = GenericsStrings.PROJECT_NAME,
+            label = GenericStrings.PROJECT_NAME,
             modifier = Modifier
                 .align(alignment = Alignment.Center)
                 .padding(top = Themes.size.spaceSize128)

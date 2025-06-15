@@ -28,10 +28,10 @@ import br.com.conding.tv.features.category.data.dto.UpdateCategoryRequestDTO
 import br.com.conding.tv.features.category.data.vo.CategoryResponseVO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.features.category.ui.viewmodel.ResetCategory
-import br.com.conding.tv.resources.GenericsStrings
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.ITEM_TO_UPDATE
-import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
+import br.com.conding.tv.resources.GenericStrings
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.ITEM_TO_UPDATE
+import br.com.conding.tv.resources.GenericStrings.NOT_BLANK_OR_EMPTY
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.isNotBlankAndEmpty
 import br.com.conding.tv.theme.Themes
@@ -64,7 +64,7 @@ internal fun UpdateCategoryBottomSheet(
             )
             SimpleButton(
                 onClick = onDismiss,
-                label = GenericsStrings.CANCEL,
+                label = GenericStrings.CANCEL,
                 background = Themes.colors.error
             )
             Spacer(modifier = Modifier.size(Themes.size.spaceSize64))
@@ -96,7 +96,7 @@ private fun SaveUpdateCategoryBottomSheet(
     Title(label = ITEM_TO_UPDATE, backgroundTransparent = true)
     SubTitle(label = category?.name ?: EMPTY_TEXT, backgroundTransparent = true)
     TextField(
-        label = GenericsStrings.UPDATE_CATEGORY,
+        label = GenericStrings.UPDATE_CATEGORY,
         value = newCategoryName,
         imeAction = ImeAction.Done,
         isError = observer.second,
@@ -116,6 +116,6 @@ private fun SaveUpdateCategoryBottomSheet(
             }
         },
         isEnabled = observer.first,
-        label = GenericsStrings.UPDATE_CATEGORY
+        label = GenericStrings.UPDATE_CATEGORY
     )
 }

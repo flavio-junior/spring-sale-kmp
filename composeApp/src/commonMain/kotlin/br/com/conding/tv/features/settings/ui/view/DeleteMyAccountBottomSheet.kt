@@ -26,9 +26,9 @@ import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.SimpleButton
 import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.settings.ui.viewmodel.SettingViewModel
-import br.com.conding.tv.resources.GenericsStrings
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.WARNING
+import br.com.conding.tv.resources.GenericStrings
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.WARNING
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.theme.Themes
@@ -71,7 +71,7 @@ internal fun DeleteMyAccountBottomSheet(
                 )
             }
             Description(
-                label = GenericsStrings.WARNING_THE_DELETE_MY_ACCOUNT,
+                label = GenericStrings.WARNING_THE_DELETE_MY_ACCOUNT,
                 backgroundTransparent = true,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -84,11 +84,11 @@ internal fun DeleteMyAccountBottomSheet(
                     viewModel.deleteMyAccount()
                 },
                 isEnabled = observer.first,
-                label = GenericsStrings.YES
+                label = GenericStrings.YES
             )
             SimpleButton(
                 onClick = onDismiss,
-                label = GenericsStrings.NO,
+                label = GenericStrings.NO,
                 background = Themes.colors.error
             )
             Spacer(modifier = Modifier.size(Themes.size.spaceSize64))

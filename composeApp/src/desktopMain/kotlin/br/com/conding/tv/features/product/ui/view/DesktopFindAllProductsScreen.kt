@@ -13,8 +13,8 @@ import br.com.conding.tv.components.ui.HeaderSearch
 import br.com.conding.tv.features.product.data.vo.ProductResponseVO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings.CREATE_PRODUCT
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_LIST_PRODUCTS
+import br.com.conding.tv.resources.GenericStrings.CREATE_PRODUCT
+import br.com.conding.tv.resources.GenericStrings.EMPTY_LIST_PRODUCTS
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE_4
 import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin

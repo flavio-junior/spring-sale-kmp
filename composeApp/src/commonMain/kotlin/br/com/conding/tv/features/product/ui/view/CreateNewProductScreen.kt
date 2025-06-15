@@ -18,7 +18,7 @@ import br.com.conding.tv.features.product.data.dto.ProductRequestDTO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.features.product.ui.viewmodel.ResetProduct
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings
+import br.com.conding.tv.resources.GenericStrings
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.Settings.ZERO_DOUBLE
 import br.com.conding.tv.resources.checkPriceIsEqualsZero
@@ -32,13 +32,13 @@ internal fun CreateNewProductScreen(
 ) {
     ContentScreen(
         definitionsScreen = DefinitionsScreen(
-            label = GenericsStrings.CREATE_PRODUCT,
+            label = GenericStrings.CREATE_PRODUCT,
             scroll = true
         ),
         goToBackScreen = goToBackScreen,
         content = {
             val viewModel: ProductViewModel = getKoin().get()
-            var name: String by remember { mutableStateOf(value = GenericsStrings.EMPTY_TEXT) }
+            var name: String by remember { mutableStateOf(value = GenericStrings.EMPTY_TEXT) }
             var selectedCategories: List<CategoryResponseDTO>
                     by remember { mutableStateOf(value = emptyList()) }
             var price: String by remember { mutableStateOf(value = ZERO_DOUBLE) }
@@ -48,7 +48,7 @@ internal fun CreateNewProductScreen(
                     value = Triple(
                         first = false,
                         second = false,
-                        third = GenericsStrings.EMPTY_TEXT
+                        third = GenericStrings.EMPTY_TEXT
                     )
                 )
             }
@@ -65,7 +65,7 @@ internal fun CreateNewProductScreen(
                 )
             }
             TextField(
-                label = GenericsStrings.NAME,
+                label = GenericStrings.NAME,
                 value = name,
                 iconName = IconName.DRAW,
                 isError = observer.second,
@@ -78,7 +78,7 @@ internal fun CreateNewProductScreen(
             )
             ShowAllCategoriesSelected(selectedCategories = selectedCategories)
             Price(
-                label = GenericsStrings.PRICE,
+                label = GenericStrings.PRICE,
                 value = price,
                 isError = observer.second,
                 onValueChange = {
@@ -86,7 +86,7 @@ internal fun CreateNewProductScreen(
                 }
             )
             TextField(
-                label = GenericsStrings.QUANTITY,
+                label = GenericStrings.QUANTITY,
                 value = quantity.toString(),
                 iconName = IconName.BOX,
                 keyboardType = KeyboardType.Number,
@@ -98,7 +98,7 @@ internal fun CreateNewProductScreen(
                 onClick = {
                     createProduct()
                 },
-                label = GenericsStrings.CREATE_PRODUCT,
+                label = GenericStrings.CREATE_PRODUCT,
                 isEnabled = observer.first
             )
             UiResponseCreateNewProductScreen(
@@ -130,7 +130,7 @@ private fun createProduct(
         price > 0.0 &&
         quantity > 0
     ) {
-        onError(Triple(first = true, second = false, third = GenericsStrings.EMPTY_TEXT))
+        onError(Triple(first = true, second = false, third = GenericStrings.EMPTY_TEXT))
         viewModel.createProduct(
             product = ProductRequestDTO(
                 name = name,
@@ -140,8 +140,8 @@ private fun createProduct(
             )
         )
     } else if (checkPriceIsEqualsZero(price = price)) {
-        onError(Triple(first = false, second = true, third = GenericsStrings.MESSAGE_ZERO_DOUBLE))
+        onError(Triple(first = false, second = true, third = GenericStrings.MESSAGE_ZERO_DOUBLE))
     } else {
-        onError(Triple(first = false, second = true, third = GenericsStrings.NOT_BLANK_OR_EMPTY))
+        onError(Triple(first = false, second = true, third = GenericStrings.NOT_BLANK_OR_EMPTY))
     }
 }

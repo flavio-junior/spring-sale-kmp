@@ -11,7 +11,7 @@ import br.com.conding.tv.features.category.data.repository.CategoryRepository
 import br.com.conding.tv.features.category.data.vo.CategoriesResponseVO
 import br.com.conding.tv.features.category.domain.ConverterCategory
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.Settings.ASC
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ONE
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_SIXTY

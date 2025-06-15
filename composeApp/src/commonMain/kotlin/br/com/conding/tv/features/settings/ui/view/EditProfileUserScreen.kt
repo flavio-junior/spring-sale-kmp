@@ -6,7 +6,7 @@ import br.com.conding.tv.components.model.DefinitionsScreen
 import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.features.settings.ui.viewmodel.SettingViewModel
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings
+import br.com.conding.tv.resources.GenericStrings
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
@@ -17,7 +17,7 @@ internal fun EditProfileUserScreen(
 ) {
     ContentScreen(
         definitionsScreen = DefinitionsScreen(
-            label = GenericsStrings.DATA_USER,
+            label = GenericStrings.DATA_USER,
             scroll = true
         ),
         goToBackScreen = goToBackScreen,

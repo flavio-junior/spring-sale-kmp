@@ -12,7 +12,7 @@ import br.com.conding.tv.features.product.data.repository.ProductRepository
 import br.com.conding.tv.features.product.data.vo.ProductsResponseVO
 import br.com.conding.tv.features.product.domain.ConverterProduct
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.Settings.ASC
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ONE
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_SIXTY

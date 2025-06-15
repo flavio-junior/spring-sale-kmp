@@ -7,7 +7,7 @@ import br.com.conding.tv.components.ui.ContentScreen
 import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.account.ui.view.UiResponseGetTokenSaved
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
-import br.com.conding.tv.resources.GenericsStrings
+import br.com.conding.tv.resources.GenericStrings
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.painterResource
 import org.koin.mp.KoinPlatform.getKoin
@@ -36,7 +36,7 @@ fun MobileSplashScreen(
                 painter = painterResource(resource = Res.drawable.coding_tv),
                 contentDescription = null
             )
-            Title(label = GenericsStrings.PROJECT_NAME, backgroundTransparent = true)
+            Title(label = GenericStrings.PROJECT_NAME, backgroundTransparent = true)
             UiResponseGetTokenSaved(
                 viewModel = viewModel,
                 goToSignInScreen = goToSignInScreen,

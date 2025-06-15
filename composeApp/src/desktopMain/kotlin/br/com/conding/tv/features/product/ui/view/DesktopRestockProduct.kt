@@ -19,11 +19,11 @@ import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.features.product.data.dto.RestockProductRequestDTO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings.CONFIRM_UPDATE
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
-import br.com.conding.tv.resources.GenericsStrings.QUANTITY
-import br.com.conding.tv.resources.GenericsStrings.RESTOCK_PRODUCT
+import br.com.conding.tv.resources.GenericStrings.CONFIRM_UPDATE
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.NOT_BLANK_OR_EMPTY
+import br.com.conding.tv.resources.GenericStrings.QUANTITY
+import br.com.conding.tv.resources.GenericStrings.RESTOCK_PRODUCT
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.resources.checkPriceIsNull
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO

@@ -34,11 +34,11 @@ import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.features.category.ui.viewmodel.ResetCategory
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings.ADD_CATEGORIES
-import br.com.conding.tv.resources.GenericsStrings.CANCEL
-import br.com.conding.tv.resources.GenericsStrings.CONFIRM
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.NO_CATEGORIES_SELECTED
+import br.com.conding.tv.resources.GenericStrings.ADD_CATEGORIES
+import br.com.conding.tv.resources.GenericStrings.CANCEL
+import br.com.conding.tv.resources.GenericStrings.CONFIRM
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.NO_CATEGORIES_SELECTED
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.resources.onBorder
 import br.com.conding.tv.theme.Themes

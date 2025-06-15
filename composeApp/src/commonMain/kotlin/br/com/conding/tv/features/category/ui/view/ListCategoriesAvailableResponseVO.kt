@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.ui.Description
 import br.com.conding.tv.components.ui.Tag
 import br.com.conding.tv.features.category.data.vo.CategoryResponseVO
-import br.com.conding.tv.resources.GenericsStrings.CATEGORIES
+import br.com.conding.tv.resources.GenericStrings.CATEGORIES
 import br.com.conding.tv.theme.Themes
 import kotlinx.coroutines.launch
 

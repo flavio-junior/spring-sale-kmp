@@ -13,7 +13,7 @@ import br.com.conding.tv.components.ui.HeaderSearch
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings
+import br.com.conding.tv.resources.GenericStrings
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
@@ -42,7 +42,7 @@ internal fun MobileCategoryScreen(
         },
         content = {
             HeaderSearch(
-                label = GenericsStrings.CATEGORIES,
+                label = GenericStrings.CATEGORIES,
                 system = TypeSystem.MOBILE,
                 filter = { name, size, sort ->
                     viewModel.findAllCategories(name = name, size = size, sort = sort)

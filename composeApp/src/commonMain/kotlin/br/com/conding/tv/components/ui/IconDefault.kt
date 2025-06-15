@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import br.com.conding.tv.resources.getIconResource
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.onClickable
 import br.com.conding.tv.theme.Themes

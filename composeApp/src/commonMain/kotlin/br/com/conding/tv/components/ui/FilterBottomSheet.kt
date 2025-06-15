@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import br.com.conding.tv.components.factory.FilterFactory
 import br.com.conding.tv.components.factory.currentItems
-import br.com.conding.tv.resources.GenericsStrings
+import br.com.conding.tv.resources.GenericStrings
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import br.com.conding.tv.theme.Themes
 
@@ -44,7 +44,7 @@ internal fun FilterBottomSheet(
             verticalArrangement = Arrangement.spacedBy(Themes.size.spaceSize24)
         ) {
             SubTitle(
-                label = GenericsStrings.FILTER,
+                label = GenericStrings.FILTER,
                 backgroundTransparent = true,
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center
@@ -66,13 +66,13 @@ internal fun FilterBottomSheet(
                 onClick = {
                     onDismiss(itemFiltered)
                 },
-                label = GenericsStrings.SAVE_MODIFIER
+                label = GenericStrings.SAVE_MODIFIER
             )
             SimpleButton(
                 onClick = {
                     onDismiss(null)
                 },
-                label = GenericsStrings.CANCEL,
+                label = GenericStrings.CANCEL,
                 background = Themes.colors.error
             )
             Spacer(modifier = Modifier.size(size = Themes.size.spaceSize64))

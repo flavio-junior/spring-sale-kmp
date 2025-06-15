@@ -24,10 +24,10 @@ import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.category.data.vo.CategoryResponseVO
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.features.category.ui.viewmodel.ResetCategory
-import br.com.conding.tv.resources.GenericsStrings
-import br.com.conding.tv.resources.GenericsStrings.DELETE_CATEGORY
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.ITEM_TO_DELETE
+import br.com.conding.tv.resources.GenericStrings
+import br.com.conding.tv.resources.GenericStrings.DELETE_CATEGORY
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.ITEM_TO_DELETE
 import br.com.conding.tv.theme.Themes
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -77,7 +77,7 @@ internal fun DeleteCategoryBottomSheet(
             )
             SimpleButton(
                 onClick = onDismiss,
-                label = GenericsStrings.CANCEL,
+                label = GenericStrings.CANCEL,
                 background = Themes.colors.error
             )
             Spacer(modifier = Modifier.size(Themes.size.spaceSize64))

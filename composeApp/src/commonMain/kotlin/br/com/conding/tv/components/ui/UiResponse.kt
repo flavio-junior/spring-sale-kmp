@@ -8,7 +8,7 @@ import br.com.conding.tv.networking.resources.StatusCode.NUMBER_401
 import br.com.conding.tv.networking.resources.StatusCode.NUMBER_403
 import br.com.conding.tv.networking.resources.determineErrorRoute
 import br.com.conding.tv.networking.resources.reloadViewModels
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
 import br.com.conding.tv.resources.Warnings.UNAUTHORIZED_MESSAGE
 
 @Composable

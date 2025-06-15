@@ -11,7 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import br.com.conding.tv.components.ui.BottomNavigationBar
 import br.com.conding.tv.components.ui.Header
 import br.com.conding.tv.navigation.AppDestinations
-import br.com.conding.tv.resources.GenericsStrings.PROJECT_NAME
+import br.com.conding.tv.resources.GenericStrings.PROJECT_NAME
 import br.com.conding.tv.theme.Themes
 
 @Composable

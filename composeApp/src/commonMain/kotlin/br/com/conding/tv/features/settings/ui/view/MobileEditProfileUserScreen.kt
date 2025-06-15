@@ -12,9 +12,9 @@ import br.com.conding.tv.features.settings.data.dto.UserRequestDTO
 import br.com.conding.tv.features.settings.data.vo.UserResponseVO
 import br.com.conding.tv.features.settings.ui.viewmodel.SettingViewModel
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
+import br.com.conding.tv.resources.GenericStrings
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.NOT_BLANK_OR_EMPTY
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.isNotBlankAndEmpty
 
@@ -54,21 +54,21 @@ internal fun MobileEditProfileUserScreen(
         }
     }
     TextField(
-        label = GenericsStrings.NAME,
+        label = GenericStrings.NAME,
         value = name,
         iconName = IconName.EDIT,
         isError = observer.second,
         onValueChange = { name = it }
     )
     TextField(
-        label = GenericsStrings.SURNAME,
+        label = GenericStrings.SURNAME,
         value = surname,
         iconName = IconName.EDIT,
         isError = observer.second,
         onValueChange = { surname = it }
     )
     TextField(
-        label = GenericsStrings.USERNAME,
+        label = GenericStrings.USERNAME,
         value = username,
         iconName = IconName.EDIT,
         isError = observer.second,
@@ -78,7 +78,7 @@ internal fun MobileEditProfileUserScreen(
     )
 
     TextField(
-        label = GenericsStrings.EMAIL,
+        label = GenericStrings.EMAIL,
         value = userResponseVO?.email ?: EMPTY_TEXT,
         enabled = false,
         iconName = IconName.MAIL,
@@ -93,9 +93,9 @@ internal fun MobileEditProfileUserScreen(
             userResponseVO.surname?.isNotBlankAndEmpty() == true &&
             userResponseVO.username?.isNotBlankAndEmpty() == true
         ) {
-            GenericsStrings.ALTER_DATA_USER
+            GenericStrings.ALTER_DATA_USER
         } else {
-            GenericsStrings.SAVE_DATA_USER
+            GenericStrings.SAVE_DATA_USER
         }
     )
     MobileDeleteMyAccount(

@@ -20,10 +20,10 @@ import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.features.account.ui.viewmodel.ResetAccount
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings.CREATE_MY_ACCOUNT
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.ENTER_YOUR_ACCOUNT
-import br.com.conding.tv.resources.GenericsStrings.OR
+import br.com.conding.tv.resources.GenericStrings.CREATE_MY_ACCOUNT
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.ENTER_YOUR_ACCOUNT
+import br.com.conding.tv.resources.GenericStrings.OR
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable

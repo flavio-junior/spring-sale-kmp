@@ -25,10 +25,10 @@ import br.com.conding.tv.features.product.data.vo.ProductResponseVO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.features.product.ui.viewmodel.ResetProduct
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings
-import br.com.conding.tv.resources.GenericsStrings.DELETE_PRODUCT
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.ITEM_TO_DELETE
+import br.com.conding.tv.resources.GenericStrings
+import br.com.conding.tv.resources.GenericStrings.DELETE_PRODUCT
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.ITEM_TO_DELETE
 import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
@@ -83,7 +83,7 @@ internal fun DeleteProductBottomSheet(
             )
             SimpleButton(
                 onClick = onDismiss,
-                label = GenericsStrings.CANCEL,
+                label = GenericStrings.CANCEL,
                 background = Themes.colors.error
             )
             Spacer(modifier = Modifier.size(Themes.size.spaceSize64))

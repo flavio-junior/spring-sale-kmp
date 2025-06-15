@@ -8,7 +8,7 @@ import androidx.compose.runtime.setValue
 import br.com.conding.tv.components.ui.SimpleButton
 import br.com.conding.tv.features.category.data.dto.CategoryResponseDTO
 import br.com.conding.tv.features.category.ui.view.SelectCategoriesBottomSheet
-import br.com.conding.tv.resources.GenericsStrings
+import br.com.conding.tv.resources.GenericStrings
 
 @Composable
 internal fun GetCategoriesProductBottomSheet(
@@ -19,7 +19,7 @@ internal fun GetCategoriesProductBottomSheet(
         onClick = {
             openDialog = true
         },
-        label = GenericsStrings.ADD_CATEGORIES
+        label = GenericStrings.ADD_CATEGORIES
     )
     if (openDialog) {
         SelectCategoriesBottomSheet(

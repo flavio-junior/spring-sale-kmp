@@ -16,9 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import br.com.conding.tv.components.factory.currentItems
 import br.com.conding.tv.components.settings.TypeSystem
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.RESULT
-import br.com.conding.tv.resources.GenericsStrings.SIZE_LIST
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.RESULT
+import br.com.conding.tv.resources.GenericStrings.SIZE_LIST
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.Settings.ASC
 import br.com.conding.tv.resources.Settings.SIZE_DEFAULT

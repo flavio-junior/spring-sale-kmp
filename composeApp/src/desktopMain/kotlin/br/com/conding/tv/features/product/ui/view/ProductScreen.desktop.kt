@@ -7,7 +7,7 @@ import br.com.conding.tv.features.shared.BodyPage
 import br.com.conding.tv.features.shared.Services
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings.PRODUCTS
+import br.com.conding.tv.resources.GenericStrings.PRODUCTS
 
 @Composable
 internal actual fun ProductsScreen(

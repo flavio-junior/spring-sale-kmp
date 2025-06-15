@@ -12,7 +12,7 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import br.com.conding.tv.resources.GenericsStrings.LOADING
+import br.com.conding.tv.resources.GenericStrings.LOADING
 import br.com.conding.tv.theme.Themes
 
 @Composable

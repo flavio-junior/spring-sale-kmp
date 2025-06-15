@@ -15,7 +15,7 @@ import br.com.conding.tv.components.ui.Description
 import br.com.conding.tv.components.ui.IconDefault
 import br.com.conding.tv.components.ui.SimpleButton
 import br.com.conding.tv.components.ui.Title
-import br.com.conding.tv.resources.GenericsStrings.WARNING
+import br.com.conding.tv.resources.GenericStrings.WARNING
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.resources.onBorder

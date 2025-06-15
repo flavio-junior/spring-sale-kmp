@@ -10,8 +10,8 @@ import br.com.conding.tv.components.ui.Alert
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings.DELETE_PRODUCT
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.DELETE_PRODUCT
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable

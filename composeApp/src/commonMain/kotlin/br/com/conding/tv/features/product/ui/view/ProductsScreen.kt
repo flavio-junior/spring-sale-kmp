@@ -9,7 +9,7 @@ import br.com.conding.tv.components.ui.HeaderSearch
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings
+import br.com.conding.tv.resources.GenericStrings
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
@@ -37,7 +37,7 @@ internal fun MobileProductsScreen(
         },
         content = {
             HeaderSearch(
-                label = GenericsStrings.PRODUCTS,
+                label = GenericStrings.PRODUCTS,
                 system = TypeSystem.MOBILE,
                 filter = { name, size, sort ->
                     viewModel.findAllProducts(name = name, size = size, sort = sort)

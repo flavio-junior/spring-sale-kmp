@@ -11,8 +11,8 @@ import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.features.settings.ui.viewmodel.SettingViewModel
 import br.com.conding.tv.features.shared.ShowOverlayPanel
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
 import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
@@ -32,7 +32,7 @@ internal fun DesktopDeleteMyAccount(
         message = observer.third
     )
     LoadingButton(
-        label = GenericsStrings.DELETE_MY_ACCOUNT,
+        label = GenericStrings.DELETE_MY_ACCOUNT,
         background = Themes.colors.error,
         isEnabled = observer.first,
         onClick = {
@@ -42,9 +42,9 @@ internal fun DesktopDeleteMyAccount(
     )
     if (showOverlayPanel) {
         ShowOverlayPanel(
-            labelStart = GenericsStrings.YES,
-            labelEnd = GenericsStrings.NO,
-            description = GenericsStrings.WARNING_THE_DELETE_MY_ACCOUNT,
+            labelStart = GenericStrings.YES,
+            labelEnd = GenericStrings.NO,
+            description = GenericStrings.WARNING_THE_DELETE_MY_ACCOUNT,
             callNextAction = {
                 showOverlayPanel = false
                 observer = Triple(first = true, second = false, third = EMPTY_TEXT)

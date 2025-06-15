@@ -19,10 +19,10 @@ import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings.CATEGORY_NAME
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
-import br.com.conding.tv.resources.GenericsStrings.SAVE_CATEGORY
+import br.com.conding.tv.resources.GenericStrings.CATEGORY_NAME
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.NOT_BLANK_OR_EMPTY
+import br.com.conding.tv.resources.GenericStrings.SAVE_CATEGORY
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE_2

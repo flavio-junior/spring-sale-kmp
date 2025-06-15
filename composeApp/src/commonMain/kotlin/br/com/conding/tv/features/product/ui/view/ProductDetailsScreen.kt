@@ -16,8 +16,8 @@ import br.com.conding.tv.features.category.ui.view.ListCategoriesAvailableRespon
 import br.com.conding.tv.features.product.data.vo.ProductResponseVO
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings
-import br.com.conding.tv.resources.GenericsStrings.PRICE
+import br.com.conding.tv.resources.GenericStrings
+import br.com.conding.tv.resources.GenericStrings.PRICE
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.theme.Themes
 
@@ -30,14 +30,14 @@ internal fun ProductDetailsScreen(
 ) {
     ContentScreen(
         definitionsScreen = DefinitionsScreen(
-            label = GenericsStrings.DETAILS_PRODUCT,
+            label = GenericStrings.DETAILS_PRODUCT,
             scroll = true
         ),
         goToBackScreen = goToBackScreen,
         content = {
             TextField(
                 enabled = false,
-                label = GenericsStrings.NAME,
+                label = GenericStrings.NAME,
                 value = productResponseVO.name,
                 iconName = IconName.EDIT
             )
@@ -52,12 +52,12 @@ internal fun ProductDetailsScreen(
             )
             TextField(
                 enabled = false,
-                label = GenericsStrings.QUANTITY,
+                label = GenericStrings.QUANTITY,
                 value = productResponseVO.quantity.toString(),
                 iconName = IconName.BOX
             )
             SimpleButton(
-                label = GenericsStrings.UPDATE_PRODUCT_MOBILE,
+                label = GenericStrings.UPDATE_PRODUCT_MOBILE,
                 onClick = {
                     goToNextScreen(AppDestinations.UpdateProduct(id = productResponseVO.id))
                 }
@@ -89,7 +89,7 @@ private fun UpdatePriceProduct(
 ) {
     var openDialog: Boolean by remember { mutableStateOf(value = false) }
     SimpleButton(
-        label = GenericsStrings.UPDATE_PRICE_PRODUCT,
+        label = GenericStrings.UPDATE_PRICE_PRODUCT,
         onClick = {
             openDialog = true
         },
@@ -120,7 +120,7 @@ private fun RestockProduct(
 ) {
     var openDialog: Boolean by remember { mutableStateOf(value = false) }
     SimpleButton(
-        label = GenericsStrings.RESTOCK_PRODUCT,
+        label = GenericStrings.RESTOCK_PRODUCT,
         onClick = {
             openDialog = true
         }
@@ -150,7 +150,7 @@ private fun DeleteProduct(
 ) {
     var openDialog: Boolean by remember { mutableStateOf(value = false) }
     SimpleButton(
-        label = GenericsStrings.DELETE_PRODUCT,
+        label = GenericStrings.DELETE_PRODUCT,
         onClick = {
             openDialog = true
         },

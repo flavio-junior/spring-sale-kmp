@@ -8,7 +8,7 @@ import androidx.compose.runtime.setValue
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.features.settings.ui.viewmodel.SettingViewModel
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings
+import br.com.conding.tv.resources.GenericStrings
 import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
@@ -20,7 +20,7 @@ internal fun MobileDeleteMyAccount(
     val viewModel: SettingViewModel = getKoin().get()
     var openDialog: Boolean by remember { mutableStateOf(value = false) }
     LoadingButton(
-        label = GenericsStrings.DELETE_MY_ACCOUNT,
+        label = GenericStrings.DELETE_MY_ACCOUNT,
         onClick = {
             openDialog = true
         },

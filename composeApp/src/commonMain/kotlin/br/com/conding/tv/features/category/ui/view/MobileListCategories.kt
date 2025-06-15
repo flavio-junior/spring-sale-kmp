@@ -5,7 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import br.com.conding.tv.components.settings.TypeSystem
 import br.com.conding.tv.components.ui.EmptyList
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_LIST_CATEGORIES
+import br.com.conding.tv.resources.GenericStrings.EMPTY_LIST_CATEGORIES
 
 @Composable
 internal fun MobileListCategories(

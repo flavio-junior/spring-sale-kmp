@@ -9,10 +9,10 @@ import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.OtpTextField
 import br.com.conding.tv.components.ui.SimpleButton
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
-import br.com.conding.tv.resources.GenericsStrings.PAST_CODE
-import br.com.conding.tv.resources.GenericsStrings.VERIFY_CODE_SENT
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.NOT_BLANK_OR_EMPTY
+import br.com.conding.tv.resources.GenericStrings.PAST_CODE
+import br.com.conding.tv.resources.GenericStrings.VERIFY_CODE_SENT
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_FOUR
 
 @Composable

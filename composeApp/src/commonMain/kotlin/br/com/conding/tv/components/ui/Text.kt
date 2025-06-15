@@ -8,7 +8,7 @@ import androidx.compose.runtime.structuralEqualityPolicy
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import br.com.conding.tv.resources.GenericsStrings.PROJECT_NAME
+import br.com.conding.tv.resources.GenericStrings.PROJECT_NAME
 import br.com.conding.tv.theme.TypeFont
 import br.com.conding.tv.theme.Typography
 import org.jetbrains.compose.ui.tooling.preview.Preview

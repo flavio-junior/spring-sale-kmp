@@ -25,8 +25,8 @@ import br.com.conding.tv.components.ui.IconDefault
 import br.com.conding.tv.components.ui.LoadingButton
 import br.com.conding.tv.components.ui.SimpleButton
 import br.com.conding.tv.components.ui.Title
-import br.com.conding.tv.resources.GenericsStrings
-import br.com.conding.tv.resources.GenericsStrings.WARNING
+import br.com.conding.tv.resources.GenericStrings
+import br.com.conding.tv.resources.GenericStrings.WARNING
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.theme.Themes
@@ -67,7 +67,7 @@ internal fun ExitAppBottomSheet(
                 )
             }
             Description(
-                label = GenericsStrings.YOUR_ACTION,
+                label = GenericStrings.YOUR_ACTION,
                 backgroundTransparent = true,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -78,11 +78,11 @@ internal fun ExitAppBottomSheet(
                 onClick = {
                     callCleanToken = true
                 },
-                label = GenericsStrings.EXIT
+                label = GenericStrings.EXIT
             )
             SimpleButton(
                 onClick = onDismiss,
-                label = GenericsStrings.CANCEL,
+                label = GenericStrings.CANCEL,
                 background = Themes.colors.error
             )
             Spacer(modifier = Modifier.size(Themes.size.spaceSize64))

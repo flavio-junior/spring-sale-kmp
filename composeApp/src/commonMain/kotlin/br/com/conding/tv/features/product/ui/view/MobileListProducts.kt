@@ -6,7 +6,7 @@ import br.com.conding.tv.components.settings.TypeSystem
 import br.com.conding.tv.components.ui.EmptyList
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.navigation.AppDestinations
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_LIST_PRODUCTS
+import br.com.conding.tv.resources.GenericStrings.EMPTY_LIST_PRODUCTS
 
 @Composable
 internal fun MobileListProducts(

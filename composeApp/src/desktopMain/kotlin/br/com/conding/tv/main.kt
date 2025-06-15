@@ -20,7 +20,7 @@ import br.com.conding.tv.features.splash.DesktopSplashScreen
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.navigation.Navigation
 import br.com.conding.tv.networking.di.networkModule
-import br.com.conding.tv.resources.GenericsStrings.PROJECT_NAME
+import br.com.conding.tv.resources.GenericStrings.PROJECT_NAME
 import br.com.conding.tv.theme.Themes
 import br.com.conding.tv.utils.DesktopUtils.DELAY
 import kotlinx.coroutines.delay

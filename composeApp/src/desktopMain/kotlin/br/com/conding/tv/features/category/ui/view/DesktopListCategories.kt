@@ -28,8 +28,8 @@ import androidx.compose.ui.text.style.TextAlign
 import br.com.conding.tv.components.ui.Description
 import br.com.conding.tv.features.category.data.vo.CategoriesResponseVO
 import br.com.conding.tv.features.category.data.vo.CategoryResponseVO
-import br.com.conding.tv.resources.GenericsStrings.NAME
-import br.com.conding.tv.resources.GenericsStrings.NUMBER
+import br.com.conding.tv.resources.GenericStrings.NAME
+import br.com.conding.tv.resources.GenericStrings.NUMBER
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE_4
 import br.com.conding.tv.resources.onBorder

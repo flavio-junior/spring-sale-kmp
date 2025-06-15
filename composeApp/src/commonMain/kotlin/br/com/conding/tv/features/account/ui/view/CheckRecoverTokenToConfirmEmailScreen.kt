@@ -19,10 +19,10 @@ import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings.CREATE_ONE_ACCOUNT
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.OR
-import br.com.conding.tv.resources.GenericsStrings.RECOVER_MY_ACCOUNT
+import br.com.conding.tv.resources.GenericStrings.CREATE_ONE_ACCOUNT
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.OR
+import br.com.conding.tv.resources.GenericStrings.RECOVER_MY_ACCOUNT
 import org.koin.mp.KoinPlatform.getKoin
 
 @Composable

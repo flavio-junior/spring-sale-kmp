@@ -23,9 +23,9 @@ import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.category.ui.viewmodel.CategoryViewModel
 import br.com.conding.tv.features.category.ui.viewmodel.ResetCategory
-import br.com.conding.tv.resources.GenericsStrings
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
+import br.com.conding.tv.resources.GenericStrings
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.NOT_BLANK_OR_EMPTY
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.isNotBlankAndEmpty
 import br.com.conding.tv.theme.Themes
@@ -57,7 +57,7 @@ internal fun CreateCategoryBottomSheet(
                 onClick = {
                     onDismiss()
                 },
-                label = GenericsStrings.CANCEL,
+                label = GenericStrings.CANCEL,
                 background = Themes.colors.error
             )
             Spacer(modifier = Modifier.size(Themes.size.spaceSize64))
@@ -86,9 +86,9 @@ private fun SaveCategoryBottomSheet(
             onDismiss()
         }
     )
-    Title(label = GenericsStrings.ITEM_TO_ADD, backgroundTransparent = true)
+    Title(label = GenericStrings.ITEM_TO_ADD, backgroundTransparent = true)
     TextField(
-        label = GenericsStrings.CATEGORY_NAME,
+        label = GenericStrings.CATEGORY_NAME,
         value = category,
         imeAction = ImeAction.Done,
         isError = observer.second,
@@ -106,6 +106,6 @@ private fun SaveCategoryBottomSheet(
             }
         },
         isEnabled = observer.first,
-        label = GenericsStrings.SAVE_CATEGORY
+        label = GenericStrings.SAVE_CATEGORY
     )
 }

@@ -30,12 +30,12 @@ import br.com.conding.tv.features.product.data.vo.ProductResponseVO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.features.product.ui.viewmodel.ResetProduct
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.ITEM_TO_RESTOCK
-import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
-import br.com.conding.tv.resources.GenericsStrings.QUANTITY
-import br.com.conding.tv.resources.GenericsStrings.RESTOCK_PRODUCT_MOBILE
+import br.com.conding.tv.resources.GenericStrings
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.ITEM_TO_RESTOCK
+import br.com.conding.tv.resources.GenericStrings.NOT_BLANK_OR_EMPTY
+import br.com.conding.tv.resources.GenericStrings.QUANTITY
+import br.com.conding.tv.resources.GenericStrings.RESTOCK_PRODUCT_MOBILE
 import br.com.conding.tv.resources.checkPriceIsNull
 import br.com.conding.tv.theme.NumbersUtils.NUMBER_ZERO
 import br.com.conding.tv.theme.Themes
@@ -117,7 +117,7 @@ internal fun RestockProductBottomSheet(
             )
             SimpleButton(
                 onClick = onDismiss,
-                label = GenericsStrings.CANCEL,
+                label = GenericStrings.CANCEL,
                 background = Themes.colors.error
             )
             Spacer(modifier = Modifier.size(Themes.size.spaceSize64))

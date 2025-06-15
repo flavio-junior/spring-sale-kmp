@@ -17,8 +17,8 @@ import br.com.conding.tv.components.ui.Title
 import br.com.conding.tv.features.account.ui.view.UiResponseCleanToken
 import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings
-import br.com.conding.tv.resources.GenericsStrings.EXIT
+import br.com.conding.tv.resources.GenericStrings
+import br.com.conding.tv.resources.GenericStrings.EXIT
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize
 import br.com.conding.tv.resources.onClickable
@@ -45,7 +45,7 @@ internal fun MobileSettingsScreen(
         ),
         content = {
             Title(
-                label = GenericsStrings.SETTINGS,
+                label = GenericStrings.SETTINGS,
                 backgroundTransparent = true,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -54,7 +54,7 @@ internal fun MobileSettingsScreen(
                 content = {
                     IconDefault(iconName = IconName.USER)
                     SubTitle(
-                        label = GenericsStrings.DATA_USER,
+                        label = GenericStrings.DATA_USER,
                         backgroundTransparent = true,
                         modifier = Modifier
                             .onClickable(

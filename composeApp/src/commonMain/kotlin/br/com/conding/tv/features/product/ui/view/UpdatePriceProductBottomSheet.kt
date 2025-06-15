@@ -28,7 +28,7 @@ import br.com.conding.tv.features.product.data.vo.ProductResponseVO
 import br.com.conding.tv.features.product.ui.viewmodel.ProductViewModel
 import br.com.conding.tv.features.product.ui.viewmodel.ResetProduct
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings
+import br.com.conding.tv.resources.GenericStrings
 import br.com.conding.tv.resources.Settings.ZERO_DOUBLE
 import br.com.conding.tv.resources.checkPriceIsEqualsZero
 import br.com.conding.tv.resources.checkPriceIsNull
@@ -51,7 +51,7 @@ internal fun UpdatePriceProductBottomSheet(
             value = Triple(
                 first = false,
                 second = false,
-                third = GenericsStrings.EMPTY_TEXT
+                third = GenericStrings.EMPTY_TEXT
             )
         )
     }
@@ -59,12 +59,12 @@ internal fun UpdatePriceProductBottomSheet(
         if (checkPriceIsNull(price = price.toDouble())
         ) {
             observer =
-                Triple(first = false, second = true, third = GenericsStrings.NOT_BLANK_OR_EMPTY)
+                Triple(first = false, second = true, third = GenericStrings.NOT_BLANK_OR_EMPTY)
         } else if (checkPriceIsEqualsZero(price = price.toDouble())) {
             observer =
-                Triple(first = false, second = true, third = GenericsStrings.MESSAGE_ZERO_DOUBLE)
+                Triple(first = false, second = true, third = GenericStrings.MESSAGE_ZERO_DOUBLE)
         } else {
-            observer = Triple(first = true, second = false, third = GenericsStrings.EMPTY_TEXT)
+            observer = Triple(first = true, second = false, third = GenericStrings.EMPTY_TEXT)
             viewModel.updatePriceProduct(
                 id = productResponseVO?.id ?: 0,
                 price = UpdatePriceProductRequestDTO(
@@ -94,19 +94,19 @@ internal fun UpdatePriceProductBottomSheet(
                 goToAlternativeRoutes = goToAlternativeRoutes,
                 onSuccessful = {
                     observer =
-                        Triple(first = false, second = false, third = GenericsStrings.EMPTY_TEXT)
+                        Triple(first = false, second = false, third = GenericStrings.EMPTY_TEXT)
                     viewModel.resetProduct(reset = ResetProduct.UPDATE_PRICE_PRODUCT)
                     onDismiss()
                     goToBackScreen()
                 }
             )
-            Title(label = GenericsStrings.ITEM_TO_UPDATE_PRICE, backgroundTransparent = true)
+            Title(label = GenericStrings.ITEM_TO_UPDATE_PRICE, backgroundTransparent = true)
             SubTitle(
-                label = productResponseVO?.name ?: GenericsStrings.EMPTY_TEXT,
+                label = productResponseVO?.name ?: GenericStrings.EMPTY_TEXT,
                 backgroundTransparent = true
             )
             Price(
-                label = GenericsStrings.PRICE,
+                label = GenericStrings.PRICE,
                 value = price,
                 isError = observer.second,
                 message = observer.third,
@@ -118,11 +118,11 @@ internal fun UpdatePriceProductBottomSheet(
             LoadingButton(
                 onClick = checkUpdatePriceProduct,
                 isEnabled = observer.first,
-                label = GenericsStrings.UPDATE_PRICE_PRODUCT_MOBILE
+                label = GenericStrings.UPDATE_PRICE_PRODUCT_MOBILE
             )
             SimpleButton(
                 onClick = onDismiss,
-                label = GenericsStrings.CANCEL,
+                label = GenericStrings.CANCEL,
                 background = Themes.colors.error
             )
             Spacer(modifier = Modifier.size(Themes.size.spaceSize64))

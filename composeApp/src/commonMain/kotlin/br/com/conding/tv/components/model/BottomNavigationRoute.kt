@@ -1,6 +1,6 @@
 package br.com.conding.tv.components.model
 
-import br.com.conding.tv.resources.GenericsStrings
+import br.com.conding.tv.resources.GenericStrings
 import br.com.conding.tv.resources.IconName
 
 internal enum class BottomNavigationItem {
@@ -15,19 +15,19 @@ internal sealed class BottomNavigationRoute(
     val route: BottomNavigationItem
 ) {
     data object Categories : BottomNavigationRoute(
-        label = GenericsStrings.CATEGORIES,
+        label = GenericStrings.CATEGORIES,
         icon = IconName.LABEL,
         route = BottomNavigationItem.Categories
     )
 
     data object Products : BottomNavigationRoute(
-        label = GenericsStrings.PRODUCTS,
+        label = GenericStrings.PRODUCTS,
         icon = IconName.BOX,
         route = BottomNavigationItem.Products
     )
 
     data object Settings : BottomNavigationRoute(
-        label = GenericsStrings.ADJUSTMENTS,
+        label = GenericStrings.ADJUSTMENTS,
         icon = IconName.SETTINGS,
         route = BottomNavigationItem.SETTINGS
     )

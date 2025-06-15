@@ -12,9 +12,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.window.Dialog
-import br.com.conding.tv.resources.GenericsStrings.ALERT
-import br.com.conding.tv.resources.GenericsStrings.CANCEL
-import br.com.conding.tv.resources.GenericsStrings.CONFIRM
+import br.com.conding.tv.resources.GenericStrings.ALERT
+import br.com.conding.tv.resources.GenericStrings.CANCEL
+import br.com.conding.tv.resources.GenericStrings.CONFIRM
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize.WEIGHT_SIZE
 import br.com.conding.tv.resources.onBorder

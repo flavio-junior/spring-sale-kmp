@@ -17,9 +17,9 @@ import br.com.conding.tv.components.ui.TextField
 import br.com.conding.tv.features.settings.data.dto.UserRequestDTO
 import br.com.conding.tv.features.settings.ui.viewmodel.SettingViewModel
 import br.com.conding.tv.networking.resources.HttpError
-import br.com.conding.tv.resources.GenericsStrings
-import br.com.conding.tv.resources.GenericsStrings.EMPTY_TEXT
-import br.com.conding.tv.resources.GenericsStrings.NOT_BLANK_OR_EMPTY
+import br.com.conding.tv.resources.GenericStrings
+import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
+import br.com.conding.tv.resources.GenericStrings.NOT_BLANK_OR_EMPTY
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize
 import br.com.conding.tv.resources.isNotBlankAndEmpty
@@ -76,7 +76,7 @@ internal fun DesktopEditProfileUserScreen(
             ) {
                 ContentHorizontal(spaceBy = Themes.size.spaceSize16) {
                     TextField(
-                        label = GenericsStrings.NAME,
+                        label = GenericStrings.NAME,
                         value = name,
                         iconName = IconName.EDIT,
                         isError = observer.second,
@@ -84,7 +84,7 @@ internal fun DesktopEditProfileUserScreen(
                         modifier = modifier.weight(weight = WeightSize.WEIGHT_SIZE)
                     )
                     TextField(
-                        label = GenericsStrings.SURNAME,
+                        label = GenericStrings.SURNAME,
                         value = surname,
                         iconName = IconName.EDIT,
                         isError = observer.second,
@@ -94,7 +94,7 @@ internal fun DesktopEditProfileUserScreen(
                 }
                 ContentHorizontal(spaceBy = Themes.size.spaceSize18) {
                     TextField(
-                        label = GenericsStrings.USERNAME,
+                        label = GenericStrings.USERNAME,
                         value = username,
                         iconName = IconName.EDIT,
                         isError = observer.second,
@@ -105,7 +105,7 @@ internal fun DesktopEditProfileUserScreen(
                         modifier = modifier.weight(weight = WeightSize.WEIGHT_SIZE)
                     )
                     TextField(
-                        label = GenericsStrings.EMAIL,
+                        label = GenericStrings.EMAIL,
                         value = response.email ?: EMPTY_TEXT,
                         enabled = false,
                         iconName = IconName.MAIL,
@@ -121,9 +121,9 @@ internal fun DesktopEditProfileUserScreen(
                             response.surname?.isNotBlankAndEmpty() == true &&
                             response.username?.isNotBlankAndEmpty() == true
                         ) {
-                            GenericsStrings.ALTER_DATA_USER
+                            GenericStrings.ALTER_DATA_USER
                         } else {
-                            GenericsStrings.SAVE_DATA_USER
+                            GenericStrings.SAVE_DATA_USER
                         },
                         modifier = modifier.weight(weight = WeightSize.WEIGHT_SIZE)
                     )

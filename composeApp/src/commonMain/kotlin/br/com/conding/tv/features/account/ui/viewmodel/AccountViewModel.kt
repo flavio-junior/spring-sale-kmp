@@ -14,7 +14,7 @@ import br.com.conding.tv.features.account.data.vo.TokenResponseVO
 import br.com.conding.tv.features.account.domain.converter.ConverterAccount
 import br.com.conding.tv.networking.resources.DescriptionError
 import br.com.conding.tv.networking.resources.ObserveNetworkStateHandler
-import br.com.conding.tv.resources.GenericsStrings.INVALID_EMAIL
+import br.com.conding.tv.resources.GenericStrings.INVALID_EMAIL
 import br.com.conding.tv.resources.validateEmail
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

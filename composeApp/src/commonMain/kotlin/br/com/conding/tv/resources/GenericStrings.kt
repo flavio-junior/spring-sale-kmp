@@ -1,6 +1,6 @@
 package br.com.conding.tv.resources
 
-internal object GenericsStrings {
+internal object GenericStrings {
     const val PROJECT_NAME = "Spring Sale"
     const val CREATE_ONE_ACCOUNT = "Criar uma conta"
     const val CREATE_MY_ACCOUNT = "Criar minha conta"
