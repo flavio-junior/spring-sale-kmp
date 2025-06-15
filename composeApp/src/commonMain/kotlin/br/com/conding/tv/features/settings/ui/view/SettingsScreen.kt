@@ -22,6 +22,7 @@ import br.com.conding.tv.resources.GenericStrings.EXIT
 import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.WeightSize
 import br.com.conding.tv.resources.onClickable
+import br.com.conding.tv.resources.versionProduct
 import br.com.conding.tv.theme.Themes
 
 @Composable
@@ -78,6 +79,17 @@ internal fun MobileSettingsScreen(
                                 openDialog = true
                             }
                             .weight(weight = WeightSize.WEIGHT_SIZE)
+                    )
+                }
+            )
+            ContentHorizontal(
+                spaceBy = Themes.size.spaceSize18,
+                content = {
+                    IconDefault(iconName = IconName.COMMIT)
+                    SubTitle(
+                        label = "${GenericStrings.VERSION} ${versionProduct()}",
+                        backgroundTransparent = true,
+                        modifier = Modifier.weight(weight = WeightSize.WEIGHT_SIZE)
                     )
                 }
             )

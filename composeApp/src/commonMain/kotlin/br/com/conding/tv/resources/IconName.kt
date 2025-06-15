@@ -4,6 +4,7 @@ internal enum class IconName {
     ARROW_BACK,
     ARROW_FORWARD,
     CHECK_BOX,
+    COMMIT,
     ARROW_OUTWARD,
     BOX,
     BRAND_AWARENESS,

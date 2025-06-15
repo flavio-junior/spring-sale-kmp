@@ -1,3 +1,4 @@
+import DesktopSettings.DIRECTORY_MAIN_CLASS
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -32,7 +33,6 @@ kotlin {
     
     sourceSets {
         val desktopMain by getting
-        
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -68,14 +68,14 @@ kotlin {
 }
 
 android {
-    namespace = "br.com.conding.tv"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    namespace = SettingsDefault.PACKAGE_NAME
+    compileSdk = AndroidSettings.ACTUAL_COMPILE_SDK
     defaultConfig {
-        applicationId = "br.com.conding.tv"
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = SettingsDefault.PACKAGE_NAME
+        minSdk = AndroidSettings.ACTUAL_MIN_SDK
+        targetSdk = AndroidSettings.ACTUAL_TARGET_SDK
+        versionCode = AndroidSettings.ACTUAL_VERSION_CODE
+        versionName = AndroidSettings.ACTUAL_VERSION_ANDROID
     }
     packaging {
         resources {
@@ -99,11 +99,11 @@ dependencies {
 
 compose.desktop {
     application {
-        mainClass = "br.com.conding.tv.MainKt"
+        mainClass = DIRECTORY_MAIN_CLASS
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "br.com.conding.tv"
-            packageVersion = "1.0.0"
+            packageName = SettingsDefault.PACKAGE_NAME
+            packageVersion = DesktopSettings.ACTUAL_VERSION_DESKTOP
         }
     }
 }

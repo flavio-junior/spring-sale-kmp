@@ -34,6 +34,7 @@ import br.com.conding.tv.resources.IconName
 import br.com.conding.tv.resources.isNotBlankAndEmpty
 import br.com.conding.tv.resources.onClickable
 import br.com.conding.tv.resources.validateEmail
+import br.com.conding.tv.resources.versionProduct
 import br.com.conding.tv.theme.Themes
 import org.koin.mp.KoinPlatform.getKoin
 
@@ -104,7 +105,7 @@ internal fun SignInScreen(
                 onClick = goToConfirmEmailAddressScreen
             )
             Spacer(modifier = Modifier.height(height = Themes.size.spaceSize0))
-            Description(label = "$VERSION 1.00", backgroundTransparent = true)
+            Description(label = "$VERSION ${versionProduct()}", backgroundTransparent = true)
             UiResponseGetTokenSaved(
                 viewModel = viewModel,
                 goToHomeScreen = goToHomeScreen

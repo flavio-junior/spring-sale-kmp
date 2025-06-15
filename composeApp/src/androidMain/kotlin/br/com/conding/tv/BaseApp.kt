@@ -1,6 +1,7 @@
 package br.com.conding.tv
 
 import android.app.Application
+import br.com.conding.tv.di.androidModule
 import br.com.conding.tv.di.commonModule
 import br.com.conding.tv.features.account.di.accountModule
 import br.com.conding.tv.features.category.di.categoryModule
@@ -20,6 +21,7 @@ class BaseApp : Application() {
             androidLogger(Level.INFO)
             modules(
                 modules = listOf(
+                    androidModule,
                     commonModule,
                     accountModule,
                     categoryModule,
