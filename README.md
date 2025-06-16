@@ -1,8 +1,5 @@
 ### Documentation of Project Kotlin Multiplatform | Spring Sale
 
-### Rodmap:
-![Image](https://github.com/user-attachments/assets/865f1448-d5cb-4c13-9d5a-e27462793b82)
-
 ### Specifications
 - **Resources:**
   - **Programming language used: ` Kotlin `**
