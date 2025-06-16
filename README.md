@@ -1,10 +1,10 @@
-# Documentation of Project Kotlin Multiplatform | Spring Sale
+### Documentation of Project Kotlin Multiplatform | Spring Sale
 
-# Rodmap:
+### Rodmap:
 ![Image](https://github.com/user-attachments/assets/865f1448-d5cb-4c13-9d5a-e27462793b82)
 
-# Resources
-- **Specifications:**
+### Specifications
+- **Resources:**
   - **Programming language used: ` Kotlin `**
   - **Kotlin Version: ` 2.1.21 `**
   - **JDK: ` 21 LTS `**
