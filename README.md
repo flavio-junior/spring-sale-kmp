@@ -1,7 +1,9 @@
 # Documentation of Project Kotlin Multiplatform | Spring Sale
 
-# Resources
+# Rodmap:
+![Image](https://github.com/user-attachments/assets/865f1448-d5cb-4c13-9d5a-e27462793b82)
 
+# Resources
 - **Specifications:**
   - **Programming language used: ` Kotlin `**
   - **Kotlin Version: ` 2.1.21 `**
@@ -34,7 +36,6 @@
   - **Run the [back-end](https://github.com/flavio-junior/spring-sale).**
   - **Verify your machine's local IPv4 address and configure it in the networkModule to enable local execution of the application.**
 
-
 ### Git - Accepted Standards for Commits and Pull Requests:
 - **feat:** **` Used when creating or adding a new feature. `**
 - **fix:** **`  Used when fixing a bug in the project. `**
@@ -55,28 +56,6 @@
 ### Tree of Branchs:
 - **Main: ` Default `**
 - **Developer: ` Your Branch `**
-
-### Git - Accepted Standards for Commits and Pull Requests:
-- **feat:** **` Used when creating or adding a new feature. `**
-- **fix:** **`  Used when fixing a bug in the project. `**
-- **update:** **`  Used for updates to existing files. `**
-- **config:** **` Implementation and configuration in the project. `**
-- **drop files:** **` Used when a file is deleted from the project. `**
-- **docs:** **` Indicates the creation, implementation, or changes in the documentation. `**
-- **test:** **` Used when adding or updating test scenarios. `**
-- **refactor:** **` Refactoring that does not change functionality. `**
-- **build:** **` Indicates the creation, implementation, or changes in build files or dependencies. `**
-- **chore:** **` Indicates updates to build tasks, admin configurations, packages, etc. `**
-- **perf:** **` Code changes related to performance. `**
-- **style:** **`  Used for changes in code formatting. `**
-- **revert:** **` Reverts to a specific commit. `**
-
-**Example:** **` git commit -m "docs: adding instructions" `**
-
-### Tree of Branchs:
-- **Main: ` Default `**
-- **Developer: ` Your Branch `**
-
 
 # External Links:
 <a href="https://www.youtube.com/@CodandoTV"> <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white"></a>
