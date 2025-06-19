@@ -50,6 +50,9 @@
 
 **Example:** **` git commit -m "docs: adding instructions" `**
 
+### How to launch the desktop application using Android Studio:
+https://github.com/user-attachments/assets/ba23e2ca-cf42-435f-9c42-62dfe60ad8ee
+
 ### Tree of Branchs:
 - **Main: ` Default `**
 - **Developer: ` Your Branch `**
@@ -57,3 +60,7 @@
 # External Links:
 <a href="https://www.youtube.com/@CodandoTV"> <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white"></a>
 <a href="https://medium.com/p/abda8172ec1f"> <img src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white"></a>
+
+
+# Support
+### **Special thanks to [CodandoTV](https://www.youtube.com/@CodandoTV) for their support.**
