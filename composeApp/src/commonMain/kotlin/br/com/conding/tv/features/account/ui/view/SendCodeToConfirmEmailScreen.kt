@@ -22,7 +22,6 @@ import br.com.conding.tv.components.ui.UiState
 import br.com.conding.tv.features.account.data.dto.EmailRequestDTO
 import br.com.conding.tv.features.account.ui.viewmodel.AccountViewModel
 import br.com.conding.tv.features.account.ui.viewmodel.ResetAccount
-import br.com.conding.tv.navigation.AppDestinations
 import br.com.conding.tv.networking.resources.HttpError
 import br.com.conding.tv.resources.GenericStrings.CREATE_MY_ACCOUNT
 import br.com.conding.tv.resources.GenericStrings.EMPTY_TEXT
@@ -41,7 +40,7 @@ import org.koin.mp.KoinPlatform.getKoin
 @Composable
 internal fun SendCodeToConfirmEmailScreen(
     goToBackScreen: () -> Unit = {},
-    goToCheckCodeToConfirmEmailScreen: (AppDestinations.CheckCodeToConfirmEmail) -> Unit = {},
+    goToCheckCodeToConfirmEmailScreen: (email: String) -> Unit = {},
     goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     var changeLabel: Boolean by remember { mutableStateOf(value = false) }
@@ -85,9 +84,7 @@ internal fun SendCodeToConfirmEmailScreen(
                     observer = it
                 },
                 goToCheckCodeToConfirmEmailScreen = {
-                    goToCheckCodeToConfirmEmailScreen(
-                        AppDestinations.CheckCodeToConfirmEmail(email = email)
-                    )
+                    goToCheckCodeToConfirmEmailScreen(email)
                 },
                 goToAlternativeRoutes = goToAlternativeRoutes
             )

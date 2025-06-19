@@ -38,14 +38,14 @@ import org.koin.mp.KoinPlatform.getKoin
 internal fun SignUpScreen(
     signUp: AppDestinations.SignUp? = null,
     goToHomeScreen: () -> Unit = {},
-    goToSignInScreen: () -> Unit = {},
+    goToBackScreen: () -> Unit = {},
     goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     ContentScreen(
         definitionsScreen = DefinitionsScreen(
             label = CREATE_MY_ACCOUNT
         ),
-        goToBackScreen = goToSignInScreen,
+        goToBackScreen = goToBackScreen,
         content = {
             val viewModel: AccountViewModel = getKoin().get()
             var password: String by remember { mutableStateOf(value = EMPTY_TEXT) }
@@ -93,7 +93,7 @@ internal fun SignUpScreen(
             )
             LoadingButton(
                 label = ENTER_YOUR_ACCOUNT,
-                onClick = goToSignInScreen
+                onClick = goToBackScreen
             )
         }
     )
