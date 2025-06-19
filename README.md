@@ -36,6 +36,9 @@
 ### How to launch the desktop application using Android Studio:
 https://github.com/user-attachments/assets/ba23e2ca-cf42-435f-9c42-62dfe60ad8ee
 
+### Core of Project:
+![Image](https://github.com/user-attachments/assets/c71188bb-be09-4658-9c7e-4a18a7e7af8b)
+
 ### Git - Accepted Standards for Commits and Pull Requests:
 - **feat:** **` Used when creating or adding a new feature. `**
 - **fix:** **`  Used when fixing a bug in the project. `**
