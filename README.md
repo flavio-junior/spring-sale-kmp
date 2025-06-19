@@ -33,6 +33,9 @@
   - **Run the [back-end](https://github.com/flavio-junior/spring-sale).**
   - **Verify your machine's local IPv4 address and configure it in the networkModule to enable local execution of the application.**
 
+### How to launch the desktop application using Android Studio:
+https://github.com/user-attachments/assets/ba23e2ca-cf42-435f-9c42-62dfe60ad8ee
+
 ### Git - Accepted Standards for Commits and Pull Requests:
 - **feat:** **` Used when creating or adding a new feature. `**
 - **fix:** **`  Used when fixing a bug in the project. `**
@@ -49,9 +52,6 @@
 - **revert:** **` Reverts to a specific commit. `**
 
 **Example:** **` git commit -m "docs: adding instructions" `**
-
-### How to launch the desktop application using Android Studio:
-https://github.com/user-attachments/assets/ba23e2ca-cf42-435f-9c42-62dfe60ad8ee
 
 ### Tree of Branchs:
 - **Main: ` Default `**
