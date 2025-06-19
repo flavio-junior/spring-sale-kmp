@@ -126,11 +126,9 @@ internal fun NavGraphBuilder.signUp(
             goToBackScreen = {
                 navController.goBack()
             },
-            goToCheckCodeToConfirmEmailScreen = {
-                navController.navigate(route = it) {
-                    popUpTo(route = AppDestinations.SendCodeToConfirmEmail) {
-                        inclusive = true
-                    }
+            goToCheckCodeToConfirmEmailScreen = { email ->
+                navController.navigate(route = AppDestinations.CheckCodeToConfirmEmail(email = email)) {
+                    popUpTo(route = AppDestinations.SignIn)
                 }
             },
             goToAlternativeRoutes = {
@@ -146,15 +144,13 @@ internal fun NavGraphBuilder.signUp(
     composable<AppDestinations.CheckCodeToConfirmEmail> { backStackEntry ->
         CheckCodeToConfirmEmailScreen(
             checkCodeToConfirmEmail = backStackEntry.toRoute(),
-            goToSignUpScreen = {
-                navController.navigate(route = it)
-            },
-            goToSignInScreen = {
-                navController.navigate(route = AppDestinations.SignIn) {
-                    popUpTo(route = AppDestinations.CheckRecoverToken::class) {
-                        inclusive = true
-                    }
+            goToSignUpScreen = { email ->
+                navController.navigate(route = AppDestinations.SignUp(email = email)) {
+                    popUpTo(route = AppDestinations.SignIn)
                 }
+            },
+            goToBackScreen = {
+                navController.goBack()
             },
             goToAlternativeRoutes = {
                 navigateToAlternativeRoutes(
@@ -171,17 +167,13 @@ internal fun NavGraphBuilder.signUp(
             signUp = backStackEntry.toRoute(),
             goToHomeScreen = {
                 navController.navigate(route = AppDestinations.Home) {
-                    popUpTo(route = AppDestinations.SignUp::class) {
+                    popUpTo(route = AppDestinations.SignIn) {
                         inclusive = true
                     }
                 }
             },
-            goToSignInScreen = {
-                navController.navigate(route = AppDestinations.SignIn) {
-                    popUpTo(route = AppDestinations.SignUp::class) {
-                        inclusive = true
-                    }
-                }
+            goToBackScreen = {
+                navController.goBack()
             },
             goToAlternativeRoutes = {
                 navigateToAlternativeRoutes(

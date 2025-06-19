@@ -29,17 +29,17 @@ import org.koin.mp.KoinPlatform.getKoin
 @Composable
 internal fun CheckCodeToConfirmEmailScreen(
     checkCodeToConfirmEmail: AppDestinations.CheckCodeToConfirmEmail? = null,
-    goToSignUpScreen: (AppDestinations.SignUp) -> Unit = {},
-    goToSignInScreen: () -> Unit = {},
+    goToSignUpScreen: (email: String) -> Unit = {},
+    goToBackScreen: () -> Unit = {},
     goToAlternativeRoutes: (HttpError) -> Unit = {}
 ) {
     ContentScreen(
         definitionsScreen = DefinitionsScreen(
             label = CREATE_MY_ACCOUNT
         ),
-        goToBackScreen = goToSignInScreen,
+        goToBackScreen = goToBackScreen,
         extra = {
-            if (it) Title(label = CREATE_MY_ACCOUNT, backgroundTransparent = true,)
+            if (it) Title(label = CREATE_MY_ACCOUNT, backgroundTransparent = true)
         },
         content = {
             val viewModel: AccountViewModel = getKoin().get()
@@ -68,14 +68,14 @@ internal fun CheckCodeToConfirmEmailScreen(
                     observer = it
                 },
                 goToSignUpScreen = {
-                    goToSignUpScreen(
-                        AppDestinations.SignUp(email = checkCodeToConfirmEmail?.email.orEmpty())
-                    )
+                    goToSignUpScreen(checkCodeToConfirmEmail?.email.orEmpty())
                 },
                 goToAlternativeRoutes = goToAlternativeRoutes
             )
             CheckCodeToConfirmEmail(
-                onClick = { checkCode(code) },
+                onClick = {
+                    checkCode(code)
+                },
                 isEnabled = observer.first
             )
             SimpleText(
@@ -86,7 +86,7 @@ internal fun CheckCodeToConfirmEmailScreen(
             )
             LoadingButton(
                 label = ENTER_YOUR_ACCOUNT,
-                onClick = goToSignInScreen
+                onClick = goToBackScreen
             )
         }
     )
