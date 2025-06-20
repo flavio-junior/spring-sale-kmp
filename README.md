@@ -37,7 +37,11 @@
 https://github.com/user-attachments/assets/ba23e2ca-cf42-435f-9c42-62dfe60ad8ee
 
 ### Core of Project:
-![Image](https://github.com/user-attachments/assets/c71188bb-be09-4658-9c7e-4a18a7e7af8b)
+![Image](https://github.com/user-attachments/assets/be2889f7-c586-4725-84f1-3109421f453f)
+
+- **Preview Running Project:**
+  - **[Running Desktop Project](https://youtu.be/UaUWG-RFN9s)**
+  - **[Running Android Project](https://youtube.com/shorts/mfNYjPfXujk)**
 
 ### Git - Accepted Standards for Commits and Pull Requests:
 - **feat:** **` Used when creating or adding a new feature. `**
