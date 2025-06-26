@@ -42,6 +42,7 @@ https://github.com/user-attachments/assets/ba23e2ca-cf42-435f-9c42-62dfe60ad8ee
 - **Preview Running Project:**
   - **[Running Desktop Project](https://youtu.be/UaUWG-RFN9s)**
   - **[Running Android Project](https://youtube.com/shorts/mfNYjPfXujk)**
+  - **[Running iOS Project](https://youtube.com/shorts/HPGqbb0XQZg?feature=share)**
 
 ### Git - Accepted Standards for Commits and Pull Requests:
 - **feat:** **` Used when creating or adding a new feature. `**
